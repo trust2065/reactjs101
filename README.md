@@ -3,22 +3,36 @@ React101 (從零開始學 React)。一本給初學者的 ReactJS 入門教學書
 
 ## 目錄 (Agenda)
 
+## 目錄（Agenda）
+
 一、HTML、CSS、JavaScript 基礎入門
 
-二、React/JSX 簡介
+二、React/JSX/Component 簡介
 
-二、Component
+三、Pros/State 基礎 
 
-三、生命週期
+四、Component 生命週期
 
-四、Flux
+五、事件處理
 
-五、Redux
+六、DOM 操作
 
-六、React Native
+七、表單處理
 
-七、範例練習：用 React 寫一個 Todo List
+八、Routing
 
-八、範例練習：用 React Native 寫一個新聞閱讀器
+九、Flux/Redux
+
+十、React Native
+
+十一、範例練習：用 React + Rudux 寫一個 Todo List
+
+十二、範例練習：用 React + Node(Sails.js) 開發微網誌系統
+
+十三、範例練習：用 React Native 寫一個新聞閱讀器
 
 附錄一、學習資源
+
+附錄二、Webpack入門
+
+附錄三、Relay/GraphQL
