@@ -1,5 +1,5 @@
-# React101 (從零開始學 React)
-React101 (從零開始學 React)。一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Native, Relay, GraphQL, etc.)。
+# React101 (從零開始學 ReactJS)
+一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Native, Relay, GraphQL, etc.)，打造跨平台應用程式。
 
 ## 目錄（Agenda）
 
