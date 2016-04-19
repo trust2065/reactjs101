@@ -1,6 +1,6 @@
 {
   "name": "從零開始學 React（React 101）",
-  "tagline": "一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, React Native, etc.)，打造跨平台應用程式。",
+  "tagline": "一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, React Native, etc.)，打造跨平台應用程式",
   "body": "一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, React Native, etc.)，打造跨平台應用程式。\r\n\r\n目錄（Agenda）\r\n\r\n一、前端工程和 React 生態系簡介\r\n\r\n二、React/JSX/Component 簡介\r\n\r\n三、開發環境設置與 Webpack 入門\r\n\r\n四、Pros/State 基礎\r\n\r\n五、Component 生命週期\r\n\r\n六、事件處理\r\n\r\n七、DOM 操作\r\n\r\n八、表單處理\r\n\r\n九、Routing\r\n\r\n十、Flux/Redux\r\n\r\n十一、React Native 簡介\r\n\r\n十二、範例練習：用 React + Rudux 寫一個 Todo List\r\n\r\n十三、範例練習：用 React + Node（Express.js） 開發微網誌系統\r\n\r\n十三、範例練習：用 React Native 寫一個新聞閱讀器\r\n\r\n附錄一、React ES5、ES6+ 常見用法對照表\r\n\r\n附錄二、學習資源",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
