@@ -55,6 +55,409 @@
 
 <p>附錄二、學習資源</p>
 
+<h1>
+<a id="附錄一react-es5es6-常見用法對照表" class="anchor" href="#%E9%99%84%E9%8C%84%E4%B8%80react-es5es6-%E5%B8%B8%E8%A6%8B%E7%94%A8%E6%B3%95%E5%B0%8D%E7%85%A7%E8%A1%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>附錄一、React ES5、ES6+ 常見用法對照表</h1>
+
+<h2>
+<a id="前言" class="anchor" href="#%E5%89%8D%E8%A8%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>前言</h2>
+
+<p><a href="https://facebook.github.io/react/">React</a> 是 Facebook 推出的開源 <a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> Library。自從 React 正式開源後，React 生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：ES6、<a href="https://github.com/webpack/webpack">Webpack</a>、<a href="https://babeljs.io/">Bable</a>、模組化等），成為更好的開發者。雖然 ES6（JavaScript2015）、ES7 是未來趨勢（本文將 ES6、ES7 稱為 ES6+），然而目前在網路上有許多的學習資源仍是以 ES5 為主，導致讀者在學習上遇到一些坑洞和迷惑（本文假設讀者對於 React 已經有些基本認識，若你對於 React 尚不熟悉，建議先行<a href="https://facebook.github.io/react/">閱讀官方文件</a>和<a href="https://scotch.io/tutorials/learning-react-getting-started-and-concepts">本篇入門教學</a>）。因此本文希望透過整理在 React 中 ES5、ES6+ 常見用法對照表，讓讀者們可以在實現功能時（尤其在 <a href="https://facebook.github.io/react-native/">React Native</a>）可以更清楚兩者的差異，無痛轉移到 ES6+。 </p>
+
+<h2>
+<a id="1-modules" class="anchor" href="#1-modules" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Modules</h2>
+
+<p>隨著 Web 技術的進展，模組化開發已經成為一個重要課題。關於 JavaScript 模組化我們這邊不詳述，建議讀者參考 <a href="http://huangxuan.me/js-module-7day/#/">這份投影片</a> 和 <a href="http://justineo.github.io/singles/writing-modular-js/">這篇文章</a>。</p>
+
+<p>ES5 若使用 CommonJS 標準，一般使用 <code>require()</code> 用法引入模組：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> React <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> MyComponent <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./MyComponent<span class="pl-pds">'</span></span>);</pre></div>
+
+<p>輸出則是使用 <code>module.exports</code>：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> MyComponent;</pre></div>
+
+<p>ES6+ <code>import</code> 用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">React</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> <span class="pl-smi">MyComponent</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./MyComponent<span class="pl-pds">'</span></span>;</pre></div>
+
+<p>輸出則是使用 <code>export default</code>：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">export</span> <span class="pl-v">default</span> <span class="pl-k">class</span> <span class="pl-en">MyComponent</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Compoent</span> {
+
+}</pre></div>
+
+<h2>
+<a id="2-classes" class="anchor" href="#2-classes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Classes</h2>
+
+<p>在 React 中元件（Component）是組成視覺頁面的基礎。在 ES5 中我們使用 <code>React.createClass()</code> 來建立 Component，而在 ES6+ 則是用 <a href="https://babeljs.io/docs/learn-es2015/#classes">Classes</a> 繼承 <code>React.Component</code> 來建立 Component。若是有寫過 Java 等物件導向語言（OOP）的讀者應該對於這種寫法比較不陌生，不過要注意的是 JavaScript 仍是原型繼承類型的物件導向程式語言，只是使用 <code>Classes</code> 讓物件導向使用上更加直觀。對於選擇 <code>class</code> 使用上還有疑惑的讀者建議可以閱讀 <a href="https://toddmotto.com/react-create-class-versus-component/">React.createClass versus extends React.Component</a> 這篇文章。</p>
+
+<p>ES5 <code>React.createClass()</code> 用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Photo <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+  <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+    <span class="pl-k">return</span> (
+        <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>img alt<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">description</span>} src<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-smi">src</span>} <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+        );
+  }
+});</pre></div>
+
+<p>ES6+ <code>class</code> 用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Photo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> <span class="pl-k">&lt;</span>img alt<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">description</span>} src<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-smi">src</span>} <span class="pl-k">/</span><span class="pl-k">&gt;</span>;
+  }
+}</pre></div>
+
+<p>在 ES5 我們會在 <code>componentWillMount</code> 生命週期定義希望在 <code>render</code> 前執行，且只會執行一次的任務：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Photo <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+  <span class="pl-en">componentWillMount</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {}
+});</pre></div>
+
+<p>在 ES6+ 則是定義在 <code>constructor</code> 建構子中：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Photo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+  <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>) {
+    <span class="pl-v">super</span>(props);
+    <span class="pl-c">// 原本在 componentWillMount 操作的動作可以放在這</span>
+  }
+}</pre></div>
+
+<h2>
+<a id="3-method-definition" class="anchor" href="#3-method-definition" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Method definition</h2>
+
+<p>在 ES6 中我們使用 <code>Method</code> 可以忽略 <code>function</code> 和 <code>,</code>，使用上更為簡潔！ES5 <code>React.createClass()</code> 用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Photo <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+  <span class="pl-en">handleClick</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">e</span>) {},
+  <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {}
+});</pre></div>
+
+<p>ES6+ class 用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Photo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+  <span class="pl-en">handleClick</span>(<span class="pl-smi">e</span>) {}
+  <span class="pl-en">render</span>() {}
+}</pre></div>
+
+<h2>
+<a id="4-property-initializers" class="anchor" href="#4-property-initializers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Property initializers</h2>
+
+<p>Component 屬性值是訊息傳遞重要的元素，在 ES5 中我們使用 <code>propTypes</code> 和  <code>getDefaultProps</code> 來定義屬性（props）的預設值和型別：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Todo <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+  <span class="pl-en">getDefaultProps</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+    <span class="pl-k">return</span> {
+      checked<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+      maxLength<span class="pl-k">:</span> <span class="pl-c1">10</span>,
+    };
+  },
+  propTypes<span class="pl-k">:</span> {
+    checked<span class="pl-k">:</span> <span class="pl-smi">React</span>.<span class="pl-smi">PropTypes</span>.<span class="pl-smi">bool</span>.<span class="pl-smi">isRequired</span>,
+    maxLength<span class="pl-k">:</span> <span class="pl-smi">React</span>.<span class="pl-smi">PropTypes</span>.<span class="pl-smi">number</span>.<span class="pl-smi">isRequired</span>
+  },
+  render<span class="pl-k">:</span> <span class="pl-en">fucntion</span>() {
+    <span class="pl-k">return</span>();
+  }
+});</pre></div>
+
+<p>在 ES6+ 中我們則是參考 <a href="https://github.com/jeffmo/es-class-fields-and-static-properties">ES7 property initializers</a> 使用 <code>class</code> 中的靜態屬性（static properties）來定義：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Todo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+  <span class="pl-k">static</span> defaultProps <span class="pl-k">=</span> {
+    checked<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    maxLength<span class="pl-k">:</span> <span class="pl-c1">10</span>,
+  }; <span class="pl-c">// 注意有分號</span>
+  <span class="pl-k">static</span> propTypes <span class="pl-k">=</span> {
+    checked<span class="pl-k">:</span> <span class="pl-smi">React</span>.<span class="pl-smi">PropTypes</span>.<span class="pl-smi">bool</span>.<span class="pl-smi">isRequired</span>,
+    maxLength<span class="pl-k">:</span> <span class="pl-smi">React</span>.<span class="pl-smi">PropTypes</span>.<span class="pl-smi">number</span>.<span class="pl-smi">isRequired</span>
+  };
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span>();
+  }
+}</pre></div>
+
+<p>ES6+ 另外一種寫法，可以留意一下，但不推薦：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Todo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+    <span class="pl-en">render</span>() {
+        <span class="pl-k">return</span> (
+            <span class="pl-k">&lt;</span>View <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+        );
+    }
+}
+<span class="pl-smi">Todo</span>.<span class="pl-smi">defaultProps</span> <span class="pl-k">=</span> {
+    checked<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    maxLength<span class="pl-k">:</span> <span class="pl-c1">10</span>,
+};
+<span class="pl-smi">Todo</span>.<span class="pl-smi">propTypes</span> <span class="pl-k">=</span> {
+    checked<span class="pl-k">:</span> <span class="pl-smi">React</span>.<span class="pl-smi">PropTypes</span>.<span class="pl-smi">bool</span>.<span class="pl-smi">isRequired</span>,
+    maxLength<span class="pl-k">:</span> <span class="pl-smi">React</span>.<span class="pl-smi">PropTypes</span>.<span class="pl-smi">number</span>.<span class="pl-smi">isRequired</span>,
+};</pre></div>
+
+<h2>
+<a id="5-state" class="anchor" href="#5-state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. State</h2>
+
+<p>在 React 中 <code>Props</code> 和 <code>State</code> 是資料流傳遞的重要元素，不同的是 <code>state</code> 可更動，可以去執行一些運算。在 ES5 中我們使用 <code>getInitialState</code> 去初始化 <code>state</code>： </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Todo <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+    <span class="pl-en">getInitialState</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-k">return</span> {
+            maxLength<span class="pl-k">:</span> <span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">maxLength</span>,
+        };
+    },
+})</pre></div>
+
+<p>在 ES6+ 中我們初始化 <code>state</code> 有兩種寫法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Todo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+    state <span class="pl-k">=</span> {
+        maxLength<span class="pl-k">:</span> <span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">maxLength</span>,
+    }
+}</pre></div>
+
+<p>另外一種寫法，使用在建構式初始化。比較推薦使用這種方式，方便做一些運算：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Todo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+    <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>){
+        <span class="pl-v">super</span>(props);
+        <span class="pl-v">this</span>.<span class="pl-smi">state</span> <span class="pl-k">=</span> {
+            maxLength<span class="pl-k">:</span> <span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">maxLength</span>,
+        };
+    }
+}</pre></div>
+
+<h2>
+<a id="6-arrow-functions" class="anchor" href="#6-arrow-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6. Arrow functions</h2>
+
+<p>在講 <code>Arrow functions</code> 之前，我們先聊聊在 React 中 <code>this</code> 和它所代表的 <code>context</code>。在 ES5 中，我們使用 <code>React.createClass()</code> 來建立 Component，而在 <code>React.createClass()</code> 下，預設幫你綁定好 <code>method</code> 的 <code>this</code>，你毋須自行綁定。所以你可以看到像是下面的例子，<code>callback function</code> handleButtonClick 中的  <code>this</code> 是指到 component 的實例（instance），而非觸發事件的物件：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> TodoBtn <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+    <span class="pl-en">handleButtonClick</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">e</span>) {
+        <span class="pl-c">// 此 this 指到 component 的實例（instance），而非 button</span>
+        <span class="pl-v">this</span>.<span class="pl-en">setState</span>({showOptionsModal<span class="pl-k">:</span> <span class="pl-c1">true</span>});
+    },
+    <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>(){
+        <span class="pl-k">return</span> (
+            <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-c1">Button</span> onClick<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>}<span class="pl-k">&gt;</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">label</span>}<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">Button</span><span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+        )
+    },
+});</pre></div>
+
+<p>然而自動綁定這種方式反而會讓人容易誤解，所以在 ES6+ 推薦使用 <code>bind</code> 綁定 <code>this</code> 或使用 <code>Arrow functions</code>（它會绑定當前 <code>scope</code> 的 <code>this context</code>），你可以參考下面例子：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">TodoBtn</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span>
+{
+    <span class="pl-en">handleButtonClick</span>(<span class="pl-smi">e</span>){
+        <span class="pl-c">// 確認綁定 this 指到 component instance</span>
+        <span class="pl-v">this</span>.<span class="pl-en">setState</span>({toggle<span class="pl-k">:</span> <span class="pl-c1">true</span>});
+    }
+    <span class="pl-en">render</span>(){
+        <span class="pl-c">// 手動綁定 this 指到 component instance</span>
+        <span class="pl-k">return</span> (
+            <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-c1">Button</span> onClick<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>)} onClick<span class="pl-k">=</span>{(<span class="pl-smi">e</span>)<span class="pl-k">=&gt;</span> {<span class="pl-v">this</span>.<span class="pl-en">handleButtonClick</span>(e)} }<span class="pl-k">&gt;</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">label</span>}<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">Button</span><span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+        )
+    },
+}</pre></div>
+
+<p><code>Arrow functions</code> 雖然一開始看起來有點怪異，但其實觀念很簡單：一個簡化的函數。函數基本上就是參數（不一定要有參數）、表達式、回傳值（也可能是回傳 undefined）：</p>
+
+<pre><code>// Arrow functions 的一些例子
+()=&gt;7
+e=&gt;e+2
+()=&gt;{
+    alert('XD');
+}
+(a,b)=&gt;a+b
+e=&gt;{
+    if (e == 2){
+        return 2;
+    }
+    return 100/e;
+}
+</code></pre>
+
+<p>不過要注意的是無論是 <code>bind</code> 或是 <code>Arrow functions</code>，每次執行回傳都是指到一個新的函數，若需要再調用到這個函數，請記得先把它存起來：</p>
+
+<p>錯誤用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">TodoBtn</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span>{
+    <span class="pl-en">componentWillMount</span>(){
+        <span class="pl-smi">Btn</span>.<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>));
+    }
+    <span class="pl-en">componentDidUnmount</span>(){
+        <span class="pl-smi">Btn</span>.<span class="pl-en">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>));
+    }
+    <span class="pl-en">onAppPaused</span>(<span class="pl-c1">event</span>){
+    }
+}</pre></div>
+
+<p>正確用法：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">TodoBtn</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span>{
+    <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>){
+        <span class="pl-v">super</span>(props);
+        <span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span> <span class="pl-k">=</span> <span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>);
+    }
+    <span class="pl-en">componentWillMount</span>(){
+        <span class="pl-smi">Btn</span>.<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>);
+    }
+    <span class="pl-en">componentDidUnmount</span>(){
+        <span class="pl-smi">Btn</span>.<span class="pl-en">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-v">this</span>.<span class="pl-smi">handleButtonClick</span>);
+    }
+}</pre></div>
+
+<p>更多 Arrows and Lexical This 特性可以[參考這個文件]((<a href="https://babeljs.io/docs/learn-es2015/#arrows)%E3%80%82">https://babeljs.io/docs/learn-es2015/#arrows)。</a></p>
+
+<h2>
+<a id="7-dynamic-property-names--template-strings" class="anchor" href="#7-dynamic-property-names--template-strings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7. Dynamic property names &amp; template strings</h2>
+
+<p>以前在 ES5 我們要動態設定屬性名稱時，往往需要多寫幾行程式碼才能達到目標：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Todo <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+  <span class="pl-en">onChange</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">inputName</span>, <span class="pl-smi">e</span>) {
+    <span class="pl-k">var</span> stateToSet <span class="pl-k">=</span> {};
+    stateToSet[inputName <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>Value<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">e</span>.<span class="pl-c1">target</span>.<span class="pl-c1">value</span>;
+    <span class="pl-v">this</span>.<span class="pl-en">setState</span>(stateToSet);
+  },
+});</pre></div>
+
+<p>但在 ES6+中，透過 <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus">enhancements to object literals</a> 和 <a href="https://babeljs.io/docs/learn-es2015/#template-strings">template strings</a> 可以輕鬆完成動態設定屬性名稱的任務：</p>
+
+<pre><code>class Todo extends React.Component {
+  onChange(inputName, e) {
+    this.setState({
+      [`${inputName}Value`]: e.target.value,
+    });
+  }
+}
+</code></pre>
+
+<p>Template Strings 是一種語法糖（syntactic sugar），方便我們組織字串：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Interpolate variable bindings</span>
+<span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Bob<span class="pl-pds">"</span></span>, time <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>today<span class="pl-pds">"</span></span>;
+<span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span>name<span class="pl-pse">}</span></span>, how are you <span class="pl-s1"><span class="pl-pse">${</span>time<span class="pl-pse">}</span></span>?<span class="pl-pds">`</span></span> \\ Hello Bob, how are you today<span class="pl-k">?</span></pre></div>
+
+<h2>
+<a id="8-destructuring--spread-attributes" class="anchor" href="#8-destructuring--spread-attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8. Destructuring &amp; spread attributes</h2>
+
+<p>在 React 的 Component 中，父元件利用 <code>props</code> 來傳遞資料到子元件是常見作法，然而我們有時會希望只傳遞部分資料，此時 ES6+ 中的 <a href="https://babeljs.io/docs/learn-es2015/#destructuring">Destructuring</a> 和 <a href="https://facebook.github.io/react/docs/jsx-spread.html">JSX 的 Spread Attributes
+</a> 就可以幫我們達到目標：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">Todo</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">var</span> {
+      className,
+      <span class="pl-k">...</span>others,  <span class="pl-c">// contains all properties of this.props except for className</span>
+    } <span class="pl-k">=</span> <span class="pl-v">this</span>.<span class="pl-smi">props</span>;
+    <span class="pl-k">return</span> (
+      <span class="pl-k">&lt;</span>div className<span class="pl-k">=</span>{className}<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>TodoList {<span class="pl-k">...</span>others} <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>button onClick<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleLoadMoreClick</span>}<span class="pl-k">&gt;</span>Load more<span class="pl-k">&lt;</span><span class="pl-k">/</span>button<span class="pl-k">&gt;</span>
+      <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+    );
+  }
+}</pre></div>
+
+<p>但使用上要注意的是若是有重複的屬性值則以後來覆蓋，下面的例子中若 <code>...this.props</code>，有 <code>className</code>，則被 <code>main</code> 所覆蓋：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&lt;</span>div {<span class="pl-k">...</span><span class="pl-smi">this</span>.<span class="pl-smi">props</span>} className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>main<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+  …
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span></pre></div>
+
+<p>而 <code>Destructuring</code> 也可以用在簡化 <code>Module</code> 的引入上，這邊我們先用 ES5 中引入方式來看：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> React <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>react-native<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> Component <span class="pl-k">=</span> <span class="pl-smi">React</span>.<span class="pl-smi">component</span>;
+
+<span class="pl-k">class</span> <span class="pl-en">HelloWorld</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> <span class="pl-k">&lt;</span>p<span class="pl-k">&gt;</span>Hello, world<span class="pl-k">!</span><span class="pl-k">&lt;</span><span class="pl-k">/</span>p<span class="pl-k">&gt;</span>;
+  }
+}
+
+<span class="pl-k">export</span> <span class="pl-v">default</span> <span class="pl-smi">HelloWorld</span>;</pre></div>
+
+<p>在 ES6+ 則可以直接使用 <code>Destructuring</code> 來引入模組中的元件：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> React, {
+    <span class="pl-smi">View</span>,
+    <span class="pl-smi">Component</span>,
+    <span class="pl-smi">Image</span>
+} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-native<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">class</span> <span class="pl-en">HelloWorld</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> <span class="pl-k">&lt;</span>p<span class="pl-k">&gt;</span>Hello, world<span class="pl-k">!</span><span class="pl-k">&lt;</span><span class="pl-k">/</span>p<span class="pl-k">&gt;</span>;
+  }
+}
+
+<span class="pl-k">export</span> <span class="pl-v">default</span> <span class="pl-smi">HelloWorld</span>;</pre></div>
+
+<h2>
+<a id="9-mixins" class="anchor" href="#9-mixins" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>9. Mixins</h2>
+
+<p>在 ES5 中，我們會使用 <code>Mixins</code> 去新增一些 <code>method</code>：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> PureRenderMixin <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>react-addons-pure-render-mixin<span class="pl-pds">'</span></span>);
+<span class="pl-smi">React</span>.<span class="pl-en">createClass</span>({
+  mixins<span class="pl-k">:</span> [PureRenderMixin],
+
+  <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+    <span class="pl-k">return</span> <span class="pl-k">&lt;</span>div className<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">props</span>.<span class="pl-c1">className</span>}<span class="pl-k">&gt;</span>foo<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>;
+  }
+});</pre></div>
+
+<p>但由於官方不打算在 ES6+ 中繼續推行 <code>Mixins</code>，若還是希望使用，可以參考看看<a href="https://www.npmjs.com/package/es6-class-mixin">第三方套件</a>或是<a href="https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775">這個文件的用法</a>。</p>
+
+<h2>
+<a id="10-default-parameters" class="anchor" href="#10-default-parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10. Default Parameters</h2>
+
+<p>以前 ES5 我們函數要使用預設值需要這樣使用：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-en">link</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">height</span>, <span class="pl-smi">color</span>) {  
+    <span class="pl-k">var</span> height <span class="pl-k">=</span> height <span class="pl-k">||</span> <span class="pl-c1">50</span>;  
+    <span class="pl-k">var</span> color <span class="pl-k">=</span> color <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>;  
+}  </pre></div>
+
+<p>現在 ES6+ 的函數可以支援預設值，讓程式碼更為簡潔：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-en">link</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">height</span> <span class="pl-k">=</span> <span class="pl-c1">50</span>, <span class="pl-smi">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>) {  
+  <span class="pl-k">...</span>  
+} </pre></div>
+
+<h2>
+<a id="總結" class="anchor" href="#%E7%B8%BD%E7%B5%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>總結</h2>
+
+<p>以上就是 React ES5、ES6+常見用法對照表，能看到這邊的你應該已經對於 React ES5、ES6 使用上有些認識，先給自己一些掌聲吧！確實從 ES6 開始，JavaScript 和以前我們看到的 JavaScript 有些不同，增加了許多新的特性，有些讀者甚至會很懷疑說這真的是 JavaScript 嗎？ES6 的用法對於初學者來說可能會需要寫一點時間吸收，下面我幫大家準備了延伸閱讀，方便大家進一步參考學習。接下來我們也會有一系列從零開始學 React 的文章來帶大家由淺入深學習 ReactJS 生態系，運用 JavaScript 打造跨平台應用程式。</p>
+
+<h2>
+<a id="延伸閱讀" class="anchor" href="#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>延伸閱讀</h2>
+
+<ol>
+<li><a href="http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8">React/React Native 的ES5 ES6写法对照表</a></li>
+<li><a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus">React on ES6+</a></li>
+<li>
+<a href="http://www.ghugo.com/react-native-es6/">react native 中es6语法解析</a> </li>
+<li><a href="https://babeljs.io/docs/learn-es2015/">Learn ES2015</a></li>
+<li><a href="http://es6.ruanyifeng.com/">ECMAScript 6入门</a></li>
+<li><a href="https://facebook.github.io/react/index.html">React官方網站</a></li>
+<li><a href="http://fraserxu.me/intro-to-react/">React INTRO TO REACT.JS</a></li>
+<li><a href="https://toddmotto.com/react-create-class-versus-component/">React.createClass versus extends React.Component</a></li>
+<li><a href="https://github.com/lzbSun/react-native-coding-style">react-native-coding-style</a></li>
+<li><a href="https://github.com/airbnb/javascript/tree/master/react">Airbnb React/JSX Style Guide</a></li>
+</ol>
+
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/kdchang/react101">從零開始學 React（React 101）</a> is maintained by <a href="https://github.com/kdchang">kdchang</a>.</span>
 
