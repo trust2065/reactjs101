@@ -3,34 +3,34 @@
 
 ## 目錄（Table of Contents）
 
-一、HTML、CSS、JavaScript 基礎入門
+一、前端工程和 React 生態系簡介
 
 二、React/JSX/Component 簡介
 
-三、Pros/State 基礎 
+三、開發環境設置與 Webpack 入門
 
-四、Component 生命週期
+四、Pros/State 基礎 
 
-五、事件處理
+五、Component 生命週期
 
-六、DOM 操作
+六、事件處理
 
-七、表單處理
+七、DOM 操作
 
-八、Routing
+八、表單處理
 
-九、Flux/Redux
+九、Routing
 
-十、React Native
+十、Flux/Redux
 
-十一、範例練習：用 React + Rudux 寫一個 Todo List
+十一、React Native 簡介
 
-十二、範例練習：用 React + Node(Sails.js) 開發微網誌系統
+十二、範例練習：用 React + Rudux 寫一個 Todo List
+
+十三、範例練習：用 React + Node（Express.js） 開發微網誌系統
 
 十三、範例練習：用 React Native 寫一個新聞閱讀器
 
-附錄一、學習資源
+附錄一、React ES5、ES6+ 常見用法對照表
 
-附錄二、Webpack入門
-
-附錄三、Relay/GraphQL
+附錄二、學習資源
