@@ -23,7 +23,7 @@
 <a id="目錄agenda" class="anchor" href="#%E7%9B%AE%E9%8C%84agenda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>目錄（Agenda）</h2>
 
 <ul>
-<li><p>一、前端工程和 React 生態系簡介</p></li>
+<li><p><a href="f2e-and-react-ecosystem">一、前端工程和 React 生態系簡介</a></p></li>
 <li><p>二、React/JSX/Component 簡介</p></li>
 <li><p>三、開發環境設置與 Webpack 入門</p></li>
 <li><p>四、Pros/State 基礎</p></li>
@@ -41,11 +41,35 @@
 <li><p>附錄二、學習資源</p></li>
 </ul>
 
+<h2 id="f2e-and-react-ecosystem">
+<a id="ch01-前端工程和-react-生態系簡介" class="anchor" href="#ch01-%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%92%8C-react-%E7%94%9F%E6%85%8B%E7%B3%BB%E7%B0%A1%E4%BB%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ch01 前端工程和 React 生態系簡介</h2>
+
+<h2>
+<a id="前言" class="anchor" href="#%E5%89%8D%E8%A8%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>前言</h2>
+
+<p>隨著現代化網站（Modern Web）開發專業和複雜性的提昇以及對於使用者體驗的要求下，網站開發已從過去的Web Develpoer（或現在我們稱的Full Stack Engineer）一夫當關，轉向專業分工，更加細分成網頁前端（Web Front End）、網頁後端（Web Back End）等職位。此外，由於跨平台、跨瀏覽器的需求日益增加，技術變化更迭快速，市場上對於前端工程師（Web Front End Engineer）的需求也與日俱增，前端工程的（Front End Engineering）挑戰也越來越多。</p>
+
+<h2>
+<a id="前端工程範疇" class="anchor" href="#%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E7%AF%84%E7%96%87" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>前端工程範疇</h2>
+
+<p>HTML、CSS 和 JavaScript 是前端工程最重要的技術元素。過去一段時間，我們所認為的前端工程主要專注在瀏覽器平台，但現在的 Web 平台已經不侷限於桌面瀏覽器，更多的跨平台、跨瀏覽器的應用開發，其中包含：</p>
+
+<ol>
+<li>網頁瀏覽器（Web Browser），一般的網頁應用程式開發</li>
+<li>透過 CLI 指令去操作的 Headless 瀏覽器（Headless　Application）。例如：phantomJS、CasperJS</li>
+<li>運作在 WebView 瀏覽器核心（WebView Application）的應用。例如：Apache Cordova、Electron、NW.js</li>
+<li>原生應用程式（Native Application），透過 Web 技術撰寫原生應用程式。例如：React Native、Native Script</li>
+</ol>
+
+<p>過去幾年，前端開發就像經歷了文藝復興（Rinascimento）的年代，開始了各種框架、套件百花齊放的時代。雖然現在有更多好用工具可以協助開發，但前端工程師似乎並沒有變得比較輕鬆。以往若能妥善運用 jQuery 等函式庫就可以應付大部分前端工程師的工作，但現在前端徵人廣告上不僅要求精通 HTML、CSS 和 JavaScript，還要對於還要對於 Backbone、Ember、Angular、React 等 JavaScript 框架或函式庫有一定程度的了解。</p>
+
+<p>其中 <a href="https://facebook.github.io/react/">React</a> 是 Facebook 推出的開源 <a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> Library，它的出現帶出了許多革新性的 Web 觀念開始流行，例如：Virtual DOM、Web Component 等。而自從 React 於 2013 年正式開源後，React 生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：ES6、<a href="https://github.com/webpack/webpack">Webpack</a>、<a href="https://babeljs.io/">Bable</a>、模組化等）。本書筆者主要是希望藉由一個整合 Github API 的應用範例深入淺出的教學介紹 ReactJS 生態系，並帶領讀者們探討前端工程中軟體工程的部份。</p>
+
 <h2 id="react-react-native-es5-es6-cheat-sheet">
 <a id="附錄一react-es5es6-常見用法對照表" class="anchor" href="#%E9%99%84%E9%8C%84%E4%B8%80react-es5es6-%E5%B8%B8%E8%A6%8B%E7%94%A8%E6%B3%95%E5%B0%8D%E7%85%A7%E8%A1%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>附錄一、React ES5、ES6+ 常見用法對照表</h2>
 
 <h2>
-<a id="前言" class="anchor" href="#%E5%89%8D%E8%A8%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>前言</h2>
+<a id="前言-1" class="anchor" href="#%E5%89%8D%E8%A8%80-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>前言</h2>
 
 <p><a href="https://facebook.github.io/react/">React</a> 是 Facebook 推出的開源 <a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> Library。自從 React 正式開源後，React 生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：ES6、<a href="https://github.com/webpack/webpack">Webpack</a>、<a href="https://babeljs.io/">Bable</a>、模組化等），成為更好的開發者。雖然 ES6（JavaScript2015）、ES7 是未來趨勢（本文將 ES6、ES7 稱為 ES6+），然而目前在網路上有許多的學習資源仍是以 ES5 為主，導致讀者在學習上遇到一些坑洞和迷惑（本文假設讀者對於 React 已經有些基本認識，若你對於 React 尚不熟悉，建議先行<a href="https://facebook.github.io/react/">閱讀官方文件</a>和<a href="https://scotch.io/tutorials/learning-react-getting-started-and-concepts">本篇入門教學</a>）。因此本文希望透過整理在 React 中 ES5、ES6+ 常見用法對照表，讓讀者們可以在實現功能時（尤其在 <a href="https://facebook.github.io/react-native/">React Native</a>）可以更清楚兩者的差異，無痛轉移到 ES6+。 </p>
 
