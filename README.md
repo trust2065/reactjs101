@@ -1,7 +1,7 @@
-# 從零開始學 ReactJS（React 101）
+# 從零開始學 React（React 101）
 一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (React, Flux, Redux, React Native, etc.)
 
-## 目錄（Agenda）
+## 目錄（Table of Contents）
 
 一、HTML、CSS、JavaScript 基礎入門
 
