@@ -1,5 +1,5 @@
 # 從零開始學 React（React 101）
-從零開始學 React（React 101）是一本給初學者的 React 正體中文入門教學書，由淺入深學習 ReactJS 生態系 (React, Flux, Redux, React Native, etc.)。本書內容主要使用 `React 15.0.0`、`React Native 0.24` 與 `ES6（ECMAScript2015）` 。筆者才書學淺，若有任何建議或提醒，歡迎發 `issue` 或[來信](mailto:kdchang.cc@gmail.com) 給我，我會儘快和您聯絡，謝謝您：）
+從零開始學 React（React 101）是一本給初學者的 React 正體中文入門教學書，由淺入深學習 ReactJS 生態系 (React, Flux, Redux, React Native, etc.)。本書內容主要使用 `React 15.0.0`、`React Native 0.24` 與 `ES6（ECMAScript2015）` 。筆者才書學淺，若有任何建議、勘誤或提醒，歡迎發 `issue` 或 [來信](mailto:kdchang.cc@gmail.com) 給我，謝謝您：）
 
 ## 目錄（Table of Contents）
 
