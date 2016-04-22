@@ -27,13 +27,13 @@
 
 十三、測試
 
-十四、React Native 簡介
+十四、React Native 入門教學
 
 十五、範例練習：用 React + Rudux 寫一個 Todo List
 
 十六、範例練習：用 React + Node（Express.js） 開發微網誌系統
 
-十七、範例練習：用 React Native 寫一個 RSS 閱讀器
+十七、範例練習：用 React Native 整合 Parse 寫一個 RSS 閱讀器
 
 附錄一、React ES5、ES6+ 常見用法對照表
 
