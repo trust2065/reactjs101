@@ -1,4 +1,6 @@
-# 一看就懂的 React ES5、ES6+ 常見用法對照表
+# React ES5、ES6+ 常見用法對照表
+
+![一看就懂的 React ES5、ES6+ 常見用法對照表](./img/react-es6.jpg)
 
 ## 前言
 [React](https://facebook.github.io/react/) 是 Facebook 推出的開源 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) Library。自從 React 正式開源後，React 生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：ES6、[Webpack](https://github.com/webpack/webpack)、[Babel](https://babeljs.io/)、模組化等），成為更好的開發者。雖然 ES6（ECMAScript2015）、ES7 是未來趨勢（本文將 ES6、ES7 稱為 ES6+），然而目前在網路上有許多的學習資源仍是以 ES5 為主，導致讀者在學習上遇到一些坑洞和迷惑（本文假設讀者對於 React 已經有些基本認識，若你對於 React 尚不熟悉，建議先行[閱讀官方文件](https://facebook.github.io/react/)和[本篇入門教學](https://scotch.io/tutorials/learning-react-getting-started-and-concepts)）。因此本文希望透過整理在 React 中 ES5、ES6+ 常見用法對照表，讓讀者們可以在實現功能時（尤其在 [React Native](https://facebook.github.io/react-native/)）可以更清楚兩者的差異，無痛轉移到 ES6+。 
@@ -43,7 +45,7 @@ import MyComponent from './MyComponent';
 
 ```js
 export default class MyComponent extends React.Compoent {
-	
+  
 }
 ```
 
@@ -57,10 +59,10 @@ ES5 `React.createClass()` 用法：
 var Photo = React.createClass({
   render: function() {
     return (
-    	<div>
-    		<img alt={this.props.description} src={this.props.src} />
-    	</div>
-    	);
+      <div>
+        <img alt={this.props.description} src={this.props.src} />
+      </div>
+      );
   }
 });
 ReactDOM.render(<Photo />, document.getElementById('main'));
@@ -132,7 +134,7 @@ var Todo = React.createClass({
     maxLength: React.PropTypes.number.isRequired
   },
   render: fucntion() {
-  	return();
+    return();
   }
 });
 ```
@@ -150,7 +152,7 @@ class Todo extends React.Component {
     maxLength: React.PropTypes.number.isRequired
   };
   render() {
-  	return();
+    return();
   }
 }
 ```
@@ -333,25 +335,25 @@ class Todo extends React.Component {
 }
 ```
 
-Template Strings 是一種語法糖（syntactic sugar），方便我們組織字串：
+Template Strings 是一種語法糖（syntactic sugar），方便我們組織字串（這邊也用上 `let`、`const` 變數和常數宣告的方式，和 `var` 的 `function scope` 不同的是它們是屬於 `block scope`，亦即生存域存在於 `{}` 間）：
 
 ```js
 // Interpolate variable bindings
-var name = "Bob", time = "today";
+const name = "Bob", let = "today";
 `Hello ${name}, how are you ${time}?` \\ Hello Bob, how are you today?
 ```
 
 
 ## 8. Destructuring & spread attributes
 在 React 的 Component 中，父元件利用 `props` 來傳遞資料到子元件是常見作法，然而我們有時會希望只傳遞部分資料，此時 ES6+ 中的 [Destructuring](https://babeljs.io/docs/learn-es2015/#destructuring) 和 [JSX 的 Spread Attributes
-](https://facebook.github.io/react/docs/jsx-spread.html) 就可以幫我們達到目標：
+](https://facebook.github.io/react/docs/jsx-spread.html) ，`...` Spread Attributes 主要是用來迭代物件：
 
 ```js
 class Todo extends React.Component {
   render() {
     var {
       className,
-      ...others,  // contains all properties of this.props except for className
+      ...others,  // ...others 包含 this.props 除了 className 外所有值。this.props = {value: 'true', title: 'header', className: 'content'}
     } = this.props;
     return (
       <div className={className}>
@@ -390,15 +392,29 @@ class HelloWorld extends Component {
 export default HelloWorld;
 ```
 
-在 ES6+ 則可以直接使用 `Destructuring` 來引入模組中的元件：
+以下 ES5 寫法：
+
+```
+var React = require('react-native');
+var View = React.View;
+```
+
+在 ES6+ 則可以直接使用 `Destructuring` 這種簡化方式來引入模組中的元件：
+
+```
+// 這邊等於上面的寫法
+var { View } = require('react-native');
+```
+
+更進一步可以使用 `import` 語法：
 
 ```js
 import React, {
-	View,
-	Component,
-	Image
+  View,
+  Component,
+  Text,
 } from 'react-native';
- 
+
 class HelloWorld extends Component {
   render() {
     return (
@@ -461,3 +477,7 @@ var link = function(height = 50, color = 'red') {
 8. [React.createClass versus extends React.Component](https://toddmotto.com/react-create-class-versus-component/)
 9. [react-native-coding-style](https://github.com/lzbSun/react-native-coding-style)
 10. [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+11. [從零開始學 React（ReactJS 101）](https://www.gitbook.com/book/kdchang/react101/details)
+
+關於作者：
+[@kdchang](http://blog.kdchang.cc) 文藝型開發者，夢想是做出人們想用的產品和辦一所心目中理想的學校，目前專注在 Mobile 和 IoT 應用開發。A Starter & Maker. JavaScript, Python & iOS/Android lover. Keep Shipping Cool Mobile App & Web App.:)
