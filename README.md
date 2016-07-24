@@ -1,19 +1,19 @@
-# 從零開始學 React（ReactJS 101）
-從零開始學 React（ReactJS 101）是一本給初學者的 ReactJS 正體中文入門教學書，由淺入深學習 ReactJS 生態系 (React, Flux, Redux, React Native, etc.)。本書內容主要使用 `ReactJS 15.0.0`、`React Native 0.24` 與 `ES6（ECMAScript2015）` 並搭配 `ES5` 為輔。筆者才書學淺，若有任何建議、勘誤或提醒，歡迎發 `issue` 或 [來信](mailto:kdchang.cc@gmail.com) 給我，謝謝您：）
+# 從零開始學 React（React 101）
+一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, React Native, etc.)，打造跨平台應用程式。
 
 ## 目錄（Table of Contents）
 
-一、前端工程和 React 生態系簡介
+一、 前端工程和 React 生態系簡介
 
-二、ReactJS/JSX/Component 簡介
+二、開發環境設置與 Webpack 入門
 
-三、開發環境設置與 Webpack 入門
+三、 React/JSX/Component 簡介
 
 四、Pros/State 基礎 
 
 五、Component 生命週期
 
-六、事件處理與 Component 資料傳遞
+六、事件處理
 
 七、DOM 操作
 
@@ -21,22 +21,33 @@
 
 九、Routing
 
-十一、動畫
+十、Flux/Redux
 
-十二、Flux/Redux
+十一、React Native 簡介
 
-十三、測試
+十二、範例練習：用 React + Rudux 寫一個 Todo List
 
-十四、React Native 入門教學
+十三、範例練習：用 React + Node（Express.js） 開發微網誌系統
 
-十五、範例練習：用 React + Rudux 寫一個 Todo List
-
-十六、範例練習：用 React + Node（Express.js） 開發微網誌系統
-
-十七、範例練習：用 React Native 整合 Parse 寫一個 RSS 閱讀器
+十三、範例練習：用 React Native 寫一個新聞閱讀器
 
 附錄一、React ES5、ES6+ 常見用法對照表
 
-附錄二、Relay/GraphQL 簡介
+附錄二、學習資源
 
-附錄三、學習資源
+1. Intro to the React Ecosystem
+2. Setting up your first React component with NPM, Babel, and Webpack
+3. Pure Functions. f(d)=v. Props and Nesting Components.
+4. this.props.children and getting started with React Router
+5. Container vs Presentational Components, PropTypes, and Stateless Functional Components
+6. Life Cycle Events and Conditional Rendering
+7. Axios, Promises, and the Github API
+8. Rendering UI
+9. More Container vs Presentational Components
+10. Private Functional Stateless Components
+11. Building a Highly Reusable React Component
+12. React Router Transition Animation and Webpack's CSS Loader
+
+
+
+
