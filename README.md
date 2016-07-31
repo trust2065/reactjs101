@@ -19,15 +19,15 @@
 
 - [ ] 五、React Router
 
-- [ ] 六、Container Component 與 Presentational Components
+- [ ] 六、Container 與 Presentational Components
 
 - [ ] 七、ImmutableJS
 
 - [ ] 八、Flux/Redux
 
-- [ ] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個 Todo List
+- [ ] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個 Github 成分分析器
 
-- [ ] 十、實戰教學：用 React + Redux + Node（Express.js）開發微網誌系統
+- [ ] 十、實戰教學：用 React + Redux + Node（Express.js）開發訂便當系統
 
 - [X] 附錄一、React ES5、ES6+ 常見用法對照表
 
