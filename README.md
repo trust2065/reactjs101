@@ -15,7 +15,7 @@
 
 - [X] 三、 React/JSX/Component 簡介
 
-- [ ] 四、Pros/State 基礎與 Component 生命週期 
+- [ ] 四、Props/State 基礎與 Component 生命週期 
 
 - [ ] 五、React Router
 
