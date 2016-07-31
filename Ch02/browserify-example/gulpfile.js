@@ -25,7 +25,6 @@ var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
     transform: [babel],
     debug: true,
-    cache: {}, packageCache: {}, fullPaths: true
   }));
 return watcher.on('update', function () {
     watcher.bundle()
@@ -58,5 +57,5 @@ gulp.task('apply-prod-environment', function() {
     process.env.NODE_ENV = 'production';
 });
 
-gulp.task('production', ['replaceHTML', 'build', 'apply-prod-environment']);
+gulp.task('production', ['build', 'replaceHTML', 'apply-prod-environment']);
 gulp.task('default', ['watch', 'copy']);
