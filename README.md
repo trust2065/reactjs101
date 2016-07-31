@@ -7,29 +7,29 @@
 
 ## 目錄（Table of Contents）
 
-[] 一、 前端工程和 React 生態系（Ecosystem）簡介
+- [ ]  一、 前端工程和 React 生態系（Ecosystem）簡介
 
-[X] 二、開發環境設置與 Webpack 入門
+- [X]  二、開發環境設置與 Webpack 入門
 
-[X] 三、 React/JSX/Component 簡介
+- [X] 三、 React/JSX/Component 簡介
 
-[] 四、Pros/State 基礎與 Component 生命週期 
+- [ ] 四、Pros/State 基礎與 Component 生命週期 
 
-[] 五、React Router
+- [ ] 五、React Router
 
-[] 六、Container Component 與 Presentational Components
+- [ ] 六、Container Component 與 Presentational Components
 
-[] 七、ImmutableJS
+- [ ] 七、ImmutableJS
 
-[] 八、Flux/Redux
+- [ ] 八、Flux/Redux
 
-[] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個 Todo List
+- [ ] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個 Todo List
 
-[] 十、實戰教學：用 React + Redux + Node（Express.js）開發微網誌系統
+- [ ] 十、實戰教學：用 React + Redux + Node（Express.js）開發微網誌系統
 
-[X] 附錄一、React ES5、ES6+ 常見用法對照表
+- [X] 附錄一、React ES5、ES6+ 常見用法對照表
 
-[X] 附錄二、React Native 初體驗
+- [X] 附錄二、React Native 初體驗
 
 
 
