@@ -31,7 +31,7 @@
 
 - [X] 附錄二、React Native 初體驗
 
-## 關鍵字
+## 關鍵字（Keywords）
 React, React Native, React Router, Flux, Redux, Node, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX
 
 
