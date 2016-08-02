@@ -5,7 +5,7 @@
 
 [文章連載地點](http://blog.techbridge.cc/)
 
-[範例程式碼 Github](https://github.com/kdchang/reactjs101)
+[範例教學程式碼 Github 位置](https://github.com/kdchang/reactjs101)
 
 ## 目錄（Table of Contents）
 
@@ -21,13 +21,13 @@
 
 - [ ] 六、Container 與 Presentational Components
 
-- [ ] 七、ImmutableJS
+- [ ] 七、Flux/Redux
 
-- [ ] 八、Flux/Redux
+- [ ] 八、ImmutableJS
 
-- [ ] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個 Github 成分分析器
+- [X] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個天氣查詢應用
 
-- [ ] 十、實戰教學：用 React + Redux + Node（Express.js）開發訂便當系統
+- [ ] 十、實戰教學：用 React + Redux + Node（Express.js）開發一個食譜分享網站
 
 - [X] 附錄一、React ES5、ES6+ 常見用法對照表
 
@@ -36,7 +36,7 @@
 - [ ] 附錄三、使用 Jest 進行單元測試
 
 ## 關鍵字（Keywords）
-React, React Native, React Router, Flux, Redux, Node, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX
+React, React Native, React Router, Flux, Redux, Node, Express, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX, Jest, Unit Test, Component
 
 
 
