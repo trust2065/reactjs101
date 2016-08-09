@@ -1,4 +1,4 @@
-# 實戰教學：用 React + Rudux + ImmutableJS 寫一個天氣查詢應用
+# 用 React + Rudux + ImmutableJS 寫一個天氣查詢應用
 
 ## 功能規劃
 
