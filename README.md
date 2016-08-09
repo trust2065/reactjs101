@@ -25,9 +25,9 @@
 
 - [ ] 八、Flux/Redux 
 
-- [X] 九、實戰教學：用 React + Rudux + React Router + ImmutableJS 寫一個天氣查詢應用
+- [X] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個天氣查詢應用
 
-- [X] 十、實戰教學：用 React + Redux + React Router + Node（Express.js）開發一個食譜分享網站
+- [X] 十、實戰教學：用 React + Redux + Node（Express.js）開發一個食譜分享網站
 
 - [X] 附錄一、React ES5、ES6+ 常見用法對照表
 
