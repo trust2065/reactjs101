@@ -1,4 +1,4 @@
-# 用 React + Redux + Node（Express.js）開發一個食譜分享網站
+# 用 React + Redux + Node（Express.js）開發食譜分享網站
 
 ## 前言
 Universal/Isomorphic
