@@ -1,4 +1,4 @@
-# 從零開始學習 Flux 架構
+# Flux/Redux
 
 ## 前言
 [Flux](https://facebook.github.io/flux/) 是 Facebook 推出的 client-side 應用程式架構（Architecture），並非一個完整的前端框架，其特色在於實現了 Unidirectional Data Flow（單向流）的資料流處理方式，在開發複雜的大型應用程式時可以更容易地管理 state（狀態）。由於 React 主要是負責 View 的部份，所以透過搭配 Flux-like 的資料處理架構，可以更好的去管理我們的 state（狀態）。
@@ -9,6 +9,14 @@
 2. Dispatcher
 3. Stores
 4. Controller Views
+
+```
+$ npm install --save react-router react react-dom redux react-redux immutable
+```
+
+```
+$ npm install --save-dev babel-cli babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server
+```
 
 ## 延伸閱讀
 1. [Getting To Know Flux, the React.js Architecture](https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture)

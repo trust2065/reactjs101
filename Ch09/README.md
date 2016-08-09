@@ -1,4 +1,4 @@
-# 使用 React, React Router, ImmutableJS, Redux 和 OpenWeatherMap API 打造天氣查詢應用
+# 實戰教學：用 React + Rudux + React Router + ImmutableJS 寫一個天氣查詢應用
 
 ## 功能規劃
 
@@ -12,5 +12,8 @@
 ## 總結
 
 ## 延伸閱讀
+1. [Tutorial: build a weather app with React](http://joanmira.com/tutorial-build-a-weather-app-with-react/)
 
 // http://api.openweathermap.org/data/2.5/forecast?q=Taitung&units=metric&mode=json&appid=46776bfac468eec0ac3b820a64d61cf3
+
+weather app react

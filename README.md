@@ -9,25 +9,25 @@
 
 ## 目錄（Table of Contents）
 
-- [X]  一、 前端工程和 React 生態系（Ecosystem）簡介
+- [X] 一、前端工程和 React 生態系（Ecosystem）簡介
 
-- [X]  二、開發環境設置與 Webpack 入門
+- [X] 二、開發環境設置與 Webpack 入門
 
-- [X] 三、 React/JSX/Component 簡介
+- [X] 三、React/JSX/Component 簡介
 
 - [ ] 四、Props/State 基礎與 Component 生命週期 
 
 - [ ] 五、React Router
 
-- [ ] 六、Container 與 Presentational Components
+- [ ] 六、ImmutableJS
 
-- [ ] 七、Flux/Redux
+- [ ] 七、Container 與 Presentational Components
 
-- [ ] 八、ImmutableJS
+- [ ] 八、Flux/Redux 
 
-- [X] 九、實戰教學：用 React + Rudux + ImmutableJS 寫一個天氣查詢應用
+- [X] 九、實戰教學：用 React + Rudux + React Router + ImmutableJS 寫一個天氣查詢應用
 
-- [ ] 十、實戰教學：用 React + Redux + Node（Express.js）開發一個食譜分享網站
+- [X] 十、實戰教學：用 React + Redux + React Router + Node（Express.js）開發一個食譜分享網站
 
 - [X] 附錄一、React ES5、ES6+ 常見用法對照表
 
@@ -36,7 +36,4 @@
 - [ ] 附錄三、使用 Jest 進行單元測試
 
 ## 關鍵字（Keywords）
-React, React Native, React Router, Flux, Redux, Node, Express, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX, Jest, Unit Test, Component
-
-
-
+React, React Native, React Router, Flux, Redux, Node, Express, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX, Jest, Unit Test, Component, Relay, GraphQL, Universal/Isomorphic, React Tutorial React教程, React教學, 學React

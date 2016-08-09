@@ -1,14 +1,14 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: `${__dirname}/app/index.html`,
-  filename: 'index.html',
-  inject: 'body',
-});
+// const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+//   template: `${__dirname}/app/index.html`,
+//   filename: 'index.html',
+//   inject: 'body',
+// });
 
 module.exports = {
   entry: [
-    './app/index.js',
+    './app/routes.js',
   ],
   output: {
     path: `${__dirname}/dist`,
@@ -36,5 +36,5 @@ module.exports = {
     inline: true,
     port: 8008,
   },
-  plugins: [HTMLWebpackPluginConfig],
+  // plugins: [HTMLWebpackPluginConfig],
 };
