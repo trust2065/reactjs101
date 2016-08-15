@@ -37,5 +37,8 @@
 
 - [ ] 附錄四、遺珠之憾：Relay/GraphQL
 
+## 關於作者（Author）
+[@kdchang](http://blog.kdchang.cc) 文藝型開發者，夢想是做出人們想用的產品和辦一所心目中理想的學校，目前專注在 Mobile 和 IoT 應用開發。A Starter & Maker. JavaScript, Python & iOS/Android lover. Keep Shipping Cool Mobile/IoT App & Web App.:)
+
 ## 關鍵字（Keywords）
 React, React Native, React Router, Flux, Redux, Node, Express, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX, Jest, Unit Test, Component, Relay, GraphQL, Universal/Isomorphic, React Tutorial React教程, React教學, 學React, React Tutorial, Tutorial
