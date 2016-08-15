@@ -1,31 +1,30 @@
-import path from 'path'
-import Express from 'express'
-import qs from 'qs'
+import Express from 'express';
+import qs from 'qs';
 
-import webpack from 'webpack'
-import webpackDevMiddleware from 'webpack-dev-middleware'
-import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from '../webpack.config'
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.config';
 
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import { Provider } from 'react-redux'
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 
-import configureStore from '../common/store/configureStore'
+import configureStore from '../common/store/configureStore';
 import CounterContainer from '../common/containers/CounterContainer';
 
-import { fetchCounter } from '../common/api/counter'
+import { fetchCounter } from '../common/api/counter';
 
-const app = new Express()
-const port = 3000
+const app = new Express();
+const port = 3000;
 
 function handleRender(req, res) {
   // Query our mock API asynchronously
   fetchCounter(apiResult => {
     // Read the counter from the request, if provided
-    const params = qs.parse(req.query)
-    const counter = parseInt(params.counter, 10) || apiResult || 0
+    const params = qs.parse(req.query);
+    const counter = parseInt(params.counter, 10) || apiResult || 0;
 
     // Combined initial state to immutable format
     const initialState = fromJS({
@@ -40,11 +39,11 @@ function handleRender(req, res) {
       <Provider store={store}>
         <CounterContainer />
       </Provider>
-    )
+    );
     // Grab the initial state from our Redux store
-    const finalState = store.getState()
+    const finalState = store.getState();
     // Send the rendered page back to the client
-    res.send(renderFullPage(html, finalState))
+    res.send(renderFullPage(html, finalState));
   })
 }
 
@@ -67,11 +66,11 @@ function renderFullPage(html, preloadedState) {
 }
 
 // Use this middleware to set up hot module reloading via webpack.
-const compiler = webpack(webpackConfig)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+const compiler = webpack(webpackConfig);
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+app.use(webpackHotMiddleware(compiler));
 // This is fired every time the server side receives a request
-app.use(handleRender)
+app.use(handleRender);
 
 app.listen(port, (error) => {
   if (error) {
@@ -79,4 +78,4 @@ app.listen(port, (error) => {
   } else {
     console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
   }
-})
+});
