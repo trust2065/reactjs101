@@ -1,9 +1,4 @@
----
-title: React Native / Redux / Immutable.js TodoApp 實戰教學
-date: 2016-06-25 14:48:26
-tags: React, React Native, Redux, App, Mobile
-author: kdchang
----
+# 用 React Native 開發跨平台行動應用程式
 
 ![用 React Native 開發跨平台行動應用程式](./images/react-native-logo.png)
 
