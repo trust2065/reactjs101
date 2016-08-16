@@ -51,5 +51,6 @@
 14. [React Native 0.23.1 warning: 'In next release empty section headers will be rendered'](https://github.com/FaridSafi/react-native-gifted-listview/issues/39)
 15. [js.coach](https://js.coach/)
 16. [React Native Package Manager](https://github.com/rnpm/rnpm)
+17. [React Native 学习笔记](https://github.com/crazycodeboy/RNStudyNotes)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))
