@@ -1,4 +1,4 @@
-# 從零開始學 ReactJS（ReactJS 101）：給初學者的 React 入門教學書
+# 從零開始學 ReactJS（ReactJS 101）
 一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, React Native, etc.)，打造跨平台應用程式。
 
 [從零開始學 React（React 101）粉絲頁](https://www.facebook.com/reactjs101/)
@@ -17,13 +17,13 @@
 
 - [ ] 四、Props/State 基礎與 Component 生命週期 
 
-- [ ] 五、React Router
+- [X] 五、React Router
 
-- [ ] 六、ImmutableJS
+- [X] 六、ImmutableJS
 
-- [ ] 七、Container 與 Presentational Components
+- [X] 七、Container 與 Presentational Components
 
-- [ ] 八、Flux/Redux 
+- [X] 八、Flux/Redux 
 
 - [X] 九、實戰教學：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用
 
