@@ -1,14 +1,14 @@
-# 用 React + Redux + Node（Express.js）開發一個食譜分享網站程式碼
+# 用 React + Redux + Node（Isomorphic）開發一個食譜分享網站
 
 ## 需求規劃
-讓使用者可以註冊/登入並分享食譜的社群網站
+讓使用者可以登入並分享食譜的社群網站
 
 ## 功能規劃
 - [X] 1. React Router / Redux / Immutable / Server Render / Async API
 - [X] 2. 使用者註冊/登入
 - [X] 3. JSON Web Token
 - [ ] 4. 圖片檔案上傳(File)
-- [ ] 5. 表單資料儲存(ORM/PG/Mongo)
+- [X] 5. 表單資料儲存(ORM/PG/Mongo)
 
 ## 使用技術
 1. React

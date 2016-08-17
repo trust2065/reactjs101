@@ -11,11 +11,11 @@
 4. Controller Views
 
 ```
-$ npm install --save react-router react react-dom redux react-redux immutable
+$ npm install --save react react-dom redux react-redux redux-actions immutable redux-immutable
 ```
 
 ```
-$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server redux-logger
 ```
 
 ## 延伸閱讀
