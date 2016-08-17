@@ -1,4 +1,4 @@
-# Immutable
+# ImmutableJS
 
 ## 延伸閱讀
 1. [官方網站](https://facebook.github.io/immutable-js/)

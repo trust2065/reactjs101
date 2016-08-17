@@ -15,13 +15,13 @@
 
 - [X] 三、React/JSX/Component 簡介
 
-- [ ] 四、Props/State 基礎與 Component 生命週期 
+- [X] 四、Props/State 基礎與 Component 生命週期 
 
 - [X] 五、React Router
 
 - [X] 六、ImmutableJS
 
-- [X] 七、Container 與 Presentational Components
+- [ ] 七、Container 與 Presentational Components
 
 - [X] 八、Flux/Redux 
 
@@ -33,7 +33,7 @@
 
 - [X] 附錄二、用 React Native 開發跨平台行動應用程式（Mobile App）
 
-- [ ] 附錄三、使用 Jest 進行單元測試
+- [ ] 附錄三、React 測試入門教學
 
 - [ ] 附錄四、遺珠之憾：Relay/GraphQL
 
