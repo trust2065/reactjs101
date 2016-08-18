@@ -98,6 +98,8 @@ Isomorphic JavaScript 是指前後端共用相同部分的程式碼，讓 JavaSc
 ## 總結
 以上就是讀者 React 在生態系遊走時會出現的關主，也許有些初學者會對於這樣龐大的體系所勸退。接下來筆者將帶領讀者按圖索驥，依序介紹整個 React 生態系的各種技術。
 
+
+## 延伸閱讀
 1. [Navigating the React.JS Ecosystem](https://www.toptal.com/react/navigating-the-react-ecosystem)
 2. [petehunt/react-howto](https://github.com/petehunt/react-howto#learning-relay-falcor-etc)
 3. [React Ecosystem - A summary](https://staminaloops.github.io/undefinedisnotafunction/react-ecosystem/)
