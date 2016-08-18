@@ -2,12 +2,20 @@
 
 Redux 的 React 綁定擁抱了分離 Presentational 和 Container Component 的概念
 
-	Presentational Components	Container Components
-用途	怎麼看事情（markup, styles)	怎麼做事情 (抓資料, 更新state)
-意識到 Redux	否	是
-取得資料	從 props 讀取資料	訂閱 Redux state
-改變資料	從 props 呼叫 callback	Dispatch Redux action
-從哪被寫入	經由手動	通常由 React Redux 產生
+## 差異比較
+1. Presentational Components	
+	- 用途：怎麼看事情（Markup、外觀）
+	- 是否讓 Redux 意識到：否
+	- 取得資料方式：從 props 取得
+	- 改變資料方式：從 props 去呼叫 callback function
+  - 寫入方式：手動處理
+
+2. Container Components
+ - 用途：怎麼做事情（擷取資料，更新 State）
+ - 是否讓 Redux 意識到：是
+ - 取得資料方式：訂閱 Redux State
+ - 改變資料方式：Dispatch Redux Action
+ - 寫入方式：從 React Redux 產生
 
 ## 延伸閱讀
 1. [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)

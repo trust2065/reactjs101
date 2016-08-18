@@ -1,1 +1,4 @@
 # PropTypes
+
+## 
+PropTypes、defaultProps

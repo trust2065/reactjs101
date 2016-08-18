@@ -1,4 +1,3 @@
-
 # Browserify + Gulp + Babelify
 
 ![一看就懂的 React 開發環境建置與 Webpack 入門教學](/img/kdchang/react-browserify-gulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")

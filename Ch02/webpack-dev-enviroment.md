@@ -1,12 +1,12 @@
 # React 開發環境建置與 Webpack 入門教學
 
-![一看就懂的 React 開發環境建置與 Webpack 入門教學](/img/kdchang/react-webpack-browserify.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
+![React 開發環境建置與 Webpack 入門教學](/img/kdchang/react-webpack-browserify.png "React 開發環境建置與 Webpack 入門教學")
 
-# 前言
-俗話說工欲善其事，必先利其器。寫程式也是一樣，搭建好開發環境後可以讓自己在後續開發上更加順利。因此本篇接下來將討論 React 開發環境的三種主要方式：CDN-based、[browserify](https://webpack.github.io/) 和 [webpack](https://webpack.github.io/)（這邊我們就先不討論 [TypeScript](https://www.typescriptlang.org/) 的開發方式），讓讀者閱讀完本章後可以開始 React 開發之旅！
+## 前言
+俗話說工欲善其事，必先利其器。寫程式也是一樣，搭建好開發環境後可以讓自己在後續開發上更加順利。因此本章接下來將討論 React 開發環境的三種主要方式：CDN-based、[browserify](https://webpack.github.io/) 和 [webpack](https://webpack.github.io/)（這邊我們就先不討論 [TypeScript](https://www.typescriptlang.org/) 的開發方式），讓讀者閱讀完本章後可以開始 React 開發之旅！
 
-# JavaScript 模組化
-隨著網站開發的複雜度提昇，許多現代化的網站已不是單純的網站而已，更像是個富有互動性的網頁應用程式（Web App）。為了應付現代化網頁應用程式開發的需求，解決一些像是全域變數污染、低維護性等問題，JavaScript 在模組化上也有長足的發展。過去一段時間讀者們或許聽過像是 `Webpack`、`Browserify`、`module bundlers`、`AMD`、`CommonJS`、`UMD`、`ES6 Module` 等有關 JavaScript 模組化開發的專有名詞或工具。若是讀者對於 JavaScript 模組化開發尚不熟悉的話推薦可以參考[這篇文章](http://huangxuan.me/2015/07/09/js-module-7day/) 和 [這篇文章](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.oa2n5s5zt)，當作入門。筆者之後也會有相關文章針對 JavaScript 模組化議題做討論。因為限於篇幅，這邊我們會專注在 `React` 開發環境的三種主要方式介紹。
+## JavaScript 模組化
+隨著網站開發的複雜度提昇，許多現代化的網站已不是單純的網站而已，更像是個富有互動性的網頁應用程式（Web App）。為了應付現代化網頁應用程式開發的需求，解決一些像是全域變數污染、低維護性等問題，JavaScript 在模組化上也有長足的發展。過去一段時間讀者們或許聽過像是 `Webpack`、`Browserify`、`module bundlers`、`AMD`、`CommonJS`、`UMD`、`ES6 Module` 等有關 JavaScript 模組化開發的專有名詞或工具，在前面一個章節我們也簡單介紹了關於 App）。為了應付現代化網頁應用程式開發的需求，解決一些像是全域變數污染、低維護性等問題，JavaScript 模組化的相關規範和工具。若是讀者對於 JavaScript 模組化開發尚不熟悉的話推薦可以參考[這篇文章](http://huangxuan.me/2015/07/09/js-module-7day/) 和 [這篇文章](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.oa2n5s5zt)，當作入門。
 
 總的來說，使用模組化開發 JavaScript 應用程式主要有以下三種好處：
 
@@ -16,9 +16,46 @@
 
 而在 React 應用程式開發上更推薦使用像是 `Webpack` 這樣的 `module bundlers` 來組織我們的應用程式，但對於一般讀者來說 `Webpack` 強大而完整的功能相對複雜。為了讓讀者先熟悉 `React` 核心觀念（我們假設讀者已經有使用 `JavaScript` 或 `jQuery` 的基本經驗），我們將從使用 `CDN` 引入 `<script>` 的方式開始介紹：
 
+![React 開發環境建置與 Webpack 入門教學](/img/kdchang/react.png "React 開發環境建置與 Webpack 入門教學")
+使用 CDN-based 的開發方式缺點是較難維護我們的程式碼（當引入函式庫一多就會有很多 `<script/>`）且會容易遇到版本相容性問題，不太適合開發大型應用程式，但因為簡單易懂，適合教學上使用。
 
-# Webpack
-![一看就懂的 React 開發環境建置與 Webpack 入門教學](/img/kdchang/webpack-module-bundler.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
+以下是 React [官方首頁的範例](https://facebook.github.io/react/index.html)，以下使用 `React v15.2.1`：
+0. 理解 `React` 是 `Component` 導向的應用程式設計
+1. 引入 `react.js`、`react-dom.js`（react 0.14 後將 react-dom 從 react 核心分離，更符合 react 跨平台抽象化的定位）以及 `babel-core-browser` 版 script（可以想成 `babel` 是翻譯機，翻譯瀏覽器看不懂的 `JSX` 或 `ES6+` 語法成為瀏覽器看的懂得的 `JavaScript`。為了提昇效率，通常我們都會在伺服器端做轉譯）
+2. 在 `<body>` 撰寫 React Component 要插入（mount）指定節點的地方：`<div id="example"></div>`
+3. 透過 `babel` 進行語言翻譯 `React JSX` 語法，`babel` 會將其轉為瀏覽器看的懂得 `JavaScript`。其代表意義是：`ReactDOM.render(欲 render 的 Component 或 HTML 元素, 欲插入的位置)`。所以我們可以在瀏覽器上打開我們的 `hello.html`，就可以看到 `Hello, world!` 。That's it，我們第一個 `React` 應用程式就算完成了！
+
+```html hello.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <!-- 以下引入 react.js, react-dom.js（react 0.14 後將 react-dom 從 react 核心分離，更符合 react 跨平台抽象化的定位）以及 babel-core browser 版 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <!-- 這邊的 id="example" 的 <div> 為 React Component 要插入的地方 -->
+    <div id="example"></div>
+    <!-- 以下就是包在 babel（透過進行語言翻譯）中的 React JSX 語法，babel 會將其轉為瀏覽器看的懂得 JavaScript -->
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
+```
+
+在瀏覽器瀏覽最後成果：
+
+![React 開發環境建置與 Webpack 入門教學](/img/kdchang/hello-world.png "React 開發環境建置與 Webpack 入門教學")
+
+## Webpack
+![React 開發環境建置與 Webpack 入門教學](/img/kdchang/webpack-module-bundler.png "React 開發環境建置與 Webpack 入門教學")
 
 [Webpack](https://webpack.github.io/) 是一個模組打包工具（module bundler），以下列出 Webpack 的幾項主要功能：
 
@@ -40,7 +77,7 @@
 	```
 
 3. 設定 `webpack.config.js`
-	事實上，`webpack.config.js` 有點類似於前述的 `gulpfile.js` 功用，主要是設定 `webpack` 的相關設定
+	事實上，`webpack.config.js` 有點類似於 `gulp` 中的 `gulpfile.js` 功用，主要是設定 `webpack` 的相關設定
 
 	```js ./webpack.config.js
 	// 這邊使用 HtmlWebpackPlugin，將 bundle 好得 <script> 插入到 body  
@@ -161,35 +198,11 @@ $ npm run dev
 
 當我們此時我們可以打開瀏覽器輸入 `http://localhost:8008` ，就可以看到 `Hello, world!` 了！
 
-# 總結
-以上就是 React 開發環境的三種主要方式：CDN-based、[browserify](https://webpack.github.io/) 和 [webpack](https://webpack.github.io/)。一般來說在開發大型應用程式，使用 React + Gulp + Browserify 或用 React 搭配 Webpack 都是合適的作法，主要是依據團隊開發的習慣和約定。不過，若你不想在環境設定上花太多時間的話，不妨參考 Facebook 開發社群推出的 [create-react-app](https://github.com/facebookincubator/create-react-app)，可以快速上手，使用 Webpack、[Babel](https://babeljs.io/)、[ESLint](http://eslint.org/) 開發 React 應用程式！
+## 總結
+以上就是 React 開發環境建置與 Webpack 入門教學。若你不想在環境設定上花太多時間的話，不妨參考 Facebook 開發社群推出的 [create-react-app](https://github.com/facebookincubator/create-react-app)，可以快速上手，使用 Webpack、[Babel](https://babeljs.io/)、[ESLint](http://eslint.org/) 開發 React 應用程式！
 
-# 延伸閱讀
+## 延伸閱讀
 1. [JavaScript 模块化七日谈](http://huangxuan.me/2015/07/09/js-module-7day/)
 2. [前端模块化开发那点历史](https://github.com/seajs/seajs/issues/588)
-3. [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.oa2n5s5zt)
-4. [深入了解 Webpack Plugins](https://rhadow.github.io/2015/05/30/webpack-loaders-and-plugins/)
-5. [Babel 入门教程](http://www.ruanyifeng.com/blog/2016/01/babel.html)
-6. [WEBPACK入門教學筆記](http://blog.kkbruce.net/2015/10/webpack.html#.V41hfpN96Ho)
-7. [Setting up React for ES6 with Webpack and Babel](https://twilioinc.wpengine.com/2015/08/setting-up-react-for-es6-with-webpack-and-babel-2.html)
-8. [【webpack】的基本工作流程](https://medium.com/html-test/webpack-%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-585f2bc952b9#.auq2o72rr)
-9. [我的REACT开发之路1:REACT的环境搭建](http://hao.jser.com/archive/10507/)
-10. [利用browserify和gulp来构建react应用](http://www.ifeenan.com/javascript/2014-08-20-%E5%88%A9%E7%94%A8Browserify%E5%92%8CGulp%E6%9D%A5%E6%9E%84%E5%BB%BAReact%E5%BA%94%E7%94%A8/)
-11. [gulp 學習筆記](https://www.gitbook.com/book/kejyuntw/gulp-learning-notes/details)
-12. [Webpack vs Browserify - what's best for React?](https://www.reddit.com/r/reactjs/comments/30at04/webpack_vs_browserify_whats_best_for_react/)
-13. [Browserify vs Webpack](https://medium.com/@housecor/browserify-vs-webpack-b3d7ca08a0a9#.jma7qyb2e)
-14. [Setting up environment for React, SASS, ES2015, Babel with Webpack](https://medium.com/@srinisoundar/setting-up-environment-for-react-sass-es2015-babel-with-webpack-2f77445129#.7u0gtngil)
-15. [Javascript Tutorial: How to set up Gulp for Developing ES2015 React v0.14+ Applications with Babelify & Browserify](http://jpsierens.com/tutorial-gulp-javascript-2015-react/)
-16. [React.js Tutorial Pt 2: Building React Applications with Gulp and Browserify.](https://tylermcginnis.com/react-js-tutorial-pt-2-building-react-applications-with-gulp-and-browserify-5489228dde99#.1xb4ilepl)
-17. [Building modular javascript applications in ES6 with React, Webpack and Babel](https://medium.com/@yamalight/building-modular-javascript-applications-in-es6-with-react-webpack-and-babel-538189cd485f#.bqq4rkjq9)
-18. [Make your own React production version with webpack](http://dev.topheman.com/make-your-react-production-minified-version-with-webpack/)
-19. [How to set React to production mode when using Gulp](http://stackoverflow.com/questions/32526281/how-to-set-react-to-production-mode-when-using-gulp)
-20. [Browserify 使用指南](http://zhaoda.net/2015/10/16/browserify-guide/)
-21. [使用 Webpack 建立 React 專案開發環境](https://rhadow.github.io/2015/04/02/webpack-workflow/)
-22. [如何使用 Webpack 模組整合工具](https://rhadow.github.io/2015/03/23/webpackIntro/)
-23. [參透 webpack](http://andyyou.logdown.com/posts/370326)
-24. [WEBPACK DEV SERVER](http://www.jianshu.com/p/941bfaf13be1)
-25. [Understanding ES6 Modules](https://www.sitepoint.com/understanding-es6-modules/)
-26. [Setting up Babel 6](https://babeljs.io/blog/2015/10/31/setting-up-babel-6)
 
 (image via [srinisoundar](https://cdn-images-1.medium.com/max/477/1*qhI4E_g3TDOK0uu1VAJlCQ.png)、[sitepoint](https://d2sis3lil8ndrq.cloudfront.net/screencasts/46e215cd-2eb3-4cf0-b699-713977a2b644.png)、[keyholesoftware](https://keyholesoftware.com/wp-content/uploads/Browserify-5.png)、[survivejs](http://survivejs.com/webpack/images/webpack.png))
