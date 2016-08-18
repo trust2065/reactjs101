@@ -1,7 +1,7 @@
 # React 生態系（Ecosystem）入門簡介
 根據 React 官方網站的說明：React 是一個專注於 UI（View）的 JavaScript 函式庫。自從 Facebook 開源 React 這個函式庫後，相關的生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：模組化、ES6+、Webpack、Babel、ESLint等），成為更好的開發者。 
 
-## ReactJS
+## React
 React 是 Facebook 推出的 JavaScript 函式庫，若以 MVC 框架來看，React 定位是在 View 的範疇。在 React 0.14 版之後，React 更把 ReactDOM 部分獨立出去，讓 React 核心更單純，也更符合 React 所倡導的 `Learn once, write everywhere` 的理念。事實上，ReactJS 本身的 API 相對單純，但由於整個生態系非常龐大，因此學習 React 卻是一條漫長的道路。此外，當你想把 React 應用在你的應用程式時，你必須學習整個 React Stack 才能充分發揮 React 的優勢。
 
 ## JSX 
@@ -18,6 +18,7 @@ ES6+ 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入
 
 ## JavaScript 模組化開發
 1. CDN-Based
+	
 	也就是最傳統的 `<script>` 引入方式，然而使用這種方式雖然簡單方便，但在開發實際中大型應用程式時會產生許多弊端：
 
 	- 全域作用域容易造成變數污染和衝突
@@ -27,22 +28,27 @@ ES6+ 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入
 
 2. AMD
 
-	AMD 全稱為（Asynchronous Module Definition），為非同步載入模組的規範，其在宣告時模組時即需定義依賴的模組。AMD 常用於瀏覽器端，其最著名的實踐為 [RequireJS](http://requirejs.org/)
+	[Asynchronous Module Definition](https://en.wikipedia.org/wiki/Asynchronous_module_definition) 簡稱 AMD，為非同步載入模組的規範，其在宣告時模組時即需定義依賴的模組。AMD 常用於瀏覽器端，其最著名的實踐為 [RequireJS](http://requirejs.org/)
 
+	基本格式：
 	```js 
 	define(id?, dependencies?, factory);
 	```
 
 3. CommonJS
+
 	[CommonJS](http://wiki.commonjs.org/wiki/CommonJS) 規範是一種同步模組載入的規範。以 Node.js 為例：其遵守 CommonJS 規範。使用 `require` 進行模組同步載入，並透過 `exports`、`module.exports` 來輸出模組。主要實現為 [Node.js](https://nodejs.org/en/) 伺服器端的同步載入和瀏覽器端的 [Browserify](http://browserify.org/)
 
 4. CMD
+
 	CMD 全稱為 [Common Module Definition](https://github.com/cmdjs/specification/blob/master/draft/module.md)，其規範和 AMD 類似，但相對簡潔，卻又保持和 CommonJS 的兼容性。其最大特色為：依賴就近，延遲執行。主要實現為：[Sea.js](http://seajs.org/docs/#intro)。
 
 5. UMD
+
 	[Universal Module Definition](https://github.com/umdjs/umd) 是為了要兼容 CommonJS 和 AMD 所設計的規範，希望讓模組能跨平台執行。
 
 6. ES6 Module
+
 	ECMAScript6 的標準中定義了 JavaScript 的模組化方式，讓 JavaScript 在開發大型複雜應用程式時上更為方便且易於管理，亦可以取代過去 AMD、CommonJS 等規範，成為通用於瀏覽器端和伺服器端的模組化解決方案。但目前瀏覽器和 Node 在 ES6 模組支援度還不完整，大部分情況需要透過 [Babel](https://babeljs.io/) 轉譯器進行轉譯。
 
 ## Webpack/Browserify + Gulp
