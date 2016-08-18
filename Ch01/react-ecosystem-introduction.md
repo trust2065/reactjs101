@@ -78,14 +78,14 @@ ES6+ 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入
 [React Router](https://github.com/reactjs/react-router) 是 React 中主流使用的 Routing 函式庫，透過 URL 的變化來管理對應的狀態和元件。若開發複雜的 React 應用程式基本上都會需要用到。
 
 ## Flux/Redux
-[Flux](https://facebook.github.io/flux/) 是一個實現單項流的應用程式資料架構，同樣是由 Facebook 推出，並和 React 專注於 View 的部份形成互補。而由 Dan Abramov 所開發的 [Redux](https://github.com/reactjs/redux) 被 React 開發社群認為是 Flux-like 更優雅的作法，也是目前主流搭配 React 的狀態（State）管理工具。
+[Flux](https://facebook.github.io/flux/) 是一個實現單項流的應用程式資料架構（architecture），同樣是由 Facebook 推出，並和 React 專注於 View 的部份形成互補。而由 Dan Abramov 所開發的 [Redux](https://github.com/reactjs/redux) 被 React 開發社群認為是 Flux-like 更優雅的作法，也是目前主流搭配 React 的狀態（State）管理工具。
 
 ## ImmutableJS
 [ImmutableJS](https://facebook.github.io/immutable-js/)，是一個能讓開發者建立不可變資料結構的函式庫。建立不可變資料結構不僅可以讓狀態可預測性更高，也可以提昇效能。
 
 ## Isomorphic JavaScript
-Isomorphic JavaScript 是指前後端共用同一份程式碼，
-
+Isomorphic JavaScript 是指前後端共用相同部分的程式碼，讓 JavaScript 應用可以同時執行在瀏覽器端和伺服器端，在 React 中可以透過瀏覽器端渲染的方式達到 Isomorphic JavaScript 效果，讓 SEO 和執行效能更加提昇。
+ 
 ## Jest
 [Jest](https://facebook.github.io/jest/) 是 Facebook 所開發的單元測試工具，其主要基於 [Jasmine](http://jasmine.github.io/) 所建立的測試框架。Jest 除了支援 JSDOM 外，也可以自動模擬 (mock) 透過 `require()` 進來的模組，讓開發者可以更專注在目前被測試的模組中。
 
@@ -95,7 +95,9 @@ Isomorphic JavaScript 是指前後端共用同一份程式碼，
 ## GraphQL/Relay
 [GraphQL](http://graphql.org/docs/getting-started/) 是 Facebook 所開發的資料查詢語言，主要是想解決傳統 RESTful API 所遇到的一些問題，並提供前端更有彈性的 API 設計方式。[Relay](https://facebook.github.io/relay/) 則是 Facebook 提出用於 React 的一個宣告式數據框架。 
 
-## 延伸閱讀
+## 總結
+以上就是讀者 React 在生態系遊走時會出現的關主，也許有些初學者會對於這樣龐大的體系所勸退。接下來筆者將帶領讀者按圖索驥，依序介紹整個 React 生態系的各種技術。
+
 1. [Navigating the React.JS Ecosystem](https://www.toptal.com/react/navigating-the-react-ecosystem)
 2. [petehunt/react-howto](https://github.com/petehunt/react-howto#learning-relay-falcor-etc)
 3. [React Ecosystem - A summary](https://staminaloops.github.io/undefinedisnotafunction/react-ecosystem/)

@@ -19,3 +19,4 @@ Universal/Isomorphic
 13. [react+redux教程（六）redux服务端渲染流程](http://www.cnblogs.com/lewis617/p/5174861.html)
 14. [Redux 伺服器 Render](http://redux.js.org/docs/recipes/ServerRendering.html)
 15. [Best async serverside loading technique?](https://github.com/reactjs/redux/issues/99)
+16. [Isomorphic JavaScript: The Future of Web Apps](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
