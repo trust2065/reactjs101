@@ -37,7 +37,7 @@ ES6+ 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入
 
 3. CommonJS
 
-	[CommonJS](http://wiki.commonjs.org/wiki/CommonJS) 規範是一種同步模組載入的規範。以 Node.js 為例：其遵守 CommonJS 規範。使用 `require` 進行模組同步載入，並透過 `exports`、`module.exports` 來輸出模組。主要實現為 [Node.js](https://nodejs.org/en/) 伺服器端的同步載入和瀏覽器端的 [Browserify](http://browserify.org/)
+	[CommonJS](http://wiki.commonjs.org/wiki/CommonJS) 規範是一種同步模組載入的規範。以 Node.js 其遵守 CommonJS 規範，使用 `require` 進行模組同步載入，並透過 `exports`、`module.exports` 來輸出模組。主要實現為 [Node.js](https://nodejs.org/en/) 伺服器端的同步載入和瀏覽器端的 [Browserify](http://browserify.org/)。
 
 4. CMD
 
@@ -53,13 +53,14 @@ ES6+ 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入
 
 ## Webpack/Browserify + Gulp
 隨著網頁應用程式開發的複雜性提昇，現在的網頁往往不單只是單純的網頁，而是一個網頁應用程式（WebApp）。為了管理複雜的應用程式開發，此時模組化開發方法便顯得日益重要，而理想上的模組化開發工具一直是前端工程的很大的議題。Webpack 和 Browserify + Gulp 則是進行 React 應用程式開發常用的開發工具，可以協助進行自動化程式碼打包、轉譯等重複性工作，提昇開發效率。
+
 1. Webpack
 [Webpack](https://webpack.github.io/) 是一個模組打包工具（module bundler），以下列出 Webpack 的幾項主要功能：
 
-- 將 CSS、圖片與其他資源打包
-- 打包之前預處理（Less、CoffeeScript、JSX、ES6 等）的檔案
-- 依 entry 文件不同，把 .js 分拆為多個 .js 檔案
-- 整合豐富的 Loader 可以使用（Webpack 本身僅能處理 JavaScript 模組，其餘檔案如：CSS、Image 需要載入不同 Loader 進行處理）
+	- 將 CSS、圖片與其他資源打包
+	- 打包之前預處理（Less、CoffeeScript、JSX、ES6 等）的檔案
+	- 依 entry 文件不同，把 .js 分拆為多個 .js 檔案
+	- 整合豐富的 Loader 可以使用（Webpack 本身僅能處理 JavaScript 模組，其餘檔案如：CSS、Image 需要載入不同 Loader 進行處理）
 
 2. Browserify
 如同官網上說明的：`Browserify lets you require('modules') in the browser by bundling up all of your dependencies.
