@@ -1,4 +1,4 @@
-# Flux/Redux
+# Ch08 Flux/Redux
 
 ## 前言
 [Flux](https://facebook.github.io/flux/) 是 Facebook 推出的 client-side 應用程式架構（Architecture），並非一個完整的前端框架，其特色在於實現了 Unidirectional Data Flow（單向流）的資料流處理方式，在開發複雜的大型應用程式時可以更容易地管理 state（狀態）。由於 React 主要是負責 View 的部份，所以透過搭配 Flux-like 的資料處理架構，可以更好的去管理我們的 state（狀態）。

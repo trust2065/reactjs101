@@ -1,4 +1,4 @@
-# 用 React + Rudux + React Router 寫一個 Github 查詢應用
+# Ch09 用 React + Rudux + React Router 寫一個 Github 查詢應用
 
 ## 前言
 
