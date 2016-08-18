@@ -55,8 +55,8 @@ ES6+ 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入
 隨著網頁應用程式開發的複雜性提昇，現在的網頁往往不單只是單純的網頁，而是一個網頁應用程式（WebApp）。為了管理複雜的應用程式開發，此時模組化開發方法便顯得日益重要，而理想上的模組化開發工具一直是前端工程的很大的議題。Webpack 和 Browserify + Gulp 則是進行 React 應用程式開發常用的開發工具，可以協助進行自動化程式碼打包、轉譯等重複性工作，提昇開發效率。
 
 1. Webpack
-	[Webpack](https://webpack.github.io/) 是一個模組打包工具（module bundler），以下列出 Webpack 的幾項主要功能：
 
+	[Webpack](https://webpack.github.io/) 是一個模組打包工具（module bundler），以下列出 Webpack 的幾項主要功能：
 	- 將 CSS、圖片與其他資源打包
 	- 打包之前預處理（Less、CoffeeScript、JSX、ES6 等）的檔案
 	- 依 entry 文件不同，把 .js 分拆為多個 .js 檔案
