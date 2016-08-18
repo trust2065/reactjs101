@@ -38,7 +38,7 @@
 - [ ] 附錄四、Relay/GraphQL 初體驗
 
 ## 先備知識（Prior Knowledge）
-本書針對已具備基本 HTML、CSS 和 JavaScript 和 DOM 操作知識的讀者設計，雖會針對一些基礎重點知識進行補充，但若你對上述的技術仍不熟悉的話，建議可以先行參考：[Codecademy](https://www.codecademy.com/)、[W3C School](http://www.w3schools.com/)、[MDN](https://developer.mozilla.org/zh-TW/)或是參考筆者[之前的教學講義](http://slides.com/kd-chang)進行學習。
+本書針對已具備基本 HTML、CSS 和 JavaScript 和 DOM 操作知識的讀者設計，雖會針對一些基礎重點知識進行補充，但若讀者對上述的技術仍不熟悉的話，建議可以先行參考：[Codecademy](https://www.codecademy.com/)、[W3C School](http://www.w3schools.com/)、[MDN](https://developer.mozilla.org/zh-TW/)或是參考筆者[之前的教學講義](http://slides.com/kd-chang)進行學習。
 
 ## 關於作者（Author）
 [@kdchang](http://blog.kdchang.cc) 文藝型開發者，夢想是做出人們想用的產品和辦一所心目中理想的學校，目前專注在 Mobile 和 IoT 應用開發。A Starter & Maker. JavaScript, Python & iOS/Android lover. Keep Shipping Cool Mobile/IoT App & Web App.:)
