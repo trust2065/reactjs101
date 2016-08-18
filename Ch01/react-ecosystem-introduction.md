@@ -95,7 +95,7 @@ Facebook 本身有提供 [Test Utilities](https://facebook.github.io/react/docs/
 [React Native](https://facebook.github.io/react-native/)和過去的 [Apache Cordova](https://cordova.apache.org/) 等解決方案比較不同，它讓開發者可以使用 React 和 JavaScript 開發原生應用程式（Native App），讓 `Learn once, write anywhere` 理想變得可能。
 
 ## GraphQL/Relay
-[GraphQL](http://graphql.org/docs/getting-started/) 是 Facebook 所開發的資料查詢語言（Data Query Language），主要是想解決傳統 RESTful API 所遇到的一些問題，並提供前端更有彈性的 API 設計方式。[Relay](https://facebook.github.io/relay/) 則是 Facebook 提出搭配 GraphQL 用於 React 的一個宣告式數據框架。但由於目前主流的後端 API 仍以 傳統 RESTful API 設計為主，所以在使用 GraphQL 上通常會需要比較大架構設計的變動。
+[GraphQL](http://graphql.org/docs/getting-started/) 是 Facebook 所開發的資料查詢語言（Data Query Language），主要是想解決傳統 RESTful API 所遇到的一些問題，並提供前端更有彈性的 API 設計方式。[Relay](https://facebook.github.io/relay/) 則是 Facebook 提出搭配 GraphQL 用於 React 的一個宣告式數據框架。但由於目前主流的後端 API 仍以 傳統 RESTful API 設計為主，所以在使用 GraphQL 上通常會需要比較大架構設計的變動。因此本書則是把 GraphQL/Relay 介紹放到附錄的部份，讓有興趣的讀者可以自行參考。
 
 ## 總結
 以上就是讀者 React 在生態系遊走時會出現各種的關主，也許有些初學者會對於這樣龐大的體系所嚇到，放棄學習 React 這項革新性技術的機會。不過別擔心，接下來筆者將帶領讀者按圖索驥，依序介紹整個 React 生態系的各種技術，一步步帶領大家用 React 實作出生活中會用到的應用程式。

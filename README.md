@@ -1,5 +1,5 @@
 # 從零開始學 ReactJS（ReactJS 101）
-一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, React Native, etc.)，打造跨平台應用程式。本書全書範例都將以 ES6+ 撰寫，若需參考 ES5 用法，請參考附錄一的 React ES5、ES6+ 常見用法對照表。
+一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, ImmutableJS, React Native, Relay/GraphQL etc.)，打造跨平台應用程式。本書全書範例都將以 ES6+ 撰寫，若需參考 ES5 用法，請參考附錄一的 [React ES5、ES6+ 常見用法對照表](https://github.com/kdchang/reactjs101/tree/master/Appendix01)。
 
 [從零開始學 React（React 101）粉絲頁](https://www.facebook.com/reactjs101/)
 
