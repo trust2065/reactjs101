@@ -19,8 +19,8 @@ HTML Markup：
 <!-- 這邊方便使用 CDN 方式引入 react 、 react-dom 進行講解，實務上和實戰教學部分我們會使用 webpack -->
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
-<script src="./app.js"></script>
   <div id="app"></div>
+	<script src="./app.js"></script>
 </body>
 </html>
 ```
@@ -92,6 +92,7 @@ HTML Markup：
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
   <div id="app"></div>
+	<script src="./app.js"></script>
 </body>
 </html>
 ```
@@ -149,6 +150,7 @@ HTML Markup：
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
   <div id="app"></div>
+	<script src="./app.js"></script>
 </body>
 </html>
 ```
@@ -224,6 +226,7 @@ HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方�
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
 <script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
   <div id="app"></div>
+	<script src="./app.js"></script>
 </body>
 </html>
 ```
