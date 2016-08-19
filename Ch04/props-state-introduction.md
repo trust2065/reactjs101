@@ -1,9 +1,9 @@
 # Props、State、Refs 與表單處理
 
-在前面的章節中我們已經對於 React 和 JSX 有初步的認識，我們也了解到 React Component 事實上可以視為一個狀態機（state machine），而這個狀態機根據不同的 state（透過 `setState()` 修改）和 props（由父元素傳入），Component 會出現對應的顯示結果。本章將使用 React 官網上的範例（使用 ES6+ 進行改寫）來更進一步說明 Props 和 State 特性及在 React 如何進行事件和表單處理。
+在前面的章節中我們已經對於 React 和 JSX 有初步的認識，我們也了解到 React Component 事實上可以視為顯示 UI 的一個狀態機（state machine），而這個狀態機根據不同的 state（透過 `setState()` 修改）和 props（由父元素傳入），Component 會出現對應的顯示結果。本章將使用 React 官網首頁上的範例（使用 ES6+ 進行改寫）來更進一步說明 Props 和 State 特性及在 React 如何進行事件和表單處理。
 
 ## Props
-首先我們使用 React 官網上的 A Simple Component 來說明 props 的使用方式。由於傳入元件的 name 屬性為 Mark，故以下程式碼將會在瀏覽器顯示 Hello, Mark。針對傳入的 props 我們也有驗證和預設值的設計，讓我們撰寫的元件可以更加健壯。
+首先我們使用 React 官網上的 A Simple Component 來說明 props 的使用方式。由於傳入元件的 name 屬性為 Mark，故以下程式碼將會在瀏覽器顯示 Hello, Mark。針對傳入的 props 我們也有驗證和預設值的設計，讓我們撰寫的元件可以更加健壯（robust）。
 
 HTML Markup：
 
@@ -29,6 +29,7 @@ HTML Markup：
 ```javascript
 class HelloMessage extends React.Component {
 	constructor() {
+		// 對於 OOP 熟悉的讀者應該對於 constructor 建構子的使用不陌生，事實上它是 ES6 的語法糖，骨子裡還是 portotype based 物件導向程式語言。透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
 		super(props);
 		this.state = {}
 	}
