@@ -80,7 +80,7 @@
 3. 設定 `webpack.config.js`
 	事實上，`webpack.config.js` 有點類似於 `gulp` 中的 `gulpfile.js` 功用，主要是設定 `webpack` 的相關設定
 
-	```js 
+	```javascript
 	// 這邊使用 HtmlWebpackPlugin，將 bundle 好得 <script> 插入到 body  
 	const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -121,7 +121,7 @@
 
 4. 設定 `.babelrc`
 
-	```js 
+	```javascript 
 	{
 	  "presets": [
 	    "es2015",
@@ -139,7 +139,7 @@
 
 6. 撰寫 Component
 
-	```html ./app/index.html
+	```html 
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -177,25 +177,25 @@
 
 7. 在終端機使用 `webpack`，成果展示
 
-- webpack：會在開發模式下開始一次性的建置
-- webpack -p：會建置 production 的程式碼 
-- webpack --watch：會監聽程式碼的修改，當儲存時有異動時會更新檔案
-- webpack -d：加入 source maps 檔案
-- webpack --progress --colors：加上處理進度與顏色
+	- webpack：會在開發模式下開始一次性的建置
+	- webpack -p：會建置 production 的程式碼 
+	- webpack --watch：會監聽程式碼的修改，當儲存時有異動時會更新檔案
+	- webpack -d：加入 source maps 檔案
+	- webpack --progress --colors：加上處理進度與顏色
 
-如果不想每次都打一長串的指令碼的話可以使用 `package.json` 中的 `scripts` 設定
+	如果不想每次都打一長串的指令碼的話可以使用 `package.json` 中的 `scripts` 設定
 
-```js 
-"scripts": {
-  "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
-}
-```
+	```javascript 
+	"scripts": {
+	  "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
+	}
+	```
 
-然後在終端機執行：
+	然後在終端機執行：
 
-```
-$ npm run dev
-```
+	```
+	$ npm run dev
+	```
 
 當我們此時我們可以打開瀏覽器輸入 `http://localhost:8008` ，就可以看到 `Hello, world!` 了！
 
