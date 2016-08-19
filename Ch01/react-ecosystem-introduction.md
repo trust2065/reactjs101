@@ -1,23 +1,23 @@
 # React 生態系（Ecosystem）入門簡介
 根據 [React 官方網站](https://facebook.github.io/react/) 的說明：React 是一個專注於 UI（View）的 JavaScript 函式庫（Library）。自從 Facebook 於 2013 年開源 React 這個函式庫後，相關的生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：模組化、ES6+、Webpack、Babel、ESLint、函數式程式設計等），成為更好的開發者。 
 
-## React
-React 是 Facebook 推出的 JavaScript 函式庫，若以 MVC 框架來看，React 定位是在 View 的範疇。在 React 0.14 版之後，React 更把原先處理 DOM 的部分獨立出去（react-dom），讓 React 核心更單純，也更符合 React 所倡導的 `Learn once, write everywhere` 的理念。事實上，ReactJS 本身的 API 相對單純，但由於整個生態系非常龐大，因此學習 React 卻是一條漫長的道路。此外，當你想把 React 應用在你的應用程式時，你通常必須學習整個 React Stack 才能充分發揮 React 的最大優勢。
+## ReactJS
+ReactJS 是 Facebook 推出的 JavaScript 函式庫，若以 MVC 框架來看，React 定位是在 View 的範疇。在 ReactJS 0.14 版之後，ReactJS 更把原先處理 DOM 的部分獨立出去（react-dom），讓 ReactJS 核心更單純，也更符合 React 所倡導的 `Learn once, write everywhere` 的理念。事實上，ReactJS 本身的 API 相對單純，但由於整個生態系非常龐大，因此學習 React 卻是一條漫長的道路。此外，當你想把 React 應用在你的應用程式時，你通常必須學習整個 React Stack 才能充分發揮 React 的最大優勢。
 
 ## JSX 
-事實上，JSX 並非一種全新的語言，而是一種語法糖（[Syntatic Sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)），一種語法類似 [XML](https://zh.wikipedia.org/wiki/XML) 的 ECMAScript 語法擴充。在 JSX 中 HTML 和組建這些元素標籤的程式碼有緊密的關係，這和過去我們強調 HTML、JavaScript 分離的觀念有很大不同。你可以選擇不要在 React 使用 JSX，不過相信我，當你真正開始撰寫 React 元件（Component）時，你會很慶幸有 JSX 真好。
+事實上，JSX 並非一種全新的語言，而是一種語法糖（[Syntatic Sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)），一種語法類似 [XML](https://zh.wikipedia.org/wiki/XML) 的 ECMAScript 語法擴充。在 JSX 中 HTML 和組建這些元素標籤的程式碼有緊密的關係，這和過去我們強調 HTML、JavaScript 分離的觀念有很大不同。當然，你可以選擇不要在 React 使用 JSX，不過相信我，當你真正開始撰寫 React 元件（Component）時，你會很慶幸有 JSX 真好。
 
 ## NPM
-NPM（Node Package Manager）是 Node.js 下的主流套件管理工具。在 NPM 上有非常多的套件，可以讓你不用再重造輪子，更可以讓你可以輕鬆用指令管理不同的套件。由於 NPM 主要是基於 CommonJS 的規範，通常必須搭配 Browserify 這樣的工具才能在前端使用 NPM 的模組。然而因 NPM 是基於  Nested Dependency Tree，不同的套件有可能會在引入依賴時會引入相同但不同版本的套件，造成檔案大小過大的情形。這和另一個套件管理工具 [Bower](https://bower.io/) 專注在前端套件且使用 Flat Dependency Tree（讓使用者決定相依的套件版本）是比較不同的地方，
+NPM（Node Package Manager）是 Node.js 下的主流套件管理工具。在 NPM 上有非常多的套件，可以讓你不用再重造輪子，更可以讓你可以輕鬆用指令管理不同的套件。由於 NPM 主要是基於 [CommonJS](https://en.wikipedia.org/wiki/CommonJS) 的規範，通常必須搭配 Browserify 這樣的工具才能在前端使用 NPM 的模組。然而因 NPM 是基於 Nested Dependency Tree，不同的套件有可能會在引入依賴時會引入相同但不同版本的套件，造成檔案大小過大的情形。這和另一個套件管理工具 [Bower](https://bower.io/) 專注在前端套件且使用 Flat Dependency Tree（讓使用者決定相依的套件版本）是比較不同的地方。
 
 ## ES6+
 [ES6+](https://babeljs.io/blog/2015/06/07/react-on-es6-plus) 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入許多新的特性和功能，彌補了過去 JavaScript 被詬病的一些特性。由於未來 React 將以支援 ES6+ 為主，因此直接學習 ES6+ 用法是相對好的選擇，本書的所有範例也將會以 ES6+ 撰寫。
 
 ## Babel
-由於並非所有瀏覽器都支援 ES6+ 語法，所以透過 [Babel](https://babeljs.io/) 這個 JavaScript 編譯器（可以想成是翻譯機或是翻譯蒟篛）可以讓你的 ES6+ 、JSX　程式碼轉換成瀏覽器可以看的懂得語法。通常會在資料夾的 root 位置加入 `.bablerc` 進行轉譯規則 `preset` 的設定。
+由於並非所有瀏覽器都支援 ES6+ 語法，所以透過 [Babel](https://babeljs.io/) 這個 JavaScript 編譯器（可以想成是翻譯機或是翻譯蒟篛）可以讓你的 ES6+ 、JSX 等程式碼轉換成瀏覽器可以看的懂得語法。通常會在資料夾的 root 位置加入 `.bablerc` 進行轉譯規則 `preset` 和引用外掛（plugin）的設定。
 
 ## JavaScript 模組化開發
-隨著 Web 應用程式的複雜性提高，JavaScript 模組化開發已經成為必然的趨勢，以下簡單介紹 JavaScript 模組化，在一開始沒有官方定義的標準時出現了各種社群自行定義的規範和實踐：
+隨著 Web 應用程式的複雜性提高，JavaScript 模組化開發已經成為必然的趨勢，以下簡單介紹 JavaScript 模組化的相關規範。事實上，在一開始沒有官方定義的標準時出現了各種社群自行定義的規範和實踐。
 
 1. CDN-Based
 	
@@ -54,7 +54,7 @@ NPM（Node Package Manager）是 Node.js 下的主流套件管理工具。在 NP
 	ECMAScript6 的標準中定義了 JavaScript 的模組化方式，讓 JavaScript 在開發大型複雜應用程式時上更為方便且易於管理，亦可以取代過去 AMD、CommonJS 等規範，成為通用於瀏覽器端和伺服器端的模組化解決方案。但目前瀏覽器和 Node 在 ES6 模組支援度還不完整，大部分情況需要透過 [Babel](https://babeljs.io/) 轉譯器進行轉譯。
 
 ## Webpack/Browserify + Gulp
-隨著網頁應用程式開發的複雜性提昇，現在的網頁往往不單只是單純的網頁，而是一個網頁應用程式（WebApp）。為了管理複雜的應用程式開發，此時模組化開發方法便顯得日益重要，而理想上的模組化開發工具一直是前端工程的很大的議題。Webpack 和 Browserify + Gulp 則是進行 React 應用程式開發常用的開發工具，可以協助進行自動化程式碼打包、轉譯等重複性工作，提昇開發效率。
+隨著網頁應用程式開發的複雜性提昇，現在的網頁往往不單只是單純的網頁，而是一個網頁應用程式（WebApp）。為了管理複雜的應用程式開發，此時模組化開發方法便顯得日益重要，而理想上的模組化開發工具一直是前端工程的很大的議題。Webpack 和 Browserify + Gulp 則是進行 React 應用程式開發常用的開發工具，可以協助進行自動化程式碼打包、轉譯等重複性工作，提昇開發效率。本書範例主要會搭配 Webpack 進行開發。
 
 1. Webpack
 
@@ -83,22 +83,22 @@ NPM（Node Package Manager）是 Node.js 下的主流套件管理工具。在 NP
 [Flux](https://facebook.github.io/flux/) 是一個實現單項流的應用程式資料架構（architecture），同樣是由 Facebook 推出，並和 React 專注於 View 的部份形成互補。而由 Dan Abramov 所開發的 [Redux](https://github.com/reactjs/redux) 被 React 開發社群認為是 Flux-like 更優雅的作法，也是目前主流搭配 React 的狀態（State）管理工具。讓你在開發複雜的應用程式時可以更方便管理你的狀態（state）。
 
 ## ImmutableJS
-[ImmutableJS](https://facebook.github.io/immutable-js/)，是一個能讓開發者建立不可變資料結構的函式庫。建立不可變資料結構不僅可以讓狀態可預測性更高，也可以提昇效能。
+[ImmutableJS](https://facebook.github.io/immutable-js/)，是一個能讓開發者建立不可變資料結構的函式庫。建立不可變（immutable）資料結構不僅可以讓狀態可預測性更高，也可以提昇程式的效能。
 
 ## Isomorphic JavaScript
-Isomorphic JavaScript 是指前後端（Client/Server）共用相同部分的程式碼，讓 JavaScript 應用可以同時執行在瀏覽器端和伺服器端，在 React 中可以透過瀏覽器端渲染的方式達到 Isomorphic JavaScript 效果，讓 SEO 和執行效能更加提昇。而另一個常一起出現的 Universal JavaScript 一般定義更為廣泛，係指可以運行在不同環境下的 JavaScript Code。
+Isomorphic JavaScript 是指前後端（Client/Server）共用相同部分的程式碼，讓 JavaScript 應用可以同時執行在瀏覽器端和伺服器端，在 React 中可以透過瀏覽器端渲染的方式達到 Isomorphic JavaScript 效果，讓 SEO 和執行效能更加提昇。而另一個常一起出現的 Universal JavaScript 一般定義更為廣泛，係指可以運行在不同環境下的 JavaScript Code，並不局限於瀏覽器和伺服器端。
  
 ## React 測試
-Facebook 本身有提供 [Test Utilities](https://facebook.github.io/react/docs/test-utils.html)，但由於不夠好用，所以目前主流開發社群比較傾向使用 Airbnb 團隊開發的 [enzyme](https://github.com/airbnb/enzyme)，其可以市面上常見的測試工具（[Mocha](https://mochajs.org/)、[Karma](https://karma-runner.github.io/)、Jest 等）。其中 [Jest](https://facebook.github.io/jest/) 是 Facebook 所開發的單元測試工具，其主要基於 [Jasmine](http://jasmine.github.io/) 所建立的測試框架。Jest 除了支援 JSDOM 外，也可以自動模擬 (mock) 透過 `require()` 進來的模組，讓開發者可以更專注在目前被測試的模組中。
+Facebook 本身有提供 [Test Utilities](https://facebook.github.io/react/docs/test-utils.html)，但由於不夠好用，所以目前主流開發社群比較傾向使用 Airbnb 團隊開發的 [enzyme](https://github.com/airbnb/enzyme)，其可以與市面上常見的測試工具（[Mocha](https://mochajs.org/)、[Karma](https://karma-runner.github.io/)、Jest 等）搭配使用。其中 [Jest](https://facebook.github.io/jest/) 是 Facebook 所開發的單元測試工具，其主要基於 [Jasmine](http://jasmine.github.io/) 所建立的測試框架。Jest 除了支援 JSDOM 外，也可以自動模擬 (mock) 透過 `require()` 進來的模組，讓開發者可以更專注在目前被測試的模組中。
 
 ## React Native
-[React Native](https://facebook.github.io/react-native/)和過去的 [Apache Cordova](https://cordova.apache.org/) 等解決方案比較不同，它讓開發者可以使用 React 和 JavaScript 開發原生應用程式（Native App），讓 `Learn once, write anywhere` 理想變得可能。
+[React Native](https://facebook.github.io/react-native/)和過去的 [Apache Cordova](https://cordova.apache.org/) 等基於 WebView 的解決方案比較不同，它讓開發者可以使用 React 和 JavaScript 開發原生應用程式（Native App），讓 `Learn once, write anywhere` 理想變得可能。
 
 ## GraphQL/Relay
 [GraphQL](http://graphql.org/docs/getting-started/) 是 Facebook 所開發的資料查詢語言（Data Query Language），主要是想解決傳統 RESTful API 所遇到的一些問題，並提供前端更有彈性的 API 設計方式。[Relay](https://facebook.github.io/relay/) 則是 Facebook 提出搭配 GraphQL 用於 React 的一個宣告式數據框架。但由於目前主流的後端 API 仍以 傳統 RESTful API 設計為主，所以在使用 GraphQL 上通常會需要比較大架構設計的變動。因此本書則是把 GraphQL/Relay 介紹放到附錄的部份，讓有興趣的讀者可以自行參考。
 
 ## 總結
-以上就是讀者 React 在生態系遊走時會出現各種的關主，也許有些初學者會對於這樣龐大的體系所嚇到，放棄學習 React 這項革新性技術的機會。不過別擔心，接下來筆者將帶領讀者按圖索驥，依序介紹整個 React 生態系的各種技術，一步步帶領大家用 React 實作出生活中會用到的應用程式。
+以上就是讀者 React 在生態系遊走時會出現各種關主，也許有些初學者會對於這樣龐大的體系所嚇到，放棄學習 React 這項革新性技術的機會。不過別擔心，接下來筆者將帶領讀者按圖索驥，依序介紹整個 React 生態系的各種技術，一步步帶領大家用 React 實作出生活中會用到的應用程式。
 
 ## 延伸閱讀
 1. [Navigating the React.JS Ecosystem](https://www.toptal.com/react/navigating-the-react-ecosystem)
