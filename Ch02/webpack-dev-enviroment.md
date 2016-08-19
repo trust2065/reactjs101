@@ -63,7 +63,7 @@
 - 將 CSS、圖片與其他資源打包
 - 打包之前預處理（Less、CoffeeScript、JSX、ES6 等）的檔案
 - 依 entry 文件不同，把 .js 分拆為多個 .js 檔案
-- 整合豐富的 loader 可以使用
+- 整合豐富的 Loader 可以使用（Webpack 本身僅能處理 JavaScript 模組，其餘檔案如：CSS、Image 需要載入不同 Loader 進行處理）
 
 接下來我們一樣透過 Hello World 實例來介紹如何用 Webpack 設置 React 開發環境：
 
