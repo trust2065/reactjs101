@@ -17,7 +17,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 ## 基於元件（Component）化思考
 在 React 的世界中最基本的單元為元件（Component），每個元件也可以包含一個以上的子元件，並依照需求組裝成一個組合式的（Composable）元件，因此具有封裝（encapsulation）、關注點分離 (Separation of Concerns)、複用 (Reuse) 、組合 (Compose) 等特性。
 
-<TodoApp> 元件可以包含 <TodoHeader />、<TodoList /> 子元件
+`<TodoApp>` 元件可以包含 `<TodoHeader />`、`<TodoList />` 子元件
 ```javascript
 	<div>
 		<TodoHeader />
@@ -25,7 +25,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	</div>
 ```
 
-<TodoList /> 元件內部長相：
+`<TodoList />` 元件內部長相：
 ```javascript
 	<div>
 		<ul>
