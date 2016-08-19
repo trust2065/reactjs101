@@ -213,7 +213,7 @@ ReactDOM.render(<TodoApp />, document.getElementById('app'));
 以上介紹了 React 事件處理的部份，除了 `onChange` 和 `onSubmit` 外，React 也封裝了常用的事件處理，如 `onClick` 等。若想更進一步了解有哪些可以使用的事件處理方法可以參考 [官網的 Event System](https://facebook.github.io/react/docs/events.html)。
 
 ## Refs 與表單處理
-上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries（例如：jQuery），本範例將使用 `remarkable` 結合 `ref` 屬性取出 DOM Value 值，讓使用者可以使用 Markdown 語法的所見即所得編輯器（editor）。
+上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries（例如：jQuery），本範例將使用 `remarkable` 結合 `ref` 屬性取出 DOM Value 值（另外比較常用的作法是使用 `onChange` 事件處理方式處理表單內容），讓使用者可以使用 Markdown 語法的所見即所得編輯器（editor）。
 
 HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方式引入 `remarkable` 這個 `Markdown` 語法 parser 套件）：
 
@@ -277,7 +277,7 @@ ReactDOM.render(<MarkdownEditor />, document.getElementById('app'));
 ```
 
 ## 總結
-以上透過幾個 React 官網首頁上的範例介紹了 Props 和 State 特性及在 React 如何進行事件和表單處理這些 React 中核心的問題，若還不熟悉的讀者建議重新親自動手照著範例中的程式碼敲過一遍，也可以使用像 [jsbin](http://jsbin.com/) 這樣所見即所得的工具來操作
+以上透過幾個 React 官網首頁上的範例介紹了 Props 和 State 特性及在 React 如何進行事件和表單處理這些 React 中核心的問題，若還不熟悉的讀者建議重新親自動手照著範例中的程式碼敲過一遍，也可以使用像 [jsbin](http://jsbin.com/) 這樣所見即所得的工具來練習，更能熟悉相關語法和 API 喔！接下來我們將探討 Component 的生命週期。
 
 ## 延伸閱讀
 1. [React 官方網站](https://facebook.github.io/react/index.html)
