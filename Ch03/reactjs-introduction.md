@@ -25,6 +25,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 
 	```javascript
 	class MyComponent extends React.Component {
+		// render 是 Class based 元件唯一必須的方法（method）
 		render() {
 			return (
 				<div>Hello, World!</div>
@@ -39,6 +40,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 2. 使用 Funtional Component 寫法
 
 	```javascript
+	// 使用 arror function 來設計 Funtional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
 	const MyComponent = () => (
 		<div>Hello, World!</div>
 	);
