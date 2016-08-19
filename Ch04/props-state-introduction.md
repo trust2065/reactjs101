@@ -5,6 +5,25 @@
 ## Props
 首先我們使用 React 官網上的 A Simple Component 來說明 props 的使用方式。由於傳入元件的 name 屬性為 Mark，故以下程式碼將會在瀏覽器顯示 Hello, Mark。針對傳入的 props 我們也有驗證和預設值的設計，讓我們撰寫的元件可以更加健壯。
 
+HTML Markup：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>A Component Using External Plugins</title>
+</head>
+<body>
+<script src="https://fb.me/react-15.1.0.js"></script>
+<script src="https://fb.me/react-dom-15.1.0.js"></script>
+<script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
+  <div id="app"></div>
+</body>
+</html>
+```
+
 使用 ES6 Class Component 寫法：
 
 ```javascript
@@ -57,6 +76,25 @@ ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
 ## State
 接下來我們將使用 A Stateful Component 這個範例來講解 State 的用法。在 React Component 可以自己管理自己的內部 state，並用 `this.state` 來存取 state。當 `setState()` 方法更新了 state 後將重新呼叫 `render()` 方法，重新繪製 component 內容。以下範例是一個每 1000 毫秒（等於1秒）就會加一的累加器。由於這個範例是 Stateful Component 因此僅使用 ES6 Class Component，而不使用 Functional Component。
 
+HTML Markup：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>A Component Using External Plugins</title>
+</head>
+<body>
+<script src="https://fb.me/react-15.1.0.js"></script>
+<script src="https://fb.me/react-dom-15.1.0.js"></script>
+<script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
+  <div id="app"></div>
+</body>
+</html>
+```
+
 ```javascript
 class Timer extends React.Component {
 	constructor(props) {
@@ -92,9 +130,28 @@ ReactDOM.render(<Timer />, document.getElementById('app'));
 ```
 
 ## 事件處理（Event Handle）
-在前面的內容我們已經學會如何使用 props 和 state，接下來我們要更進一步學習在 React 內如何進行事件處理。
+在前面的內容我們已經學會如何使用 props 和 state，接下來我們要更進一步學習在 React 內如何進行事件處理。下列將使用 React 官網的 An Application 當做例子，實作出一個簡單的 TodoApp。
+
+HTML Markup：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>A Component Using External Plugins</title>
+</head>
+<body>
+<script src="https://fb.me/react-15.1.0.js"></script>
+<script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <div id="app"></div>
+</body>
+</html>
+```
 
 ```javascript
+// TodoApp 元件中包含了顯示 Todo 的 TodoList 元件，Todo 的內容透過 props 傳入 TodoList 中。由於 TodoList 僅單純 Render UI 不涉及內部 state 操作是 stateless component，所以使用 Functional Component 寫法。需要特別注意的是這邊我們用 map function 來迭代 Todos，需要留意的是每個迭代的元素必須要有 unique key 不然會發生錯誤（可以用自定義 id，或是使用 map function 的第二個參數 index）
 const TodoList = (props) => (
 	<ul>
 		{
@@ -105,6 +162,7 @@ const TodoList = (props) => (
 	</ul>
 )
 
+// 整個 App 的主要元件，這邊比較重要的是事件處理的部份，內部有
 class TodoApp extends React.Component {
 	constructor(props) {
 		super(props);
@@ -141,25 +199,48 @@ class TodoApp extends React.Component {
 ReactDOM.render(<TodoApp />, document.getElementById('app'));
 ```
 
+以上介紹了 React 事件處理的部份，除了 `onChange` 和 `onSubmit` 外，React 也封裝了常用的事件處理，如 `onClick` 等。若想更進一步了解有哪些可以使用的事件處理方法可以參考 [官網的 Event System](https://facebook.github.io/react/docs/events.html)。
+
 ## Refs 與表單處理
-onChagne、event.target.value
-	- props 定義後就不能修改
-	- state 隨著使用者互動而改變
-	- refs
+上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries ，本範例將使用 remarkable 讓使用者可以使用 Markdown 語法。
+
+HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方式引入 `remarkable` 這個 `Markdown` 語法 parser 套件）：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>A Component Using External Plugins</title>
+</head>
+<body>
+<script src="https://fb.me/react-15.1.0.js"></script>
+<script src="https://fb.me/react-dom-15.1.0.js"></script>
+<script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
+  <div id="app"></div>
+</body>
+</html>
+```
 
 ```javascript
-const MarkdownEditor = React.createClass({
-  getInitialState: function() {
-    return {value: 'Type some *markdown* here!'};
-  },
-  handleChange: function() {
+class MarkdownEditor extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleChange = this.handleChange.bind(this);
+		this.rawMarkup = this.rawMarkup.bind(this);
+		this.state = {
+			value: 'Type some *markdown* here!',
+		}
+	}
+	handleChange() {
     this.setState({value: this.refs.textarea.value});
-  },
-  rawMarkup: function() {
-    var md = new Remarkable();
-    return { __html: md.render(this.state.value) };
-  },
-  render: function() {
+	}
+	rawMarkup() {
+    const md = new Remarkable();
+    return { __html: md.render(this.state.value) };		
+	}
+	render() {
     return (
       <div className="MarkdownEditor">
         <h3>Input</h3>
@@ -173,11 +254,11 @@ const MarkdownEditor = React.createClass({
           dangerouslySetInnerHTML={this.rawMarkup()}
         />
       </div>
-    );
-  }
-});
+    );	
+	}
+}
 
-ReactDOM.render(<MarkdownEditor />, mountNode);
+ReactDOM.render(<MarkdownEditor />, document.getElementById('app'));
 ```
 
 Refs and findDOMNode()
