@@ -1,6 +1,6 @@
 # Browserify + Gulp + Babelify
 
-![一看就懂的 React 開發環境建置與 Webpack 入門教學](/img/kdchang/react-browserify-gulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
+![一看就懂的 React 開發環境建置與 Webpack 入門教學](./images/react-browserify-gulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
 在進入第二種方法前，首先先介紹一下會用到 [Browserify](http://browserify.org/)、[Gulp](http://gulpjs.com/)、[Babelify](https://github.com/babel/babelify) 三種前端開發常會用到的工具：
 
 [Browserify](http://browserify.org/)
@@ -165,7 +165,7 @@
 8. 成果展示
 	到目前為止我們的資料夾的結構應該會是這樣：
 
-	![一看就懂的 React 開發環境建置與 Webpack 入門教學](/img/kdchang/browserify-folder-pregulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
+	![一看就懂的 React 開發環境建置與 Webpack 入門教學](./images/browserify-folder-pregulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
 
 	接下來我們透過在終端機（terminal）下 `gulp` 指令來處理我們設定好的任務：
 
@@ -176,7 +176,7 @@
 
 	當執行完 `gulp` 後，我們可以發現多了一個 `dist` 資料夾
 
-	![一看就懂的 React 開發環境建置與 Webpack 入門教學](/img/kdchang/browserify-folder-possgulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
+	![一看就懂的 React 開發環境建置與 Webpack 入門教學](./images/browserify-folder-possgulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
 
 	如果我們是要進行 `production` 的應用程式開發的話，我們可以執行： 
 

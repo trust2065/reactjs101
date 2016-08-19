@@ -1,6 +1,6 @@
-# React 開發環境建置與 Webpack 入門教學
+# React 開發環境設置與 Webpack 入門教學
 
-![React 開發環境建置與 Webpack 入門教學](/img/kdchang/react-webpack-browserify.png "React 開發環境建置與 Webpack 入門教學")
+![React 開發環境設置與 Webpack 入門教學](./images/react-webpack-browserify.png "React 開發環境設置與 Webpack 入門教學")
 
 ## 前言
 俗話說工欲善其事，必先利其器。寫程式也是一樣，搭建好開發環境後可以讓自己在後續開發上更加順利。因此本章接下來將討論 React 開發環境的三種主要方式：CDN-based、[browserify](https://webpack.github.io/) 和 [webpack](https://webpack.github.io/)（這邊我們就先不討論 [TypeScript](https://www.typescriptlang.org/) 的開發方式），讓讀者閱讀完本章後可以開始 React 開發之旅！
@@ -16,7 +16,7 @@
 
 而在 React 應用程式開發上更推薦使用像是 `Webpack` 這樣的 `module bundlers` 來組織我們的應用程式，但對於一般讀者來說 `Webpack` 強大而完整的功能相對複雜。為了讓讀者先熟悉 `React` 核心觀念（我們假設讀者已經有使用 `JavaScript` 或 `jQuery` 的基本經驗），我們將從使用 `CDN` 引入 `<script>` 的方式開始介紹：
 
-![React 開發環境建置與 Webpack 入門教學](/img/kdchang/react.png "React 開發環境建置與 Webpack 入門教學")
+![React 開發環境設置與 Webpack 入門教學](./images/react.png "React 開發環境設置與 Webpack 入門教學")
 使用 CDN-based 的開發方式缺點是較難維護我們的程式碼（當引入函式庫一多就會有很多 `<script/>`）且會容易遇到版本相容性問題，不太適合開發大型應用程式，但因為簡單易懂，適合教學上使用。
 
 以下是 React [官方首頁的範例](https://facebook.github.io/react/index.html)，以下使用 `React v15.2.1`：
@@ -52,10 +52,10 @@
 
 在瀏覽器瀏覽最後成果：
 
-![React 開發環境建置與 Webpack 入門教學](/img/kdchang/hello-world.png "React 開發環境建置與 Webpack 入門教學")
+![React 開發環境設置與 Webpack 入門教學](./images/hello-world.png "React 開發環境設置與 Webpack 入門教學")
 
 ## Webpack
-![React 開發環境建置與 Webpack 入門教學](/img/kdchang/webpack-module-bundler.png "React 開發環境建置與 Webpack 入門教學")
+![React 開發環境設置與 Webpack 入門教學](./images/webpack-module-bundler.png "React 開發環境設置與 Webpack 入門教學")
 
 [Webpack](https://webpack.github.io/) 是一個模組打包工具（module bundler），以下列出 Webpack 的幾項主要功能：
 
@@ -199,7 +199,7 @@ $ npm run dev
 當我們此時我們可以打開瀏覽器輸入 `http://localhost:8008` ，就可以看到 `Hello, world!` 了！
 
 ## 總結
-以上就是 React 開發環境建置與 Webpack 入門教學。若你不想在環境設定上花太多時間的話，不妨參考 Facebook 開發社群推出的 [create-react-app](https://github.com/facebookincubator/create-react-app)，可以快速上手，使用 Webpack、[Babel](https://babeljs.io/)、[ESLint](http://eslint.org/) 開發 React 應用程式！
+以上就是 React 開發環境設置與 Webpack 入門教學。若你不想在環境設定上花太多時間的話，不妨參考 Facebook 開發社群推出的 [create-react-app](https://github.com/facebookincubator/create-react-app)，可以快速上手，使用 Webpack、[Babel](https://babeljs.io/)、[ESLint](http://eslint.org/) 開發 React 應用程式！
 
 ## 延伸閱讀
 1. [JavaScript 模块化七日谈](http://huangxuan.me/2015/07/09/js-module-7day/)
