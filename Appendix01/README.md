@@ -477,4 +477,4 @@ var link = function(height = 50, color = 'red') {
 8. [React.createClass versus extends React.Component](https://toddmotto.com/react-create-class-versus-component/)
 9. [react-native-coding-style](https://github.com/lzbSun/react-native-coding-style)
 10. [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
-11. [從零開始學 React（ReactJS 101）](https://www.gitbook.com/book/kdchang/react101/details)
+11. [ECMAScript 6入门](http://es6.ruanyifeng.com/)

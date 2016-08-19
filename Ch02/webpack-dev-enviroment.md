@@ -219,5 +219,6 @@
 ## 延伸閱讀
 1. [JavaScript 模块化七日谈](http://huangxuan.me/2015/07/09/js-module-7day/)
 2. [前端模块化开发那点历史](https://github.com/seajs/seajs/issues/588)
+3. [Webpack 中文指南](http://zhaoda.net/webpack-handbook/index.html)
 
 (image via [srinisoundar](https://cdn-images-1.medium.com/max/477/1*qhI4E_g3TDOK0uu1VAJlCQ.png)、[sitepoint](https://d2sis3lil8ndrq.cloudfront.net/screencasts/46e215cd-2eb3-4cf0-b699-713977a2b644.png)、[keyholesoftware](https://keyholesoftware.com/wp-content/uploads/Browserify-5.png)、[survivejs](http://survivejs.com/webpack/images/webpack.png))
