@@ -9,4 +9,6 @@ onChagne、event.target.value
 
 ## State
 
+setState
+
 ## 延伸閱讀
