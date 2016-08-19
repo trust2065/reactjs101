@@ -5,7 +5,7 @@
 ## Props
 首先我們使用 React 官網上的 A Simple Component 來說明 props 的使用方式。由於傳入元件的 name 屬性為 Mark，故以下程式碼將會在瀏覽器顯示 Hello, Mark。針對傳入的 props 我們也有驗證和預設值的設計，讓我們撰寫的元件可以更加健壯。
 
-使用 ES6 Class 寫法：
+使用 ES6 Class Component 寫法：
 
 ```javascript
 class HelloMessage extends React.Component {
@@ -55,7 +55,7 @@ ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
 ```
 
 ## State
-接下來我們將使用 A Stateful Component 這個範例來講解 State 的用法。在 React Component 可以自己管理自己的內部 state，並用 `this.state` 來存取 state。當 `setState()` 方法更新了 state 後將重新呼叫 `render()` 方法，重新繪製 component 內容。以下範例是一個每 1000 毫秒（等於1秒）就會加一的累加器。
+接下來我們將使用 A Stateful Component 這個範例來講解 State 的用法。在 React Component 可以自己管理自己的內部 state，並用 `this.state` 來存取 state。當 `setState()` 方法更新了 state 後將重新呼叫 `render()` 方法，重新繪製 component 內容。以下範例是一個每 1000 毫秒（等於1秒）就會加一的累加器。由於這個範例是 Stateful Component 因此僅使用 ES6 Class Component，而不使用 Functional Component。
 
 ```javascript
 class Timer extends React.Component {
@@ -95,29 +95,36 @@ ReactDOM.render(<Timer />, document.getElementById('app'));
 在前面的內容我們已經學會如何使用 props 和 state，接下來我們要更進一步學習在 React 內如何進行事件處理。
 
 ```javascript
-const TodoList = React.createClass({
-  render() {
-    const createItem = (item) => {
-      return <li key={item.id}>{item.text}</li>;
-    };
-    return <ul>{this.props.items.map(createItem)}</ul>;
-  }
-});
+const TodoList = (props) => (
+	<ul>
+		{
+			props.items.map((item) => (
+				<li key={item.id}>{item.text}</li>
+			))
+		}
+	</ul>
+)
 
-const TodoApp = React.createClass({
-  getInitialState: function() {
-    return {items: [], text: ''};
-  },
-  onChange: function(e) {
-    this.setState({text: e.target.value});
-  },
-  handleSubmit: function(e) {
+class TodoApp extends React.Component {
+	constructor(props) {
+		super(props);
+		this.onChange = this.onChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.state = {
+			items: [],
+			text: '',
+		}
+	}
+	onChange(e) {
+    this.setState({text: e.target.value});		
+	}
+	handleSubmit(e) {
     e.preventDefault();
-    var nextItems = this.state.items.concat([{text: this.state.text, id: Date.now()}]);
-    var nextText = '';
+    const nextItems = this.state.items.concat([{text: this.state.text, id: Date.now()}]);
+    const nextText = '';
     this.setState({items: nextItems, text: nextText});
-  },
-  render: function() {
+	}
+	render() {
     return (
       <div>
         <h3>TODO</h3>
@@ -128,8 +135,8 @@ const TodoApp = React.createClass({
         </form>
       </div>
     );
-  }
-});
+	}
+}
 
 ReactDOM.render(<TodoApp />, document.getElementById('app'));
 ```
