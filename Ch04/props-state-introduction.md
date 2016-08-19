@@ -1,6 +1,6 @@
 # Props、State、Refs 與表單處理
 
-在前面的章節中我們已經對於 React 和 JSX 有初步的認識，我們也了解到 React Component 事實上可以視為顯示 UI 的一個狀態機（state machine），而這個狀態機根據不同的 state（透過 `setState()` 修改）和 props（由父元素傳入），Component 會出現對應的顯示結果。本章將使用 React 官網首頁上的範例（使用 ES6+ 進行改寫）來更進一步說明 Props 和 State 特性及在 React 如何進行事件和表單處理。
+在前面的章節中我們已經對於 React 和 JSX 有初步的認識，我們也了解到 React Component 事實上可以視為顯示 UI 的一個狀態機（state machine），而這個狀態機根據不同的 state（透過 `setState()` 修改）和 props（由父元素傳入），Component 會出現對應的顯示結果。本章將使用 [React 官網首頁上的範例](https://facebook.github.io/react/index.html)（使用 ES6+）來更進一步說明 Props 和 State 特性及在 React 如何進行事件和表單處理。
 
 ## Props
 首先我們使用 React 官網上的 A Simple Component 來說明 props 的使用方式。由於傳入元件的 name 屬性為 Mark，故以下程式碼將會在瀏覽器顯示 Hello, Mark。針對傳入的 props 我們也有驗證和預設值的設計，讓我們撰寫的元件可以更加穩定健壯（robust）。
@@ -29,7 +29,7 @@ app.js，使用 ES6 Class Component 寫法：
 
 ```javascript
 class HelloMessage extends React.Component {
-	constructor() {
+	constructor(props) {
 		// 對於 OOP 物件導向程式設計熟悉的讀者應該對於 constructor 建構子的使用不陌生，事實上它是 ES6 的語法糖，骨子裡還是 portotype based 物件導向程式語言。透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
 		super(props);
 		this.state = {}
@@ -74,6 +74,10 @@ HelloMessage.defaultProps = {
 
 ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
 ```
+
+在 jsbin 上的範例：
+
+<a class="jsbin-embed" href="http://jsbin.com/wadice/embed?html,js,console,output">A Component Using External Plugins on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.12"></script>
 
 ## State
 接下來我們將使用 A Stateful Component 這個範例來講解 State 的用法。在 React Component 可以自己管理自己的內部 state，並用 `this.state` 來存取 state。當 `setState()` 方法更新了 state 後將重新呼叫 `render()` 方法，重新繪製 component 內容。以下範例是一個每 1000 毫秒（等於1秒）就會加一的累加器。由於這個範例是 Stateful Component 因此僅使用 ES6 Class Component，而不使用 Functional Component。
@@ -209,7 +213,7 @@ ReactDOM.render(<TodoApp />, document.getElementById('app'));
 以上介紹了 React 事件處理的部份，除了 `onChange` 和 `onSubmit` 外，React 也封裝了常用的事件處理，如 `onClick` 等。若想更進一步了解有哪些可以使用的事件處理方法可以參考 [官網的 Event System](https://facebook.github.io/react/docs/events.html)。
 
 ## Refs 與表單處理
-上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries ，本範例將使用 `remarkable` 結合 `ref` 屬性取出 DOM Value 值，讓使用者可以使用 Markdown 語法的所見即所得編輯器（editor）。
+上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries（例如：jQuery），本範例將使用 `remarkable` 結合 `ref` 屬性取出 DOM Value 值，讓使用者可以使用 Markdown 語法的所見即所得編輯器（editor）。
 
 HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方式引入 `remarkable` 這個 `Markdown` 語法 parser 套件）：
 
@@ -271,6 +275,9 @@ class MarkdownEditor extends React.Component {
 
 ReactDOM.render(<MarkdownEditor />, document.getElementById('app'));
 ```
+
+## 總結
+以上透過幾個 React 官網首頁上的範例介紹了 Props 和 State 特性及在 React 如何進行事件和表單處理這些 React 中核心的問題，若還不熟悉的讀者建議重新親自動手照著範例中的程式碼敲過一遍，也可以使用像 [jsbin](http://jsbin.com/) 這樣所見即所得的工具來操作
 
 ## 延伸閱讀
 1. [React 官方網站](https://facebook.github.io/react/index.html)
