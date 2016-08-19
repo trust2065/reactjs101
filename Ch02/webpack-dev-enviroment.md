@@ -214,7 +214,7 @@
 當我們此時我們可以打開瀏覽器輸入 `http://localhost:8008` ，就可以看到 `Hello, world!` 了！
 
 ## 總結
-以上就是 React 開發環境設置與 Webpack 入門教學。若你不想在環境設定上花太多時間的話，不妨參考 Facebook 開發社群推出的 [create-react-app](https://github.com/facebookincubator/create-react-app)，可以快速上手，使用 Webpack、[Babel](https://babeljs.io/)、[ESLint](http://eslint.org/) 開發 React 應用程式。接下來的章節我們將持續延伸 React/JSX/Component 的介紹。 
+以上就是 React 開發環境設置與 Webpack 入門教學，看到這邊的讀者不妨自己動手設定開發環境，體驗一下 React 開發環境的感覺，畢竟若是只有閱讀文字的話很容易就會忘記喔！若你不想在環境設定上花太多時間的話，不妨參考 Facebook 開發社群推出的 [create-react-app](https://github.com/facebookincubator/create-react-app)，可以快速上手，使用 Webpack、[Babel](https://babeljs.io/)、[ESLint](http://eslint.org/) 開發 React 應用程式。接下來的章節我們將持續延伸 React/JSX/Component 的介紹。 
 
 ## 延伸閱讀
 1. [JavaScript 模块化七日谈](http://huangxuan.me/2015/07/09/js-module-7day/)
