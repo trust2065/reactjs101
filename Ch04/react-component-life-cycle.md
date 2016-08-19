@@ -20,5 +20,9 @@ componentWillUnmount()
 componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
 shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
 
+目前預設 return true
+
+若採用 immutable 可以使用 nextProps === this.props 比對是否有變動
+
 ## Ajax 非同步處理
 componentDidMount

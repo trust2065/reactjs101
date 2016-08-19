@@ -91,6 +91,11 @@ React 在設計上的思路認為使用 Component 比起模版（Template）和�
 由於 JSX 在 React 元件撰寫上扮演很重要的角色，因此在下一個章節我們也將更深入講解 JSX 使用細節。 
 
 ## 使用 Virtual DOM
+
+Diff 演算法，
+DOM 是瓶頸
+支援 Server Rendering
+
 不會立即更新到
 
 獲取真實的 DOM 資料
@@ -118,6 +123,7 @@ this.props.children 表示所有子節點
 
 Flux/Redux
 
+single of true
 
 ## 元件就像人有生命週期（Life Cycle）
 
