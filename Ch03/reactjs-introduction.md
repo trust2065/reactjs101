@@ -108,8 +108,17 @@ class MyComponent extends React.Component {
 	}
 }
 
-// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
-ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
+// PropTypes 驗證
+MyComponent.propTypes = {
+  todo: React.PropTypes.object,
+  name: React.PropTypes.string,
+}
+
+// Prop 預設值
+MyComponent.defaultProps = {
+ todo: {}, 
+ name: '', 
+}
 ```
 
 關於更多的 Validation 用法可以參考[官方網站](https://facebook.github.io/react/docs/reusable-components.html) 的說明。
