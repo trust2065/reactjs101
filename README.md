@@ -1,6 +1,8 @@
 # 從零開始學 ReactJS（ReactJS 101）
 一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, ImmutableJS, React Native, Relay/GraphQL etc.)，打造跨平台應用程式。
 
+## 相關連結（Links）
+
 [從零開始學 React（React 101）粉絲頁](https://www.facebook.com/reactjs101/)
 
 [文章連載地點](http://blog.techbridge.cc/)
@@ -38,7 +40,7 @@
 - [ ] 附錄四、Relay/GraphQL 初體驗
 
 ## 先備知識（Prior Knowledge）
-本書針對已具備基本 HTML、CSS 和 JavaScript 和 DOM 操作知識的讀者設計，雖會針對一些基礎重點知識進行補充，但若讀者對上述的技術仍不熟悉的話，建議可以先行參考：[Codecademy](https://www.codecademy.com/)、[W3C School](http://www.w3schools.com/)、[MDN](https://developer.mozilla.org/zh-TW/)或是參考筆者[之前的教學講義](http://slides.com/kd-chang)進行學習。另外，本書全書範例都將以 ES6+ 撰寫，若需參考 ES5 用法，請參考附錄一的 [React ES5、ES6+ 常見用法對照表](https://github.com/kdchang/reactjs101/tree/master/Appendix01)。
+本書針對已具備基本 HTML、CSS 和 JavaScript 和 DOM 操作知識的讀者設計，雖會針對一些基礎重點知識進行補充，但若讀者對上述的技術仍不熟悉的話，建議可以先參考：[Codecademy](https://www.codecademy.com/)、[W3C School](http://www.w3schools.com/)、[MDN](https://developer.mozilla.org/zh-TW/)或是參考筆者[之前的教學講義](http://slides.com/kd-chang)進行學習。另外，本書全書範例都將以 ES6+ 撰寫，若需參考 ES5 用法，請參考附錄一的 [React ES5、ES6+ 常見用法對照表](https://github.com/kdchang/reactjs101/tree/master/Appendix01)。
 
 ## 關於作者（Author）
 [@kdchang](http://blog.kdchang.cc) 文藝型開發者，夢想是做出人們想用的產品和辦一所心目中理想的學校，目前專注在 Mobile 和 IoT 應用開發。A Starter & Maker. JavaScript, Python & iOS/Android lover. Keep Shipping Cool Mobile/IoT App & Web App.:)
