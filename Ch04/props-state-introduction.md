@@ -19,12 +19,13 @@ HTML Markup：
 <!-- 這邊方便使用 CDN 方式引入 react 、 react-dom 進行講解，實務上和實戰教學部分我們會使用 webpack -->
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
+<script src="./app.js"></script>
   <div id="app"></div>
 </body>
 </html>
 ```
 
-使用 ES6 Class Component 寫法：
+app.js，使用 ES6 Class Component 寫法：
 
 ```javascript
 class HelloMessage extends React.Component {
@@ -95,6 +96,8 @@ HTML Markup：
 </html>
 ```
 
+app.js：
+
 ```javascript
 class Timer extends React.Component {
 	constructor(props) {
@@ -149,6 +152,8 @@ HTML Markup：
 </body>
 </html>
 ```
+
+app.js：
 
 ```javascript
 // TodoApp 元件中包含了顯示 Todo 的 TodoList 元件，Todo 的內容透過 props 傳入 TodoList 中。由於 TodoList 僅單純 Render UI 不涉及內部 state 操作是 stateless component，所以使用 Functional Component 寫法。需要特別注意的是這邊我們用 map function 來迭代 Todos，需要留意的是每個迭代的元素必須要有 unique key 不然會發生錯誤（可以用自定義 id，或是使用 map function 的第二個參數 index）
@@ -223,6 +228,8 @@ HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方�
 </html>
 ```
 
+app.js：
+
 ```javascript
 class MarkdownEditor extends React.Component {
 	constructor(props) {
@@ -261,8 +268,6 @@ class MarkdownEditor extends React.Component {
 
 ReactDOM.render(<MarkdownEditor />, document.getElementById('app'));
 ```
-
-Refs and findDOMNode()
 
 ## 延伸閱讀
 1. [React 官方網站](https://facebook.github.io/react/index.html)
