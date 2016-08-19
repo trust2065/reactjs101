@@ -108,13 +108,13 @@ class MyComponent extends React.Component {
 	}
 }
 
-// PropTypes 驗證
+// PropTypes 驗證，若傳入的 props type 不符合將會顯示錯誤
 MyComponent.propTypes = {
   todo: React.PropTypes.object,
   name: React.PropTypes.string,
 }
 
-// Prop 預設值
+// Prop 預設值，若對應 props 沒傳入值將會使用 default 值
 MyComponent.defaultProps = {
  todo: {}, 
  name: '', 
