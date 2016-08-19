@@ -80,7 +80,7 @@
 3. 設定 `webpack.config.js`
 	事實上，`webpack.config.js` 有點類似於 `gulp` 中的 `gulpfile.js` 功用，主要是設定 `webpack` 的相關設定
 
-	```js ./webpack.config.js
+	```js 
 	// 這邊使用 HtmlWebpackPlugin，將 bundle 好得 <script> 插入到 body  
 	const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -121,7 +121,7 @@
 
 4. 設定 `.babelrc`
 
-	```js .babelrc
+	```js 
 	{
 	  "presets": [
 	    "es2015",
@@ -185,7 +185,7 @@
 
 如果不想每次都打一長串的指令碼的話可以使用 `package.json` 中的 `scripts` 設定
 
-```js .package.json
+```js 
 "scripts": {
   "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
 }
