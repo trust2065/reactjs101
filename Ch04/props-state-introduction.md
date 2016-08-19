@@ -29,7 +29,7 @@ HTML Markup：
 ```javascript
 class HelloMessage extends React.Component {
 	constructor() {
-		// 對於 OOP 熟悉的讀者應該對於 constructor 建構子的使用不陌生，事實上它是 ES6 的語法糖，骨子裡還是 portotype based 物件導向程式語言。透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
+		// 對於 OOP 物件導向程式設計熟悉的讀者應該對於 constructor 建構子的使用不陌生，事實上它是 ES6 的語法糖，骨子裡還是 portotype based 物件導向程式語言。透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
 		super(props);
 		this.state = {}
 	}
@@ -66,7 +66,7 @@ HelloMessage.propTypes = {
   name: React.PropTypes.string,
 }
 
-// Prop 預設值，若對應 props 沒傳入值將會使用 default 值 Zuck
+// Prop 預設值，若對應 props 沒傳入值將會使用 default 值 Zuck。用法等於 ES5 的 getDefaultProps
 HelloMessage.defaultProps = {
  name: 'Zuck', 
 }
@@ -90,7 +90,6 @@ HTML Markup：
 <body>
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
-<script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
   <div id="app"></div>
 </body>
 </html>
@@ -100,7 +99,7 @@ HTML Markup：
 class Timer extends React.Component {
 	constructor(props) {
 		super(props);
-		// 與 ES5 React.createClass({}) 不同的是 component 內的方法需要自行綁定 this context，或是使用 arrow function 
+		// 與 ES5 React.createClass({}) 不同的是 component 內自定義的方法需要自行綁定 this context，或是使用 arrow function 
         this.tick = this.tick.bind(this);
 		// 初始 state，等於 ES5 中的 getInitialState
 		this.state = {
@@ -203,7 +202,7 @@ ReactDOM.render(<TodoApp />, document.getElementById('app'));
 以上介紹了 React 事件處理的部份，除了 `onChange` 和 `onSubmit` 外，React 也封裝了常用的事件處理，如 `onClick` 等。若想更進一步了解有哪些可以使用的事件處理方法可以參考 [官網的 Event System](https://facebook.github.io/react/docs/events.html)。
 
 ## Refs 與表單處理
-上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries ，本範例將使用 remarkable 讓使用者可以使用 Markdown 語法。
+上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries ，本範例將使用 `remarkable` 結合 `ref` 屬性取出 DOM Value 值，讓使用者可以使用 Markdown 語法的所見即所得編輯器（editor）。
 
 HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方式引入 `remarkable` 這個 `Markdown` 語法 parser 套件）：
 
@@ -237,6 +236,7 @@ class MarkdownEditor extends React.Component {
 	handleChange() {
     this.setState({value: this.refs.textarea.value});
 	}
+	// 將使用者輸入的 Markdown 語法 parse 成 HTML 放入 DOM 中，React 通常使用 virtual DOM 作為和 DOM 溝通的中介，不建議直接由操作 DOM。故使用時的屬性為 dangerouslySetInnerHTML
 	rawMarkup() {
     const md = new Remarkable();
     return { __html: md.render(this.state.value) };		
@@ -266,3 +266,4 @@ Refs and findDOMNode()
 
 ## 延伸閱讀
 1. [React 官方網站](https://facebook.github.io/react/index.html)
+2. [Top-Level API](https://facebook.github.io/react/docs/top-level-api.html)

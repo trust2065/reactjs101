@@ -59,7 +59,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 	```
 
-2. 使用 Funtional Component 寫法（單純地 render UI）
+2. 使用 Funtional Component 寫法（單純地 render UI 的 stateless components）
 
 	```javascript
 	// 使用 arror function 來設計 Funtional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
@@ -147,3 +147,4 @@ ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElmentById
 ## 延伸閱讀
 1. [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
 2. [React Demystified](http://blog.reverberate.org/2014/02/react-demystified.html)
+3. [Top-Level API](https://facebook.github.io/react/docs/top-level-api.html)
