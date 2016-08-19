@@ -74,7 +74,7 @@ React.createElement('a', {href: 'https://facebook.github.io/react/'}, 'Hello!')
 ```
 
 ### 3. 結合原生 JavaScript 語法
-JSX 並非一種全新的語言，而是一種語法糖（Syntatic Sugar），一種語法類似 XML 的 ECMAScript 語法擴充，所以並沒有改變 JavaScript 語意。透鍋結合 JavaScript ，可以釋放 JavaScript 語言本身能力。下面例子就是運用 `map` 方法，輕易把 `result` 值迭代出來，產生無序清單（ul）的內容，不用再使用蹩腳的模版語言：
+JSX 並非一種全新的語言，而是一種語法糖（Syntatic Sugar），一種語法類似 XML 的 ECMAScript 語法擴充，所以並沒有改變 JavaScript 語意。透鍋結合 JavaScript ，可以釋放 JavaScript 語言本身能力。下面例子就是運用 `map` 方法，輕易把 `result` 值迭代出來，產生無序清單（ul）的內容，不用再使用蹩腳的模版語言（這邊有個小地方要留意的是每個 `<li>` 元素記得加上獨特的 key 這邊用 map function 迭代出的 index，不然會出現問題）：
 
 ```js
 // const 為常數

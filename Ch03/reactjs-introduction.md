@@ -10,7 +10,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 2. 用 JSX 進行宣告式（Declarative）UI 設計
 3. 使用 Virtual DOM
 4. Component 就像個狀態機（State Machine）
-5. 單向資料流（Unidirectional Data Flow）
+5. 一律重繪（always rerender）和單向資料流（Unidirectional Data Flow）
 6. 元件也有有生命週期（Life Cycle）
 7. 在 JavaScript 裡寫 CSS：Inline Style 
 
@@ -42,7 +42,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 
 以下是一般 React Component 撰寫的主要兩種方式：
 
-1. 使用 ES6 的 Class
+1. 使用 ES6 的 Class（可以進行比較複雜的操作和元件生命週期的控制）
 
 	```javascript
 	class MyComponent extends React.Component {
@@ -58,7 +58,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 	```
 
-2. 使用 Funtional Component 寫法
+2. 使用 Funtional Component 寫法（單純地 render UI）
 
 	```javascript
 	// 使用 arror function 來設計 Funtional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
@@ -81,11 +81,14 @@ React 在設計上的思路認為使用 Component 比起模版（Template）和�
 ```
 
 ```javascript
+// <MailForm /> 內部長相
 <form>
 	<input type="text" name="email">
 	<button type="submit"></button>
 </form>
 ```
+
+由於 JSX 在 React 元件撰寫上扮演很重要的角色，因此在下一個章節我們也將更深入講解 JSX 使用細節。 
 
 ## 使用 Virtual DOM
 不會立即更新到
@@ -105,11 +108,15 @@ Component 生命週期分為三種狀態：
 ## Component 就像個狀態機（State Machine）
 always rerender
 
-## 單向資料流（Unidirectional Data Flow）
+## 一律重繪（always rerender）和單向資料流（Unidirectional Data Flow）
 單向資料流，透過 props 由父元素上往下傳遞
 this.props.name
 
 this.props.children 表示所有子節點
+
+降低維護成本，不是 model 就是 view 有問題
+
+Flux/Redux
 
 
 ## 元件就像人有生命週期（Life Cycle）
