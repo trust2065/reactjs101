@@ -138,6 +138,7 @@
 	```
 
 6. 撰寫 Component
+	`index.html`
 
 	```html 
 	<!DOCTYPE html>
@@ -152,6 +153,8 @@
 	</body>
 	</html>
 	```
+
+	`index.js`
 
 	```js 
 	import React from 'react';
