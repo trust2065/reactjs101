@@ -1,5 +1,4 @@
 # Ch03 React/JSX/Component 簡介
 
-
-## 延伸閱讀
-1. [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
+1. [ReactJS 與 Component 入門介紹](https://github.com/kdchang/reactjs101/blob/master/Ch03/reactjs-introduction.md)
+2. [JSX 簡明入門教學指南](https://github.com/kdchang/reactjs101/blob/master/Ch03/react-jsx-introduction.md)

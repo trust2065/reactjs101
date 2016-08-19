@@ -1,4 +1,4 @@
-# ReactJS 入門簡明教學
+# ReactJS 與 Component 入門介紹
 
 ## 前言
 在上一個章節中我們快速的學習了 React 開發環境建置和 Webpack 入門。接下來我們將更進一步了解 React 的其他特性。React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目標遠大的一個專案，自從 2013 年開源後周邊的生態系更是蓬勃發展。
@@ -75,3 +75,6 @@ const MyComponent = () => (
 
 ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 ```
+
+## 延伸閱讀
+1. [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
