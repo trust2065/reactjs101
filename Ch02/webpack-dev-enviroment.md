@@ -76,6 +76,9 @@
 	Webpack 中的 loader 類似於 browserify 內的 transforms，但 Webpack 在使用上比較多元，除了 JavaScript loader 外也有 CSS Style 和圖片的 loader。此外，`webpack-dev-server` 則可以啟動開發用 server，方便我們測試
 
 	```
+	// 按指示初始化 NPM 設定檔 package.json
+	$ npm init 
+	// --save-dev 是可以讓你將安裝套件的名稱和版本資訊存放到 package.json，方便日後使用
 	$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react html-webpack-plugin webpack webpack-dev-server
 	```
 
@@ -84,7 +87,7 @@
 	事實上，`webpack.config.js` 有點類似於 `gulp` 中的 `gulpfile.js` 功用，主要是設定 `webpack` 的相關設定
 
 	```javascript
-	// 這邊使用 HtmlWebpackPlugin，將 bundle 好得 <script> 插入到 body  
+	// 這邊使用 HtmlWebpackPlugin，將 bundle 好的 <script> 插入到 body。${__dirname} 為 ES6 語法對應到 __dirname  
 	const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 	const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -93,16 +96,18 @@
 	  inject: 'body',
 	});
 	
-	// 檔案起始點從 entry 進入，也可以是多個檔案。output 是放入產生出來的結果的相關參數。loaders 則是放欲使用的 loaders，在這邊是使用 babel-loader 將所有 .js（這邊用到正則式）相關檔案轉譯成瀏覽器可以閱讀的 JavaScript。devServer 則是 webpack-dev-server 設定。plugins 放置所使用的外掛
 	module.exports = {
+	  // 檔案起始點從 entry 進入，因為是陣列所以也可以是多個檔案
 	  entry: [
 	    './app/index.js',
 	  ],
+	  // output 是放入產生出來的結果的相關參數
 	  output: {
 	    path: `${__dirname}/dist`,
 	    filename: 'index_bundle.js',
 	  },
 	  module: {
+	  	// loaders 則是放欲使用的 loaders，在這邊是使用 babel-loader 將所有 .js（這邊用到正則式）相關檔案轉譯成瀏覽器可以閱讀的 JavaScript
 	    loaders: [
 	      {
 	        test: /\.js$/,
@@ -114,10 +119,12 @@
 	      },
 	    ],
 	  },
+	  // devServer 則是 webpack-dev-server 設定
 	  devServer: {
 	    inline: true,
 	    port: 8008,
 	  },
+	  // plugins 放置所使用的外掛
 	  plugins: [HTMLWebpackPluginConfig],
 	};
 	```
