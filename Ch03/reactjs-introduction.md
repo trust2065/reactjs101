@@ -7,7 +7,7 @@
 React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目標遠大的一個專案：`Learn once, write anywhere`。自從 2013 年開源後周邊的生態系更是蓬勃發展。ReactJS 的出現讓前端開發有許多革新性的思維出現，其中有幾個重要特性值得我們去探討：
 
 1. 基於元件（Component）化思考
-2. 宣告式（Declarative）UI 設計
+2. 用 JSX 進行宣告式（Declarative）UI 設計
 3. 使用 Virtual DOM
 4. Component 就像個狀態機（State Machine）
 5. 單向資料流（Unidirectional Data Flow）
@@ -49,7 +49,20 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 	```
 
-## 宣告式（Declarative）UI 設計
+## 用 JSX 進行宣告式（Declarative）UI 設計
+React 在設計上的思路認為使用 Component 比起模版（Template）和顯示邏輯（Display Logic）更能實現關注點分離的概念，而搭配 JSX 可以實現聲明式 Declarative（注重 what to），而非命令式 Imperative（注重 how to）的程式撰寫方式。
+
+```javascript
+<form>
+	<input type="text" name="email">
+	<button type="submit"></button>
+</form>
+```
+
+```javascript
+<MailForm />
+```
+
 
 ## 使用 Virtual DOM
 不會立即更新到

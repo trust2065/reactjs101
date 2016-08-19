@@ -84,8 +84,8 @@ class HelloMessage extends React.Compoent {
   render() {
     return (
     <ul>
-      {lists.map((result) => {
-        return (<li>{result}</li>);
+      {lists.map((result, index) => {
+        return (<li key={index}>{result}</li>);
       })}
     </ul>);
   }
