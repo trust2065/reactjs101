@@ -32,6 +32,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 		}
 	}
 
+	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
 	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 	```
 
@@ -41,7 +42,8 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	const MyComponent = () => (
 		<div>Hello, World!</div>
 	);
-
+	
+	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
 	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 	```
 
