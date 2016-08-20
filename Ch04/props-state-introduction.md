@@ -1,5 +1,6 @@
 # Props、State、Refs 與表單處理
 
+## 前言
 在前面的章節中我們已經對於 React 和 JSX 有初步的認識，我們也了解到 React Component 事實上可以視為顯示 UI 的一個狀態機（state machine），而這個狀態機根據不同的 state（透過 `setState()` 修改）和 props（由父元素傳入），Component 會出現對應的顯示結果。本章將使用 [React 官網首頁上的範例](https://facebook.github.io/react/index.html)（使用 ES6+）來更進一步說明 Props 和 State 特性及在 React 如何進行事件和表單處理。
 
 ## Props

@@ -42,7 +42,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 
 以下是一般 React Component 撰寫的主要兩種方式：
 
-1. 使用 ES6 的 Class（可以進行比較複雜的操作和元件生命週期的控制）
+1. 使用 ES6 的 Class（可以進行比較複雜的操作和元件生命週期的控制，相對於 stateless components 耗費資源）
 
 	```javascript
 	//  注意元件開頭第一個字母都要大寫
@@ -59,7 +59,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
 	```
 
-2. 使用 Funtional Component 寫法（單純地 render UI 的 stateless components）
+2. 使用 Funtional Component 寫法（單純地 render UI 的 stateless components，沒有內部狀態、沒有實作物件和 ref，沒有生命週期函數。若非需要控制生命週期的話建議多使用 stateless components 獲得比較好的效能）
 
 	```javascript
 	// 使用 arror function 來設計 Funtional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
@@ -148,3 +148,4 @@ ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElmentById
 1. [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
 2. [React Demystified](http://blog.reverberate.org/2014/02/react-demystified.html)
 3. [Top-Level API](https://facebook.github.io/react/docs/top-level-api.html)
+4. [ES6 Classes Component](https://facebook.github.io/react/docs/reusable-components.html#es6-classes)
