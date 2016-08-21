@@ -55,7 +55,7 @@
 	ReactDOM.render(<MyComponent name="Mark"/>, document.getElmentById('app'));
 	```
 
-值得留意的是在 ES6 Class 中 `render()` 是唯一必要的方法（但要注意的是請保持 `redner()` 的純粹，不要在裡面進行 state 修改或是使用非同步方法和瀏覽器互動，若需非同步互動請於 `componentDidMount()` 操作），而 Funtional Component 目前允許 `return null` 值。 喔對了，在 ES6 中也不支援 `mixins` 複用其他元件的方法了。
+值得留意的是在 ES6 Class 中 `render()` 是唯一必要的方法（但要注意的是請保持 `redner()` 的純粹，不要在裡面進行 `state` 修改或是使用非同步方法和瀏覽器互動，若需非同步互動請於 `componentDidMount()` 操作），而 Funtional Component 目前允許 `return null` 值。 喔對了，在 ES6 中也不支援 `mixins` 複用其他元件的方法了。
 
 ## React Component 生命週期
 React Component，就像人會有生老病死一樣有生命週期。一般而言 Component 有以下三種生命週期的狀態：
@@ -70,17 +70,17 @@ React Component，就像人會有生老病死一樣有生命週期。一般而�
 	- componentWillMount()
 	- componentDidMount()
 2. Updating
-	- componentWillReceiveProps(object nextProps)：已載入元件收到新的參數時調用
-	- shouldComponentUpdate(object nextProps, object nextState)：元件判斷是否重新渲染時調用，一開始起始不會呼叫除非呼叫 forceUpdate()
+	- componentWillReceiveProps(object nextProps)：已載入元件收到新的參數時呼叫
+	- shouldComponentUpdate(object nextProps, object nextState)：元件判斷是否重新渲染時呼叫，起始不會呼叫除非呼叫 forceUpdate()
 	- componentWillUpdate(object nextProps, object nextState)
 	- componentDidUpdate(object prevProps, object prevState)
 3. Unmounting
 	- componentWillUnmount()
 
-特殊處理的函數 `shouldComponentUpdate`，目前預設 `return true`，若你想要優化效能可以自己編寫判斷方式，若採用 `immutable` 可以使用 `nextProps === this.props` 比對是否有變動：
+特殊處理的函數 `shouldComponentUpdate`，目前預設 `return true`。若你想要優化效能可以自己編寫判斷方式，若採用 `immutable` 可以使用 `nextProps === this.props` 比對是否有變動：
 
 ```javascript
-shouldComponentUpdate: function(nextProps, nextState) {
+shouldComponentUpdate(nextProps, nextState) {
   return nextProps.id !== this.props.id;
 }
 ```
