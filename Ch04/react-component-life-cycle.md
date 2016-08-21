@@ -1,7 +1,5 @@
 # React Component 規格與生命週期（Life Cycle）
 
-![React Component 規格與生命週期](./images/react-lifecycle.png)
-
 ## 前言
 經過前面的努力相信目前讀者對於用 React 開發一些簡單的元件（Component）已經有一定程度的掌握了，現在我們將更細部探討 React Component 的規格和其生命週期。
 
@@ -79,7 +77,9 @@ React Component，就像人會有生老病死一樣有生命週期。一般而�
 3. Unmounting
 	- componentWillUnmount()
 
-特殊處理的函數 `shouldComponentUpdate`，目前預設 `return true`。若你想要優化效能可以自己編寫判斷方式，若採用 `immutable` 可以使用 `nextProps === this.props` 比對是否有變動：
+![React Component 規格與生命週期](./images/react-lifecycle.png)
+
+其中特殊處理的函數 `shouldComponentUpdate`，目前預設 `return true`。若你想要優化效能可以自己編寫判斷方式，若採用 `immutable` 可以使用 `nextProps === this.props` 比對是否有變動：
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
