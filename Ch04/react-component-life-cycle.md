@@ -59,6 +59,7 @@
 
 ## React Component 生命週期
 React Component，就像人會有生老病死一樣有生命週期。一般而言 Component 有以下三種生命週期的狀態：
+
 1. Mounting：已插入真實的 DOM
 2. Updating：正在被重新渲染
 3. Unmounting：已移出真實的 DOM
