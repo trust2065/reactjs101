@@ -86,11 +86,11 @@ HTML Markup：
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
+  <script src="https://fb.me/react-15.1.0.js"></script>
+  <script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <title>Component LifeCycle</title>
 </head>
 <body>
-<script src="https://fb.me/react-15.1.0.js"></script>
-<script src="https://fb.me/react-dom-15.1.0.js"></script>
   <div id="app"></div>
 </body>
 </html>
@@ -155,7 +155,68 @@ shouldComponentUpdate(nextProps, nextState) {
 ```
 
 ## Ajax 非同步處理
-若有需要進行 Ajax 非同步處理，請在 `componentDidMount` 進行處理：
+若有需要進行 Ajax 非同步處理，請在 `componentDidMount` 進行處理。以下透過 `jQuery` 執行 `Ajax` 取得 `Github API`　資料當做範例：
+
+HTML Markup：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://fb.me/react-15.1.0.js"></script>
+  <script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <title>GitHub User</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
+```
+
+```javascript
+class UserGithub extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          username: '',
+          githubtUrl: '',
+          avatarUrl: '',
+        }
+    }
+    componentDidMount() {
+        $.get(this.props.source, (result) => {
+            console.log(result);
+            const data = result;
+            if (data) {
+              this.setState({
+                    username: data.name,
+                    githubtUrl: data.html_url,
+                    avatarUrl: data.avatar_url
+              });
+            }
+        });
+    }
+    render() {
+        return (
+          <div>
+            <h3>{this.state.username}</h3>
+            <img src={this.state.avatarUrl} />
+            <a href={this.state.githubtUrl}>Github Link</a>.
+          </div>
+        );
+    }
+}
+
+ReactDOM.render(
+  <UserGithub source="https://api.github.com/users/torvalds" />,
+  document.getElementById('app')
+);
+```
+
+<a class="jsbin-embed" href="http://jsbin.com/kupusa/embed?html,js,output">點擊看詳細範例</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.12"></script>
 
 ## 總結
 
