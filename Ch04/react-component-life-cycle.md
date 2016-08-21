@@ -77,6 +77,73 @@ React Component，就像人會有生老病死一樣有生命週期。一般而�
 3. Unmounting
 	- componentWillUnmount()
 
+很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentShouldUpdatte`、`componentDidUpdate`：  
+
+HTML Markup：
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+<script src="https://fb.me/react-15.1.0.js"></script>
+<script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <div id="app"></div>
+</body>
+</html>
+```
+
+Component 生命週期展示：
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log('constructor');
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      name: 'Mark',
+    }
+  }
+  handleClick() {
+    this.setState({'name': 'Zuck'});
+  } 
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+  componentDidMount() {
+    console.log('componentDidMount');    
+  }
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps');        
+  }  
+  componentShouldUpdatte() {
+    console.log('componentShouldUpdatte');        
+  }
+  componentWillUpdate() {
+    console.log('componentWillUpdate');        
+  }
+  componentDidUpdate() {
+    console.log('componentDidUpdate');        
+  }  
+  componentWillUnmount() {
+    console.log('componentWillUnmount');        
+  }    
+  render() {
+    return (
+      <div onClick={this.handleClick}>Hi, {this.state.name}</div>
+    );
+  }
+}
+
+ReactDOM.render(<MyComponent />, document.getElementById('app'));               
+```
+
+<a class="jsbin-embed" href="http://jsbin.com/yokebo/embed?html,js,console,output">點擊看詳細範例</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.12"></script>
+
 ![React Component 規格與生命週期](./images/react-lifecycle.png)
 
 其中特殊處理的函數 `shouldComponentUpdate`，目前預設 `return true`。若你想要優化效能可以自己編寫判斷方式，若採用 `immutable` 可以使用 `nextProps === this.props` 比對是否有變動：
@@ -90,8 +157,8 @@ shouldComponentUpdate(nextProps, nextState) {
 ## Ajax 非同步處理
 若有需要進行 Ajax 非同步處理，請在 `componentDidMount` 進行處理：
 
-
 ## 總結
 
-
 ## 延伸閱讀
+
+（image via [react-lifecycle](http://imgh.us/react-lifecycle.svg)）
