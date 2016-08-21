@@ -1,4 +1,0 @@
-# PropTypes
-
-## 
-PropTypes、defaultProps

@@ -23,9 +23,9 @@
 
 - [X] 六、ImmutableJS
 
-- [X] 七、Container 與 Presentational Components
+- [X] 七、Flux/Redux 
 
-- [X] 八、Flux/Redux 
+- [X] 八、Container 與 Presentational Components
 
 - [X] 九、實戰教學：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用
 

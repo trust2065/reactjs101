@@ -176,6 +176,8 @@ HTML Markup：
 </html>
 ```
 
+app.js
+
 ```javascript
 class UserGithub extends React.Component {
     constructor(props) {
@@ -219,7 +221,9 @@ ReactDOM.render(
 <a class="jsbin-embed" href="http://jsbin.com/kupusa/embed?html,js,output">點擊看詳細範例</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.12"></script>
 
 ## 總結
+以上介紹了 React Component 規格與生命週期（Life Cycle）的概念，其中生命週期的概念對於初學者來說可能會比較抽象，建議讀者跟著範例動手實作。接下來我們將更進一步介紹 `React Router` 讓讀者感受一下單頁式應用程式（single page application）的設計方式。
 
 ## 延伸閱讀
+1. [Component Specs and Lifecycle](https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods)
 
 （image via [react-lifecycle](http://imgh.us/react-lifecycle.svg)）
