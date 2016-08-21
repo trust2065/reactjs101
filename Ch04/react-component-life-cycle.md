@@ -1,4 +1,4 @@
-# React Component 規格（Specs）與生命週期（Life Cycle）
+# React Component 規格與生命週期（Life Cycle）
 
 ## 前言
 經過前面的努力相信目前讀者對於用 React 開發一些簡單的元件（Component），現在我們將更細部探討 React Component 的規格和其生命週期。
