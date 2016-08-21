@@ -1,6 +1,6 @@
 # React Component 規格與生命週期（Life Cycle）
 
-![React Component 規格與生命週期](./images/react-lifecycle.svg)
+![React Component 規格與生命週期](./images/react-lifecycle.png)
 
 ## 前言
 經過前面的努力相信目前讀者對於用 React 開發一些簡單的元件（Component）已經有一定程度的掌握了，現在我們將更細部探討 React Component 的規格和其生命週期。
