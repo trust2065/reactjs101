@@ -1,10 +1,10 @@
 # React Component 規格與生命週期（Life Cycle）
 
 ## 前言
-經過前面的努力相信目前讀者對於用 React 開發一些簡單的元件（Component），現在我們將更細部探討 React Component 的規格和其生命週期。
+經過前面的努力相信目前讀者對於用 React 開發一些簡單的元件（Component）已經有一定程度的掌握了，現在我們將更細部探討 React Component 的規格和其生命週期。
 
 ## React Component 規格
-若讀者還有印象的話，我們前面介紹 React 特性時有描述 React 的主要撰寫方式有兩種：一種是使用 ES6 Class，另外一種是 Stateless Components，使用 Funtional Component 的寫法，單純渲染 UI。這邊在幫大家複習一下上一個章節的簡單範例：
+若讀者還有印象的話，我們前面介紹 React 特性時有描述 React 的主要撰寫方式有兩種：一種是使用 ES6 Class，另外一種是 Stateless Components，使用 Funtional Component 的寫法，單純渲染 UI。這邊再幫大家複習一下上一個章節的簡單範例：
 
 1. 使用 ES6 的 Class（可以進行比較複雜的操作和元件生命週期的控制，相對於 stateless components 耗費資源）
 
@@ -21,12 +21,12 @@
 
 	// PropTypes 驗證，若傳入的 props type 不符合將會顯示錯誤
 	MyComponent.propTypes = {
-	  name: React.PropTypes.string,
+		name: React.PropTypes.string,
 	}
 
 	// Prop 預設值，若對應 props 沒傳入值將會使用 default 值，為每個實例化 Component 共用的值
 	MyComponent.defaultProps = {
-	 name: '', 
+	 	name: '', 
 	}
 
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
@@ -43,12 +43,12 @@
 
 	// PropTypes 驗證，若傳入的 props type 不符合將會顯示錯誤
 	MyComponent.propTypes = {
-	  name: React.PropTypes.string,
+		name: React.PropTypes.string,
 	}
 
 	// Prop 預設值，若對應 props 沒傳入值將會使用 default 值
 	MyComponent.defaultProps = {
-	 name: '', 
+		name: '', 
 	}
 	
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
