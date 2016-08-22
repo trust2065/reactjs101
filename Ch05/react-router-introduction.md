@@ -142,16 +142,16 @@ HTML Markup：
 - browserHistory
 適用於伺服器端渲染，但需要設定伺服器端避免處理錯誤，這部份我們會在後面的章節詳細說明。注意的是若是使用 Webpack 開發用伺服器需加上 `--history-api-fallback`
 
-```
-$ webpack-dev-server --inline --content-base . --history-api-fallback
-```
+	```
+	$ webpack-dev-server --inline --content-base . --history-api-fallback
+	```
 
-- createMemoryHistory
-主要用於伺服器渲染，使用上會建立一個存在記憶體的 `history` 物件，不會修改瀏覽器的網址位置。
+	- createMemoryHistory
+	主要用於伺服器渲染，使用上會建立一個存在記憶體的 `history` 物件，不會修改瀏覽器的網址位置。
 
-```
-const history = createMemoryHistory(location)
-```
+	```
+	const history = createMemoryHistory(location)
+	```
 
 4. path
 `path` 是對應 URL 的規則。例如：`/repos/torvalds` 會對應到 `/repos/:name` 的位置，並將參數傳入 `Repos` 元件中。由 `this.props.params.name` 取得參數。順帶一提，若為查詢參數 `/user?q=torvalds` 則由 `this.props.location.query.q` 取得參數。
