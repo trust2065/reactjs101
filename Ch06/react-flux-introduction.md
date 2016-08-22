@@ -8,8 +8,7 @@
 由於原始的 Flux 架構在實現上有些部分可以精簡和改善，在實務上我們通常會使用開發者社群開發的 Flux-like 相關的架構實現（例如：[Redux](http://redux.js.org/index.html)、[Alt](http://alt.js.org/)、[Reflux](https://github.com/reflux/refluxjs) 等）。不過這邊我們主要會使用 Facebook 本身提供 `Dispatcher API` 函式庫（可以想成是一個 pub/sub 處理器，透過 broadcast 將 `payloads` 傳給註冊的 callback function）並搭配 `NodeJS` 的 `EventEmitter` 模組去完成 Flux 架構的實現。
 
 ## 開發環境設置
-
-先透過以下指令在根目錄產生 npm 設定檔 `package.json` ：
+先透過以下指令在根目錄產生 npm 設定檔 `package.json`：
 
 ```
 $ npm init
@@ -32,16 +31,16 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Flux` 應用程式了！	
 
 ## Flux 概念介紹
-
 ![React Flux](./images/flux-simple-diagram.png "React Flux")
 
 在 Flux Unidirectional Data Flow（單項流）世界裡有四大主角，分別負責不同對應的工作：
-1. Actions / Action Creator 
-Action 負責定義所有改變 state（狀態）的動作，可以快速了解 App 的各種功能，若你想改變 state 你只能發 Action。Action 可以是同步或是非同步。例如：新增代辦事項，呼叫非同步 API 獲取資料。實務上我們會分成 action 和 action creator
+1. actions / Action Creator 
+action 負責定義所有改變 state（狀態）的行為，可以讓開發者快速了解 App 的各種功能，若你想改變 state 你只能發 action。action 可以是同步或是非同步。例如：新增代辦事項，呼叫非同步 API 獲取資料。
 
-action 為描述行為的 object（物件），action creator 將 action 送給 dispatcher。一般來說符合 Flux Standard Action 的 action 會長這樣，具備 `type` 來區別所觸發的行為。而 `payload` 則是所夾帶的資料：
+實務上我們會分成 action 和 Action Creator。action 為描述行為的 object（物件），Action Creator 將 action 送給 dispatcher。一般來說符合 Flux Standard Action 的 action 會如以下範例程式碼，具備 `type` 來區別所觸發的行為。而 `payload` 則是所夾帶的資料：
 
 ```
+// action
 const addTodo = {
   type: 'ADD_TODO',
   payload: {
@@ -63,15 +62,28 @@ AppDispatcher.dispatch(addTodo);
 ```
 
 2. Dispatcher
-`Dispatcher` 是 Flux 架構的核心，每個 App 只有一個 dispatcher，負責向 store 發送 action 事件。
+`Dispatcher` 是 Flux 架構的核心，每個 App 只有一個 Dispatcher，提供 API 讓 store 可以註冊 `callback function`，並負責向所有 store 發送 action 事件。在本範例中我們使用 Facebook 提供的 Dispatcher API，其內建有 `dispatch` 和 `subscribe` 方法。
 
 3. Stores
-一個 App 可以有多個 store，負責操作和儲存資料並告訴 `view` 資料更新。
+一個 App 通常會有多個 store 負責存放業務邏輯，根據不同業務會有不同 store，例如：TodoStore、RecipeStore。 store 負責操作和儲存資料並提供 `view` 使用 `listener`（監聽器），若有資料更新即會觸發更新。值得注意的是 store 只提供 `getter API` 讀取資料，若想改變 state 一律發送 action。
 
-4. Controller Views / Views
-這部份是 `React` 負責的範疇，負責提供監聽事件的 callback function，當事件發生時重新取得資料。
+4. Views（Controller Views）
+這部份是 `React` 負責的範疇，負責提供監聽事件的 `callback function`，當事件發生時重新取得資料並重繪 `View`。
 
-## Flux 初體驗
+## Flux 流程回顧
+Flux 架構前置作業：
+1. Stores 向 Dispatcher 註冊 callback，當資料改變時告知 Stores
+2. Controller Views 向 Stores 取得初始資料
+3. Controller Views 將資料給 Views 去渲染 UI
+4. Controller Views 向 store 註冊 listener，當資料改變時告知 Controller Views
+
+Flux 與使用者互動運作流程：
+1. 使用者和 App 互動，觸發事件，Action Creator 發送 actions 給 Dispatcher
+2. Dispatcher 依序將 action 傳給 store 去並由 action type 判斷合適的處理方式
+3. 若有資料更新則會觸發 Controller Views 向 store 註冊的 listener，向 store 取得更新資料
+4. View 根據 Controller Views 的新資料重新繪製 UI
+
+## Flux 實戰初體驗
 
 HTML Markup：
 
@@ -115,22 +127,6 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
 ```javascript
-import AppDispatcher from '../dispatcher/AppDispatcher';
-import { ADD_TODO } from '../constants/actionTypes';
-
-export const TodoActions = {
-  addTodo(text) {
-    AppDispatcher.handleAction({
-      type: ADD_TODO,
-      payload: {
-        text,
-      },
-    });
-  },
-};
-```
-
-```javascript
 export const ADD_TODO = 'ADD_TODO';
 ```
 
@@ -153,9 +149,23 @@ class DispatcherClass extends Dispatcher {
 const AppDispatcher = new DispatcherClass();
 
 export default AppDispatcher;
-
 ```
 
+```javascript
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import { ADD_TODO } from '../constants/actionTypes';
+
+export const TodoActions = {
+  addTodo(text) {
+    AppDispatcher.handleAction({
+      type: ADD_TODO,
+      payload: {
+        text,
+      },
+    });
+  },
+};
+```
 
 ```javascript
 import AppDispatcher from '../dispatcher/AppDispatcher';
@@ -170,7 +180,6 @@ const store = {
 };
 
 class TodoStoreClass extends EventEmitter {
-
   addChangeListener(callback) {
     this.on(ADD_TODO, callback);
   }
@@ -199,7 +208,6 @@ AppDispatcher.register((action) => {
 });
 
 export default TodoStore;
-
 ```
 
 ```javascript
@@ -256,7 +264,6 @@ export default TodoHeader;
 ```
 
 ```javascript
-
 import React, { Component } from 'react';
 import TodoStore from '../../stores/TodoStore';
 
@@ -296,6 +303,19 @@ class TodoList extends Component {
 
 export default TodoList;
 ```
+
+## 總結
+Flux 優勢
+1. 讓開發者可以快速了解整個 App 中的行為
+2. 資料和業務邏輯統一存放好管理
+3. 讓 View 單純化只負責 UI 的排版不需負責 state 管理
+4. 清楚的架構和分工對於複雜中大型應用程式易於維護和管理程式碼
+
+Flux 劣勢
+1. 程式碼上不夠簡潔
+2. 對於簡單小應用來說稍微複雜
+
+以上就是 Flux 的實戰入門，我知道一開始接觸 Flux 的讀者一定會覺得很抽象，有些讀者甚至會覺得這個架構到底有什麼好處（明明感覺和 MVC 類似或是一點都不簡潔），但如同上述優點所說 Flux 設計模式的優勢在於清楚的架構和分工對於複雜中大型應用程式易於維護和管理程式碼。若還是不熟悉的讀者可以跟著範例多動手，相信慢慢就可以體會 Flux 的特色。事實上，在開發社群中為了讓 Flux 架構更加簡潔，產生了許多 Flux-like 的架構和函式庫，接下來將帶讀者們進入目前最熱門的架構：`Redux`。
 
 ## 延伸閱讀
 1. [Getting To Know Flux, the React.js Architecture](https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture)
