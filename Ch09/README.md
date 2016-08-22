@@ -18,10 +18,9 @@
 3. React Router
 4. ImmutableJS
 5. Fetch
-6. OpenWeatherMap
-7. [Material UI](http://www.material-ui.com/#/)
-8. Weather API Icons
-9. Roboto Font from Google Font
+6. [Material UI](http://www.material-ui.com/#/)
+7. Weather API Icons
+8. Roboto Font from Google Font
 
 ## 專案成果截圖
 

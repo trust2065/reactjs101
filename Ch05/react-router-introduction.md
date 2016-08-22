@@ -8,7 +8,7 @@
 
 ## React Router 環境設置
 
-先透過以下指令產生 npm 設定檔 `package.json` ：
+先透過以下指令在根目錄產生 npm 設定檔 `package.json` ：
 
 ```
 	$ npm init
@@ -107,7 +107,65 @@
 
 太好了！這樣我們就完成了開發環境的設定可以開始動手實作 `React Router` 應用程式了！	
 
-## 設定 Routing 基礎
+## 開始 React Routing 之旅
+
+HTML Markup：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReactRouter</title>
+  <link rel="stylesheet" type="text/css" href="../res/styles/main.css">
+</head>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+```
+
+以下是 `webpack.config.js` 的進入點 `src/index.js`，負責管理 `Router` 和 `render` 元件。這邊我們要先詳細討論的是，為了使用 React Router 功能引入了許多 `react-router` 內部的元件。
+
+1. Router
+
+2. Route
+
+3. hashHistory
+
+4. IndexRoute
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import App from './components/App';
+import Home from './components/Home';
+import Repos from './components/Repos';
+import About from './components/About';
+import User from './components/User';
+import Contacts from './components/Contacts';
+
+ReactDOM.render(
+  <Router history={hashHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="/repos/:name" component={Repos} />
+      <Route path="/about" component={About} />
+      <Route path="/user" component={User} />
+      <Route path="/contacts" component={Contacts} />
+    </Route>
+  </Router>,
+  document.getElementById('app'));
+```
+
+我們將 App 元件當做每個元件都會載入的母模版，這樣就可以讓每個頁面都有導覽列連結可以點選，同時可以透過 `props.children` 載入對應 URL 的子元件。
+
+1. Link
+
+2. IndexLink
+
+`src/components/App/App.js`：
 
 ```javascript
 import React from 'react';
@@ -125,6 +183,7 @@ const App = (props) => (
       <li><Link to="/user" activeClassName="active">User</Link></li>
       <li><NavLink to="/contacts">Contacts</NavLink></li>
     </ul>
+    <!-- 我們將 App 元件當做每個元件都會載入的母模版，因此可以透過 children 載入對應 URL 的子元件 -->
     {props.children}
   </div>
 );
@@ -134,10 +193,9 @@ App.propTypes = {
 };
 
 export default App;
-
 ```
 
-Router 元件本身只是一个容器，真正的 `Routing` 定義是透過 `Route` 元件。特別注意當 child route `actived` 時，parent route 也會 `actived`。
+特別注意當 child route `actived` 時，parent route 也會 `actived`。所以我們回首頁的連結使用 `<IndexLink />` 內部的 `onlyActiveOnIndex` 屬性來解決這個問題。
 
 ![範例成果](./images/example.png "範例成果")
 
