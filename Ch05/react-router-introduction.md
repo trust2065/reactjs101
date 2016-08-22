@@ -137,7 +137,7 @@ export default App;
 
 ```
 
-Router 元件本身只是一个容器，真正的 Routing 定義是透過 Route 元件。特別注意當子 route actived 時，父 route 也會 actived。
+Router 元件本身只是一个容器，真正的 `Routing` 定義是透過 `Route` 元件。特別注意當 child route `actived` 時，parent route 也會 `actived`。
 
 ![範例成果](./images/example.png "範例成果")
 
