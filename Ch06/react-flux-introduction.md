@@ -34,6 +34,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 ![React Flux](./images/flux-simple-diagram.png "React Flux")
 
 在 Flux Unidirectional Data Flow（單項流）世界裡有四大主角，分別負責不同對應的工作：
+
 1. actions / Action Creator 
 action 負責定義所有改變 state（狀態）的行為，可以讓開發者快速了解 App 的各種功能，若你想改變 state 你只能發 action。action 可以是同步或是非同步。例如：新增代辦事項，呼叫非同步 API 獲取資料。
 
@@ -72,12 +73,14 @@ AppDispatcher.dispatch(addTodo);
 
 ## Flux 流程回顧
 Flux 架構前置作業：
+
 1. Stores 向 Dispatcher 註冊 callback，當資料改變時告知 Stores
 2. Controller Views 向 Stores 取得初始資料
 3. Controller Views 將資料給 Views 去渲染 UI
 4. Controller Views 向 store 註冊 listener，當資料改變時告知 Controller Views
 
 Flux 與使用者互動運作流程：
+
 1. 使用者和 App 互動，觸發事件，Action Creator 發送 actions 給 Dispatcher
 2. Dispatcher 依序將 action 傳給 store 去並由 action type 判斷合適的處理方式
 3. 若有資料更新則會觸發 Controller Views 向 store 註冊的 listener，向 store 取得更新資料
@@ -305,13 +308,15 @@ export default TodoList;
 ```
 
 ## 總結
-Flux 優勢
+Flux 優勢：
+
 1. 讓開發者可以快速了解整個 App 中的行為
 2. 資料和業務邏輯統一存放好管理
 3. 讓 View 單純化只負責 UI 的排版不需負責 state 管理
 4. 清楚的架構和分工對於複雜中大型應用程式易於維護和管理程式碼
 
-Flux 劣勢
+Flux 劣勢：
+
 1. 程式碼上不夠簡潔
 2. 對於簡單小應用來說稍微複雜
 
