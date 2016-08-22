@@ -26,8 +26,7 @@
 
 安裝好後我們可以設計一下我們的資料夾結構：
 
-![資料夾結構]('./images/folder.png')
-
+![React Router 資料夾結構](./images/folder.png "React Router 資料夾結構")
 
 接下來我們先設定一下開發文檔。
 
@@ -140,7 +139,7 @@ export default App;
 
 Router 元件本身只是一个容器，真正的 Routing 定義是透過 Route 元件。特別注意當子 route actived 時，父 route 也會 actived。
 
-![範例成果]('./images/example.png')
+![範例成果](./images/example.png "範例成果")
 
 ## 延伸閱讀
 1. [Leveling Up With React: React Router](https://css-tricks.com/learning-react-router/)
