@@ -136,11 +136,11 @@ HTML Markup：
 3. history
 `Router` 中有一個屬性 `history` 的規則，這邊使用我們使用 `hashHistory`，使用 routing 將由 `hash`（#）變化決定。例如：當使用者拜訪 `http://www.github.com/`，實際看到的會是 `http://www.github.com/#/`。下列範例若是拜訪了 `/about` 則會看到 `http://localhost:8008/#/about` 並載入 `App` 元件再載入 `About` 元件。
 
-- hashHistory
-教學範例使用的，會通過 `hash` 進行對應。好處是簡單易用，不用多餘設定。
+	- hashHistory
+	教學範例使用的，會通過 `hash` 進行對應。好處是簡單易用，不用多餘設定。
 
-- browserHistory
-適用於伺服器端渲染，但需要設定伺服器端避免處理錯誤，這部份我們會在後面的章節詳細說明。注意的是若是使用 Webpack 開發用伺服器需加上 `--history-api-fallback`
+	- browserHistory
+	適用於伺服器端渲染，但需要設定伺服器端避免處理錯誤，這部份我們會在後面的章節詳細說明。注意的是若是使用 Webpack 開發用伺服器需加上 `--history-api-fallback`
 
 	```
 	$ webpack-dev-server --inline --content-base . --history-api-fallback
