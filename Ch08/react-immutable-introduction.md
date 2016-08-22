@@ -35,3 +35,4 @@ shouldComponentUpdate (nextProps) {
 4. [为什么需要Immutable.js](http://zhenhua-lee.github.io/react/Immutable.html)
 5. [facebook immutable.js 意义何在，使用场景？](https://www.zhihu.com/question/28016223)
 6. [React 巢狀 Component 效能優化](https://blog.wuct.me/react-%E5%B7%A2%E7%8B%80-component-%E6%95%88%E8%83%BD%E5%84%AA%E5%8C%96-b01d8a0d3eff#.3kf4h1xq1)
+7. [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-mixin.html)
