@@ -240,7 +240,28 @@ App.propTypes = {
 export default App;
 ```
 
-詳細的程式碼可以參考範例資料夾，若讀者跟著範例完成的話，可以在終端機上執行 `npm start`，並於瀏覽器 `http://localhost:8008`看到以下成果，當你點選連結時會切換對應元件並改變 `actived` 狀態！
+對應的元件內部使用 Functional Component 進行 UI 渲染：
+
+以下是 `src/components/Repos/Repos.js` 完整程式碼：
+
+```javascript
+import React from 'react';
+
+const Repos = (props) => (
+  <div>
+    <h3>Repos</h3>
+    <h5>{props.params.name}</h5>
+  </div>
+);
+
+Repos.propTypes = {
+  params: React.PropTypes.object,
+};
+
+export default Repos;
+```
+
+詳細的程式碼讀者可以參考範例資料夾，若讀者跟著範例完成的話，可以在終端機上執行 `npm start`，並於瀏覽器 `http://localhost:8008`看到以下成果，當你點選連結時會切換對應元件並改變 `actived` 狀態！
 
 ![範例成果](./images/example.png "範例成果")
 
