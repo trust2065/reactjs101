@@ -4,11 +4,11 @@
 若你是從一開始一路走到這裡讀者請先給自己一個愛的鼓勵吧！在經歷了 React 基礎的訓練後，相信各位讀者應該都等不及想大展拳腳了！接下來我們將進行比較複雜的應用程式開發並和讀者介紹目前市場上常見的不刷頁單頁式應用程式（single page application）的設計方式。
 
 ## 單頁式應用程式（single page application）
-隨著使用者對於使用者體驗的要求提昇，許多的網頁應用程式紛紛設計成不刷頁的單頁式應用程式（single page application），由前端負責 URL 的 routing 管理，若需要和後端進行 API 資料溝通的話，通常也會使用 Ajax 的技術。在 React 開發世界中主流是使用 [react-router](https://github.com/reactjs/react-router) 這個 routing 管理用的 library。
+傳統的 Web 開發主要是由伺服器管理 URL Routing 和渲染 HTML 頁面，過往每次 URL 一換或使用者連結一點，就需要重新從伺服器端重新載入頁面。但隨著使用者對於使用者體驗的要求提昇，許多的網頁應用程式紛紛設計成不刷頁的單頁式應用程式（single page application），由前端負責 URL 的 routing 管理，若需要和後端進行 API 資料溝通的話，通常也會使用 Ajax 的技術。在 React 開發世界中主流是使用 [react-router](https://github.com/reactjs/react-router) 這個 routing 管理用的 library。
 
 ## React Router 環境設置
 
-先透過以下指令產生 `package.json` 設計檔：
+先透過以下指令產生 npm 設定檔 `package.json` ：
 
 ```
 	$ npm init
@@ -26,7 +26,7 @@
 
 安裝好後我們可以設計一下我們的資料夾結構：
 
-
+![資料夾結構]('./images/folder.png')
 
 
 接下來我們先設定一下開發文檔。
@@ -97,7 +97,7 @@
 	      },
 	    }],
 	  },
-	  // 啟動開發用 server 設定
+	  // 啟動開發測試用 server 設定（不能用在 production）
 	  devServer: {
 	    inline: true,
 	    port: 8008,
@@ -105,6 +105,42 @@
 	  plugins: [HTMLWebpackPluginConfig],
 	};
 	```
+
+太好了！這樣我們就完成了開發環境的設定可以開始動手實作 `React Router` 應用程式了！	
+
+## 設定 Routing 基礎
+
+```javascript
+import React from 'react';
+import { Link, IndexLink } from 'react-router';
+import styles from './appStyles';
+import NavLink from '../NavLink';
+
+const App = (props) => (
+  <div>
+    <h1>React Router Tutorial</h1>
+    <ul>
+      <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+      <li><Link to="/about" activeStyle={{ color: 'green' }}>About</Link></li>
+      <li><Link to="/repos/react-router" activeStyle={styles.active}>Repos</Link></li>
+      <li><Link to="/user" activeClassName="active">User</Link></li>
+      <li><NavLink to="/contacts">Contacts</NavLink></li>
+    </ul>
+    {props.children}
+  </div>
+);
+
+App.propTypes = {
+  children: React.PropTypes.object,
+};
+
+export default App;
+
+```
+
+Router 元件本身只是一个容器，真正的 Routing 定義是透過 Route 元件。特別注意當子 route actived 時，父 route 也會 actived。
+
+![範例成果]('./images/example.png')
 
 ## 延伸閱讀
 1. [Leveling Up With React: React Router](https://css-tricks.com/learning-react-router/)

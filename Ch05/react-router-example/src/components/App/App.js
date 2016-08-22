@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import styles from './appStyles';
+import NavLink from '../NavLink';
 
 const App = (props) => (
   <div>
     <h1>React Router Tutorial</h1>
     <ul>
-      <li><Link to="/about" activeStyle={{ color: 'red' }}>About</Link></li>
-      <li><Link to="/repos" activeStyle={styles.active}>Repos</Link></li>
-      <li><Link to="/contacts" activeClassName="active">Contacts</Link></li>
+      <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+      <li><Link to="/about" activeStyle={{ color: 'green' }}>About</Link></li>
+      <li><Link to="/repos/react-router" activeStyle={styles.active}>Repos</Link></li>
+      <li><Link to="/user" activeClassName="active">User</Link></li>
+      <li><NavLink to="/contacts">Contacts</NavLink></li>
     </ul>
     {props.children}
   </div>
