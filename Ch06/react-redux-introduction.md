@@ -1,4 +1,4 @@
-# Redux 實踐入門
+# Redux 實戰入門
 
 Single source of truth (單一的真相來源)
 State is read-only (狀態是唯讀的)

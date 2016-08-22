@@ -1,4 +1,4 @@
-# Container 與 Presentational Components
+# Container 與 Presentational Components 入門
 
 Redux 的 React 綁定擁抱了分離 Presentational 和 Container Component 的概念
 

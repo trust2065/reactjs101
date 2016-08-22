@@ -21,11 +21,11 @@
 
 - [X] 五、React Router
 
-- [X] 六、ImmutableJS
+- [X] 六、Flux/Redux 
 
-- [X] 七、Flux/Redux 
+- [X] 七、Container 與 Presentational Components
 
-- [X] 八、Container 與 Presentational Components
+- [X] 八、ImmutableJS
 
 - [X] 九、實戰教學：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用
 
