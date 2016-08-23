@@ -7,11 +7,8 @@
 
 ## Flux/Redux 超級比一比
 
-Flux 的簡單 Flow 圖：
-![React Redux](./images/react-flux-diagram.png "React Redux")
-
-Redux 的簡單 Flow 圖：
-![React Redux](./images/redux-simple-f8-diagram.png "React Redux")
+簡單 Flux/Redux 比較圖：
+![React Redux](./images/using-redux-compare.jpeg "React Redux")
 
 在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
 
@@ -47,6 +44,8 @@ Redux 的簡單 Flow 圖：
 1. Single source of truth (單一的真相來源)
 2. State is read-only (狀態是唯讀的)
 3. Changes are made with pure functions (使用純函式進行更改)
+4. Write Reducers instead of store
+4. Keep Components Stateless
 
 ```javascript
 import { createStore } from 'redux'
@@ -87,6 +86,13 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
+Redux 優點：
+1. Hot Module Reload
+
+2. Powerful DevTools
+
+3. Components easy
+
 ## Redux 流程回顧
 
 （View -> Action -> Middleware -> Reducer）
@@ -98,6 +104,8 @@ store.dispatch({ type: 'DECREMENT' })
 ![React Redux](./images/redux-flowchart.png "React Redux")
 
 ![React Redux](./images/redux-flow.png "React Redux")
+
+![React Redux](./images/using-redux.jpeg "React Redux")
 
 ![React Redux](./images/redux-store.png "React Redux")
 
@@ -306,5 +314,8 @@ export default connect(
 ## 延伸閱讀
 1. [Redux 官方網站](http://redux.js.org/index.html)
 2. [Redux架构实践——Single Source of Truth](http://react-china.org/t/redux-single-source-of-truth/5564)
+3. [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+4. [使用Redux管理你的React应用](https://github.com/matthew-sun/blog/issues/18)
+5. [Using redux](http://www.slideshare.net/JonasOhlsson/using-redux)
 
-（image via [githubusercontent](https://raw.githubusercontent.com/reactjs/redux/master/logo/logo-title-dark.png)、[makeitopen](http://makeitopen.com/static/images/redux_flowchart.png)、[licdn](https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAUQAAAAJDAyMWU1MmZhLTYzMTQtNDJkNy1hYzM4LTE5MWQzNWM1ODcyNA.png)、[css-tricks](https://css-tricks.com/wp-content/uploads/2016/03/redux-article-3-03.svg)、[tighten](https://blog.tighten.co/assets/img/react-redux-diagram.png)、[tryolabs](http://blog.tryolabs.com/wp-content/uploads/2016/04/redux-simple-f8-diagram.png)、[facebook](https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png)）
+（image via [githubusercontent](https://raw.githubusercontent.com/reactjs/redux/master/logo/logo-title-dark.png)、[makeitopen](http://makeitopen.com/static/images/redux_flowchart.png)、[licdn](https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAUQAAAAJDAyMWU1MmZhLTYzMTQtNDJkNy1hYzM4LTE5MWQzNWM1ODcyNA.png)、[css-tricks](https://css-tricks.com/wp-content/uploads/2016/03/redux-article-3-03.svg)、[tighten](https://blog.tighten.co/assets/img/react-redux-diagram.png)、[tryolabs](http://blog.tryolabs.com/wp-content/uploads/2016/04/redux-simple-f8-diagram.png)、[facebook](https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png)、[JonasOhlsson](http://www.slideshare.net/JonasOhlsson/using-redux)）
