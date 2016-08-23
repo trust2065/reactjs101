@@ -9,27 +9,28 @@
 在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
 
 1. 只使用一個 store 將整個應用程式的狀態 (state) 用物件樹 (object tree) 的方式儲存起來：
-原生的 Flux 會有許多分散的 store 儲存各個不同的狀態，但在 redux 中，只會有一個 store 將所有的資料用物件的方式包起來。
 
-```javascript
-//原生 Flux 的 store
-const userStore = {
-    name: ''
-}
-const todoStore = {
-    text: ''
-}
+	原生的 Flux 會有許多分散的 store 儲存各個不同的狀態，但在 redux 中，只會有一個 store 將所有的資料用物件的方式包起來。
 
-// Redux 的單一 store
-const state = {
-    userState: {
-        name: ''
-    },
-    todoState: {
-        text: ''
-    }
-}
-```
+	```javascript
+	//原生 Flux 的 store
+	const userStore = {
+	    name: ''
+	}
+	const todoStore = {
+	    text: ''
+	}
+
+	// Redux 的單一 store
+	const state = {
+	    userState: {
+	        name: ''
+	    },
+	    todoState: {
+	        text: ''
+	    }
+	}
+	```
 
 2. 唯一可以改變 state 的方法就是發送 action，Redux 的 action 和 Flux 的 action 類似，就是一個包含 `type` 和 `payload` 的物件
 
@@ -220,11 +221,25 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
 ```
 
 ```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TodoHeaderContainer from '../../containers/TodoHeaderContainer';
+import TodoListContainer from '../../containers/TodoListContainer';
 
+const Main = () => (
+  <div>
+    <TodoHeaderContainer />
+    <TodoListContainer />
+  </div>
+);
+
+export default Main;
+```
+
+```javascript
 import { connect } from 'react-redux';
 import TodoHeader from '../../components/TodoHeader';
 
@@ -251,7 +266,6 @@ export default connect(
 ```
 
 ```javascript
-
 import { connect } from 'react-redux';
 import TodoList from '../../components/TodoList';
 
