@@ -36,31 +36,31 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 在 Flux Unidirectional Data Flow（單項流）世界裡有四大主角，分別負責不同對應的工作：
 
 1. actions / Action Creator 
-action 負責定義所有改變 state（狀態）的行為，可以讓開發者快速了解 App 的各種功能，若你想改變 state 你只能發 action。action 可以是同步或是非同步。例如：新增代辦事項，呼叫非同步 API 獲取資料。
+	action 負責定義所有改變 state（狀態）的行為，可以讓開發者快速了解 App 的各種功能，若你想改變 state 你只能發 action。action 可以是同步或是非同步。例如：新增代辦事項，呼叫非同步 API 獲取資料。
 
-實務上我們會分成 action 和 Action Creator。action 為描述行為的 object（物件），Action Creator 將 action 送給 dispatcher。一般來說符合 Flux Standard Action 的 action 會如以下範例程式碼，具備 `type` 來區別所觸發的行為。而 `payload` 則是所夾帶的資料：
+	實務上我們會分成 action 和 Action Creator。action 為描述行為的 object（物件），Action Creator 將 action 送給 dispatcher。一般來說符合 Flux Standard Action 的 action 會如以下範例程式碼，具備 `type` 來區別所觸發的行為。而 `payload` 則是所夾帶的資料：
 
-```
-// action
-const addTodo = {
-  type: 'ADD_TODO',
-  payload: {
-    text: 'Do something.'  
-  }
-}
+	```
+	// action
+	const addTodo = {
+	  type: 'ADD_TODO',
+	  payload: {
+	    text: 'Do something.'  
+	  }
+	}
 
-AppDispatcher.dispatch(addTodo);
-```
+	AppDispatcher.dispatch(addTodo);
+	```
 
-當發生 rejected Promise 情況：
+	當發生 rejected Promise 情況：
 
-```
-{
-  type: 'ADD_TODO',
-  payload: new Error(),
-  error: true
-}
-```
+	```
+	{
+	  type: 'ADD_TODO',
+	  payload: new Error(),
+	  error: true
+	}
+	```
 
 2. Dispatcher
 `Dispatcher` 是 Flux 架構的核心，每個 App 只有一個 Dispatcher，提供 API 讓 store 可以註冊 `callback function`，並負責向所有 store 發送 action 事件。在本範例中我們使用 Facebook 提供的 Dispatcher API，其內建有 `dispatch` 和 `subscribe` 方法。
