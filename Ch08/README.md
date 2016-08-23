@@ -1,3 +1,3 @@
-# Ch08 ImmutableJS
+# Ch07 Container 與 Presentational Components
 
-1. [ImmutableJS 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch08/react-immutable-introduction.md)
+1. [Container 與 Presentational Components 入門](https://github.com/kdchang/reactjs101/blob/master/Ch08/container-presentational-component-.md)

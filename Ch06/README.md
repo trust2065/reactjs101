@@ -1,4 +1,3 @@
-# Ch06 Flux/Redux
+# Ch08 ImmutableJS
 
-1. [Flux 實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch06/react-flux-introduction.md)
-2. [Redux 實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch06/react-redux-introduction.md)
+1. [ImmutableJS 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch06/react-immutable-introduction.md)

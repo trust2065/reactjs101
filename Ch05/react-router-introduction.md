@@ -266,7 +266,7 @@ export default Repos;
 ![範例成果](./images/example.png "範例成果")
 
 ## 總結
-到這邊我們又一起完成了一個重要的一關，學習 `routing` 對於使用 `React` 開發複雜應用程式是非常重要的一步，接下來我們將一起挑戰 `Flux/Redux`。
+到這邊我們又一起完成了一個重要的一關，學習 `routing` 對於使用 `React` 開發複雜應用程式是非常重要的一步，接下來我們將一起學習一個相對獨立的單元 `ImmutableJS`，但學習 `ImmutableJS` 可以讓我們在使用 `React` 和 `Flux/Redux` 可以有更好的效能和避免一些副作用。
 
 ## 延伸閱讀
 1. [Leveling Up With React: React Router](https://css-tricks.com/learning-react-router/)

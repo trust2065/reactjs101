@@ -1,3 +1,4 @@
-# Ch07 Container 與 Presentational Components
+# Ch06 Flux/Redux
 
-1. [Container 與 Presentational Components 入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/container-presentational-component-.md)
+1. [Flux 實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-flux-introduction.md)
+2. [Redux 實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-redux-introduction.md)
