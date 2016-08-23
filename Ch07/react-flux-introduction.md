@@ -53,6 +53,9 @@
 	這部份是 `React` 負責的範疇，負責提供監聽事件的 `callback function`，當事件發生時重新取得資料並重繪 `View`。
 
 ## Flux 流程回顧
+
+![React Flux](./images/flux-react.png "React Flux")
+
 Flux 架構前置作業：
 
 1. Stores 向 Dispatcher 註冊 callback，當資料改變時告知 Stores
@@ -342,4 +345,4 @@ Flux 劣勢：
 7. [Question: How to choose between Redux's store and React's state? #1287](https://github.com/reactjs/redux/issues/1287)
 8. [acdlite/flux-standard-action](https://github.com/acdlite/flux-standard-action)
 
-（image via [devjournal](http://devjournal.ru/wp-content/uploads/2016/03/React.js-Flux-Redux.png)、[facebook](https://facebook.github.io/flux/)）
+（image via [devjournal](http://devjournal.ru/wp-content/uploads/2016/03/React.js-Flux-Redux.png)、[facebook](https://facebook.github.io/flux/)、[scotch.io](https://cask.scotch.io/2014/10/V70cSEC.png)）
