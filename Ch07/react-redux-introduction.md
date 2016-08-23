@@ -3,8 +3,40 @@
 ![React Redux](./images/redux-logo.png "React Redux")
 
 ## 前言
+前面一個章節我們講解了 Flux 的用途和用法，但在實務上許多開發者較偏好同樣是 Flux-like 但較為簡潔的 `Redux` 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其官方首頁寫著：Redux is a predictable state container for JavaScript apps.，亦即 Redux 希望能提供一個可以預測的 state 管理容器。
 
-## Redux 概念介紹
+## Redux 核心概念介紹
+在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
+
+1. 只使用一個 store 將整個應用程式的狀態 (state) 用物件樹 (object tree) 的方式儲存起來：
+原生的 Flux 會有許多分散的 store 儲存各個不同的狀態，但在 redux 中，只會有一個 store 將所有的資料用物件的方式包起來。
+
+```javascript
+//原生 Flux 的 store
+const userStore = {
+    name: ''
+}
+const todoStore = {
+    text: ''
+}
+
+// Redux 的單一 store
+const state = {
+    userState: {
+        name: ''
+    },
+    todoState: {
+        text: ''
+    }
+}
+```
+
+2. 唯一可以改變 state 的方法就是發送 action，Redux 的 action 和 Flux 的 action 類似，就是一個包含 `type` 和 `payload` 的物件
+
+3. 根據 action 的 type 去執行對應的 state 做變化的函式叫做 reducer。你可以使用 switch 去對應或是使用函式 map 的方式。 
+
+
+
 1. Single source of truth (單一的真相來源)
 2. State is read-only (狀態是唯讀的)
 3. Changes are made with pure functions (使用純函式進行更改)
@@ -12,18 +44,12 @@
 ```javascript
 import { createStore } from 'redux'
 
-/**
- * This is a reducer, a pure function with (state, action) => state signature.
- * It describes how an action transforms the state into the next state.
- *
- * The shape of the state is up to you: it can be a primitive, an array, an object,
- * or even an Immutable.js data structure. The only important part is that you should
- * not mutate the state object, but return a new object if the state changes.
- *
- * In this example, we use a `switch` statement and strings, but you can use a helper that
- * follows a different convention (such as function maps) if it makes sense for your
- * project.
- */
+/** 
+  下面是一個簡單的 reducers ，主要功能是針對傳進來的 action type 去回傳新的 state
+  reducer 規格：(state, action) => state 
+  一般而言 state 可以是 primitive、array 或 object 甚至是 ImmutableJS Data。但要留意的是不能修改到原來的 state ，
+  回傳的是新的 state
+*/
 function counter(state = 0, action) {
   switch (action.type) {
   case 'INCREMENT':
@@ -35,20 +61,17 @@ function counter(state = 0, action) {
   }
 }
 
-// Create a Redux store holding the state of your app.
-// Its API is { subscribe, dispatch, getState }.
+// 創建 Redux store 去存放 App 的所有 state，把 reducer 放入
+// store 的可用 API { subscribe, dispatch, getState }.
 let store = createStore(counter)
 
-// You can use subscribe() to update the UI in response to state changes.
-// Normally you’d use a view binding library (e.g. React Redux) rather than subscribe() directly.
-// However it can also be handy to persist the current state in the localStorage.
+// 可以使用 subscribe() 來訂閱 state 是否更新。但實務通常會使用 react-redux 來串連 React 和 Redux
 
 store.subscribe(() =>
   console.log(store.getState())
 )
 
-// The only way to mutate the internal state is to dispatch an action.
-// The actions can be serialized, logged or stored and later replayed.
+// 若想改變 state ，一律發 action
 store.dispatch({ type: 'INCREMENT' })
 // 1
 store.dispatch({ type: 'INCREMENT' })
@@ -57,9 +80,9 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
-（View -> Action -> Middleware -> Reducer）
-
 ## Redux 流程回顧
+
+（View -> Action -> Middleware -> Reducer）
 
 ## Redux 實戰初體驗
 
