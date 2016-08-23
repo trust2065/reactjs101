@@ -3,12 +3,11 @@
 ## 前言
 在 JavaScript 中的物件資料是可以變的（Mutable），由於是使用引用方式給值，所以當修改到複製的值也會修改到原始值。一般作法是使用 shallowCopy 或 deepCopy 來避免修改，但這樣作法會資源的浪費。為了很好的解決這個問題，我們可以使用 `Immutable Data`，所謂的 Immutable Data 就是一旦建立，就不能再被修改的數據資料。於 2013 時 Facebook 工程師打造了 `ImmutableJS`，但並沒有被預設放到 React 工具包中（雖然有提供簡化的 Helper）。
 
-javascript(es5)中存在两类数据结构: primitive value(string、number、boolean、null、undefined)、object(reference)。在编译型语言(例如java)也存在object，但是js中的对象非常灵活、多变，这给我们的开发带来了不少好处，但是也引起了非常多的问题。
+一般來說在 JavaScript 中有兩種資料類型：Primitive（String、Number、Boolean、null、undefinded）Object（Reference），在 JavaScript 中物件的操作比起 Java 容易很多，但也因為相對不嚴謹，所以產生了一些問題。
 
 ## ImmutableJS 初體驗
-
 1. Persistent data structure
-Immutable.js提供了7种不可变的数据类型: List、Map Stack OrderedMap Set OrderedSet Record。对Immutable对象的操作均会返回新的对象，例如：
+Immutable.js 提供了 7 種不可修改的資料類型：List、Map、Stack、OrderedMap、Set、OrderedSet、Record。若是對 Immutable 物件操作都會返回新值。
 
 2. structural sharing
 
