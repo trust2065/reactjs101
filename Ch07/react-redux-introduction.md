@@ -9,7 +9,7 @@
 ## Flux/Redux 超級比一比
 
 Flux 的簡單 Flow 圖：
-![React Redux](./images/flux-simple-diagram.png "React Redux")
+![React Redux](./images/flux-react.png "React Redux")
 
 Redux 的簡單 Flow 圖：
 ![React Redux](./images/redux-simple-f8-diagram.png "React Redux")
