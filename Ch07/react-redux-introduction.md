@@ -3,7 +3,7 @@
 ![React Redux](./images/redux-logo.png "React Redux")
 
 ## 前言
-前面一個章節我們講解了 Flux 的用途和用法，但在實務上許多開發者較偏好同樣是 Flux-like 但較為簡潔的 `Redux` 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其官方首頁寫著：Redux is a predictable state container for JavaScript apps.，亦即 Redux 希望能提供一個可以預測的 state 管理容器。
+前面一個章節我們講解了 Flux 的功能和用法，但在實務上許多開發者較偏好的是同為 Flux-like 但較為簡潔的 [Redux](http://redux.js.org/index.html) 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其主要功能如官方首頁寫著：`Redux is a predictable state container for JavaScript apps.`，亦即 Redux 希望能提供一個可以預測的 state 管理容器。
 
 ## Flux/Redux 超級比一比
 在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
