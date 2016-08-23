@@ -5,7 +5,7 @@
 ## 前言
 前面一個章節我們講解了 Flux 的用途和用法，但在實務上許多開發者較偏好同樣是 Flux-like 但較為簡潔的 `Redux` 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其官方首頁寫著：Redux is a predictable state container for JavaScript apps.，亦即 Redux 希望能提供一個可以預測的 state 管理容器。
 
-## Redux 核心概念介紹
+## Flux/Redux 超級比一比
 在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
 
 1. 只使用一個 store 將整個應用程式的狀態 (state) 用物件樹 (object tree) 的方式儲存起來：
@@ -33,10 +33,9 @@ const state = {
 
 2. 唯一可以改變 state 的方法就是發送 action，Redux 的 action 和 Flux 的 action 類似，就是一個包含 `type` 和 `payload` 的物件
 
-3. 根據 action 的 type 去執行對應的 state 做變化的函式叫做 reducer。你可以使用 switch 去對應或是使用函式 map 的方式。 
+3. 根據 action 的 type 去執行對應的 state 做變化的函式叫做 reducer。你可以使用 switch 或是使用函式 map 的方式去對應。 
 
-
-
+## Redux 核心概念介紹
 1. Single source of truth (單一的真相來源)
 2. State is read-only (狀態是唯讀的)
 3. Changes are made with pure functions (使用純函式進行更改)
@@ -84,7 +83,190 @@ store.dispatch({ type: 'DECREMENT' })
 
 （View -> Action -> Middleware -> Reducer）
 
+若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
+
 ## Redux 實戰初體驗
+
+![React Redux](./images/redux-folder.png "React Redux")
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Redux Todo</title>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+```
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import Main from './components/Main';
+import store from './store';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Main />
+  </Provider>,
+  document.getElementById('app')
+);
+```
+
+```
+import { createAction } from 'redux-actions';
+import {
+  CREATE_TODO,
+  DELETE_TODO,
+  CHANGE_TEXT,
+} from '../constants/actionTypes';
+
+export const createTodo = createAction('CREATE_TODO');
+export const deleteTodo = createAction('DELETE_TODO');
+export const changeText = createAction('CHANGE_TEXT');
+```
+
+```
+export * from './todoActions';
+```
+
+```
+export const CREATE_TODO = 'CREATE_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
+export const CHANGE_TEXT = 'CHANGE_TEXT';
+```
+
+```
+import Immutable from 'immutable';
+
+export const TodoState = Immutable.Map({
+  'todos': Immutable.List(),
+  'todo': Immutable.Map({
+    id: '',
+    text: '',
+    updatedAt: '',
+    completed: false,
+  })
+});
+```
+
+```
+import { createStore, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';
+import Immutable from 'immutable';
+import rootReducer from '../reducers';
+
+const initialState = Immutable.Map();
+
+export default createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }))
+);
+
+```
+export { default } from './configureStore';
+```
+
+```
+import { handleActions } from 'redux-actions';
+import { TodoState } from '../../constants/models';
+
+import {
+  CREATE_TODO,
+  DELETE_TODO,
+  CHANGE_TEXT,
+} from '../../constants/actionTypes';
+
+ const todoReducers = handleActions({
+  CREATE_TODO: (state) => {
+    let todos = state.get('todos').push(state.get('todo'));
+    return state.set('todos', todos)
+  },
+  DELETE_TODO: (state, { payload }) => (
+    state.set('todos', state.get('todos').splice(payload.index, 1))
+  ),
+  CHANGE_TEXT: (state, { payload }) => (
+    state.merge({ 'todo': payload })
+  )
+}, TodoState);
+
+export default todoReducers;
+```
+
+```
+import { handleActions } from 'redux-actions';
+import UiState from '../../constants/models';
+
+export default handleActions({
+  SHOW: (state, { payload }) => (
+    state.set('todos', payload.todo)
+  ),
+}, UiState); 
+```
+
+```
+import { combineReducers } from 'redux-immutable';
+import ui from './ui/uiReducers';// import routes from './routes';
+import todo from './data/todoReducers';// import routes from './routes';
+
+const rootReducer = combineReducers({
+  todo,
+});
+
+export default rootReducer;
+
+```
+
+```
+import { connect } from 'react-redux';
+import TodoHeader from '../../components/TodoHeader';
+
+import {
+  changeText,
+  createTodo,
+} from '../../actions';
+
+export default connect(
+  (state) => ({
+    todo: state.getIn(['todo', 'todo'])
+  }),
+  (dispatch) => ({
+    onChangeText: (event) => (
+      dispatch(changeText({ text: event.target.value }))
+    ),
+    onCreateTodo: () => {
+      dispatch(createTodo());
+      dispatch(changeText({ text: '' }));
+    }
+  })
+)(TodoHeader);
+
+```
+
+```
+import { connect } from 'react-redux';
+import TodoList from '../../components/TodoList';
+
+import {
+  deleteTodo,
+} from '../../actions';
+
+export default connect(
+  (state) => ({
+    todos: state.getIn(['todo', 'todos'])
+  }),
+  (dispatch) => ({
+    onDeleteTodo: (index) => () => (
+      dispatch(deleteTodo({ index }))
+    )
+  })
+)(TodoList);
+```
 
 ## 總結
 
