@@ -68,3 +68,5 @@ store.dispatch({ type: 'DECREMENT' })
 ## 延伸閱讀
 1. [Redux 官方網站](http://redux.js.org/index.html)
 2. [Redux架构实践——Single Source of Truth](http://react-china.org/t/redux-single-source-of-truth/5564)
+
+（image via [githubusercontent](https://raw.githubusercontent.com/reactjs/redux/master/logo/logo-title-dark.png)）
