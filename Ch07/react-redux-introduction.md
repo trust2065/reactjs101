@@ -1,6 +1,6 @@
 # Redux 實戰入門
 
-![React Redux](./images/react-redux.png "React Redux")
+![React Redux](./images/redux-logo.png "React Redux")
 
 ## 前言
 
