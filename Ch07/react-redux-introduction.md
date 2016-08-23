@@ -89,7 +89,7 @@ store.dispatch({ type: 'DECREMENT' })
 
 ![React Redux](./images/redux-folder.png "React Redux")
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,7 +102,7 @@ store.dispatch({ type: 'DECREMENT' })
 </html>
 ```
 
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -117,7 +117,7 @@ ReactDOM.render(
 );
 ```
 
-```
+```javascript
 import { createAction } from 'redux-actions';
 import {
   CREATE_TODO,
@@ -130,17 +130,17 @@ export const deleteTodo = createAction('DELETE_TODO');
 export const changeText = createAction('CHANGE_TEXT');
 ```
 
-```
+```javascript
 export * from './todoActions';
 ```
 
-```
+```javascript
 export const CREATE_TODO = 'CREATE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const CHANGE_TEXT = 'CHANGE_TEXT';
 ```
 
-```
+```javascript
 import Immutable from 'immutable';
 
 export const TodoState = Immutable.Map({
@@ -154,7 +154,7 @@ export const TodoState = Immutable.Map({
 });
 ```
 
-```
+```javascript
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import Immutable from 'immutable';
@@ -167,12 +167,13 @@ export default createStore(
   initialState,
   applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }))
 );
-
 ```
+
+```javascript
 export { default } from './configureStore';
 ```
 
-```
+```javascript
 import { handleActions } from 'redux-actions';
 import { TodoState } from '../../constants/models';
 
@@ -198,7 +199,7 @@ import {
 export default todoReducers;
 ```
 
-```
+```javascript
 import { handleActions } from 'redux-actions';
 import UiState from '../../constants/models';
 
@@ -209,7 +210,7 @@ export default handleActions({
 }, UiState); 
 ```
 
-```
+```javascript
 import { combineReducers } from 'redux-immutable';
 import ui from './ui/uiReducers';// import routes from './routes';
 import todo from './data/todoReducers';// import routes from './routes';
@@ -222,7 +223,8 @@ export default rootReducer;
 
 ```
 
-```
+```javascript
+
 import { connect } from 'react-redux';
 import TodoHeader from '../../components/TodoHeader';
 
@@ -248,7 +250,8 @@ export default connect(
 
 ```
 
-```
+```javascript
+
 import { connect } from 'react-redux';
 import TodoList from '../../components/TodoList';
 
