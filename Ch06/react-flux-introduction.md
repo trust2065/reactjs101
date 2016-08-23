@@ -79,7 +79,7 @@ $ npm init
 安裝相關套件（包含開發環境使用的套件）：
 
 ```
-$ npm install --save react react-dom flux
+$ npm install --save react react-dom flux events
 ```
 
 ```
@@ -107,7 +107,7 @@ HTML Markup：
 </html>
 ```
 
-以下為 `src/index.js` 完整程式碼，安排了父 `component`和在 HTML Markup 插入位置：
+以下為 `src/index.js` 完整程式碼，安排了父 `component` 和在 HTML Markup 插入位置：
 
 ```javascript
 import React from 'react';
@@ -139,7 +139,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 export const ADD_TODO = 'ADD_TODO';
 ```
 
-以下是 `src/dispatch/AppDispatcher.js`：
+在這個範例中我們繼承了 Facebook 提供的 Dispatcher API（主要是繼承了 `dispatch`、`register` 和 `subscribe` 的方法），打造自己的 DispatcherClass，當使用者觸發 `handleAction()` 會 `dispatch` 出事件。以下是 `src/dispatch/AppDispatcher.js`：
 
 ```javascript
 // Todo app dispatcher with actions responding to both
@@ -160,7 +160,7 @@ const AppDispatcher = new DispatcherClass();
 export default AppDispatcher;
 ```
 
-以下是 `src/actions/todoActions.js`：
+以下是我們利用 `AppDispatcher` 打造的 `Action Creator` 由 `handleAction` 負責發出傳入的 `action` ，完整程式碼如 `src/actions/todoActions.js`：
 
 ```javascript
 import AppDispatcher from '../dispatcher/AppDispatcher';
@@ -178,14 +178,12 @@ export const TodoActions = {
 };
 ```
 
-以下是 `src/stores/TodoStore.js`：
+`Store` 主要是負責資料以及業務邏輯處理，我們繼承了 `events` 模組的 `EventEmitter`，當 `action` 傳入 `AppDispatcher.register` 的處理範圍後，根據 `action type` 選擇適合處理的 `store` 進行處理，處理完後透過 `emit` 方法發出事件讓監聽的 `Views Controller` 知道。以下是 `src/stores/TodoStore.js`：
 
 ```javascript
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import { ADD_TODO } from '../constants/actionTypes';
 import { EventEmitter } from 'events';
-
-// const CHANGE_EVENT = 'change';
 
 const store = {
   todos: [],
@@ -221,7 +219,7 @@ AppDispatcher.register((action) => {
 export default TodoStore;
 ```
 
-以下是 `src/components/TodoHeader.js`：
+在這個 React Flux 範例中我們把 `View` 和 `Views Controller` 整合在一起。在 `TodoHeader` 中，我們主要任務是讓使用者可以透過 `input` 新增代辦事項。使用者輸入文字在 `input` 時會觸發 `onChange` 事件，進而更新內部的 `state`，當使用者按了送出鈕就會觸發 `onAdd` 事件，`dispatch` 出 `addTodo event`。以下是 `src/components/TodoHeader.js` 完整範例：
 
 ```javascript
 import React, { Component } from 'react';
@@ -273,7 +271,7 @@ class TodoHeader extends Component {
 export default TodoHeader;
 ```
 
-以下是 `src/components/TodoList.js`：
+在上面的 Component 中我們讓使用者可以新增代辦事項，接下來我們要讓新增的代辦事項可以顯示。我們在 `componentDidMount` 設了一個監聽器 `TodoStore` 資料改變時會去把資料重新再更新，這樣當使用者新增代辦事項時 `TodoList` 就會保持同步。當以下是 `src/components/TodoList.js` 完整程式碼：
 
 ```javascript
 import React, { Component } from 'react';
@@ -316,7 +314,7 @@ class TodoList extends Component {
 export default TodoList;
 ```
 
-最後我們在終端機的根目錄位置執行 `npm start` 我們就可以看到整個成果囉！
+若讀者都有跟著上面的步驟走完的話，最後我們在終端機的根目錄位置執行 `npm start` 就可以看到整個成果囉，YA！
 ![React Flux ](./images/flux-demo.png "React Flux ")
 
 ## 總結
