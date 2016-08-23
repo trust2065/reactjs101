@@ -1,11 +1,19 @@
 # Redux 實戰入門
 
 ![React Redux](./images/redux-logo.png "React Redux")
+![React Redux](./images/redux-flow.png "React Redux")
 
 ## 前言
 前面一個章節我們講解了 Flux 的功能和用法，但在實務上許多開發者較偏好的是同為 Flux-like 但較為簡潔的 [Redux](http://redux.js.org/index.html) 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其主要功能如官方首頁寫著：`Redux is a predictable state container for JavaScript apps.`，亦即 Redux 希望能提供一個可以預測的 state 管理容器。
 
 ## Flux/Redux 超級比一比
+
+Flux 的簡單 Flow 圖：
+![React Redux](./images/flux-simple-diagram.png "React Redux")
+
+Redux 的簡單 Flow 圖：
+![React Redux](./images/redux-simple-f8-diagram.png "React Redux")
+
 在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
 
 1. 只使用一個 store 將整個應用程式的狀態 (state) 用物件樹 (object tree) 的方式儲存起來：
@@ -32,9 +40,9 @@
 	}
 	```
 
-2. 唯一可以改變 state 的方法就是發送 action，Redux 的 action 和 Flux 的 action 類似，就是一個包含 `type` 和 `payload` 的物件
+2. 唯一可以改變 state 的方法就是發送 action，這部份和 Flux 類似。Redux 的 action 和 Flux 的 action 類似，就是一個包含 `type` 和 `payload` 的物件
 
-3. 根據 action 的 type 去執行對應的 state 做變化的函式叫做 reducer。你可以使用 switch 或是使用函式 map 的方式去對應。 
+3. 根據 action 的 type 去執行對應的 state 做變化的函式叫做 reducer。你可以使用 switch 或是使用函式 map 的方式去對應處理的方式 
 
 ## Redux 核心概念介紹
 1. Single source of truth (單一的真相來源)
@@ -84,7 +92,15 @@ store.dispatch({ type: 'DECREMENT' })
 
 （View -> Action -> Middleware -> Reducer）
 
+![React Redux](./images/react-redux-diagram.png "React Redux")
+
 若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
+
+![React Redux](./images/redux-flowchart.png "React Redux")
+
+
+![React Redux](./images/redux-store.png "React Redux")
+
 
 ## Redux 實戰初體驗
 
@@ -291,4 +307,4 @@ export default connect(
 1. [Redux 官方網站](http://redux.js.org/index.html)
 2. [Redux架构实践——Single Source of Truth](http://react-china.org/t/redux-single-source-of-truth/5564)
 
-（image via [githubusercontent](https://raw.githubusercontent.com/reactjs/redux/master/logo/logo-title-dark.png)）
+（image via [githubusercontent](https://raw.githubusercontent.com/reactjs/redux/master/logo/logo-title-dark.png)、[makeitopen](http://makeitopen.com/static/images/redux_flowchart.png)、[licdn](https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAUQAAAAJDAyMWU1MmZhLTYzMTQtNDJkNy1hYzM4LTE5MWQzNWM1ODcyNA.png)、[css-tricks](https://css-tricks.com/wp-content/uploads/2016/03/redux-article-3-03.svg)、[tighten](https://blog.tighten.co/assets/img/react-redux-diagram.png)、[tryolabs](http://blog.tryolabs.com/wp-content/uploads/2016/04/redux-simple-f8-diagram.png)）
