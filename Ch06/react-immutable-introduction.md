@@ -1,5 +1,7 @@
 # ImmutableJS 入門教學
 
+![ImmutableJS](./images/immutable.jpeg "ImmutableJS")
+
 ## 前言
 在 JavaScript 中的物件資料是可以變的（Mutable），由於是使用引用方式給值，所以當修改到複製的值也會修改到原始值。一般作法是使用 shallowCopy 或 deepCopy 來避免修改，但這樣作法會資源的浪費。為了很好的解決這個問題，我們可以使用 `Immutable Data`，所謂的 Immutable Data 就是一旦建立，就不能再被修改的數據資料。於 2013 時 Facebook 工程師打造了 `ImmutableJS`，但並沒有被預設放到 React 工具包中（雖然有提供簡化的 Helper）。
 
