@@ -8,7 +8,7 @@
 ## Flux/Redux 超級比一比
 
 簡單 Flux/Redux 比較圖：
-![React Redux](./images/using-redux-compare.jpeg "React Redux")
+![React Redux](./images/using-redux-compare.jpg "React Redux")
 
 在開始實作 Redux App 之前我們先來了解一下 Redux 和 Flux 的一些差異：
 
@@ -105,7 +105,7 @@ Redux 優點：
 
 ![React Redux](./images/redux-flow.png "React Redux")
 
-![React Redux](./images/using-redux.jpeg "React Redux")
+![React Redux](./images/using-redux.jpg "React Redux")
 
 ![React Redux](./images/redux-store.png "React Redux")
 
