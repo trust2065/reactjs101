@@ -5,30 +5,7 @@
 ## 前言
 [Flux](https://facebook.github.io/flux/) 是 Facebook 推出的 client-side 應用程式架構（Architecture），主要想解決 `MVC` 架構的一些問題。事實上，Flux 並非一個完整的前端 Framework，其特色在於實現了 Unidirectional Data Flow（單向流）的資料流設計模式，在開發複雜的大型應用程式時可以更容易地管理 state（狀態）。由於 React 主要是負責 View 的部份，所以透過搭配 Flux-like 的資料處理架構，可以更好的去管理我們的 state（狀態），處理複雜的使用者互動（例如：Facebook 同時要維護使用者是否按讚、點擊相片，是否有新訊息等狀態）。
 
-由於原始的 Flux 架構在實現上有些部分可以精簡和改善，在實務上我們通常會使用開發者社群開發的 Flux-like 相關的架構實現（例如：[Redux](http://redux.js.org/index.html)、[Alt](http://alt.js.org/)、[Reflux](https://github.com/reflux/refluxjs) 等）。不過這邊我們主要會使用 Facebook 本身提供 `Dispatcher API` 函式庫（可以想成是一個 pub/sub 處理器，透過 broadcast 將 `payloads` 傳給註冊的 callback function）並搭配 `NodeJS` 的 `EventEmitter` 模組去完成 Flux 架構的實現。
-
-## 開發環境設置
-先透過以下指令在根目錄產生 npm 設定檔 `package.json`：
-
-```
-$ npm init
-```
-
-安裝相關套件（包含開發環境使用的套件）：
-
-```
-$ npm install --save react react-dom flux
-```
-
-```
-$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server
-```
-
-安裝好後我們可以設計一下我們的資料夾結構，首先我們在根目錄建立 `src`，放置 `script` 的 `source` 。在 `components` 資料夾中我們會放置所有 `components`（個別元件資料夾中會用 `index.js` 輸出元件，讓引入元件更簡潔），另外還有 `actions`、`constants`、`dispatcher`、`stores`，其餘設定檔則放置於根目錄下。
-
-![React Flux 資料夾結構](./images/folder.png "React Flux 資料夾結構")
-
-接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Flux` 應用程式了！	
+由於原始的 Flux 架構在實現上有些部分可以精簡和改善，在實務上我們通常會使用開發者社群開發的 Flux-like 相關的架構實現（例如：[Redux](http://redux.js.org/index.html)、[Alt](http://alt.js.org/)、[Reflux](https://github.com/reflux/refluxjs) 等）。不過這邊我們主要會使用 Facebook 本身提供 `Dispatcher API` 函式庫（可以想成是一個 pub/sub 處理器，透過 broadcast 將 `payloads` 傳給註冊的 callback function）並搭配 `NodeJS` 的 `EventEmitter` 模組去完成 Flux 架構的實現。	
 
 ## Flux 概念介紹
 ![React Flux](./images/flux-simple-diagram.png "React Flux")
@@ -81,16 +58,39 @@ Flux 架構前置作業：
 1. Stores 向 Dispatcher 註冊 callback，當資料改變時告知 Stores
 2. Controller Views 向 Stores 取得初始資料
 3. Controller Views 將資料給 Views 去渲染 UI
-4. Controller Views 向 store 註冊 listener，當資料改變時告知 Controller Views
+4. Controller Views 向 store 註冊 listener，當資料改變時告知 Controller Views 
 
 Flux 與使用者互動運作流程：
 
 1. 使用者和 App 互動，觸發事件，Action Creator 發送 actions 給 Dispatcher
-2. Dispatcher 依序將 action 傳給 store 去並由 action type 判斷合適的處理方式
-3. 若有資料更新則會觸發 Controller Views 向 store 註冊的 listener，向 store 取得更新資料
+2. Dispatcher 依序將 action 傳給 store 並由 action type 判斷合適的處理方式
+3. 若有資料更新則會觸發 Controller Views 向 store 註冊的 listener 並向 store 取得更新資料
 4. View 根據 Controller Views 的新資料重新繪製 UI
 
 ## Flux 實戰初體驗
+介紹完了整個 Flux 基本架構後，接下來我們就來動手實作一個簡單 Flux 架構的 Todo，讓使用者可以在 `input` 輸入代辦事項並新增。
+
+首先，我們先完成一些開發的前置作業，先透過以下指令在根目錄產生 npm 設定檔 `package.json`：
+
+```
+$ npm init
+```
+
+安裝相關套件（包含開發環境使用的套件）：
+
+```
+$ npm install --save react react-dom flux
+```
+
+```
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server
+```
+
+安裝好後我們可以設計一下我們的資料夾結構，首先我們在根目錄建立 `src`，放置 `script` 的 `source` 。在 `components` 資料夾中我們會放置所有 `components`（個別元件資料夾中會用 `index.js` 輸出元件，讓引入元件更簡潔），另外還有 `actions`、`constants`、`dispatcher`、`stores`，其餘設定檔則放置於根目錄下。
+
+![React Flux 資料夾結構](./images/folder.png "React Flux 資料夾結構")
+
+接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Flux` 應用程式了！
 
 HTML Markup：
 
@@ -107,7 +107,7 @@ HTML Markup：
 </html>
 ```
 
-以下為 `src/index.js` 完整程式碼：
+以下為 `src/index.js` 完整程式碼，安排了父 `component`和在 HTML Markup 插入位置：
 
 ```javascript
 import React from 'react';
@@ -133,9 +133,13 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
+通常實務上我們會開一個 `constants` 資料夾存放 `config` 或是 `actionTypes` 常數。以下是 `src/constants/actionTypes.js`：
+
 ```javascript
 export const ADD_TODO = 'ADD_TODO';
 ```
+
+以下是 `src/dispatch/AppDispatcher.js`：
 
 ```javascript
 // Todo app dispatcher with actions responding to both
@@ -143,20 +147,20 @@ export const ADD_TODO = 'ADD_TODO';
 import { Dispatcher } from 'flux';
 
 class DispatcherClass extends Dispatcher {
-
   handleAction(action) {
     this.dispatch({
       type: action.type,
       payload: action.payload,
     });
   }
-
 }
 
 const AppDispatcher = new DispatcherClass();
 
 export default AppDispatcher;
 ```
+
+以下是 `src/actions/todoActions.js`：
 
 ```javascript
 import AppDispatcher from '../dispatcher/AppDispatcher';
@@ -174,6 +178,8 @@ export const TodoActions = {
 };
 ```
 
+以下是 `src/stores/TodoStore.js`：
+
 ```javascript
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import { ADD_TODO } from '../constants/actionTypes';
@@ -190,11 +196,9 @@ class TodoStoreClass extends EventEmitter {
   addChangeListener(callback) {
     this.on(ADD_TODO, callback);
   }
-
   removeChangeListener(callback) {
     this.removeListener(ADD_TODO, callback);
   }
-
   getTodos() {
     return store.todos;
   }
@@ -217,6 +221,8 @@ AppDispatcher.register((action) => {
 export default TodoStore;
 ```
 
+以下是 `src/components/TodoHeader.js`：
+
 ```javascript
 import React, { Component } from 'react';
 import { TodoActions } from '../../actions/todoActions';
@@ -231,20 +237,17 @@ class TodoHeader extends Component {
       editing: false,
     };
   }
-
   onChange(event) {
     this.setState({
       text: event.target.value,
     });
   }
-
   onAdd() {
     TodoActions.addTodo(this.state.text);
     this.setState({
       text: '',
     });
   }
-
   render() {
     return (
       <div>
@@ -269,6 +272,8 @@ class TodoHeader extends Component {
 
 export default TodoHeader;
 ```
+
+以下是 `src/components/TodoList.js`：
 
 ```javascript
 import React, { Component } from 'react';
@@ -310,6 +315,9 @@ class TodoList extends Component {
 
 export default TodoList;
 ```
+
+最後我們在終端機的根目錄位置執行 `npm start` 我們就可以看到整個成果囉！
+![React Flux ](./images/flux-demo.png "React Flux ")
 
 ## 總結
 Flux 優勢：
