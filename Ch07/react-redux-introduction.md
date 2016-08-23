@@ -5,6 +5,8 @@ Single source of truth (單一的真相來源)
 State is read-only (狀態是唯讀的)
 Changes are made with pure functions (使用純函式進行更改)
 
+（View -> Action -> Middleware -> Reducer）
+
 ## Redux 初體驗
 
 ## 延伸閱讀
