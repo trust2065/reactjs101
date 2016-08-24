@@ -1,4 +1,4 @@
-# Ch10 實戰教學：用 React + Redux + Node（Isomorphic）開發食譜分享網站
+# 用 React + Redux + Node（Isomorphic）開發食譜分享網站
 
 ## 前言
 Universal/Isomorphic
