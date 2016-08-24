@@ -41,7 +41,7 @@
 
 3. Redux 擁有 Flux 所沒有的 Reducer。Reducer 根據 action 的 type 去執行對應的 state 做變化的函式叫做 Reducer。你可以使用 switch 或是使用函式 mapping 的方式去對應處理的方式。 
 
-4. Redux 擁有許多方便好用的輔助測試工具（例如：[redux-devtools](https://github.com/gaearon/redux-devtools)、[react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)），方便測試。
+4. Redux 擁有許多方便好用的輔助測試工具（例如：[redux-devtools](https://github.com/gaearon/redux-devtools)、[react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)），方便測試和使用 `Hot Module Reload`。
 
 ## Redux 核心概念介紹
 1. Single source of truth (單一的真相來源)
@@ -54,10 +54,10 @@
 import { createStore } from 'redux'
 
 /** 
-  下面是一個簡單的 reducers ，主要功能是針對傳進來的 action type 去回傳新的 state
-  reducer 規格：(state, action) => state 
+  下面是一個簡單的 reducers ，主要功能是針對傳進來的 action type 判斷並回傳新的 state
+  reducer 規格：(state, action) => newState 
   一般而言 state 可以是 primitive、array 或 object 甚至是 ImmutableJS Data。但要留意的是不能修改到原來的 state ，
-  回傳的是新的 state
+  回傳的是新的 state。由於使用在 Redux 中使用 ImmutableJS 有許多好處，所以我們的範例 App 也會使用 ImmutableJS 
 */
 function counter(state = 0, action) {
   switch (action.type) {
@@ -70,8 +70,8 @@ function counter(state = 0, action) {
   }
 }
 
-// 創建 Redux store 去存放 App 的所有 state，把 reducer 放入
-// store 的可用 API { subscribe, dispatch, getState }.
+// 創建 Redux store 去存放 App 的所有 state
+// store 的可用 API { subscribe, dispatch, getState } 
 let store = createStore(counter)
 
 // 可以使用 subscribe() 來訂閱 state 是否更新。但實務通常會使用 react-redux 來串連 React 和 Redux
@@ -128,14 +128,7 @@ action, and the moment it reaches the reducer.
 若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
 
 ## 總結
-
-Redux 優點：
-
-1. Hot Module Reload
-
-2. Powerful DevTools
-
-3. Components easy
+以上介紹了 Redux 的基礎概念，若是讀者覺得還是有點抽象的話也沒關係，在下一個章節我們將實際帶大家開發一個整合 `React`、`Redux` 和 `ImmutableJS` 的 TodoApp。
 
 ## 延伸閱讀
 1. [Redux 官方網站](http://redux.js.org/index.html)
