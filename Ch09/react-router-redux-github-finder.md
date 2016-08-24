@@ -492,7 +492,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 6. That's it
 
-![React Redux](./images/demo-1.png "React Redux")
+	![React Redux](./images/demo-1.png "React Redux")
 
 ## 總結
 
