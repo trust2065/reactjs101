@@ -1,6 +1,6 @@
 # Container 與 Presentational Components 入門
 
-在聊完了 React 和 Redux 整合後我們來談談分離 Presentational 和 Container Component 的概念，若你是第一次聽過這個名詞，我建議你可以先看看 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)。
+在聊完了 React 和 Redux 整合後我們來談談分離 Presentational 和 Container Component 的概念，若你是第一次聽過這個名詞，我建議你可以先看看 Redux 作者 Dan AbramovFollow 所寫的這篇文章 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)。
 
 ## Container 與 Presentational Components 超級比一比
 
@@ -26,8 +26,6 @@
 
 ## Container Components
 
-## Presentational Components
-
 ```javascript
 import { connect } from 'react-redux';
 import TodoHeader from '../../components/TodoHeader';
@@ -39,47 +37,26 @@ import {
 } from '../../actions';
 
 const mapStateToProps = (state) => ({
-	// 從 store 取得 todo state
-	todo: state.getIn(['todo', 'todo'])
+  // 從 store 取得 todo state
+  todo: state.getIn(['todo', 'todo'])
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	// 當使用者在 input 輸入資料值即會觸發這個函數，發出 changeText action 並附上使用者輸入內容 event.target.value
-	onChangeText: (event) => (
-	  dispatch(changeText({ text: event.target.value }))
-	),
-	// 當使用者按下送出時，發出 createTodo action 並清空 input 
-	onCreateTodo: () => {
-	  dispatch(createTodo());
-	  dispatch(changeText({ text: '' }));
-	}
+  // 當使用者在 input 輸入資料值即會觸發這個函數，發出 changeText action 並附上使用者輸入內容 event.target.value
+  onChangeText: (event) => (
+    dispatch(changeText({ text: event.target.value }))
+  ),
+  // 當使用者按下送出時，發出 createTodo action 並清空 input 
+  onCreateTodo: () => {
+    dispatch(createTodo());
+    dispatch(changeText({ text: '' }));
+  }
 });
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(TodoHeader);
-```
-
-以下是 `src/components/TodoHeader/TodoHeader.js` 的部份：
-
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-const TodoHeader = ({
-  onChangeText,
-  onCreateTodo,
-  todo,
-}) => (
-  <div>
-    <h1>TodoHeader</h1>
-    <input type="text" value={todo.get('text')} onChange={onChangeText} />
-    <button onClick={onCreateTodo}>送出</button>
-  </div>
-);
-
-export default TodoHeader;
 ```
 
 ```javascript
@@ -101,9 +78,32 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(TodoList);
+```
+
+## Presentational Components
+
+以下是 `src/components/TodoHeader/TodoHeader.js` 的部份：
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const TodoHeader = ({
+  onChangeText,
+  onCreateTodo,
+  todo,
+}) => (
+  <div>
+    <h1>TodoHeader</h1>
+    <input type="text" value={todo.get('text')} onChange={onChangeText} />
+    <button onClick={onCreateTodo}>送出</button>
+  </div>
+);
+
+export default TodoHeader;
 ```
 
 以下是 `src/components/TodoList/TodoList.js` 的部份：
@@ -132,6 +132,8 @@ const TodoList = ({
 
 export default TodoList;
 ```
+
+## 總結
 
 ## 延伸閱讀
 1. [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)
