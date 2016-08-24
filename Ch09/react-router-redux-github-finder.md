@@ -15,9 +15,8 @@
 5. ImmutableJS
 6. Fetch
 7. [Material UI](http://www.material-ui.com/#/)
-8. Weather API Icons
-9. Roboto Font from Google Font
-10. Github API（https://api.github.com/users/torvalds）
+8. Roboto Font from Google Font
+9. Github API（https://api.github.com/users/torvalds）
 
 ## 專案成果截圖
 
