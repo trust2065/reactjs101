@@ -3,7 +3,7 @@
 ![React Redux](./images/redux-logo.png "React Redux")
 
 ## 前言
-前面一個章節我們講解了 Flux 的功能和用法，但在實務上許多開發者較偏好的是同為 Flux-like 但較為簡潔的 [Redux](http://redux.js.org/index.html) 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其主要功能如官方首頁寫著：`Redux is a predictable state container for JavaScript apps.`，亦即 Redux 希望能提供一個可以預測的 state 管理容器，讓開發者可以可以更容易開發複雜的 JavaScript 應用程式（注意 Redux 和 React 並無相依性，只是和 React 可以有很好的整合）。
+前面一個章節我們講解了 Flux 的功能和用法，但在實務上許多開發者較偏好的是同為 Flux-like 但較為簡潔且文件豐富清楚的 [Redux](http://redux.js.org/index.html) 當作狀態資料管理的架構。Redux 是由 Dan Abramov 所發起的一個開源的 library，其主要功能如官方首頁寫著：`Redux is a predictable state container for JavaScript apps.`，亦即 Redux 希望能提供一個可以預測的 state 管理容器，讓開發者可以可以更容易開發複雜的 JavaScript 應用程式（注意 Redux 和 React 並無相依性，只是和 React 可以有很好的整合）。
 
 ## Flux/Redux 超級比一比
 
@@ -41,6 +41,8 @@
 
 3. Redux 擁有 Flux 所沒有的 Reducer。Reducer 根據 action 的 type 去執行對應的 state 做變化的函式叫做 Reducer。你可以使用 switch 或是使用函式 mapping 的方式去對應處理的方式。 
 
+4. Redux 擁有許多方便好用的輔助測試工具（例如：[redux-devtools](https://github.com/gaearon/redux-devtools)、[react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)），方便測試
+
 ## Redux 核心概念介紹
 1. Single source of truth (單一的真相來源)
 2. State is read-only (狀態是唯讀的)
@@ -73,7 +75,6 @@ function counter(state = 0, action) {
 let store = createStore(counter)
 
 // 可以使用 subscribe() 來訂閱 state 是否更新。但實務通常會使用 react-redux 來串連 React 和 Redux
-
 store.subscribe(() =>
   console.log(store.getState())
 )
@@ -87,12 +88,30 @@ store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
 
-Redux 優點：
-1. Hot Module Reload
+## Redux API 入門
 
-2. Powerful DevTools
+1. createStore
 
-3. Components easy
+createStore(reducer, [preloadedState], [enhancer])
+
+2. Store
+
+3. combineReducers
+
+combineReducers(reducers)
+
+4. applyMiddleware
+
+applyMiddleware(...middlewares)
+
+5. bindActionCreators
+
+bindActionCreators(actionCreators, dispatch)
+
+6. compose
+
+compose(...functions)
+
 
 ## Redux 流程回顧
 
@@ -106,12 +125,19 @@ Redux 優點：
 > It provides a third-party extension point between dispatching an
 action, and the moment it reaches the reducer.
 
-
 若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
 
 ![React Redux](./images/redux-store.png "React Redux")
 
 ## 總結
+
+Redux 優點：
+
+1. Hot Module Reload
+
+2. Powerful DevTools
+
+3. Components easy
 
 ## 延伸閱讀
 1. [Redux 官方網站](http://redux.js.org/index.html)

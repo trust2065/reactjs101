@@ -21,6 +21,8 @@ Redux 的 React 綁定擁抱了分離 Presentational 和 Container Component 的
 
 High Order Component
 
+f(D) => UI
+
 ## 延伸閱讀
 1. [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)
 2. [Redux Usage with React](http://redux.js.org/docs/basics/UsageWithReact.html)

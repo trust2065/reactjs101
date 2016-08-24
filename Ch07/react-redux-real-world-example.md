@@ -1,14 +1,40 @@
 # Redux 實戰入門
 
 ## 前言
-上一篇我們了解了 Redux 基本的概念和特性後，本章我們要實際動手用 Redux、React Redux 結合 ImmutableJS 開發一個簡單的 Todo 應用，那就讓讓我們開始吧！
+上一節我們了解了 Redux 基本的概念和特性後，本章我們要實際動手用 Redux、React Redux 結合 ImmutableJS 開發一個簡單的 Todo 應用，那就讓讓我們開始吧！
 
 ![React Redux](./images/redux-flow.png "React Redux")
 
 ![React Redux](./images/using-redux.jpg "React Redux")
 
 ## 動手創作
+首先，我們先完成一些開發的前置作業，先透過以下指令在根目錄產生 npm 設定檔 `package.json`：
+
+```
+$ npm init
+```
+
+安裝相關套件（包含開發環境使用的套件）：
+
+```
+$ npm install --save react react-dom redux react-redux immutable
+```
+
+```
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server
+```
+
+安裝好後我們可以設計一下我們的資料夾結構，首先我們在根目錄建立 `src`，放置 `script` 的 `source` 。在 `components` 資料夾中我們會放置所有 `components`（個別元件資料夾中會用 `index.js` 輸出元件，讓引入元件更簡潔）、`containers`（負責和 store 互動取得 state），另外還有 `actions`、`constants`、`reducers`、`store`，其餘設定檔則放置於根目錄下。
+
+![React Flux 資料夾結構](./images/folder.png "React Flux 資料夾結構")
+
+接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Redux` 應用程式了！
+
+大致上的資料夾結構會長這樣：
+
 ![React Redux](./images/redux-folder.png "React Redux")
+
+HTML Markup：
 
 ```html
 <!DOCTYPE html>
@@ -59,6 +85,19 @@ export * from './todoActions';
 export const CREATE_TODO = 'CREATE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const CHANGE_TEXT = 'CHANGE_TEXT';
+
+/* 
+或是可以考慮使用 keyMirror，方便產生與 key 相同的常數
+import keyMirror from 'fbjs/lib/keyMirror';
+
+export default keyMirror({
+    ADD_ITEM: null,
+    DELETE_ITEM: null,
+    DELETE_ALL: null,
+    FILTER_ITEM: null
+});
+*/
+
 ```
 
 ```javascript
