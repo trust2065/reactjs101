@@ -218,7 +218,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 3. Reducers
 
-	```
+	```javascript
 	export const SHOW_SPINNER = 'SHOW_SPINNER';
 	export const HIDE_SPINNER = 'HIDE_SPINNER';
 	export const GET_GITHUB_INITIATE = 'GET_GITHUB_INITIATE';
@@ -240,7 +240,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	});
 	```
 
-	```
+	```javascript
 	import { handleActions } from 'redux-actions';
 	import { GithubState } from '../../constants/models';
 
@@ -269,7 +269,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 	```
 
-	```
+	```javascript
 	import { handleActions } from 'redux-actions';
 	import { UiState } from '../../constants/models';
 
@@ -297,7 +297,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 	```
 
-	```
+	```javascript
 	import { combineReducers } from 'redux-immutable';
 	import ui from './ui/uiReducers';// import routes from './routes';
 	import github from './data/githubReducers';// import routes from './routes';
@@ -311,7 +311,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 	```
 
-	```
+	```javascript
 	import { createStore, applyMiddleware } from 'redux';
 	import reduxThunk from 'redux-thunk';
 	import createLogger from 'redux-logger';
@@ -468,7 +468,6 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	```
 
 	```javascript
-
 	import { connect } from 'react-redux';
 	import ResultPage from '../../components/ResultPage';
 
