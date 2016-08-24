@@ -137,7 +137,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	</html>
 	```
 
-	設定 `webpack.config.js` 的進入點 `src/index.js`
+	設定 `webpack.config.js` 的進入點 `src/index.js`：
 
 	```javascript
 	import React from 'react';
@@ -175,9 +175,13 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	```
 
 2. Actions
+	
+	現在我們來規劃我們的 actions 的部份，這個範例我們使用到了 `redux-thunk` 來處理非同步的 action（若讀者對於 fetch 不熟悉可以[參考這個文件](https://developer.mozilla.org/zh-TW/docs/Web/API/GlobalFetch/fetch)）。以下是 `src/actions/githubActions.js` 完整程式碼：
 
 	```javascript
+	// 這邊引入了 fetch 的 polyfill，考以讓舊的瀏覽器也可以使用 fetch
 	import 'whatwg-fetch';
+	// 引入 actionTypes 常數
 	import {
 	  GET_GITHUB_INITIATE,
 	  GET_GITHUB_SUCCESS,
@@ -185,10 +189,14 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  CHAGE_USER_ID,
 	} from '../constants/actionTypes';
 
+	// 引入 uiActions 的 action
 	import {
 	  showSpinner,
 	  hideSpinner,
 	} from './uiActions';
+
+	// 這邊是這個範例的重點，要學習我們之前尚未講解的非同步 action 處理方式：不同於一般同步 action 直接發送 action，非同步 action 會回傳一個帶有 dispatch 參數的 function，裡面使用了 Ajax（這裡使用 fetch()）進行處理
+	// 這次我們雖然沒有使用 redux-actions 但我們還是維持標準 Flux Standard Action 格式：{ type: '', payload: {} }
 
 	export const getGithub = (userId = 'torvalds') => {
 	  return (dispatch) => {
@@ -204,8 +212,11 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  } 
 	}
 
+	// 同步 actions 處理
 	export const changeUserId = (text) => ({ type: CHAGE_USER_ID, payload: { userId: text } });
 	```
+
+	// 
 
 	```javascript
 	import { createAction } from 'redux-actions';
@@ -213,10 +224,13 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  SHOW_SPINNER,
 	  HIDE_SPINNER,
 	} from '../constants/actionTypes';
-
+	
+	// 同步的 actions
 	export const showSpinner = () => ({ type: SHOW_SPINNER});
 	export const hideSpinner = () => ({ type: HIDE_SPINNER});
 	```
+
+	透過於 `src/actions/index.js` 將我們 actions 輸出
 
 	```javascript
 	export * from './uiActions';
@@ -441,7 +455,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	export default ResultPage;
 	```
 
-5. Connect State to Component
+4. Connect State to Component
 
 	```javascript
 	import { connect } from 'react-redux';
@@ -512,3 +526,4 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 6. [【翻译】这个API很“迷人”——(新的Fetch API)](http://www.w3ctech.com/topic/854)
 7. [Redux: trigger async data fetch on React view event](http://stackoverflow.com/questions/33304225/redux-trigger-async-data-fetch-on-react-view-event)
 8. [Github API](https://api.github.com/)
+9. [传统 Ajax 已死，Fetch 永生](https://github.com/camsong/blog/issues/2)
