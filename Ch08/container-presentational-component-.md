@@ -1,8 +1,10 @@
 # Container 與 Presentational Components 入門
 
+## 前言
 在聊完了 React 和 Redux 整合後我們來談談分離 Presentational 和 Container Component 的概念，若你是第一次聽過這個名詞，我建議你可以先看看 Redux 作者 Dan AbramovFollow 所寫的這篇文章 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)。
 
 ## Container 與 Presentational Components 超級比一比
+以下先參考 [Redux 官網](http://redux.js.org/docs/basics/UsageWithReact.html) 列出兩者相異之處：
 
 1. Presentational Components	
 	- 用途：怎麼看事情（Markup、外觀）
@@ -18,13 +20,11 @@
  - 改變資料方式：Dispatch Redux Action
  - 寫入方式：從 React Redux 產生
 
-[react-redux](https://github.com/reactjs/react-redux) 所提供的 API `connect`，其用法如下：
-
-`connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])` 
-
-在我們的範例 App 中我們只會先用到前兩個參數，地三個參數會在之後的例子裡用到。第一個參數 mapStateToProps 是一個讓開發者可以從 store 取出想要 state 並當做 props 往下傳的功能，第二個參數則是將 dispatch 行為封裝成函數順著 props 可以方便往下傳和呼叫。
+ 從上面的分析讀者可以發現，兩者最大的差別在於 `Component` 主要負責單純的 UI 的渲染，而 `Container` 則負責和 Redux 的 store 溝通，作為 `Redux` 和 `Component` 之間的橋樑。這樣的分法可以讓程式架構和職責更清楚，所以接下來我們就使用上一章節的 Redux TodoApp 進行改造，改造成 Container 與 Presentational Components 模式。
 
 ## Container Components
+
+以下是 `src/containers/TodoHeaderContainer/TodoHeaderContainer.js` 的部份：
 
 ```javascript
 import { connect } from 'react-redux';
@@ -59,6 +59,8 @@ export default connect(
 )(TodoHeader);
 ```
 
+以下是 `src/containers/TodoListContainer/TodoListContainer.js` 的部份：
+
 ```javascript
 import { connect } from 'react-redux';
 import TodoList from '../../components/TodoList';
@@ -91,6 +93,8 @@ export default connect(
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// 開始建設 Component 並使用 connect 進來的 props 並綁定事件（onChange、onClick）。注意我們的 state 因為是使用 `ImmutableJS` 所以要用 `get()` 取值
+
 const TodoHeader = ({
   onChangeText,
   onCreateTodo,
@@ -111,6 +115,9 @@ export default TodoHeader;
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Component 部分值的注意的是 todos state 是透過 map function 去迭代出元素，由於要讓 React JSX 可以渲染並保持傳入觸發 event state 的 immutable，所以需使用 toJS() 轉換 component of array。
+// 由 Component 傳進欲刪除元素的 index
 
 const TodoList = ({
   todos,
@@ -134,6 +141,7 @@ export default TodoList;
 ```
 
 ## 總結
+That's it！透過區分 Container 與 Presentational Components 可以讓程式架構和職責更清楚了！接下來我們將運用我們所學實際開發兩個貼近生活的專案，讓讀者更加熟悉 React 生態系如何應用於實務上。
 
 ## 延伸閱讀
 1. [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.vtcuxsurv)
