@@ -26,13 +26,13 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 安裝好後我們可以設計一下我們的資料夾結構，首先我們在根目錄建立 `src`，放置 `script` 的 `source` 。在 `components` 資料夾中我們會放置所有 `components`（個別元件資料夾中會用 `index.js` 輸出元件，讓引入元件更簡潔）、`containers`（負責和 store 互動取得 state），另外還有 `actions`、`constants`、`reducers`、`store`，其餘設定檔則放置於根目錄下。
 
-接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Redux` 應用程式了！
-
 大致上的資料夾結構會長這樣：
 
 ![React Redux](./images/redux-folder.png "React Redux")
 
-HTML Markup：
+接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Redux` 應用程式了！
+
+首先設計 HTML Markup：
 
 ```html
 <!DOCTYPE html>
@@ -46,6 +46,10 @@ HTML Markup：
 </body>
 </html>
 ```
+
+在撰寫 `src/index.js` 之前我們再次複習一下 Redux 的特性：
+
+![React Redux](./images/redux-store.png "React Redux")
 
 ![React Redux](./images/using-redux.jpg "React Redux")
 
