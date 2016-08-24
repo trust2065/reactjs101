@@ -1,1 +1,1 @@
-# React Redux Sever Rendering 入門
+# React Redux Sever Rendering（Isomorphic）入門
