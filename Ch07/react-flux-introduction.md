@@ -1,4 +1,4 @@
-# Flux 實戰入門
+# Flux 基礎概念與實戰入門
 
 ![React Flux](./images/react-flux.jpeg "React Flux")
 

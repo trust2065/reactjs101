@@ -1,4 +1,4 @@
-# Redux 入門基礎概念
+# Redux 基礎概念
 
 ![React Redux](./images/redux-logo.png "React Redux")
 
