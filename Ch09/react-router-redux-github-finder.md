@@ -1,10 +1,10 @@
 # 用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用
 
 ## 前言
-學了一身本領後，本章將帶大家完成一個單頁式應用程式（Single Page Application），運用 React + Redux + ImmutableJS + React Router 搭配 Github API 製作一個簡單的 Github 使用者查詢應用。
+學了一身本領後，本章將帶大家完成一個單頁式應用程式（Single Page Application），整合 React + Redux + ImmutableJS + React Router 搭配 Github API 製作一個簡單的 Github 使用者查詢應用，實際體驗一下開發 React App 的感受。
 
 ## 功能規劃
-讓訪客可以使用 Github Id 搜尋 Github 使用者，展示 Github 使用者名稱、follower、following、avatar_url 並可以返回首頁。
+讓訪客可以使用 Github ID 搜尋 Github 使用者，展示 Github 使用者名稱、follower、following、avatar_url 並可以返回首頁。
 
 ## 使用技術
 
@@ -25,9 +25,8 @@
 
 ![React Redux](./images/demo-2.png "React Redux")
 
-## 動手實作
 
-1. 環境安裝與設定
+## 環境安裝與設定
 	- 安裝 Node 和 NPM
 
 	- 安裝所需套件
@@ -40,17 +39,23 @@
 	$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-1 eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server redux-logger
 	```
 
-2. Setup Mockup
+## 動手實作
 
-3. Build Component
+1. Setup Mockup
 
-4. Actions/Reducers
+2. Build Component
 
-5. Fetch API/Data Processing
+3. Actions/Reducers
 
-6. Connect State to Component
+4. Fetch API/Data Processing
 
-7. That's it
+5. Connect State to Component
+
+6. That's it
+
+![React Redux](./images/demo-1.png "React Redux")
+
+## 總結
 
 ## 延伸閱讀
 
