@@ -343,7 +343,7 @@ const TodoList = ({
 export default TodoList;
 ```
 
-若是一切順利的話就可以在瀏覽器上看到自己努力的成果囉！
+若是一切順利的話就可以在瀏覽器上看到自己努力的成果囉！（因為我們有使用 `redux-logger` 所以打開 console 會看到 action 和 state 的變化情形，但記得在 `production` 環境要拿掉）
 
 ![React Redux](./images/react-redux-dev-demo.png "React Redux")
 
