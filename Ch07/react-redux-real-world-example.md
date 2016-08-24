@@ -1,7 +1,7 @@
 # Redux 實戰入門
 
 ## 前言
-上一節我們了解了 Redux 基本的概念和特性後，本章我們要實際動手用 Redux、React Redux 結合 ImmutableJS 開發一個簡單的 Todo 應用，那就讓讓我們開始吧！
+上一節我們了解了 Redux 基本的概念和特性後，本章我們要實際動手用 Redux、React Redux 結合 ImmutableJS 開發一個簡單的 Todo 應用。話不多說，那就讓讓我們開始吧！
 
 以下這張圖表示了整個 React Redux App 的資料流程圖（使用者與 View 互動 => dispatch 出 Action => Reducers 依據 action tyoe 分配到對應處理方式，回傳新的 state => 透過 React Redux 傳送給 React，React 重新繪製 View）：
 
@@ -47,11 +47,15 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 </html>
 ```
 
-在撰寫 `src/index.js` 之前我們再次複習一下 Redux 的特性：
+在撰寫 `src/index.js` 之前，我們先說明整合 `react-redux` 的用法。從以下這張圖可以看到 `react-redux` 是 React 和 Redux 間的橋樑。使用 `Provider`、`connect` 去連結 `store` 和 React View。
+
+![React Redux](./images/using-redux.jpg "React Redux")
+
+整合了 `react-redux` 後，我們的 React App 就可以解決傳統跨 Component 之前傳遞 state 的問題和困難，只要透過 `Provider` 就可以讓每個 React App 中的 `Component` 取用 store 中的 state（接下來我們也會更詳習說明 Container/Component、`connect` 的用法）。
 
 ![React Redux](./images/redux-store.png "React Redux")
 
-![React Redux](./images/using-redux.jpg "React Redux")
+以下是 `src/index.js` 完整程式碼： 
 
 ```javascript
 import React from 'react';
@@ -107,14 +111,14 @@ export default keyMirror({
 ```javascript
 import Immutable from 'immutable';
 
-export const TodoState = Immutable.Map({
-  'todos': Immutable.List(),
-  'todo': Immutable.Map({
+export const TodoState = Immutable.fromJS({
+  'todos': [],
+  'todo': {
     id: '',
     text: '',
     updatedAt: '',
     completed: false,
-  })
+  }
 });
 ```
 
@@ -247,6 +251,8 @@ export default connect(
   })
 )(TodoList);
 ```
+
+若是一切順利的話就可以在瀏覽器上看到自己努力的成果囉！
 
 ## 總結
 
