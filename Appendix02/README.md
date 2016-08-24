@@ -20,6 +20,8 @@
 10. 2015/3 釋出 iOS 版本，2015/9 釋出 Android 版本
 11. 目前更新速度快，平均每兩週發佈新的版本。尚不穩定，社群也還在尋找最佳實踐（2016/6/25 v0.28）
 
+Supported operating systems are >= Android 4.1 (API 16) and >= iOS 7.0.
+
 相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 開發一個 TodoApp！
 
 # React Native 環境設定
