@@ -100,13 +100,34 @@ store.dispatch({ type: 'DECREMENT' });
 
 3. combineReducers：`combineReducers(reducers)`
 
-	combineReducers可以
+	combineReducers 可以將多個 reducers 進行整合並回傳一個 Function，讓我們可以將 reducer 適度分割
 
 4. applyMiddleware：`applyMiddleware(...middlewares)`	
+	
+	applyMiddleware 可以將多個 `middlewares` 整合並回傳一個 Function，便於使用
 
 5. bindActionCreators：`bindActionCreators(actionCreators, dispatch)`
 
+	bindActionCreators 可以將 `actionCreators` 和 `dispatch` 綁定，並回傳一個 Function 或 Object，讓程式更簡潔。但若是使用 react-redux 可以用 `connect` 讓 dispatch 行為更容易管理
+
 6. compose：`compose(...functions)`
+	
+	compose 可以將 function 由右到左合併並回傳一個 Function，如官網範例所示：
+
+	```
+	import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+	import thunk from 'redux-thunk'
+	import DevTools from './containers/DevTools'
+	import reducer from '../reducers/index'
+
+	const store = createStore(
+	  reducer,
+	  compose(
+	    applyMiddleware(thunk),
+	    DevTools.instrument()
+	  )
+	)
+	```
 
 ## Redux 流程回顧
 
