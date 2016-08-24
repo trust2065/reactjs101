@@ -45,23 +45,9 @@
 
 ## Redux 核心概念介紹
 
-`View -> Action -> (Middleware) -> Reducer`
-
-1. Single source of truth (單一的真相來源)
-2. State is read-only (狀態是唯讀的)
-3. Changes are made with pure functions (使用純函式進行更改)
-4. Write Reducers instead of store
-4. Keep Components Stateless
-
 ![React Redux](./images/redux-flowchart.png "React Redux")
 
-![React Redux](./images/react-redux-diagram.png "React Redux")
-
-官方針對 Middleware 進行說明
-> It provides a third-party extension point between dispatching an
-action, and the moment it reaches the reducer.
-
-若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
+從上述的圖中我們可以看到 Redux 資料流的模型大致上可以簡化成： `View -> Action -> (Middleware) -> Reducer`。當使用者和 View 互動時會觸發事件發出 Action，若有使用 Middleware 的話會在進入 Reducer 進行一些處理，當 Action 進到 Reducer 時，Reducer 會根據，action type 去 mapping 對應處理的動作，然後回傳回新的 state。View 則因為偵測到 state 更新而重繪頁面。在這個章節我們討論的是 synchronous（同步）的情形，asynchronous（非同步）的狀況會在接下來的章節進行討論。以下就用官方網站上的簡單範例來讓大家感受一下 Redux 的整個使用流程：
 
 ```javascript
 import { createStore } from 'redux';
@@ -109,6 +95,13 @@ store.dispatch({ type: 'DECREMENT' });
 
 2. Store
 
+	屬於 Store 的四個方法：
+
+	- getState()
+	- dispatch(action)
+	- subscribe(listener)
+	- replaceReducer(nextReducer)
+
 	關於 Store 重點是要知道 Redux 只有一個 Sotre 負責存放整個 App 的 State，而唯一能改變 State 的方法只有發送 action。
 
 3. combineReducers：`combineReducers(reducers)`
@@ -116,8 +109,16 @@ store.dispatch({ type: 'DECREMENT' });
 	combineReducers 可以將多個 reducers 進行整合並回傳一個 Function，讓我們可以將 reducer 適度分割
 
 4. applyMiddleware：`applyMiddleware(...middlewares)`	
-	
-	applyMiddleware 可以將多個 `middlewares` 整合並回傳一個 Function，便於使用
+
+	官方針對 Middleware 進行說明
+	> It provides a third-party extension point between dispatching an
+	action, and the moment it reaches the reducer.
+		
+	若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。而 applyMiddleware 可以將多個 `middlewares` 整合並回傳一個 Function，便於使用。
+
+	若是你要使用 asynchronous（非同步）的行為的話需要使用其中一種 middleware： [redux-thunk](https://github.com/gaearon/redux-thunk)、[redux-promise](https://github.com/acdlite/redux-promise) 或 [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) ，這樣可以讓你在 actions 中 dispatch Promises 而非 function。asynchronous（非同步）運作方式就如同下圖所示：
+
+	![React Redux](./images/react-redux-diagram.png "React Redux")
 
 5. bindActionCreators：`bindActionCreators(actionCreators, dispatch)`
 
