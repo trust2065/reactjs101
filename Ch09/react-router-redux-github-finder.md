@@ -122,371 +122,373 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 1. Setup Mockup
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-	<title>GithubFinder</title>
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-</head>
-<body>
-	<div id="app"></div>
-</body>
-</html>
-```
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+		<title>GithubFinder</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+	</html>
+	```
 
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { browserHistory, Router, Route, IndexRoute } from 'react-router';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Main from './components/Main';
-import HomePageContainer from './containers/HomePageContainer';
-import ResultPageContainer from './containers/ResultPageContainer';
-import store from './store';
+	```javascript
+	import React from 'react';
+	import ReactDOM from 'react-dom';
+	import { Provider } from 'react-redux';
+	import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+	import injectTapEventPlugin from 'react-tap-event-plugin';
+	import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+	import Main from './components/Main';
+	import HomePageContainer from './containers/HomePageContainer';
+	import ResultPageContainer from './containers/ResultPageContainer';
+	import store from './store';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+	// Needed for onTouchTap
+	// http://stackoverflow.com/a/34015469/988941
+	injectTapEventPlugin();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider>
-      <Router history={browserHistory}>
-        <Route path="/" component={Main}>
-          <IndexRoute component={HomePageContainer} />
-          <Route path="/result" component={ResultPageContainer} />
-        </Route>
-      </Router>
-    </MuiThemeProvider>
-  </Provider>,
-  document.getElementById('app')
-);
-```
+	ReactDOM.render(
+	  <Provider store={store}>
+	    <MuiThemeProvider>
+	      <Router history={browserHistory}>
+	        <Route path="/" component={Main}>
+	          <IndexRoute component={HomePageContainer} />
+	          <Route path="/result" component={ResultPageContainer} />
+	        </Route>
+	      </Router>
+	    </MuiThemeProvider>
+	  </Provider>,
+	  document.getElementById('app')
+	);
+	```
 
-```javascript
-import 'whatwg-fetch';
-import {
-  GET_GITHUB_INITIATE,
-  GET_GITHUB_SUCCESS,
-  GET_GITHUB_FAIL,
-  CHAGE_USER_ID,
-} from '../constants/actionTypes';
+2. Actions
 
-import {
-  showSpinner,
-  hideSpinner,
-} from './uiActions';
+	```javascript
+	import 'whatwg-fetch';
+	import {
+	  GET_GITHUB_INITIATE,
+	  GET_GITHUB_SUCCESS,
+	  GET_GITHUB_FAIL,
+	  CHAGE_USER_ID,
+	} from '../constants/actionTypes';
 
-export const getGithub = (userId = 'torvalds') => {
-  return (dispatch) => {
-    dispatch({ type: GET_GITHUB_INITIATE });
-    dispatch(showSpinner());
-    fetch('https://api.github.com/users/' + userId)
-      .then(function(response) { return response.json() })
-      .then(function(json) { 
-        dispatch({ type: GET_GITHUB_SUCCESS, payload: { data: json } });
-        dispatch(hideSpinner());
-      })
-      .catch(function(response) { dispatch({ type: GET_GITHUB_FAIL }) });
-  } 
-}
+	import {
+	  showSpinner,
+	  hideSpinner,
+	} from './uiActions';
 
-export const changeUserId = (text) => ({ type: CHAGE_USER_ID, payload: { userId: text } });
-```
+	export const getGithub = (userId = 'torvalds') => {
+	  return (dispatch) => {
+	    dispatch({ type: GET_GITHUB_INITIATE });
+	    dispatch(showSpinner());
+	    fetch('https://api.github.com/users/' + userId)
+	      .then(function(response) { return response.json() })
+	      .then(function(json) { 
+	        dispatch({ type: GET_GITHUB_SUCCESS, payload: { data: json } });
+	        dispatch(hideSpinner());
+	      })
+	      .catch(function(response) { dispatch({ type: GET_GITHUB_FAIL }) });
+	  } 
+	}
 
-```javascript
-import { createAction } from 'redux-actions';
-import {
-  SHOW_SPINNER,
-  HIDE_SPINNER,
-} from '../constants/actionTypes';
+	export const changeUserId = (text) => ({ type: CHAGE_USER_ID, payload: { userId: text } });
+	```
 
-export const showSpinner = () => ({ type: SHOW_SPINNER});
-export const hideSpinner = () => ({ type: HIDE_SPINNER});
-```
+	```javascript
+	import { createAction } from 'redux-actions';
+	import {
+	  SHOW_SPINNER,
+	  HIDE_SPINNER,
+	} from '../constants/actionTypes';
 
-```javascript
-export * from './uiActions';
-export * from './githubActions';
-```
+	export const showSpinner = () => ({ type: SHOW_SPINNER});
+	export const hideSpinner = () => ({ type: HIDE_SPINNER});
+	```
 
+	```javascript
+	export * from './uiActions';
+	export * from './githubActions';
+	```
 
-3. Actions/Reducers
-```
-export const SHOW_SPINNER = 'SHOW_SPINNER';
-export const HIDE_SPINNER = 'HIDE_SPINNER';
-export const GET_GITHUB_INITIATE = 'GET_GITHUB_INITIATE';
-export const GET_GITHUB_SUCCESS = 'GET_GITHUB_SUCCESS';
-export const GET_GITHUB_FAIL = 'GET_GITHUB_FAIL';
-export const CHAGE_USER_ID = 'CHAGE_USER_ID';
-```
+3. Reducers
 
-```
-import Immutable from 'immutable';
+	```
+	export const SHOW_SPINNER = 'SHOW_SPINNER';
+	export const HIDE_SPINNER = 'HIDE_SPINNER';
+	export const GET_GITHUB_INITIATE = 'GET_GITHUB_INITIATE';
+	export const GET_GITHUB_SUCCESS = 'GET_GITHUB_SUCCESS';
+	export const GET_GITHUB_FAIL = 'GET_GITHUB_FAIL';
+	export const CHAGE_USER_ID = 'CHAGE_USER_ID';
+	```
 
-export const UiState = Immutable.fromJS({
-  spinnerVisible: false,
-});
+	```
+	import Immutable from 'immutable';
 
-export const GithubState = Immutable.fromJS({
-  userId: '',
-  data: {},
-});
-```
+	export const UiState = Immutable.fromJS({
+	  spinnerVisible: false,
+	});
 
-```
-import { handleActions } from 'redux-actions';
-import { GithubState } from '../../constants/models';
+	export const GithubState = Immutable.fromJS({
+	  userId: '',
+	  data: {},
+	});
+	```
 
-import {
-  GET_GITHUB_INITIATE,
-  GET_GITHUB_SUCCESS,
-  GET_GITHUB_FAIL,
-  CHAGE_USER_ID,
-} from '../../constants/actionTypes';
+	```
+	import { handleActions } from 'redux-actions';
+	import { GithubState } from '../../constants/models';
 
-const githubReducers = handleActions({ 
-  GET_GITHUB_SUCCESS: (state, { payload }) => (
-    state.merge({
-      data: payload.data,
-    })
-  ),  
-  CHAGE_USER_ID: (state, { payload }) => (
-    state.merge({
-      'userId':
-      payload.userId
-    })
-  ),
-}, GithubState);
+	import {
+	  GET_GITHUB_INITIATE,
+	  GET_GITHUB_SUCCESS,
+	  GET_GITHUB_FAIL,
+	  CHAGE_USER_ID,
+	} from '../../constants/actionTypes';
 
-export default githubReducers;
+	const githubReducers = handleActions({ 
+	  GET_GITHUB_SUCCESS: (state, { payload }) => (
+	    state.merge({
+	      data: payload.data,
+	    })
+	  ),  
+	  CHAGE_USER_ID: (state, { payload }) => (
+	    state.merge({
+	      'userId':
+	      payload.userId
+	    })
+	  ),
+	}, GithubState);
 
-```
+	export default githubReducers;
 
-```
-import { handleActions } from 'redux-actions';
-import { UiState } from '../../constants/models';
+	```
 
-import {
-  SHOW_SPINNER,
-  HIDE_SPINNER,
-} from '../../constants/actionTypes';
+	```
+	import { handleActions } from 'redux-actions';
+	import { UiState } from '../../constants/models';
 
-const uiReducers = handleActions({
-  SHOW_SPINNER: (state) => (
-    state.set(
-      'spinnerVisible',
-      true
-    )
-  ),
-  HIDE_SPINNER: (state) => (
-    state.set(
-      'spinnerVisible',
-      false
-    )
-  ),
-}, UiState);
+	import {
+	  SHOW_SPINNER,
+	  HIDE_SPINNER,
+	} from '../../constants/actionTypes';
 
-export default uiReducers;
+	const uiReducers = handleActions({
+	  SHOW_SPINNER: (state) => (
+	    state.set(
+	      'spinnerVisible',
+	      true
+	    )
+	  ),
+	  HIDE_SPINNER: (state) => (
+	    state.set(
+	      'spinnerVisible',
+	      false
+	    )
+	  ),
+	}, UiState);
 
-```
+	export default uiReducers;
 
-```
-import { combineReducers } from 'redux-immutable';
-import ui from './ui/uiReducers';// import routes from './routes';
-import github from './data/githubReducers';// import routes from './routes';
+	```
 
-const rootReducer = combineReducers({
-  ui,
-  github,
-});
+	```
+	import { combineReducers } from 'redux-immutable';
+	import ui from './ui/uiReducers';// import routes from './routes';
+	import github from './data/githubReducers';// import routes from './routes';
 
-export default rootReducer;
+	const rootReducer = combineReducers({
+	  ui,
+	  github,
+	});
 
-```
+	export default rootReducer;
 
-```
-import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
-import createLogger from 'redux-logger';
-import Immutable from 'immutable';
-import rootReducer from '../reducers';
+	```
 
-const initialState = Immutable.Map();
+	```
+	import { createStore, applyMiddleware } from 'redux';
+	import reduxThunk from 'redux-thunk';
+	import createLogger from 'redux-logger';
+	import Immutable from 'immutable';
+	import rootReducer from '../reducers';
 
-export default createStore(
-  rootReducer,
-  initialState,
-  applyMiddleware(reduxThunk, createLogger({ stateTransformer: state => state.toJS() }))
-);
+	const initialState = Immutable.Map();
 
-```
+	export default createStore(
+	  rootReducer,
+	  initialState,
+	  applyMiddleware(reduxThunk, createLogger({ stateTransformer: state => state.toJS() }))
+	);
+
+	```
 
 4. Build Component
 
-```javascript
-import React from 'react';
-import { Link } from 'react-router';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import ActionHome from 'material-ui/svg-icons/action/home';
+	```javascript
+	import React from 'react';
+	import { Link } from 'react-router';
+	import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+	import RaisedButton from 'material-ui/RaisedButton';
+	import ActionHome from 'material-ui/svg-icons/action/home';
 
-const GithubBox = (props) => (
-  <div>
-    <Card>
-      <CardHeader
-        title={props.data.get('name')}
-        subtitle={props.userId}
-        avatar={props.data.get('avatar_url')}
-      />
-      <CardText>
-        Followers : {props.data.get('followers')}
-      </CardText>      
-      <CardText>
-        Following : {props.data.get('following')}
-      </CardText>
-      <CardActions>
-        <Link to="/">
-          <RaisedButton 
-            label="Back" 
-            icon={<ActionHome />}
-            secondary={true} 
-          />
-        </Link>
-      </CardActions>
-    </Card> 
-  </div>
-);
+	const GithubBox = (props) => (
+	  <div>
+	    <Card>
+	      <CardHeader
+	        title={props.data.get('name')}
+	        subtitle={props.userId}
+	        avatar={props.data.get('avatar_url')}
+	      />
+	      <CardText>
+	        Followers : {props.data.get('followers')}
+	      </CardText>      
+	      <CardText>
+	        Following : {props.data.get('following')}
+	      </CardText>
+	      <CardActions>
+	        <Link to="/">
+	          <RaisedButton 
+	            label="Back" 
+	            icon={<ActionHome />}
+	            secondary={true} 
+	          />
+	        </Link>
+	      </CardActions>
+	    </Card> 
+	  </div>
+	);
 
-export default GithubBox;
-```
+	export default GithubBox;
+	```
 
-```javascript
-import React from 'react';
-import { Link } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import styles from './homePageStyles';
+	```javascript
+	import React from 'react';
+	import { Link } from 'react-router';
+	import RaisedButton from 'material-ui/RaisedButton';
+	import TextField from 'material-ui/TextField';
+	import IconButton from 'material-ui/IconButton';
+	import FontIcon from 'material-ui/FontIcon';
+	import styles from './homePageStyles';
 
-const HomePage = ({
-  userId,
-  onSubmitUserId,
-  onChangeUserId,
-}) => (
-  <div>
-    <TextField
-      hintText="Please Key in your Github User Id."
-      onChange={onChangeUserId}
-    />
-    <Link to={{ 
-      pathname: '/result',
-      query: { userId: userId }
-    }}>
-      <RaisedButton label="Submit" onClick={onSubmitUserId(userId)} primary />
-    </Link>
-  </div>
-);
+	const HomePage = ({
+	  userId,
+	  onSubmitUserId,
+	  onChangeUserId,
+	}) => (
+	  <div>
+	    <TextField
+	      hintText="Please Key in your Github User Id."
+	      onChange={onChangeUserId}
+	    />
+	    <Link to={{ 
+	      pathname: '/result',
+	      query: { userId: userId }
+	    }}>
+	      <RaisedButton label="Submit" onClick={onSubmitUserId(userId)} primary />
+	    </Link>
+	  </div>
+	);
 
-export default HomePage;
-```
+	export default HomePage;
+	```
 
-```javascript
-import React from 'react';
-import AppBar from 'material-ui/AppBar';
+	```javascript
+	import React from 'react';
+	import AppBar from 'material-ui/AppBar';
 
-const Main = (props) => (
-  <div>
-    <AppBar
-      title="Github Finder"
-      showMenuIconButton={false}
-    />
-    <div>
-      {props.children}
-    </div>
-  </div>
-);
+	const Main = (props) => (
+	  <div>
+	    <AppBar
+	      title="Github Finder"
+	      showMenuIconButton={false}
+	    />
+	    <div>
+	      {props.children}
+	    </div>
+	  </div>
+	);
 
-Main.propTypes = {
-  children: React.PropTypes.object,
-};
+	Main.propTypes = {
+	  children: React.PropTypes.object,
+	};
 
-export default Main;
-```
+	export default Main;
+	```
 
-```javascript
-import React from 'react';
-import GithubBoxContainer from '../../containers/GithubBoxContainer';
+	```javascript
+	import React from 'react';
+	import GithubBoxContainer from '../../containers/GithubBoxContainer';
 
-const ResultPage = (props) => (
-  <div> 
-    <GithubBoxContainer data={props.data} userId={props.location.query.userId} />  
-  </div>
-);
+	const ResultPage = (props) => (
+	  <div> 
+	    <GithubBoxContainer data={props.data} userId={props.location.query.userId} />  
+	  </div>
+	);
 
-export default ResultPage;
-```
+	export default ResultPage;
+	```
 
 5. Connect State to Component
 
-```javascript
-import { connect } from 'react-redux';
-import HomePage from '../../components/HomePage';
+	```javascript
+	import { connect } from 'react-redux';
+	import HomePage from '../../components/HomePage';
 
-import {
-  getGithub,
-  changeUserId,
-} from '../../actions';
+	import {
+	  getGithub,
+	  changeUserId,
+	} from '../../actions';
 
-export default connect(
-  (state) => ({
-    userId: state.getIn(['github', 'userId']),
-  }),
-  (dispatch) => ({
-    onChangeUserId: (event) => (
-      dispatch(changeUserId(event.target.value))
-    ),
-    onSubmitUserId: (userId) => () => (
-      dispatch(getGithub(userId))
-    ),
-  }),
-  (stateProps, dispatchProps, ownProps) => {
-    const { userId } = stateProps;
-    const { onSubmitUserId } = dispatchProps;
-    return Object.assign({}, stateProps, dispatchProps, ownProps, {
-      onSubmitUserId: onSubmitUserId(userId),
-    });
-  }
-)(HomePage);
-```
+	export default connect(
+	  (state) => ({
+	    userId: state.getIn(['github', 'userId']),
+	  }),
+	  (dispatch) => ({
+	    onChangeUserId: (event) => (
+	      dispatch(changeUserId(event.target.value))
+	    ),
+	    onSubmitUserId: (userId) => () => (
+	      dispatch(getGithub(userId))
+	    ),
+	  }),
+	  (stateProps, dispatchProps, ownProps) => {
+	    const { userId } = stateProps;
+	    const { onSubmitUserId } = dispatchProps;
+	    return Object.assign({}, stateProps, dispatchProps, ownProps, {
+	      onSubmitUserId: onSubmitUserId(userId),
+	    });
+	  }
+	)(HomePage);
+	```
 
-```javascript
+	```javascript
 
-import { connect } from 'react-redux';
-import ResultPage from '../../components/ResultPage';
+	import { connect } from 'react-redux';
+	import ResultPage from '../../components/ResultPage';
 
-export default connect(
-  (state) => ({
-    data: state.getIn(['github', 'data'])    
-  }),
-  (dispatch) => ({})
-)(ResultPage);
-```
+	export default connect(
+	  (state) => ({
+	    data: state.getIn(['github', 'data'])    
+	  }),
+	  (dispatch) => ({})
+	)(ResultPage);
+	```
 
-```javascript
-import { connect } from 'react-redux';
-import GithubBox from '../../components/GithubBox';
+	```javascript
+	import { connect } from 'react-redux';
+	import GithubBox from '../../components/GithubBox';
 
-export default connect(
-  (state) => ({}),
-  (dispatch) => ({})
-)(GithubBox);
-```
+	export default connect(
+	  (state) => ({}),
+	  (dispatch) => ({})
+	)(GithubBox);
+	```
 
 6. That's it
 
