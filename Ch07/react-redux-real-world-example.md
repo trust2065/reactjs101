@@ -32,6 +32,10 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 接下來我們參考上一章設定一下開發文檔（`.babelrc`、`.eslintrc`、`webpack.config.js`）。這樣我們就完成了開發環境的設定可以開始動手實作 `React Redux` 應用程式了！
 
+首先我們先感受一下我們應用程式，將它切成一個個 `Component`。在這邊我們設計一個主要的 `Main` 包含兩個子 Component：`TodoHeader`、`TodoList`。
+
+![React Redux](./images/react-redux-demo.png "React Redux")
+
 首先設計 HTML Markup：
 
 ```html
@@ -76,6 +80,7 @@ ReactDOM.render(
 
 ```
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ReactDOM from 'react-dom';
 import TodoHeaderContainer from '../../containers/TodoHeaderContainer';
 import TodoListContainer from '../../containers/TodoListContainer';
