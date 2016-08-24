@@ -37,9 +37,9 @@
 	}
 	```
 
-2. 唯一可以改變 state 的方法就是發送 action，這部份和 Flux 類似。Redux 的 action 和 Flux 的 action 類似，就是一個包含 `type` 和 `payload` 的物件
+2. 唯一可以改變 state 的方法就是發送 action，這部份和 Flux 類似。Redux 的 action 和 Flux 的 action 都是一個包含 `type` 和 `payload` 的物件。
 
-3. 根據 action 的 type 去執行對應的 state 做變化的函式叫做 reducer。你可以使用 switch 或是使用函式 map 的方式去對應處理的方式 
+3. Redux 擁有 Flux 所沒有的 Reducer。Reducer 根據 action 的 type 去執行對應的 state 做變化的函式叫做 Reducer。你可以使用 switch 或是使用函式 mapping 的方式去對應處理的方式。 
 
 ## Redux 核心概念介紹
 1. Single source of truth (單一的真相來源)

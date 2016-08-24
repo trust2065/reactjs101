@@ -1,5 +1,8 @@
 # Redux 實戰入門
 
+## 前言
+上一篇我們了解了 Redux 基本的概念和特性後，本章我們要實際動手用 Redux、React Redux 結合 ImmutableJS 開發一個簡單的 Todo 應用，那就讓讓我們開始吧！
+
 ![React Redux](./images/redux-flow.png "React Redux")
 
 ![React Redux](./images/using-redux.jpg "React Redux")
