@@ -261,6 +261,8 @@ export default connect(
 
 若是一切順利的話就可以在瀏覽器上看到自己努力的成果囉！
 
+![React Redux](./images/react-redux-dev-demo.png "React Redux")
+
 ## 總結
 
 ## 延伸閱讀
