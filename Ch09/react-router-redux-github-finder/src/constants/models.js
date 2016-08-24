@@ -1,10 +1,10 @@
 import Immutable from 'immutable';
 
-export const UiState = Immutable.Map({
+export const UiState = Immutable.fromJS({
   spinnerVisible: false,
 });
 
-export const GithubState = Immutable.Map({
+export const GithubState = Immutable.fromJS({
   userId: '',
-  data: Immutable.Map(),
+  data: {},
 });
