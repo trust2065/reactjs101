@@ -72,6 +72,24 @@ ReactDOM.render(
 );
 ```
 
+其中 `src/components/Main/Main.js` 是 Stateless Component，負責所有 View 的進入點。
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TodoHeaderContainer from '../../containers/TodoHeaderContainer';
+import TodoListContainer from '../../containers/TodoListContainer';
+
+const Main = () => (
+  <div>
+    <TodoHeaderContainer />
+    <TodoListContainer />
+  </div>
+);
+
+export default Main;
+```
+
 ```javascript
 import { createAction } from 'redux-actions';
 import {
@@ -188,22 +206,6 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-```
-
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import TodoHeaderContainer from '../../containers/TodoHeaderContainer';
-import TodoListContainer from '../../containers/TodoListContainer';
-
-const Main = () => (
-  <div>
-    <TodoHeaderContainer />
-    <TodoListContainer />
-  </div>
-);
-
-export default Main;
 ```
 
 ```javascript
