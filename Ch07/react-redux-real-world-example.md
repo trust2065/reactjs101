@@ -348,6 +348,7 @@ export default TodoList;
 ![React Redux](./images/react-redux-dev-demo.png "React Redux")
 
 ## 總結
+以上就是 Redux 實戰入門，對於第一次自己動手寫 Redux 的朋友可能會需要多練習幾次，多體會整個架構。在接下來的章節我們將優化我們的 React Redux TodoApp，讓它可以有更清晰的架構。
 
 ## 延伸閱讀
 1. [Redux 官方網站](http://redux.js.org/index.html)
