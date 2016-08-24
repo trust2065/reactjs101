@@ -100,6 +100,11 @@ Redux 優點：
 
 ![React Redux](./images/react-redux-diagram.png "React Redux")
 
+官方針對 Middleware 進行說明
+> It provides a third-party extension point between dispatching an
+action, and the moment it reaches the reducer.
+
+
 若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
 
 ![React Redux](./images/redux-flowchart.png "React Redux")
