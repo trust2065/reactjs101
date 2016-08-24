@@ -226,6 +226,8 @@ export default createStore(
 );
 ```
 
+透過 `src/store/index.js` 輸出 configureStore：
+
 ```javascript
 export { default } from './configureStore';
 ```
