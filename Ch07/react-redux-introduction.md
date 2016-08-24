@@ -51,7 +51,7 @@
 4. Keep Components Stateless
 
 ```javascript
-import { createStore } from 'redux'
+import { createStore } from 'redux';
 
 /** 
   下面是一個簡單的 reducers ，主要功能是針對傳進來的 action type 判斷並回傳新的 state
@@ -62,62 +62,57 @@ import { createStore } from 'redux'
 function counter(state = 0, action) {
   switch (action.type) {
   case 'INCREMENT':
-    return state + 1
+    return state + 1;
   case 'DECREMENT':
-    return state - 1
+    return state - 1;
   default:
-    return state
+    return state;
   }
 }
 
 // 創建 Redux store 去存放 App 的所有 state
 // store 的可用 API { subscribe, dispatch, getState } 
-let store = createStore(counter)
+let store = createStore(counter);
 
 // 可以使用 subscribe() 來訂閱 state 是否更新。但實務通常會使用 react-redux 來串連 React 和 Redux
 store.subscribe(() =>
-  console.log(store.getState())
-)
+  console.log(store.getState());
+);
 
 // 若想改變 state ，一律發 action
-store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'INCREMENT' });
 // 1
-store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'INCREMENT' });
 // 2
-store.dispatch({ type: 'DECREMENT' })
+store.dispatch({ type: 'DECREMENT' });
 // 1
 ```
 
 ## Redux API 入門
 
-1. createStore
+1. createStore：`createStore(reducer, [preloadedState], [enhancer])`
 
-	createStore(reducer, [preloadedState], [enhancer])
+	我們知道在 Redux 中只會有一個 store。在產生 store 時我們會使用 `createStore` 這個 API 來創建 store。第一個參數放入我們的 `reducer` 或是有多個 `reducers` combine（使用 `combineReducers`）在一起的 `rootRuducers`。第二個參數我們會放入希望預先載入的 `state` 例如：user session 等。第三個參數通常會放入我們想要使用用來增強 Redux 功能的 `middlewares`，若有多個 `middlewares` 的話，通常會使用 `applyMiddleware` 來整合。
 
 2. Store
 
-3. combineReducers
+	關於 Store 重點是要知道 Redux 只有一個 Sotre 負責存放整個 App 的 State，而唯一能改變 State 的方法只有發送 action。
 
-	combineReducers(reducers)
+3. combineReducers：`combineReducers(reducers)`
 
-4. applyMiddleware
+	combineReducers可以
 
-	applyMiddleware(...middlewares)
+4. applyMiddleware：`applyMiddleware(...middlewares)`	
 
-5. bindActionCreators
+5. bindActionCreators：`bindActionCreators(actionCreators, dispatch)`
 
-	bindActionCreators(actionCreators, dispatch)
-
-6. compose
-
-	compose(...functions)
-
+6. compose：`compose(...functions)`
 
 ## Redux 流程回顧
 
-![React Redux](./images/redux-flowchart.png "React Redux")
+`View -> Action -> (Middleware) -> Reducer`
 
-（View -> Action -> Middleware -> Reducer）
+![React Redux](./images/redux-flowchart.png "React Redux")
 
 ![React Redux](./images/react-redux-diagram.png "React Redux")
 
