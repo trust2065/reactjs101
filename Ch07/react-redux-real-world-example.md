@@ -239,9 +239,6 @@ export { default } from './configureStore';
 
 在我們的範例 App 中我們只會先用到前兩個參數，第三個參數會在之後的例子裡用到。第一個參數 mapStateToProps 是一個讓開發者可以從 store 取出想要 state 並當做 props 往下傳的功能，第二個參數則是將 dispatch 行為封裝成函數順著 props 可以方便往下傳和呼叫。
 
-```javascript
-
-```
 以下是 `src/components/TodoHeader/TodoHeader.js` 的部份：
 
 ```javascript
