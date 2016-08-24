@@ -41,7 +41,7 @@
 
 3. Redux 擁有 Flux 所沒有的 Reducer。Reducer 根據 action 的 type 去執行對應的 state 做變化的函式叫做 Reducer。你可以使用 switch 或是使用函式 mapping 的方式去對應處理的方式。 
 
-4. Redux 擁有許多方便好用的輔助測試工具（例如：[redux-devtools](https://github.com/gaearon/redux-devtools)、[react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)），方便測試
+4. Redux 擁有許多方便好用的輔助測試工具（例如：[redux-devtools](https://github.com/gaearon/redux-devtools)、[react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)），方便測試。
 
 ## Redux 核心概念介紹
 1. Single source of truth (單一的真相來源)
@@ -92,25 +92,25 @@ store.dispatch({ type: 'DECREMENT' })
 
 1. createStore
 
-createStore(reducer, [preloadedState], [enhancer])
+	createStore(reducer, [preloadedState], [enhancer])
 
 2. Store
 
 3. combineReducers
 
-combineReducers(reducers)
+	combineReducers(reducers)
 
 4. applyMiddleware
 
-applyMiddleware(...middlewares)
+	applyMiddleware(...middlewares)
 
 5. bindActionCreators
 
-bindActionCreators(actionCreators, dispatch)
+	bindActionCreators(actionCreators, dispatch)
 
 6. compose
 
-compose(...functions)
+	compose(...functions)
 
 
 ## Redux 流程回顧
