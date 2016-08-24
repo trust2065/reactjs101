@@ -3,10 +3,12 @@
 ## 前言
 上一節我們了解了 Redux 基本的概念和特性後，本章我們要實際動手用 Redux、React Redux 結合 ImmutableJS 開發一個簡單的 Todo 應用，那就讓讓我們開始吧！
 
+以下這張圖表示了整個 React Redux App 的資料流程圖（使用者與 View 互動 => 發出 Action => Reducers 依據 action tyoe 分配到對應處理方式，更新 state => 透過 React Redux 傳送給 React，React 重新繪製 View）：
+
 ![React Redux](./images/redux-flow.png "React Redux")
 
-## 動手創作
-首先，我們先完成一些開發的前置作業，先透過以下指令在根目錄產生 npm 設定檔 `package.json`：
+## 動手創作 React Redux ImmutableJS TodoApp
+在開始創作之前我們先完成一些開發的前置作業，先透過以下指令在根目錄產生 npm 設定檔 `package.json`：
 
 ```
 $ npm init
@@ -241,6 +243,8 @@ export default connect(
   })
 )(TodoList);
 ```
+
+## 總結
 
 ## 延伸閱讀
 1. [Redux 官方網站](http://redux.js.org/index.html)
