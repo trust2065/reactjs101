@@ -121,6 +121,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 1. Setup Mockup
 
+	HTML Markup（`src/index.html`）：
+
 	```html
 	<!DOCTYPE html>
 	<html lang="en">
