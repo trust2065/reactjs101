@@ -47,11 +47,11 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 </html>
 ```
 
-在撰寫 `src/index.js` 之前，我們先說明整合 `react-redux` 的用法。從以下這張圖可以看到 `react-redux` 是 React 和 Redux 間的橋樑。使用 `Provider`、`connect` 去連結 `store` 和 React View。
+在撰寫 `src/index.js` 之前，我們先說明整合 `react-redux` 的用法。從以下這張圖可以看到 `react-redux` 是 React 和 Redux 間的橋樑，使用 `Provider`、`connect` 去連結 `store` 和 React View。
 
 ![React Redux](./images/using-redux.jpg "React Redux")
 
-整合了 `react-redux` 後，我們的 React App 就可以解決傳統跨 Component 之前傳遞 state 的問題和困難，只要透過 `Provider` 就可以讓每個 React App 中的 `Component` 取用 store 中的 state（接下來我們也會更詳習說明 Container/Component、`connect` 的用法）。
+事實上，整合了 `react-redux` 後，我們的 React App 就可以解決傳統跨 Component 之前傳遞 state 的問題和困難。只要透過 `Provider` 就可以讓每個 React App 中的 `Component` 取用 store 中的 state（接下來我們也會更詳細說明 Container/Component、`connect` 的用法）。
 
 ![React Redux](./images/redux-store.png "React Redux")
 
