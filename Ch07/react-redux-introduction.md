@@ -44,11 +44,24 @@
 4. Redux 擁有許多方便好用的輔助測試工具（例如：[redux-devtools](https://github.com/gaearon/redux-devtools)、[react-transform-boilerplate](https://github.com/gaearon/react-transform-boilerplate)），方便測試和使用 `Hot Module Reload`。
 
 ## Redux 核心概念介紹
+
+`View -> Action -> (Middleware) -> Reducer`
+
 1. Single source of truth (單一的真相來源)
 2. State is read-only (狀態是唯讀的)
 3. Changes are made with pure functions (使用純函式進行更改)
 4. Write Reducers instead of store
 4. Keep Components Stateless
+
+![React Redux](./images/redux-flowchart.png "React Redux")
+
+![React Redux](./images/react-redux-diagram.png "React Redux")
+
+官方針對 Middleware 進行說明
+> It provides a third-party extension point between dispatching an
+action, and the moment it reaches the reducer.
+
+若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
 
 ```javascript
 import { createStore } from 'redux';
@@ -128,20 +141,6 @@ store.dispatch({ type: 'DECREMENT' });
 	  )
 	)
 	```
-
-## Redux 流程回顧
-
-`View -> Action -> (Middleware) -> Reducer`
-
-![React Redux](./images/redux-flowchart.png "React Redux")
-
-![React Redux](./images/react-redux-diagram.png "React Redux")
-
-官方針對 Middleware 進行說明
-> It provides a third-party extension point between dispatching an
-action, and the moment it reaches the reducer.
-
-若有 NodeJS 的經驗的讀者，對於 middleware 概念應該不陌生，讓開發者可以在 req 和 res 之間進行一些操作。在 Redux 中 Middleware 則是扮演 action 到達 reducer 前的第三方擴充。
 
 ## 總結
 以上介紹了 Redux 的基礎概念，若是讀者覺得還是有點抽象的話也沒關係，在下一個章節我們將實際帶大家開發一個整合 `React`、`Redux` 和 `ImmutableJS` 的 TodoApp。
