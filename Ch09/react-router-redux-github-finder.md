@@ -1,14 +1,13 @@
 # 用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用
 
 ## 前言
-學了一身本領後，相信讀者應該等不及大展身手開發一些有趣的 React App 應用了吧！本章將帶大家完成一個單頁式應用程式（Single Page Application），運用 React + Redux + ImmutableJS + React Router 搭配 Github API 製作一個 Github 使用者查詢應用。
+學了一身本領後，本章將帶大家完成一個單頁式應用程式（Single Page Application），運用 React + Redux + ImmutableJS + React Router 搭配 Github API 製作一個簡單的 Github 使用者查詢應用。
 
 ## 功能規劃
 
 1. 展示 Github 用戶名稱、company、location、email、follower、following、avatar_url
 2. Github API（https://api.github.com/users/kdchang）
-3. Responsive design
-4. React Router / Redux
+3. React Router / Redux
 
 ## 使用技術
 
@@ -23,6 +22,10 @@
 9. Roboto Font from Google Font
 
 ## 專案成果截圖
+
+![React Redux](./images/demo-1.png "React Redux")
+
+![React Redux](./images/demo-2.png "React Redux")
 
 ## 動手實作
 

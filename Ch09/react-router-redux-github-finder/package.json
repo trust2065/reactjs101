@@ -4,8 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack && webpack-dev-server --devtool eval --progress --colors --content-base build"
+    "start": "webpack-dev-server --colors --inline --content-base ."
   },
   "author": "kdchang",
   "license": "MIT",
