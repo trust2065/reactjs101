@@ -1,8 +1,8 @@
-# Ch09 用 React + Rudux + React Router 寫一個 Github 查詢應用
+# Ch09 用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用
 
 ## 前言
 
-本章將帶大家完成一個單頁式應用程式（Single Page Application），運用 React + Redux + ImmutableJS + React Router 搭配 OpenWeatherMap API 製作一個 Github 使用者查詢應用。
+學了一身本領後，本章將帶大家完成一個單頁式應用程式（Single Page Application），運用 React + Redux + ImmutableJS + React Router 搭配 OpenWeatherMap API 製作一個 Github 使用者查詢應用。
 
 ## 功能規劃
 
@@ -15,12 +15,13 @@
 
 1. React
 2. Redux
-3. React Router
-4. ImmutableJS
-5. Fetch
-6. [Material UI](http://www.material-ui.com/#/)
-7. Weather API Icons
-8. Roboto Font from Google Font
+3. Redux Thunk
+4. React Router
+5. ImmutableJS
+6. Fetch
+7. [Material UI](http://www.material-ui.com/#/)
+8. Weather API Icons
+9. Roboto Font from Google Font
 
 ## 專案成果截圖
 
