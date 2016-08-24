@@ -4,10 +4,7 @@
 學了一身本領後，本章將帶大家完成一個單頁式應用程式（Single Page Application），運用 React + Redux + ImmutableJS + React Router 搭配 Github API 製作一個簡單的 Github 使用者查詢應用。
 
 ## 功能規劃
-
-1. 展示 Github 用戶名稱、company、location、email、follower、following、avatar_url
-2. Github API（https://api.github.com/users/kdchang）
-3. React Router / Redux
+讓訪客可以使用 Github Id 搜尋 Github 使用者，展示 Github 使用者名稱、follower、following、avatar_url 並可以返回首頁。
 
 ## 使用技術
 
@@ -20,6 +17,7 @@
 7. [Material UI](http://www.material-ui.com/#/)
 8. Weather API Icons
 9. Roboto Font from Google Font
+10. Github API（https://api.github.com/users/torvalds）
 
 ## 專案成果截圖
 
