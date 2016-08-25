@@ -133,7 +133,7 @@ set1.subtract(set4);
 1. Persistent Data Structure
 在 `ImmutableJS` 的世界裡，只要資料一被創建，就不能修改，維持 `Immutable`。就不會發生下列的狀況：
 
-```
+```javascript
 var obj = {
  a: 1
 };
@@ -144,7 +144,7 @@ console.log(obj.a) // 不確定结果為多少？
 
 使用 `ImmutableJS` 就沒有這個問題：
 
-```
+```javascript
 // 有些開發者在使用時會在 ``Immutable` 變數前加 `$` 以示區隔。
 
 const $obj = fromJS({
@@ -158,7 +158,7 @@ console.log($obj.get('a')) // 1
 2. Structural Sharing
 為了維持資料的不可變，又要避免像 `deepCopy` 一樣複製所有的節點資料而造成的資源損耗，在 `ImmutableJS` 使用的是 Structural Sharing 特性，亦即如果物件樹中一個節點發生變化的話，只會修改這個節點和和受它影響的父節點，其他節點則共享。
 
-```
+```javascript
 const obj = {
   count: 1,
   list: [1, 2, 3, 4, 5]
@@ -171,7 +171,7 @@ console.log(map1.list === map2.list); // true
 
 3. Support Lazy Operation
 
-```
+```javascript
 Immutable.Range(1, Infinity)
 .map(n => -n)
 // Error: Cannot perform this action with an infinite size.
@@ -205,7 +205,7 @@ shouldComponentUpdate (nextProps) {
 
 但當比較的是物件的話就會出現問題：
 
-```
+```javascript
 // 假設 this.props.value 為 { foo: 'app' }
 // 架設 nextProps.value 為 { foo: 'app' },
 // 雖然兩者值是一樣，但由於 reference 位置不同，所以視為不同。但由於值一樣應該要避免重複渲染
@@ -214,7 +214,7 @@ this.props.value !== nextProps.value; // true
 
 使用 `ImmutableJS`：
 
-```
+```javascript
 var SomeRecord = Immutable.Record({ foo: null });
 var x = new SomeRecord({ foo: 'app'  });
 var y = x.set('foo', 'azz');
@@ -223,7 +223,7 @@ x === y; // false
 
 在 ES6 中可以使用官方文件上的 `PureRenderMixin` 進行比較，可以讓程式碼更簡潔：
 
-```
+```javascript
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 class FooComponent extends React.Component {
   constructor(props) {
