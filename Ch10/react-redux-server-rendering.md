@@ -41,7 +41,7 @@ Isomorphic JavaScript 係指瀏覽器端和伺服器端共用 JavaScript 的程�
 ReactDOMServer.renderToString(<HelloButton name="Mark" />);
 ```
 
-```javascript
+```html
 <button data-reactid=".7" data-react-checksum="762752829">
   Hello, Mark
 </button>
