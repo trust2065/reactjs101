@@ -176,7 +176,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 2. Actions
 	
-	現在我們來規劃我們的 actions 的部份，這個範例我們使用到了 `redux-thunk` 來處理非同步的 action（若讀者對於 fetch 不熟悉可以[參考這個文件](https://developer.mozilla.org/zh-TW/docs/Web/API/GlobalFetch/fetch)）。以下是 `src/actions/githubActions.js` 完整程式碼：
+	現在我們來規劃我們的 actions 的部份，這個範例我們使用到了 `redux-thunk` 來處理非同步的 action（若讀者對於新的 Ajax 處理方式 fetch() 不熟悉可以先[參考這個文件](https://developer.mozilla.org/zh-TW/docs/Web/API/GlobalFetch/fetch)）。以下是 `src/actions/githubActions.js` 完整程式碼：
 
 	```javascript
 	// 這邊引入了 fetch 的 polyfill，考以讓舊的瀏覽器也可以使用 fetch
@@ -196,6 +196,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	} from './uiActions';
 
 	// 這邊是這個範例的重點，要學習我們之前尚未講解的非同步 action 處理方式：不同於一般同步 action 直接發送 action，非同步 action 會回傳一個帶有 dispatch 參數的 function，裡面使用了 Ajax（這裡使用 fetch()）進行處理
+	// 一般和 API 互動的流程：INIT（開始請求/秀出 spinner）-> COMPLETE（完成請求/隱藏 spinner）-> ERROR（請求失敗）
 	// 這次我們雖然沒有使用 redux-actions 但我們還是維持標準 Flux Standard Action 格式：{ type: '', payload: {} }
 
 	export const getGithub = (userId = 'torvalds') => {
@@ -212,7 +213,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  } 
 	}
 
-	// 同步 actions 處理
+	// 同步 actions 處理，回傳 action 物件
 	export const changeUserId = (text) => ({ type: CHAGE_USER_ID, payload: { userId: text } });
 	```
 
@@ -225,7 +226,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  HIDE_SPINNER,
 	} from '../constants/actionTypes';
 	
-	// 同步的 actions
+	// 同步 actions 處理，回傳 action 物件
 	export const showSpinner = () => ({ type: SHOW_SPINNER});
 	export const hideSpinner = () => ({ type: HIDE_SPINNER});
 	```
@@ -238,6 +239,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	```
 
 3. Reducers
+
+	接下來我們要來設定一下 Reducers 和 models（state 格式）
 
 	```javascript
 	export const SHOW_SPINNER = 'SHOW_SPINNER';
@@ -315,7 +318,6 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	}, UiState);
 
 	export default uiReducers;
-
 	```
 
 	```javascript
@@ -329,7 +331,6 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	});
 
 	export default rootReducer;
-
 	```
 
 	```javascript
@@ -346,7 +347,6 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  initialState,
 	  applyMiddleware(reduxThunk, createLogger({ stateTransformer: state => state.toJS() }))
 	);
-
 	```
 
 4. Build Component
