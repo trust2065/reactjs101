@@ -16,7 +16,7 @@ Isomorphic JavaScript 係指瀏覽器端和伺服器端共用 JavaScript 的程�
 ## Isomorphic JavaScript 的好處
 在開始真正撰寫 Isomorphic JavaScript 前我們在進一步探討使用 Isomorphic JavaScript 有哪些好處？在談好處之前，我們先看看最早 Web 開發是如何處理頁面渲染和 state 管理，還有遇到哪些挑戰。
 
-最早的時候我們談論 Web 很單純，都是由 Server 端進行模版的處理，你可以想成 template 是一個函數，我們傳送資料進去，template 最後產生一張 HTML 給瀏覽器顯示。例如：Node 使用的（[EJS](http://ejs.co/)、[Jade](http://jade-lang.com/)）、Django 的 [Template](https://docs.djangoproject.com/el/1.10/ref/templates/) 或替代方案[Jinja](https://github.com/pallets/jinja)、PHP 的 [Smarty](http://www.smarty.net/)、[Laravel](https://laravel.com/) 使用的 [Blade](https://laravel.com/docs/5.0/templates) 甚至是 Ruby on Rails 用的 [ERB](http://guides.rubyonrails.org/layouts_and_rendering.html)。都是由後端去 render 所有資料和頁面，前端處理相對單純。
+最早的時候我們談論 Web 很單純，都是由 Server 端進行模版的處理，你可以想成 template 是一個函數，我們傳送資料進去，template 最後產生一張 HTML 給瀏覽器顯示。例如：Node 使用的（[EJS](http://ejs.co/)、[Jade](http://jade-lang.com/)）、Django 的 [Template](https://docs.djangoproject.com/el/1.10/ref/templates/) 或替代方案 [Jinja](https://github.com/pallets/jinja)、PHP 的 [Smarty](http://www.smarty.net/)、[Laravel](https://laravel.com/) 使用的 [Blade](https://laravel.com/docs/5.0/templates) 甚至是 Ruby on Rails 用的 [ERB](http://guides.rubyonrails.org/layouts_and_rendering.html)。都是由後端去 render 所有資料和頁面，前端處理相對單純。
 
 然而隨著前端工程的軟體工程化和使用者體驗的要求，開始出現各式前端框架的百花齊放，例如：[Backbone.js](http://backbonejs.org/)、[Ember.js](http://emberjs.com/) 和 [Angular.js](https://angularjs.org/) 等前端 MVC (Model-View-Controller) 或 MVVM (Model-View-ViewModel) 框架，將頁面於前端渲染的不刷頁單頁式應用程式（Single Page App）也因此開始流行。
 
@@ -28,7 +28,7 @@ Isomorphic JavaScript 係指瀏覽器端和伺服器端共用 JavaScript 的程�
 
 ![React Redux Sever Rendering（Isomorphic）入門](./images/client-server-mvc.png "React Redux Sever Rendering（Isomorphic）入門")
 
-總的來說使用 Isomorphic JavaScript 會有以下的好處：
+事實上，React 的優勢就在於它可以很優雅地實現 Server Side Rendering 達到 Isomorphic JavaScript 的效果。接下來我們也會更進一步介紹如何在 React 使用 Server Side Rendering。總的來說使用 Isomorphic JavaScript 會有以下的好處：
 
 1. 有助於 SEO
 2. Rendering 速度較快，效能較佳
