@@ -3,11 +3,7 @@ function getRandomInt(min, max) {
 }
 
 export function fetchCounter(callback) {
-  // simulate asynchronous behavior
   setTimeout(() => {
     callback(getRandomInt(1, 100))
   }, 500)
-
-  // In the case of a real world API call, you'll normally run into a Promise like this:
-  // API.getUser().then(user => callback(user))
 }
