@@ -284,7 +284,7 @@ app.listen(port, (error) => {
 
 處理完 Server 的部份接下來我們來處理 actions 的部份，在這個範例中 actions 相對簡單，主要就是新增和減少兩個行為，以下為 `src/actions/counterActions.js`：
 
-```
+```javascript
 import { createAction } from 'redux-actions';
 import {
   INCREMENT_COUNT,
@@ -297,14 +297,14 @@ export const decrementCount = createAction(DECREMENT_COUNT);
 
 以下為輸出常數 `src/constants/actionTypes.js`：
 
-```
+```javascript
 export const INCREMENT_COUNT = 'INCREMENT_COUNT';  
 export const DECREMENT_COUNT = 'DECREMENT_COUNT';  
 ```
 
 在這個範例中我們使用 `setTimeout()` 來模擬非同步的產生資料讓 server 端在每次接收 request 時讀取隨機產生的值。實務上，我們會開 API 讓 Server 讀取初始要匯入的 initialState。
 
-```
+```javascript
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
 }
@@ -318,7 +318,7 @@ export function fetchCounter(callback) {
 
 談完 actions 我們來看我們的 reducers，在這個範例中 reducers 也是相對簡單的，主要就是針對新增和減少兩個行為去 set 值，以下是 `src/reducers/counterReducers.js`：
 
-```
+```javascript
 import { fromJS } from 'immutable';
 import { handleActions } from 'redux-actions';
 import { CounterState } from '../constants/models';
@@ -348,7 +348,7 @@ export default counterReducers;
 
 準備好了 `rootReducer` 就可以使用 `createStore` 來創建我們 store，值得注意的是由於 `configureStore` 需要被 client-side 和 server-side 使用，所以把它輸出成 function 方便傳入 initialState 使用。以下是 `src/store/configureStore.js`：
 
-```
+```javascript
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -373,7 +373,7 @@ export default function configureStore(preloadedState) {
 
 最後來到了 `components` 和 `containers` 的時間，這次我們的 Component 主要有兩個按鈕讓使用者可以新增和減少數字並顯示目前數字。以下是 `src/components/Counter/Counter.js`：
 
-```
+```javascript
 import React, { Component, PropTypes } from 'react'
 
 const Counter = ({
@@ -413,7 +413,7 @@ export default Counter;
 
 最後把取出的 `count ` 和事件處理方法用 connect 傳到 `Counter` 就大功告成了！以下是 `src/containers/CounterContainer/CounterContainer.js`：
 
-```
+```javascript
 import 'babel-polyfill';
 import { connect } from 'react-redux';
 import Counter from '../../components/Counter';
