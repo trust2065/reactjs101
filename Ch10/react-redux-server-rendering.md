@@ -9,7 +9,7 @@
 Isomorphic JavaScript apps are JavaScript applications that can run both client-side and server-side.
 The backend and frontend share the same code. 
 
-意思是說就是說 Isomorphic JavaScript 係指瀏覽器端和伺服器端共用了 JavaScript 的程式碼。
+Isomorphic JavaScript 係指瀏覽器端和伺服器端共用了 JavaScript 的程式碼。
 
 另外，Isomorphic JavaScript 外也有很多人提到 Universal JavaScript 這個用詞。那什麼是 Universal JavaScript 呢？它和 Isomorphic JavaScript 是指一樣的意思嗎？針對這個議題網路上有些開發提出了自己的觀點： [Universal JavaScript](https://medium.com/@mjackson/universal-javascript-4761051b7ae9#.67xsay73m)、[Isomorphism vs Universal JavaScript](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.qvggcp3v8)。其中 Isomorphism vs Universal JavaScript 這篇文章的作者 Gert Hengeveld 指出 `Isomorphic JavaScript` 主要是指前後端共用 JavaScript 的開發方式，而 `Universal JavaScript` 可以視為 JavaScript 程式碼可以在不同環境下運行，這當然包含瀏覽器端和伺服器端，也就是 `Universal JavaScript` 在意義上可以涵蓋的比 `Isomorphic JavaScript` 更廣泛一些。然而在 Github 或是許多技術討論上通常會把兩者視為同一件事情，這部份也請讀者留意。
 
