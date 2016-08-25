@@ -18,16 +18,17 @@ module.exports = {
         exclude: /bundle\.js$/,
       },
     ],
-    plugins: [
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin()
-    ],    
+    // // 優化並使用 HotModuleReplacement
+    // plugins: [
+    //   new webpack.optimize.OccurrenceOrderPlugin(),
+    //   new webpack.HotModuleReplacementPlugin()
+    // ],    
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
       query: {
-        presets: ['es2015', 'react', 'react-hmre'],
+        presets: ['es2015', 'react'],
       },
     }],
   },

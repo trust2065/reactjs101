@@ -28,23 +28,395 @@ Isomorphic JavaScript 係指瀏覽器端和伺服器端共用 JavaScript 的程�
 
 ![React Redux Sever Rendering（Isomorphic）入門](./images/client-server-mvc.png "React Redux Sever Rendering（Isomorphic）入門")
 
-事實上，React 的優勢就在於它可以很優雅地實現 Server Side Rendering 達到 Isomorphic JavaScript 的效果。接下來我們也會更進一步介紹如何在 React 使用 Server Side Rendering。總的來說使用 Isomorphic JavaScript 會有以下的好處：
+事實上，React 的優勢就在於它可以很優雅地實現 Server Side Rendering 達到 Isomorphic JavaScript 的效果。在 `react-dom/server` 中有兩個方法 `renderToString` 和 `renderToStaticMarkup` 可以在 server 端渲染你的 components。其主要都是將 React Component 在 Server 端轉成 DOM String，也可以將 props 往下傳，然而事件處理會失效，要到 client-side 的 React 接收到後才會把它加上去（但要注意 server-side 和 client-side 的 checksum 要一致不然會出現錯誤），這樣一來可以提高渲染速度和 SEO 效果。`renderToString` 和 `renderToStaticMarkup` 最大的差異在於 `renderToStaticMarkup` 會少加一些 React 內部使用的 DOM 屬性，例如：`data-react-id`，因此可以節省一些資源。
+
+使用 `renderToString` 進行 Server 端渲染：
+
+```javascript
+import ReactDOMServer from 'react-dom/server';
+
+ReactDOMServer.renderToString(<HelloButton name="Mark" />);
+```
+
+渲染出來的效果：
+
+```html
+<button data-reactid=".7" data-react-checksum="762752829">
+  Hello, Mark
+</button>
+```
+
+總的來說使用 Isomorphic JavaScript 會有以下的好處：
 
 1. 有助於 SEO
 2. Rendering 速度較快，效能較佳
 3. 放棄蹩腳的 Template 語法擁抱 Component 元件化思考，便於維護
 4. 盡量前後端共用程式碼節省開發時間
 
-## Isomorphic JavaScript 初體驗
- 
-```javascript
-ReactDOMServer.renderToString(<HelloButton name="Mark" />);
+接下來我們就開始動手實作一個簡單的 React Server Side Rendering Counter 應用程式。
+
+## 專案成果截圖
+
+![React Redux](./images/demo-1.png "React Redux")
+
+## 環境安裝與設定
+1. 安裝 Node 和 NPM
+
+2. 安裝所需套件
+
+```
+$ npm install --save react react-dom redux react-redux react-router immutable redux-immutable redux-actions redux-thunk babel-polyfill babel-register body-parser express morgan qs
 ```
 
-```html
-<button data-reactid=".7" data-react-checksum="762752829">
-  Hello, Mark
-</button>
+```
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-1 eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react html-webpack-plugin webpack webpack-dev-server redux-logger
+```
+
+接下來我們先設定一下開發文檔。
+
+1. 設定 Babel 的設定檔： `.babelrc`
+
+	```javascript
+	{
+		"presets": [
+	  	"es2015",
+	  	"react",
+	 	],
+		"plugins": []
+	}
+	```
+
+2. 設定 ESLint 的設定檔和規則： `.eslintrc`
+
+	```javascript
+	{
+	  "extends": "airbnb",
+	  "rules": {
+	    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+	  },
+	  "env" :{
+	    "browser": true,
+	  }
+	}
+	```
+
+3. 設定 Webpack 設定檔： `webpack.config.js`
+
+	```javascript
+	// 讓你可以動態插入 bundle 好的 .js 檔到 .index.html
+	const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+	const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+	  template: `${__dirname}/src/index.html`,
+	  filename: 'index.html',
+	  inject: 'body',
+	});
+	
+	// entry 為進入點，output 為進行完 eslint、babel loader 轉譯後的檔案位置
+	module.exports = {
+	  entry: [
+	    './src/index.js',
+	  ],
+	  output: {
+	    path: `${__dirname}/dist`,
+	    filename: 'index_bundle.js',
+	  },
+	  module: {
+	    preLoaders: [
+	      {
+	        test: /\.jsx$|\.js$/,
+	        loader: 'eslint-loader',
+	        include: `${__dirname}/src`,
+	        exclude: /bundle\.js$/
+	      }
+	    ],
+	    loaders: [{
+	      test: /\.js$/,
+	      exclude: /node_modules/,
+	      loader: 'babel-loader',
+	      query: {
+	        presets: ['es2015', 'react'],
+	      },
+	    }],
+	  },
+	  // 啟動開發測試用 server 設定（不能用在 production）
+	  devServer: {
+	    inline: true,
+	    port: 8008,
+	  },
+	  plugins: [HTMLWebpackPluginConfig],
+	};
+	```
+
+太好了！這樣我們就完成了開發環境的設定可以開始動手實作 `React Server Side Rendering Counter` 應用程式了！	
+
+先看一下我們整個專案的資料結構：
+
+![React Redux Sever Rendering（Isomorphic）入門](./images/react-server-rendering-folder.png "React Redux Sever Rendering（Isomorphic）入門")
+
+#### 動手實作
+
+
+```javascript
+import 'babel-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import CounterContainer from '../common/containers/CounterContainer';
+import configureStore from '../common/store/configureStore'
+import { fromJS } from 'immutable';
+
+// get initial state from server side
+const initialState = window.__PRELOADED_STATE__;
+
+// use initial state to create store and pass to provider
+const store = configureStore(fromJS(initialState))
+
+ReactDOM.render(
+  <Provider store={store}>
+    <CounterContainer />
+  </Provider>,
+  document.getElementById('app')
+);
+
+```
+
+```javascript
+// use babel-register to precompile ES6 syntax
+require('babel-register');
+require('./server');
+```
+
+```javascript
+import Express from 'express';
+import qs from 'qs';
+
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.config';
+
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
+import { fromJS } from 'immutable';
+
+import configureStore from '../common/store/configureStore';
+import CounterContainer from '../common/containers/CounterContainer';
+
+import { fetchCounter } from '../common/api/counter';
+
+const app = new Express();
+const port = 3000;
+
+function handleRender(req, res) {
+  // Query our mock API asynchronously
+  fetchCounter(apiResult => {
+    // Read the counter from the request, if provided
+    const params = qs.parse(req.query);
+    const counter = parseInt(params.counter, 10) || apiResult || 0;
+    // Combined initial state to immutable format
+    const initialState = fromJS({
+      counterReducers: {
+        count: counter,
+      }
+    });
+    // Create a new Redux store instance
+    const store = configureStore(initialState);
+    // Render the component to a string
+    const html = renderToString(
+      <Provider store={store}>
+        <CounterContainer />
+      </Provider>
+    );
+    // Grab the initial state from our Redux store
+    const finalState = store.getState();
+    // Send the rendered page back to the client
+    res.send(renderFullPage(html, finalState));
+  })
+}
+
+function renderFullPage(html, preloadedState) {
+  return `
+    <!doctype html>
+    <html>
+      <head>
+        <title>Redux Universal Example</title>
+      </head>
+      <body>
+        <div id="app">${html}</div>
+        <script>
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}
+        </script>
+        <script src="/static/bundle.js"></script>
+      </body>
+    </html>
+    `
+}
+
+// Use this middleware to set up hot module reloading via webpack.
+const compiler = webpack(webpackConfig);
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+app.use(webpackHotMiddleware(compiler));
+// This is fired every time the server side receives a request
+app.use(handleRender);
+
+app.listen(port, (error) => {
+  if (error) {
+    console.error(error)
+  } else {
+    console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
+  }
+});
+
+```
+
+```
+export const INCREMENT_COUNT = 'INCREMENT_COUNT';  
+export const DECREMENT_COUNT = 'DECREMENT_COUNT';  
+```
+
+```
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import rootReducer from '../reducers';
+
+export default function configureStore(preloadedState) {
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }), thunk)
+  )
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default
+      store.replaceReducer(nextRootReducer)
+    })
+  }
+
+  return store
+}
+
+```
+
+```
+import { createAction } from 'redux-actions';
+import {
+  INCREMENT_COUNT,
+  DECREMENT_COUNT,
+} from '../constants/actionTypes';
+
+export const incrementCount = createAction(INCREMENT_COUNT);
+export const decrementCount = createAction(DECREMENT_COUNT);
+```
+
+```
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
+export function fetchCounter(callback) {
+  // simulate asynchronous behavior
+  setTimeout(() => {
+    callback(getRandomInt(1, 100))
+  }, 500)
+
+  // In the case of a real world API call, you'll normally run into a Promise like this:
+  // API.getUser().then(user => callback(user))
+}
+```
+
+```
+import React, { Component, PropTypes } from 'react'
+
+const Counter = ({
+  count,
+  onIncrement,
+  onDecrement,
+}) => (
+  <p>
+    Clicked: {count} times
+    {' '}
+    <button onClick={onIncrement}>
+      +
+    </button>
+    {' '}
+    <button onClick={onDecrement}>
+      -
+    </button>
+    {' '}
+  </p>
+);
+
+Counter.propTypes = {
+  count: PropTypes.number.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired
+}
+
+Counter.defaultProps = {
+  count: 0,
+  onIncrement: () => {},
+  onDecrement: () => {}
+}
+
+export default Counter;
+```
+
+```
+import 'babel-polyfill';
+import { connect } from 'react-redux';
+import Counter from '../../components/Counter';
+
+import {
+  incrementCount,
+  decrementCount,
+} from '../../actions';
+
+export default connect(
+  (state) => ({
+    count: state.get('counterReducers').get('count'),
+  }),
+  (dispatch) => ({ 
+    onIncrement: () => (
+      dispatch(incrementCount())
+    ),
+    onDecrement: () => (
+      dispatch(decrementCount())
+    ),
+  })
+)(Counter);
+```
+
+```
+import { fromJS } from 'immutable';
+import { handleActions } from 'redux-actions';
+import { CounterState } from '../constants/models';
+
+import {
+  INCREMENT_COUNT,
+  DECREMENT_COUNT,
+} from '../constants/actionTypes';
+
+const counterReducers = handleActions({
+  INCREMENT_COUNT: (state) => (
+    state.set(
+      'count',
+      state.get('count') + 1
+    )
+  ),
+  DECREMENT_COUNT: (state) => (
+    state.set(
+      'count',
+      state.get('count') - 1
+    )
+  ),
+}, CounterState);
+
+export default counterReducers;
 ```
 
 ## 總結
