@@ -33,7 +33,7 @@
 
 - [X] 附錄一、React ES5、ES6+ 常見用法對照表
 
-- [X] 附錄二、用 React Native 開發跨平台行動應用程式（Native Mobile App）
+- [X] 附錄二、用 React Native + Firebase 開發跨平台行動應用程式（Native Mobile App）
 
 - [ ] 附錄三、React 測試入門教學
 
