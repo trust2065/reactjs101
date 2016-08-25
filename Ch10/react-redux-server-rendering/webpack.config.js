@@ -18,7 +18,7 @@ module.exports = {
         exclude: /bundle\.js$/,
       },
     ],
-    // // 優化並使用 HotModuleReplacement
+    // 優化並使用 HotModuleReplacement
     // plugins: [
     //   new webpack.optimize.OccurrenceOrderPlugin(),
     //   new webpack.HotModuleReplacementPlugin()

@@ -16,11 +16,11 @@ Isomorphic JavaScript 係指瀏覽器端和伺服器端共用 JavaScript 的程�
 ## Isomorphic JavaScript 的好處
 在開始真正撰寫 Isomorphic JavaScript 前我們在進一步探討使用 Isomorphic JavaScript 有哪些好處？在談好處之前，我們先看看最早 Web 開發是如何處理頁面渲染和 state 管理，還有遇到哪些挑戰。
 
-最早的時候我們談論 Web 很單純，都是由 Server 端進行模版的處理，你可以想成 template 是一個函數，我們傳送資料進去，template 最後產生一張 HTML 給瀏覽器顯示。例如：Node 使用的（[EJS](http://ejs.co/)、[Jade](http://jade-lang.com/)）、Django 的 [Template](https://docs.djangoproject.com/el/1.10/ref/templates/) 或替代方案 [Jinja](https://github.com/pallets/jinja)、PHP 的 [Smarty](http://www.smarty.net/)、[Laravel](https://laravel.com/) 使用的 [Blade](https://laravel.com/docs/5.0/templates) 甚至是 Ruby on Rails 用的 [ERB](http://guides.rubyonrails.org/layouts_and_rendering.html)。都是由後端去 render 所有資料和頁面，前端處理相對單純。
+最早的時候我們談論 Web 很單純，都是由 Server 端進行模版的處理，你可以想成 template 是一個函數，我們傳送資料進去，template 最後產生一張 HTML 給瀏覽器顯示。例如：Node 使用的（[EJS](http://ejs.co/)、[Jade](http://jade-lang.com/)）、Python/Django 的 [Template](https://docs.djangoproject.com/el/1.10/ref/templates/) 或替代方案 [Jinja](https://github.com/pallets/jinja)、PHP 的 [Smarty](http://www.smarty.net/)、[Laravel](https://laravel.com/) 使用的 [Blade](https://laravel.com/docs/5.0/templates)，甚至是 Ruby on Rails 用的 [ERB](http://guides.rubyonrails.org/layouts_and_rendering.html)。都是由後端去 render 所有資料和頁面，前端處理相對單純。
 
 然而隨著前端工程的軟體工程化和使用者體驗的要求，開始出現各式前端框架的百花齊放，例如：[Backbone.js](http://backbonejs.org/)、[Ember.js](http://emberjs.com/) 和 [Angular.js](https://angularjs.org/) 等前端 MVC (Model-View-Controller) 或 MVVM (Model-View-ViewModel) 框架，將頁面於前端渲染的不刷頁單頁式應用程式（Single Page App）也因此開始流行。
 
-後端除了提供初始的 HTML 外，還提供 API Server 讓前端框架可以取得資料用於前端 template。複雜的邏輯由 ViewModel/Presenter 來處理，template 只處理簡單的是否顯示或是元素迭代的狀況，如下圖所示：
+後端除了提供初始的 HTML 外，還提供 API Server 讓前端框架可以取得資料用於前端 template。複雜的邏輯由 ViewModel/Presenter 來處理，前端 template 只處理簡單的是否顯示或是元素迭代的狀況，如下圖所示：
 
 ![React Redux Sever Rendering（Isomorphic）入門](./images/client-mvc.png "React Redux Sever Rendering（Isomorphic）入門")
 
@@ -45,6 +45,9 @@ ReactDOMServer.renderToString(<HelloButton name="Mark" />);
   Hello, Mark
 </button>
 ```
+
+不過要注意的是如果有使用 Redux 在 Server Side Rendering 中，其流程相對複雜，不過大致流程如下：
+由後端預先載入需要的 initialState，由於 Server 渲染必須全部都轉成 string，所以先將 state 先 dehydration（脫水），等到 client 端再 rehydration（覆水）傳給前端後，重建 store 往下傳到前端的 React Component。
 
 總的來說使用 Isomorphic JavaScript 會有以下的好處：
 
@@ -150,13 +153,16 @@ ReactDOMServer.renderToString(<HelloButton name="Mark" />);
 
 太好了！這樣我們就完成了開發環境的設定可以開始動手實作 `React Server Side Rendering Counter` 應用程式了！	
 
-先看一下我們整個專案的資料結構：
+先看一下我們整個專案的資料結構，我們把整個專案分成三個主要的資料夾（`client`、`server`，還有共用程式碼的 `common`）：
 
 ![React Redux Sever Rendering（Isomorphic）入門](./images/react-server-rendering-folder.png "React Redux Sever Rendering（Isomorphic）入門")
 
 ## 動手實作
 
+首先，我們先定義了 `client` 的 `index.js`：
+
 ```javascript
+// 引用 babel-polyfill 避免瀏覽器不支援部分 ES6 用法
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -165,12 +171,13 @@ import CounterContainer from '../common/containers/CounterContainer';
 import configureStore from '../common/store/configureStore'
 import { fromJS } from 'immutable';
 
-// get initial state from server side
+// 從 server 取得傳進來的 initialState
 const initialState = window.__PRELOADED_STATE__;
 
-// use initial state to create store and pass to provider
+// 由於我們使用 ImmutableJS，所以需要把脫水的 initialState 轉成 ImmutableJS 資料型態，並傳進 configureStore 建立 store
 const store = configureStore(fromJS(initialState))
 
+// 接下來就跟一般的 React App 一樣，把 store 透過 Provider 往下傳到 Component 中
 ReactDOM.render(
   <Provider store={store}>
     <CounterContainer />
@@ -180,11 +187,15 @@ ReactDOM.render(
 
 ```
 
+由於 Node 端要到新版對於 ES6 支援較好，所以先用 `babel-register` 在 `src/server/index.js` 去即時轉譯 `server.js`，但不建議在 `production` 環境使用。
+
 ```javascript
 // use babel-register to precompile ES6 syntax
 require('babel-register');
 require('./server');
 ```
+
+接著是我們 `server` 端，也是這個範例最重要的一個部分。首先我們用 `express` 建立了一個 port 為 3000 的 server，並使用 webpack 去執行 `client` 的程式碼。這個範例中我們使用了 `handleRender` 當 request 進來時（直接拜訪頁面或重新整理）就會執行 fetchCounter() 進行處理：
 
 ```javascript
 import Express from 'express';
@@ -209,32 +220,33 @@ const app = new Express();
 const port = 3000;
 
 function handleRender(req, res) {
-  // Query our mock API asynchronously
+  // 模仿實際非同步 api 處理情形
   fetchCounter(apiResult => {
-    // Read the counter from the request, if provided
+  // 讀取 api 提供的資料（這邊我們 api 是用 setTimeout 進行模仿非同步狀況），若網址參數有值擇取值，若無則使用 api 提供的隨機值，若都沒有則取 0
     const params = qs.parse(req.query);
     const counter = parseInt(params.counter, 10) || apiResult || 0;
-    // Combined initial state to immutable format
+    // 將 initialState 轉成 immutable 和符合 state 設計的格式 
     const initialState = fromJS({
       counterReducers: {
         count: counter,
       }
     });
-    // Create a new Redux store instance
+    // 建立一個 redux store
     const store = configureStore(initialState);
-    // Render the component to a string
+    // 使用 renderToString 將 component 轉為 string
     const html = renderToString(
       <Provider store={store}>
         <CounterContainer />
       </Provider>
     );
-    // Grab the initial state from our Redux store
+    // 從建立的 redux store 中取得 initialState
     const finalState = store.getState();
-    // Send the rendered page back to the client
+    // 將 HTML 和 initialState 傳到 client-side
     res.send(renderFullPage(html, finalState));
   })
 }
 
+// HTML Markup，同時也把 preloadedState 轉成字串（stringify）傳到 client-side
 function renderFullPage(html, preloadedState) {
   return `
     <!doctype html>
@@ -253,13 +265,14 @@ function renderFullPage(html, preloadedState) {
     `
 }
 
-// Use this middleware to set up hot module reloading via webpack.
+// 使用 middleware 於 webpack 去進行 hot module reloading 
 const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
-// This is fired every time the server side receives a request
+// 每次 server 接到 request 都會呼叫 handleRender
 app.use(handleRender);
 
+// 監聽 server 狀況
 app.listen(port, (error) => {
   if (error) {
     console.error(error)
@@ -267,7 +280,6 @@ app.listen(port, (error) => {
     console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
   }
 });
-
 ```
 
 ```
@@ -288,14 +300,14 @@ export default function configureStore(preloadedState) {
     applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }), thunk)
   )
 
-  if (module.hot) {
+<!--   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('../reducers').default
       store.replaceReducer(nextRootReducer)
     })
   }
-
+ -->
   return store
 }
 
@@ -428,5 +440,6 @@ export default counterReducers;
 5. [Going Isomorphic with React](https://bensmithett.github.io/going-isomorphic-with-react/#/)
 6. [A service for server-side rendering your JavaScript views](https://github.com/airbnb/hypernova)
 7. [Isomorphic JavaScript: The Future of Web Apps](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
+8. []()
 
 （image via [airbnb](http://nerds.airbnb.com/wp-content/uploads/2013/11/Screen-Shot-2013-11-06-at-5.21.00-PM.png)）
