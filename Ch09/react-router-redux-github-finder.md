@@ -175,7 +175,18 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	```
 
 2. Actions
-	
+
+	首先先定義 actions 常數：
+
+	```javascript
+	export const SHOW_SPINNER = 'SHOW_SPINNER';
+	export const HIDE_SPINNER = 'HIDE_SPINNER';
+	export const GET_GITHUB_INITIATE = 'GET_GITHUB_INITIATE';
+	export const GET_GITHUB_SUCCESS = 'GET_GITHUB_SUCCESS';
+	export const GET_GITHUB_FAIL = 'GET_GITHUB_FAIL';
+	export const CHAGE_USER_ID = 'CHAGE_USER_ID';
+	```	
+
 	現在我們來規劃我們的 actions 的部份，這個範例我們使用到了 `redux-thunk` 來處理非同步的 action（若讀者對於新的 Ajax 處理方式 fetch() 不熟悉可以先[參考這個文件](https://developer.mozilla.org/zh-TW/docs/Web/API/GlobalFetch/fetch)）。以下是 `src/actions/githubActions.js` 完整程式碼：
 
 	```javascript
@@ -216,8 +227,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	// 同步 actions 處理，回傳 action 物件
 	export const changeUserId = (text) => ({ type: CHAGE_USER_ID, payload: { userId: text } });
 	```
-
-	// 
+	
+	以下是 `src/actions/uiActions.js` 負責處理 UI 的行為：
 
 	```javascript
 	import { createAction } from 'redux-actions';
@@ -240,16 +251,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 3. Reducers
 
-	接下來我們要來設定一下 Reducers 和 models（state 格式）
-
-	```javascript
-	export const SHOW_SPINNER = 'SHOW_SPINNER';
-	export const HIDE_SPINNER = 'HIDE_SPINNER';
-	export const GET_GITHUB_INITIATE = 'GET_GITHUB_INITIATE';
-	export const GET_GITHUB_SUCCESS = 'GET_GITHUB_SUCCESS';
-	export const GET_GITHUB_FAIL = 'GET_GITHUB_FAIL';
-	export const CHAGE_USER_ID = 'CHAGE_USER_ID';
-	```
+	接下來我們要來設定一下 Reducers 和 models（initialState 格式）的設計，注意我們這個範例都是使用 `ImmutableJS`。以下是 `src/constants/models.js`：
 
 	```
 	import Immutable from 'immutable';
@@ -258,11 +260,14 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  spinnerVisible: false,
 	});
 
+	// 我們使用 userId 來暫存使用者 ID，data 存放 Ajax 取回的資料
 	export const GithubState = Immutable.fromJS({
 	  userId: '',
 	  data: {},
 	});
 	```
+
+	以下是 `src/reducers/data/githubReducers.js`：
 
 	```javascript
 	import { handleActions } from 'redux-actions';
@@ -276,11 +281,13 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	} from '../../constants/actionTypes';
 
 	const githubReducers = handleActions({ 
+	  // 當使用者按送出按鈕，發出 GET_GITHUB_SUCCESS action 時將接收到的資料 merge 
 	  GET_GITHUB_SUCCESS: (state, { payload }) => (
 	    state.merge({
 	      data: payload.data,
 	    })
 	  ),  
+	  // 當使用者輸入使用者 ID 會發出 CHAGE_USER_ID action 時將接收到的資料 merge 
 	  CHAGE_USER_ID: (state, { payload }) => (
 	    state.merge({
 	      'userId':
@@ -293,6 +300,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 	```
 
+	以下是 `src/reducers/ui/uiReducers.js`：
+
 	```javascript
 	import { handleActions } from 'redux-actions';
 	import { UiState } from '../../constants/models';
@@ -302,6 +311,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	  HIDE_SPINNER,
 	} from '../../constants/actionTypes';
 
+	// 隨著 fetch 結果顯示 spinner
 	const uiReducers = handleActions({
 	  SHOW_SPINNER: (state) => (
 	    state.set(
@@ -320,6 +330,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	export default uiReducers;
 	```
 
+	將 reduces 使用 `redux-immutable` 的 `combineReducers` 在一起。以下是 `src/reducers/index.js`：
+
 	```javascript
 	import { combineReducers } from 'redux-immutable';
 	import ui from './ui/uiReducers';// import routes from './routes';
@@ -332,6 +344,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 	export default rootReducer;
 	```
+
+	運用 redux 提供的 createStore API 把 `rootReducer`、`initialState`、`middlewares` 整合後創建出 store。以下是 `src/store/configureSotore.js`
 
 	```javascript
 	import { createStore, applyMiddleware } from 'redux';
@@ -350,12 +364,93 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	```
 
 4. Build Component
+	
+	終於我們進入了 View 的細節設計，首先我們先針對母模版，也就是每個頁面都會出現的 `AppBar` 做設計。以下是 `src/components/Main/Main.js`： 
+
+	```javascript
+	import React from 'react';
+	// 引入 AppBar
+	import AppBar from 'material-ui/AppBar';
+
+	const Main = (props) => (
+	  <div>
+	    <AppBar
+	      title="Github Finder"
+	      showMenuIconButton={false}
+	    />
+	    <div>
+	      {props.children}
+	    </div>
+	  </div>
+	);
+
+	// 進行 propTypes 驗證
+	Main.propTypes = {
+	  children: React.PropTypes.object,
+	};
+
+	export default Main;
+	```
+
+	以下是 `src/components/ResultPage/ResultPage.js`： 
+
+	```javascript
+	import React from 'react';
+	// 使用 react-router 的 Link 當做超連結，傳送 userId 當作 query
+	import { Link } from 'react-router';
+	import RaisedButton from 'material-ui/RaisedButton';
+	import TextField from 'material-ui/TextField';
+	import IconButton from 'material-ui/IconButton';
+	import FontIcon from 'material-ui/FontIcon';
+
+	const HomePage = ({
+	  userId,
+	  onSubmitUserId,
+	  onChangeUserId,
+	}) => (
+	  <div>
+	    <TextField
+	      hintText="Please Key in your Github User Id."
+	      onChange={onChangeUserId}
+	    />
+	    <Link to={{ 
+	      pathname: '/result',
+	      query: { userId: userId }
+	    }}>
+	      <RaisedButton label="Submit" onClick={onSubmitUserId(userId)} primary />
+	    </Link>
+	  </div>
+	);
+
+	export default HomePage;
+	```
+
+	以下是 `src/components/ResultPage/ResultPage.js`，將 `userId` 當作 `props` 傳給 `<GithubBox />`： 
+
+
+	```javascript
+	import React from 'react';
+	import GithubBox from '../../components/GithubBox';
+
+	const ResultPage = (props) => (
+	  <div> 
+	    <GithubBox data={props.data} userId={props.location.query.userId} />  
+	  </div>
+	);
+
+	export default ResultPage;
+	```
+
+	以下是 `src/components/GithubBox/GithubBox.js`，負責擷取的 Github 資料呈現：
 
 	```javascript
 	import React from 'react';
 	import { Link } from 'react-router';
+	// 引入 material-ui 的卡片式元件
 	import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+	// 引入 material-ui 的 RaisedButton
 	import RaisedButton from 'material-ui/RaisedButton';
+	// 引入 ActionHome icon
 	import ActionHome from 'material-ui/svg-icons/action/home';
 
 	const GithubBox = (props) => (
@@ -388,74 +483,9 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	export default GithubBox;
 	```
 
-	```javascript
-	import React from 'react';
-	import { Link } from 'react-router';
-	import RaisedButton from 'material-ui/RaisedButton';
-	import TextField from 'material-ui/TextField';
-	import IconButton from 'material-ui/IconButton';
-	import FontIcon from 'material-ui/FontIcon';
-	import styles from './homePageStyles';
+5. Connect State to Component
 
-	const HomePage = ({
-	  userId,
-	  onSubmitUserId,
-	  onChangeUserId,
-	}) => (
-	  <div>
-	    <TextField
-	      hintText="Please Key in your Github User Id."
-	      onChange={onChangeUserId}
-	    />
-	    <Link to={{ 
-	      pathname: '/result',
-	      query: { userId: userId }
-	    }}>
-	      <RaisedButton label="Submit" onClick={onSubmitUserId(userId)} primary />
-	    </Link>
-	  </div>
-	);
-
-	export default HomePage;
-	```
-
-	```javascript
-	import React from 'react';
-	import AppBar from 'material-ui/AppBar';
-
-	const Main = (props) => (
-	  <div>
-	    <AppBar
-	      title="Github Finder"
-	      showMenuIconButton={false}
-	    />
-	    <div>
-	      {props.children}
-	    </div>
-	  </div>
-	);
-
-	Main.propTypes = {
-	  children: React.PropTypes.object,
-	};
-
-	export default Main;
-	```
-
-	```javascript
-	import React from 'react';
-	import GithubBoxContainer from '../../containers/GithubBoxContainer';
-
-	const ResultPage = (props) => (
-	  <div> 
-	    <GithubBoxContainer data={props.data} userId={props.location.query.userId} />  
-	  </div>
-	);
-
-	export default ResultPage;
-	```
-
-4. Connect State to Component
+	最後，我們要將 Container 和 Component 連接在一起（若忘記了，請先回去複習 Container 與 Presentational Components 入門！）。以下是 `src/containers/HomePage/HomePage.js`，負責將 userId 和使用到的事件處理方法用 props 傳進 component ：
 
 	```javascript
 	import { connect } from 'react-redux';
@@ -488,6 +518,8 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	)(HomePage);
 	```
 
+	以下是 `src/containers/ResultPage/ResultPage.js`：
+
 	```javascript
 	import { connect } from 'react-redux';
 	import ResultPage from '../../components/ResultPage';
@@ -500,21 +532,14 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	)(ResultPage);
 	```
 
-	```javascript
-	import { connect } from 'react-redux';
-	import GithubBox from '../../components/GithubBox';
-
-	export default connect(
-	  (state) => ({}),
-	  (dispatch) => ({})
-	)(GithubBox);
-	```
-
 6. That's it
+
+	若一切順利的話，這時候你可以在終端機下 `$ npm start` 指令，然後在 `http://localhost:8008` 就可以看到你的努力成果囉！
 
 	![React Redux](./images/demo-1.png "React Redux")
 
 ## 總結
+本章帶領讀者們從零開始整合 React + Redux + ImmutableJS + React Router 搭配 Github API 製作一個簡單的 Github 使用者查詢應用。下一章我們將挑戰進階應用，學習 Server Side Rendering 方面的知識，並用 React + Redux + Node（Isomorphic）開發一個食譜分享網站。
 
 ## 延伸閱讀
 
