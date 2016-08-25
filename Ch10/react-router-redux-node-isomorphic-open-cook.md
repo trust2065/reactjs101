@@ -3,6 +3,8 @@
 ## 前言
 Universal/Isomorphic
 
+## 總結
+
 ## 延伸閱讀
 1. [Using react-router and express with authentication via Passport.js - possible?](http://stackoverflow.com/questions/30806569/using-react-router-and-express-with-authentication-via-passport-js-possible)
 2. [topheman/react-es6-isomorphic](https://github.com/topheman/react-es6-isomorphic)
