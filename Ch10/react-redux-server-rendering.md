@@ -57,7 +57,7 @@ ReactDOMServer.renderToString(<HelloButton name="Mark" />);
 
 ## 專案成果截圖
 
-![React Redux](./images/demo-1.png "React Redux")
+![React Redux Sever Rendering（Isomorphic）入門](./images/react-server-rendering-demo.png "React Redux Sever Rendering（Isomorphic）入門")
 
 ## 環境安裝與設定
 1. 安裝 Node 和 NPM
@@ -154,8 +154,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 ![React Redux Sever Rendering（Isomorphic）入門](./images/react-server-rendering-folder.png "React Redux Sever Rendering（Isomorphic）入門")
 
-#### 動手實作
-
+## 動手實作
 
 ```javascript
 import 'babel-polyfill';
