@@ -1476,7 +1476,7 @@ export default connect(
 ![用 React + Redux + Node（Isomorphic）開發一個食譜分享網站](./images/open-cook-demo-1.png "用 React + Redux + Node（Isomorphic）開發一個食譜分享網站")
 
 ## 總結
-本章整合過去所學和添加一些後端資料庫知識開發了一個可以登入會員並分享食譜的社群網站！快把你的成果和你的朋友分享吧！覺得意猶未盡？別忘了附錄也很精采！最後，再次謝謝讀者們支持我們一路走完了 React 開發學習之旅！前端技術變化很快，若有任何建議或提醒都歡迎和我說，大家一起加油：）
+本章整合過去所學和添加一些後端資料庫知識開發了一個可以登入會員並分享食譜的社群網站！快把你的成果和你的朋友分享吧！覺得意猶未盡？別忘了附錄也很精采！最後，再次謝謝讀者們支持我們一路走完了 React 開發學習之旅！然而前端技術變化很快，唯有不斷自我學習才能持續成長。筆者才疏學淺，撰寫學習心得或有疏漏，若有任何建議或提醒都歡迎和我說，大家一起加油：）
 
 ## 延伸閱讀
 1. [joshgeller/react-redux-jwt-auth-example](https://github.com/joshgeller/react-redux-jwt-auth-example)
