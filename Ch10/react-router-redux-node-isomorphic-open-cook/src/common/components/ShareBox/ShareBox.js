@@ -1,13 +1,8 @@
 import React from 'react';
 import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
 
-const ShareBox = ({
-  onChangeNameInput,
-  onChangeDescriptionInput,
-  onChangeImageUrl,
-  onRecipeSubmit,
-}) => (
-  <div>
+const ShareBox = (props) => {
+  return (<div>
     <Form horizontal>
       <FormGroup
         controlId="formBasicText"
@@ -16,7 +11,8 @@ const ShareBox = ({
         <FormControl
           type="text"
           placeholder="Enter text"
-          onChange={onChangeNameInput}
+          defaultValue={props.name}
+          onChange={props.onChangeNameInput}
         />
         <FormControl.Feedback />
       </FormGroup>
@@ -27,7 +23,8 @@ const ShareBox = ({
         <FormControl 
           componentClass="textarea" 
           placeholder="textarea" 
-          onChange={onChangeDescriptionInput}
+          defaultValue={props.description}          
+          onChange={props.onChangeDescriptionInput}
         />
         <FormControl.Feedback />
       </FormGroup>
@@ -38,12 +35,13 @@ const ShareBox = ({
         <FormControl
           type="text"
           placeholder="Enter text"
-          onChange={onChangeImageUrl}
+          defaultValue={props.imagePath}
+          onChange={props.onChangeImageUrl}
         />
         <FormControl.Feedback />
       </FormGroup>
       <Button 
-        onClick={onRecipeSubmit} 
+        onClick={props.onRecipeSubmit} 
         bsStyle="success" 
         bsSize="large" 
         block
@@ -51,7 +49,7 @@ const ShareBox = ({
         提交送出
       </Button>
     </Form>
-  </div>
-);
+  </div>);
+};
 
 export default ShareBox;

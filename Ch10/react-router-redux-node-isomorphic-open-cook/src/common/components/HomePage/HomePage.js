@@ -1,5 +1,5 @@
 import React from 'react';
-import RecipeBox from '../RecipeBox';
+import RecipeBoxContainer from '../../containers/RecipeBoxContainer';
 
 const HomePage = ({
   recipes
@@ -7,7 +7,7 @@ const HomePage = ({
   <div>        
   {
     recipes.map((recipe, index) => (
-      <RecipeBox recipe={recipe} key={index} />
+      <RecipeBoxContainer recipe={recipe} key={index}  />
     )).toJS()
   }
   </div>

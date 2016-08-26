@@ -14,7 +14,7 @@ const recipeReducers = handleActions({
     )
   ),
   SET_RECIPE: (state, { payload }) => (
-    state.set(payload.key, payload.value)
+    state.setIn(payload.keyPath, payload.value)
   ),  
 }, RecipeState);
 

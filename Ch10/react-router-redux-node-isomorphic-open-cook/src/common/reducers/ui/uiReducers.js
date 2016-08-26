@@ -4,6 +4,7 @@ import { UiState } from '../../constants/models';
 import {
   SHOW_SPINNER,
   HIDE_SPINNER,
+  SET_UI,
 } from '../../constants/actionTypes';
 
 const uiReducers = handleActions({
@@ -19,6 +20,9 @@ const uiReducers = handleActions({
       false
     )
   ),
+  SET_UI: (state, { payload }) => (
+    state.set(payload.key, payload.value)
+  ),    
 }, UiState);
 
 export default uiReducers;

@@ -1,5 +1,5 @@
 # 從零開始學 ReactJS（ReactJS 101）
-一本給初學者的 React 入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, ImmutableJS, React Native, Relay/GraphQL etc.)，打造跨平台應用程式。
+一本給初學者的 React 中文入門教學書，由淺入深學習 ReactJS 生態系 (Flux, Redux, React Router, ImmutableJS, React Native, Relay/GraphQL etc.)，打造跨平台應用程式。
 
 ## 相關連結（Links）
 

@@ -5,7 +5,8 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 const AppBar = ({
   isAuthorized,
-  onLogout
+  onToShare,
+  onLogout,
 }) => (
   <Navbar>
     <Navbar.Header>
@@ -24,7 +25,7 @@ const AppBar = ({
         ) :
         (
           <Nav pullRight>
-            <LinkContainer to={{ pathname: '/share' }}><NavItem eventKey={1} href="#">分享食譜</NavItem></LinkContainer>
+            <NavItem eventKey={1} onClick={onToShare}>分享食譜</NavItem>
             <NavItem eventKey={2} onClick={onLogout} href="#">登出</NavItem>
           </Nav>
         )        

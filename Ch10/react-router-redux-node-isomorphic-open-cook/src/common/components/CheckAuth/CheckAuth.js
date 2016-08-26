@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
+// High Order Component
 export default function requireAuthentication(Component, type) {
   class AuthenticatedComponent extends React.Component {
     componentWillMount() {

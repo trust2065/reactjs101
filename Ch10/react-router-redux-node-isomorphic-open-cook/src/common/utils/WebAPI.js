@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import uuid from 'uuid';
 
 import { 
   authComplete,
@@ -53,7 +54,6 @@ export default {
   },
   logout: (dispatch) => {
     document.cookie = 'token=; ' + 'expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    // dispatch(completeLogout());  
     dispatch(hideSpinner());  
     browserHistory.push('/'); 
   },
@@ -80,7 +80,9 @@ export default {
     });
   },
   addRecipe: (dispatch, name, description, imagePath) => {
+    const id = uuid.v4();
     axios.post('/api/recipes?token=' + getCookie('token'), {
+      id: id,
       name: name,
       description: description,
       imagePath: imagePath,
@@ -98,5 +100,44 @@ export default {
     })
     .catch(function (error) {
     });
-  },  
+  },
+  updateRecipe: (dispatch, recipeId, name, description, imagePath) => {
+    axios.put('/api/recipes/' + recipeId + '?token=' + getCookie('token'), {
+      id: recipeId,
+      name: name,
+      description: description,
+      imagePath: imagePath,
+    })
+    .then((response) => {
+      if(response.data.success === false) {
+        dispatch(hideSpinner());  
+        dispatch(setRecipe({ key: 'recipeId', value: '' }));
+        dispatch(setUi({ key: 'isEdit', value: false }));
+        alert('發生錯誤，請再試一次！');
+        browserHistory.push('/share');         
+      } else {
+        dispatch(hideSpinner());  
+        window.location.reload();        
+        browserHistory.push('/'); 
+      }
+    })
+    .catch(function (error) {
+    });
+  },
+  deleteRecipe: (dispatch, recipeId) => {
+    axios.delete('/api/recipes/' + recipeId + '?token=' + getCookie('token'))
+    .then((response) => {
+      if(response.data.success === false) {
+        dispatch(hideSpinner());  
+        alert('發生錯誤，請再試一次！');
+        browserHistory.push('/');         
+      } else {
+        dispatch(hideSpinner());  
+        window.location.reload();        
+        browserHistory.push('/'); 
+      }
+    })
+    .catch(function (error) {
+    });    
+  } 
 };

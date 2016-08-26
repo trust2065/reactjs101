@@ -7,13 +7,16 @@ const RecipeBox = (props) => {
         <Thumbnail src={props.recipe.get('imagePath')} alt="242x200">
           <h3>{props.recipe.get('name')}</h3>
           <p>{props.recipe.get('description')}</p>
-          <p>
-            <Button bsStyle="primary">刪除</Button>&nbsp;
-            <Button bsStyle="default">修改</Button>
-          </p>
+          {
+            props.isAuthorized === true ? (
+            <p>
+              <Button bsStyle="primary" onClick={props.onDeleteRecipe(props.recipe.get('_id'))}>刪除</Button>&nbsp;
+              <Button bsStyle="default" onClick={props.onUpadateRecipe(props.recipe.get('_id'))}>修改</Button>
+            </p>)
+            : null            
+          }
         </Thumbnail>
       </Col>
-
     );
 }
 
