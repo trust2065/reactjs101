@@ -1,14 +1,13 @@
 # 用 React + Redux + Node（Isomorphic）開發一個食譜分享網站
 
 ## 需求規劃
-讓使用者可以登入並分享食譜的社群網站
+讓使用者可以登入會員並分享食譜的社群網站
 
 ## 功能規劃
-- [X] 1. React Router / Redux / Immutable / Server Render / Async API
-- [X] 2. 使用者註冊/登入
-- [X] 3. JSON Web Token
-- [ ] 4. 圖片檔案上傳(File)
-- [X] 5. 表單資料儲存(ORM/PG/Mongo)
+1. React Router / Redux / Immutable / Server Render / Async API
+2. 使用者登入/登出（JSON Web Token）
+3. CRUD 表單資料處理
+4. 資料庫串接(ORM/MongoDB)
 
 ## 使用技術
 1. React
@@ -16,12 +15,21 @@
 3. React Router
 4. ImmutableJS
 5. Node MongoDB ORM(Mongoose)
-6. Multer(Node.js middleware for handling `multipart/form-data`)
-7. JSON Web Token
-8. React Bootstrap
-9. Axios(Promise)
-10. Webpack
-11. UUID
+6. JSON Web Token
+7. React Bootstrap
+8. Axios(Promise)
+9. Webpack
+10. UUID
+
+## 專案成果截圖
+
+![用 React + Redux + Node（Isomorphic）開發一個食譜分享網站](./images/open-cook-demo-1.png "用 React + Redux + Node（Isomorphic）開發一個食譜分享網站")
+
+![用 React + Redux + Node（Isomorphic）開發一個食譜分享網站](./images/open-cook-demo-2.png "用 React + Redux + Node（Isomorphic）開發一個食譜分享網站")
+
+![用 React + Redux + Node（Isomorphic）開發一個食譜分享網站](./images/open-cook-demo-3.png "用 React + Redux + Node（Isomorphic）開發一個食譜分享網站")
+
+![用 React + Redux + Node（Isomorphic）開發一個食譜分享網站](./images/open-cook-demo-4.png "用 React + Redux + Node（Isomorphic）開發一個食譜分享網站")
 
 ## 環境安裝與設定
 1. 安裝 Node 和 NPM
