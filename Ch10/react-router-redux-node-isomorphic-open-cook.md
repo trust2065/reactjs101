@@ -126,6 +126,10 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 太好了！這樣我們就完成了開發環境的設定可以開始動手實作我們的食譜分享社群應用程式了！	
 
+同時我們初步設計我們資料夾結構：
+
+![用 React + Redux + Node（Isomorphic）開發一個食譜分享網站](./images/open-cook-demo-folder.png "用 React + Redux + Node（Isomorphic）開發一個食譜分享網站")
+
 ## 動手實作
 
 ## 延伸閱讀
