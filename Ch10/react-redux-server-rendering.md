@@ -47,7 +47,7 @@ ReactDOMServer.renderToString(<HelloButton name="Mark" />);
 ```
 
 不過要注意的是如果有使用 Redux 在 Server Side Rendering 中，其流程相對複雜，不過大致流程如下：
-由後端預先載入需要的 initialState，由於 Server 渲染必須全部都轉成 string，所以先將 state 先 dehydration（脫水），等到 client 端再 rehydration（覆水）傳給前端後，重建 store 往下傳到前端的 React Component。
+由後端預先載入需要的 initialState，由於 Server 渲染必須全部都轉成 string，所以先將 state 先 dehydration（脫水），等到 client 端再 rehydration（覆水），重建 store 往下傳到前端的 React Component。
 
 總的來說使用 Isomorphic JavaScript 會有以下的好處：
 
@@ -187,7 +187,7 @@ ReactDOM.render(
 
 ```
 
-由於 Node 端要到新版對於 ES6 支援較好，所以先用 `babel-register` 在 `src/server/index.js` 去即時轉譯 `server.js`，但不建議在 `production` 環境使用。
+由於 Node 端要到新版對於 ES6 支援較好，所以先用 `babel-register` 在 `src/server/index.js` 去即時轉譯 `server.js`，但目前不建議在 `production` 環境使用。
 
 ```javascript
 // use babel-register to precompile ES6 syntax

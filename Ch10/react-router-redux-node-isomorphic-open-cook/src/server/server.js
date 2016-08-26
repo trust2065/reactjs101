@@ -46,11 +46,7 @@ const handleRender = (req, res) => {
     } else if (renderProps == null) {
       res.status(404).send('Not found');
     }
-
     fetchComponentData(req.cookies.token).then((response) => {
-      // Render the component to a string
-      // Combined initial state to immutable format
-      // console.log(response.recipes);
       let isAuthorized = false;
       if (response[1].data.success === true) {
          isAuthorized = true;
@@ -74,7 +70,6 @@ const handleRender = (req, res) => {
       });
       // Create a new Redux store instance
       const store = configureStore(initialState);
-
       const initView = renderToString(
         <Provider store={store}>
           <RouterContext {...renderProps} />
@@ -92,7 +87,7 @@ const renderFullPage = (html, preloadedState) => (`
     <!doctype html>
     <html>
       <head>
-        <title>OpenCook 分享料理的美好時刻</title>
+        <title>OpenCook 分享料理的美好時光</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
         <!-- Optional theme -->

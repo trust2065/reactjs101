@@ -1,4 +1,4 @@
 export default ({
-  "secret": "ilovescotchyscotch",
+  "secret": "ilovecooking",
 	"database": "mongodb://localhost/open_cook"
 });
