@@ -1,4 +1,4 @@
-# React ES5、ES6+ 常見用法對照表
+# 附錄一、React ES5、ES6+ 常見用法對照表
 
 ![一看就懂的 React ES5、ES6+ 常見用法對照表](./images/react-es6.jpg)
 

@@ -1,6 +1,6 @@
-# 用 React Native 開發跨平台行動應用程式
+# 附錄二、用 React Native + Firebase 開發跨平台行動應用程式
 
-![用 React Native 開發跨平台行動應用程式](./images/react-native-logo.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-logo.png)
 
 # 前言
 跨平台（`Wirte once, Run Everywhere`）一直以來是軟體工程的聖杯。過去一段時間市場上有許多嘗試跨平台開發原生行動裝置（Native Mobile App）的解決方案，嘗試運用 HTML、CSS　和 JavaScript 等網頁前端技術達到跨平台的效果，例如：運用 [jQuery Mobile](https://jquerymobile.com/)、[Ionic](http://ionicframework.com/) 和 [Framework7](http://framework7.io/) 等 Mobile UI 框架結合 JavaScript 框架並搭配 [Cordova/PhoneGap](https://en.wikipedia.org/wiki/Apache_Cordova) 進行跨平台行動裝置開發。然而，因為這些解決方案通常都是運行在 `WebView` 之上，導致效能和體驗很難真正趨近於原生應用程式（Native App）。
@@ -54,5 +54,7 @@ Supported operating systems are >= Android 4.1 (API 16) and >= iOS 7.0.
 15. [js.coach](https://js.coach/)
 16. [React Native Package Manager](https://github.com/rnpm/rnpm)
 17. [React Native 学习笔记](https://github.com/crazycodeboy/RNStudyNotes)
+18. [The beginners guide to React Native and Firebase](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
+19. [Authentication in React Native with Firebase](https://www.sitepoint.com/authentication-in-react-native-with-firebase/)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))
