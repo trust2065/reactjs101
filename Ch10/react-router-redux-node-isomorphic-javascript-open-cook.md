@@ -927,7 +927,7 @@ export default function configureStore(preloadedState = initialState) {
 
 經過一連串努力，我們來到了 View 的佈建。在這個 App 中我們主要會由一個 AppBar 負責所有頁面的導覽，也就是每個頁面都會有 AppBar 常駐在上面，然而上面的內容則會依 UI State 中的 isAuthorized 而有所不同。最後要留意的是我們使用了 React Bootstrapt 來建立 React Component。
 
-``javascript
+```javascript
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
@@ -969,7 +969,6 @@ export default AppBar;
 
 以下是 `src/common/containers/AppBarContainer/AppBarContainer.js`：
 
-
 ```javascript
 import React from 'react';
 import { connect } from 'react-redux';
@@ -998,8 +997,6 @@ export default connect(
     ),
   })
 )(AppBar);
-
-
 ```
 
 以下是 `src/components/Main/Main.js`，透過 route 機制讓 AppBarContainer 可以成為整個 App 母模版：
@@ -1382,7 +1379,7 @@ export default ShareBox;
 以下是 `src/common/containers/ShareBoxContainer/ShareBoxContainer.js`：
 
 
-```
+```javascript
 import React from 'react';
 import { connect } from 'react-redux';
 import ShareBox from '../../components/ShareBox';
