@@ -32,7 +32,8 @@
 	$ npm install --save-dev babelify babel-preset-es2015 babel-preset-react
 	```
 
-	```js .babelrc
+	```js
+    // filename: .babelrc
 	{
 		"presets": [
 		  "es2015",
@@ -50,7 +51,8 @@
 
 6. 撰寫 Component
 
-	```js ./app/index.js
+	```js
+    // filename: ./app/index.js
 	import React from 'react';
 	import ReactDOM from 'react-dom';
 
@@ -72,7 +74,8 @@
 	ReactDOM.render(<App />, document.getElementById('app'));
 	```
 
-	```html ./index.html
+	```html
+    <!-- filename: ./index.html -->
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -90,7 +93,8 @@
 
 7. 設定 `gulpfile.js`
 
-	```js gulpfile.js
+	```js
+    // filename: gulpfile.js
 	// 引入所有需要的檔案
 	const gulp = require('gulp');
 	const uglify = require('gulp-uglify');
