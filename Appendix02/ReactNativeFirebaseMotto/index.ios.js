@@ -13,51 +13,40 @@ import {
 } from 'react-native';
 import * as firebase from 'firebase';
 
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDBq1IqZJI8Ozb0yI1-CcPH3XeKqdB21l0",
+  authDomain: "react-native-firebase-mo-c0829.firebaseapp.com",
+  databaseURL: "https://react-native-firebase-mo-c0829.firebaseio.com",
+  storageBucket: "react-native-firebase-mo-c0829.appspot.com",
+};
+
+
 class ReactNativeFirebaseMotto extends Component {
+  constructor(props) {
+    super(props);
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    this.itemsRef = firebaseApp.child('items');
+    firebaseApp.set({
+      title: "Hello World!",
+      author: "Simon",
+      location: {
+        city: "Muenster",
+        state: "Germany",
+        zip: 48155
+      }
+    });
+    this.state = {};
+  }
+  addMotto() {
+    console.log('fire');
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Text onPress={addMotto} />
     );
   }
 }
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "<your-api-key>",
-  authDomain: "<your-auth-domain>",
-  databaseURL: "<your-database-url>",
-  storageBucket: "<your-storage-bucket>",,
-};
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('ReactNativeFirebaseMotto', () => ReactNativeFirebaseMotto);

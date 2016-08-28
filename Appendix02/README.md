@@ -61,11 +61,12 @@ $ react-native run-android
 npm install firebase --save
 ```
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
 
 ## React Native 初體驗
+
 
 ```javascript
 import React, { Component } from 'react';
@@ -76,17 +77,18 @@ class WhyReactNativeIsSoGreat extends Component {
     return (
       <View>
         <Text>
-          If you like React on the web, you'll like React Native.
+          If you like React on the web, youll like React Native.
         </Text>
         <Text>
-          You just use native components like 'View' and 'Text',
-          instead of web components like 'div' and 'span'.
+          You just use native components like View and Text,
+          instead of web components like div and span.
         </Text>
       </View>
     );
   }
 }
 ```
+
 
 ```javascript
 import React, { Component } from 'react';
@@ -164,5 +166,6 @@ class SomethingFast extends Component {
 18. [The beginners guide to React Native and Firebase](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
 19. [Authentication in React Native with Firebase](https://www.sitepoint.com/authentication-in-react-native-with-firebase/)
 20. [bruz/react-native-redux-groceries](https://github.com/bruz/react-native-redux-groceries)
+21. [Building a Simple ToDo App With React Native and Firebase](https://devdactic.com/react-native-firebase-todo/)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))
