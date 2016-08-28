@@ -1,6 +1,7 @@
 # Browserify + Gulp + Babelify
 
 ![一看就懂的 React 開發環境建置與 Webpack 入門教學](./images/react-browserify-gulp.png "一看就懂的 React 開發環境建置與 Webpack 入門教學")
+
 在進入第二種方法前，首先先介紹一下會用到 [Browserify](http://browserify.org/)、[Gulp](http://gulpjs.com/)、[Babelify](https://github.com/babel/babelify) 三種前端開發常會用到的工具：
 
 [Browserify](http://browserify.org/)
