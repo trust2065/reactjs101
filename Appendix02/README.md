@@ -23,6 +23,47 @@
 相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 開發一個 TodoApp！
 
 ## React Native 環境設定
+You will need Android Studio, node.js, the React Native command line tools, and Watchman.
+
+```
+brew install node
+brew install watchman
+```
+
+```
+npm install -g react-native-cli
+```
+
+```
+// 注意不能使用 - 或 _
+$ react-native init ReactNativeFirebaseMotto
+$ cd ReactNativeFirebaseMotto
+```
+
+若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若 `run-android`：
+```
+$ react-native run-ios
+// Genymotion
+$ react-native run-android
+```
+
+如果一切順利的話就可以在模擬器中看到初始畫面：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app.png)
+
+由於 React Native 有支援 `Hot Reloading`，若我們更改了檔案內容，我們可以使用 `Cmd+R` 刷新頁面，此時就可以在看到原本的 Welcome to React Native! 文字已經改成 Welcome to React Native Rock!!!! 
+
+有沒有感覺在開發網頁的感覺？
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app-reload.png)
+
+```
+npm install firebase --save
+```
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
 
 ## React Native 初體驗
 
@@ -92,7 +133,7 @@ class SomethingFast extends Component {
 
 ## 使用 Flexbox 進行 UI 布局設計 
 
-好用工具
+在 React Native 中使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
 
 ## 使用 Redux 進行資料和 UI 狀態管理
 
@@ -101,7 +142,6 @@ class SomethingFast extends Component {
 ## 在模擬器和實機上看成果
 
 ## 總結
-效能
 
 ## 延伸閱讀
 1. [React Native 官方網站](https://facebook.github.io/react-native/)
@@ -123,5 +163,6 @@ class SomethingFast extends Component {
 17. [React Native 学习笔记](https://github.com/crazycodeboy/RNStudyNotes)
 18. [The beginners guide to React Native and Firebase](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
 19. [Authentication in React Native with Firebase](https://www.sitepoint.com/authentication-in-react-native-with-firebase/)
+20. [bruz/react-native-redux-groceries](https://github.com/bruz/react-native-redux-groceries)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))
