@@ -3,8 +3,9 @@ import ReactNative from 'react-native';
 import { Provider } from 'react-redux'; 
 import ToolBar from '../ToolBar';
 import MottoListContainer from '../../containers/MottoListContainer';
+import ActionButtonContainer from '../../containers/ActionButtonContainer';
+import InputModalContainer from '../../containers/InputModalContainer';
 import ListItem from '../ListItem';
-import ActionButton from '../ActionButton';
 import * as firebase from 'firebase';
 import { firebaseConfig } from '../../constants/config';
 import store from '../../store';
@@ -21,7 +22,8 @@ const Main = () => (
     <View>
       <ToolBar title="Grocery List" />
       <MottoListContainer itemsRef={itemsRef} />
-      <ActionButton title="Add" />
+      <ActionButtonContainer />
+      <InputModalContainer />
     </View>
   </Provider>
 );

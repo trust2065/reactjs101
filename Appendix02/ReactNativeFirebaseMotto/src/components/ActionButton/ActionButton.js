@@ -4,8 +4,8 @@ const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;
 
 const ActionButton = (props) => (
   <View>
-    <TouchableHighlight>
-      <Text>{props.title}</Text>
+    <TouchableHighlight onPress={props.onToggleModal}>
+      <Text>Add Motto</Text>
     </TouchableHighlight>
   </View>
 );

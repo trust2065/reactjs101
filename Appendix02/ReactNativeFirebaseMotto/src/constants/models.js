@@ -9,3 +9,6 @@ export const MottoState = Immutable.fromJS({
   }
 });
 
+export const UiState = Immutable.fromJS({
+  isModalVisible: false,
+});

@@ -24,10 +24,14 @@ class MottoList extends Component {
   }  
   listenForItems(itemsRef) {
     itemsRef.on('value', (snap) => {
-      this.props.onGetMottos(Immutable.fromJS(snap.val()));
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.props.mottos.toArray())
-      });
+      if(snap.val() === null) {
+        this.props.onGetMottos(Immutable.fromJS([]));
+      } else {
+        this.props.onGetMottos(Immutable.fromJS(snap.val()));  
+      }
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(this.props.mottos.toArray())
+        });      
     });
   }
   componentDidMount() {

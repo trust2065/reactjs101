@@ -3,7 +3,7 @@ import ui from './ui/uiReducers';
 import motto from './data/mottoReducers';
 
 const rootReducer = combineReducers({
-  // ui,
+  ui,
   motto,
 });
 
