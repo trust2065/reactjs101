@@ -20,7 +20,9 @@
 10. 支援 Hot Reloading 和瀏覽器除錯工具，方便 debug
 11. Supported operating systems are >= Android 4.1 (API 16) and >= iOS 7.0.
 
-相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 開發一個 TodoApp！
+相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 開發一個記錄名言佳句的 Mobile App！
+
+## 專案成果截圖
 
 ## React Native 環境設定
 You will need Android Studio, node.js, the React Native command line tools, and Watchman.
@@ -65,8 +67,20 @@ npm install firebase --save
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
 
-## React Native 初體驗
+## 環境安裝與設定
+1. 安裝 Node 和 NPM
 
+2. 安裝所需套件
+
+```
+$ npm install --save redux react-redux immutable redux-immutable redux-actions uuid react-native-vector-icons
+```
+
+```
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server redux-logger
+```
+
+## React Native 初體驗
 
 ```javascript
 import React, { Component } from 'react';
@@ -88,7 +102,6 @@ class WhyReactNativeIsSoGreat extends Component {
   }
 }
 ```
-
 
 ```javascript
 import React, { Component } from 'react';
@@ -167,5 +180,6 @@ class SomethingFast extends Component {
 19. [Authentication in React Native with Firebase](https://www.sitepoint.com/authentication-in-react-native-with-firebase/)
 20. [bruz/react-native-redux-groceries](https://github.com/bruz/react-native-redux-groceries)
 21. [Building a Simple ToDo App With React Native and Firebase](https://devdactic.com/react-native-firebase-todo/)
+22. [Firebase Permission Denied](http://stackoverflow.com/questions/37403747/firebase-permission-denied)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))

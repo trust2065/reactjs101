@@ -1,12 +1,12 @@
 import Immutable from 'immutable';
 
 // initstate model
-export const UiState = Immutable.Map({
+export const UiState = Immutable.fromJS({
   spinnerVisible: false,
   isEdit: false,
 });
 
-export const RecipeState = Immutable.Map({
+export const RecipeState = Immutable.fromJS({
   recipes: [],  
   recipe: {
     id: '',
@@ -16,7 +16,7 @@ export const RecipeState = Immutable.Map({
   } 
 });
 
-export const UserState = Immutable.Map({
+export const UserState = Immutable.fromJS({
   username: '',
   email: '',
   password: '',
