@@ -1,20 +1,43 @@
 import React from 'react';
 import ReactNative from 'react-native';
-const { View, Text, Modal, TouchableHighlight } = ReactNative;
+import styles from './inputModelStyles';
+const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;
 const InputModal = (props) => (
   <View>
     <Modal
       animationType={"slide"}
       transparent={false}
       visible={props.isModalVisible}
-      onRequestClose={() => {alert("Modal has been closed.")}}
+      onRequestClose={props.onToggleModal}
       >
-     <View style={{marginTop: 22}}>
+     <View>
       <View>
-        <Text>Hello World!</Text>
-        <TouchableHighlight onPress={props.onToggleModal}>
-          <Text>Hide Modal</Text>
-        </TouchableHighlight>
+        <Text style={styles.modalHeader}>Please Keyin your Motto!</Text>
+        <TextInput
+          onChangeText={props.onChangeMottoText}
+        />
+        <View style={styles.buttonContainer}>      
+          <TouchableHighlight 
+            onPress={props.onToggleModal}
+            style={[styles.cancelButton]}
+          >
+            <Text
+              style={styles.buttonText}
+            >
+              Cancel
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight 
+            onPress={props.onCreateMotto(props.itemsRef)}
+            style={[styles.submitButton]}
+          >
+            <Text
+              style={styles.buttonText}
+            >
+              Submit
+            </Text>
+          </TouchableHighlight>  
+        </View>
       </View>
      </View>
     </Modal>

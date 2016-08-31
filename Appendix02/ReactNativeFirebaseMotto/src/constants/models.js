@@ -4,7 +4,7 @@ export const MottoState = Immutable.fromJS({
   mottos: [],
   motto: {
     id : '',
-    title: '',
+    text: '',
     updatedAt: '',
   }
 });

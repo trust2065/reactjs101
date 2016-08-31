@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import Immutable from 'immutable';
-
 import ListItem from '../ListItem';
+import styles from './mottoStyles';
 const { View, Text, ListView } = ReactNative;
 
 class MottoList extends Component {
@@ -10,28 +10,23 @@ class MottoList extends Component {
     super(props);
     this.renderListItem = this.renderListItem.bind(this);
     this.listenForItems = this.listenForItems.bind(this);
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => !immutable.is(r1, r2),
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => !Immutable.is(r1.get('id'), r2.get('id')),
     })
-    this.state = {
-      dataSource: ds.cloneWithRows(props.mottos.toArray()),
-    }
   }
   renderListItem(item) {
     return (
-      <ListItem item={item} />
+      <ListItem item={item} onDeleteMotto={this.props.onDeleteMotto} itemsRef={this.props.itemsRef} />
     );
   }  
   listenForItems(itemsRef) {
     itemsRef.on('value', (snap) => {
+      console.log(snap.val());
       if(snap.val() === null) {
         this.props.onGetMottos(Immutable.fromJS([]));
       } else {
         this.props.onGetMottos(Immutable.fromJS(snap.val()));  
-      }
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(this.props.mottos.toArray())
-        });      
+      }     
     });
   }
   componentDidMount() {
@@ -41,7 +36,8 @@ class MottoList extends Component {
     return (
       <View>
         <ListView
-          dataSource={this.state.dataSource}
+          style={styles.listView}
+          dataSource={this.ds.cloneWithRows(this.props.mottos.toArray())}
           renderRow={this.renderListItem}
           enableEmptySections={true}
         />

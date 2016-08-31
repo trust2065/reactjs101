@@ -6,7 +6,7 @@ import {
 import {
   GET_MOTTOS,
   CREATE_MOTTO,
-  CHAGE_MOTTO_TITLE,
+  SET_IN_MOTTO,
 } from '../../constants/actionTypes';
 
 const mottoReducers = handleActions({
@@ -22,10 +22,10 @@ const mottoReducers = handleActions({
       state.get('mottos').push(state.get('motto'))
     )
   ),
-  CHAGE_MOTTO_TITLE: (state, { payload }) => (
-    state.merge(
-      ['motto', 'title'],
-      payload.value.title
+  SET_IN_MOTTO: (state, { payload }) => (
+    state.setIn(
+      payload.path,
+      payload.value
     )
   )
 }, MottoState);

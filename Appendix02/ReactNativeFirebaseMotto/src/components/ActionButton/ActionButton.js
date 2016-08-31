@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactNative from 'react-native';
+import styles from './actionButtonStyles';
 const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;  
 
 const ActionButton = (props) => (
-  <View>
+  <View style={styles.buttonContainer}>
     <TouchableHighlight onPress={props.onToggleModal}>
-      <Text>Add Motto</Text>
+      <Text style={styles.buttonText}>Add Motto</Text>
     </TouchableHighlight>
   </View>
 );

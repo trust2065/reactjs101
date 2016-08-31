@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactNative from 'react-native';
-const { View, Text } = ReactNative;
+import styles from './listItemStyles';
+const { View, Text, TouchableHighlight } = ReactNative;
 
 const ListItem = (props) => {
-  console.log(props);
   return (
-  <View>
-    <Text>{props.item.get('title')}</Text>
-  </View>
+    <View style={styles.listItemContainer}>
+      <Text style={styles.listItemText}>{props.item.get('text')}</Text>
+      <TouchableHighlight onPress={props.onDeleteMotto(props.item.get('id'), props.itemsRef)}>
+        <Text>Delete</Text>
+      </TouchableHighlight>
+    </View>
   )
 };
 
