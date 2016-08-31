@@ -181,5 +181,6 @@ class SomethingFast extends Component {
 20. [bruz/react-native-redux-groceries](https://github.com/bruz/react-native-redux-groceries)
 21. [Building a Simple ToDo App With React Native and Firebase](https://devdactic.com/react-native-firebase-todo/)
 22. [Firebase Permission Denied](http://stackoverflow.com/questions/37403747/firebase-permission-denied)
+23. [Best Practices: Arrays in Firebase](https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))

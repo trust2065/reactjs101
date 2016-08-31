@@ -5,7 +5,7 @@ const { View, Text } = ReactNative;
 
 const ToolBar = () => (
   <View style={styles.toolBarContainer}>
-    <Text style={styles.toolBarText}>Motto</Text>
+    <Text style={styles.toolBarText}>Startup Mottos</Text>
   </View>
 );
 
