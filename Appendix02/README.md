@@ -156,6 +156,17 @@ class SomethingFast extends Component {
 
 ## 動手實作
 
+### 設定 Firebase
+
+```javascript
+{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+```
+
 ## 在模擬器和實機上看成果
 
 ## 總結
