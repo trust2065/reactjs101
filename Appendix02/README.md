@@ -30,7 +30,7 @@
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-2.png)
 
 ## React Native 環境安裝與設定
-在了解了 React Native 特色後，我們準備開始開發我們的 React Native 應用程式！由於我們的範例可以讓程式跨平台共用，所以你可以使用 iOS 和 Android 平台運行。不過若是想在 iOS 平台開發需要先準備 Mac OS 和安裝 [Xcode](https://developer.apple.com/xcode/) 開發工具，若是你準備使用 Android 平台的話建議先行安裝 [Android Studio](https://developer.android.com/studio/index.html) 和 [Genymotion 模擬器](https://www.genymotion.com/)。在我們範例我們使用筆者使用的 MacO OS 作業系統並使用 Android 平台當作參考，若有其他作業系統需求的讀者可以參考 [官方安裝說明](https://facebook.github.io/react-native/docs/getting-started.html)。
+在了解了 React Native 特色後，我們準備開始開發我們的 React Native 應用程式！由於我們的範例可以讓程式跨平台共用，所以你可以使用 iOS 和 Android 平台運行。不過若是想在 iOS 平台開發需要先準備 Mac OS 和安裝 [Xcode](https://developer.apple.com/xcode/) 開發工具，若是你準備使用 Android 平台的話建議先行安裝 [Android Studio](https://developer.android.com/studio/index.html) 和 [Genymotion 模擬器](https://www.genymotion.com/)。在我們範例我們使用筆者使用的 MacO OS 作業系統並使用 Android 平台為主要範例，若有其他作業系統需求的讀者可以參考 [官方安裝說明](https://facebook.github.io/react-native/docs/getting-started.html)。
 
 一開始請先安裝 [Node](https://nodejs.org/en/)、[Watchman](https://facebook.github.io/watchman/)。
 
@@ -41,7 +41,7 @@ brew install watchman
 ```
 
 ```
-//  React Native command line 工具
+// React Native command line 工具
 npm install -g react-native-cli
 ```
 
@@ -71,38 +71,78 @@ $ react-native run-ios
 $ react-native run-android
 ```
 
+現在我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發：
+
+首先先 init 一個 React Native Project：
+
+```
+react-native init HelloWorldApp
+
+```
+
 如果一切順利的話就可以在模擬器中看到初始畫面：
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app.png)
+
+接著打開 `index.android.js` 就可以看到以下程式碼：
+```javascript
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+
+// 元件式的開發方式和 React 如出一轍，但要注意的是在 React Native 中我們不使用 HTML 元素而是使用 React Native 元件進行開發，這也符合 Learn once, write anywhere 的原則。
+class HelloWorldApp extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.android.js
+        </Text>
+        <Text style={styles.instructions}>
+          Double tap R on your keyboard to reload,{'\n'}
+          Shake or press menu button for dev menu
+        </Text>
+      </View>
+    );
+  }
+}
+
+// 在 React Native 中 styles 是使用 JavaScript 形式來撰寫，與一般 CSS 比較不同的是他使用駝峰式的屬性命名：
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
+
+// 告訴 React Native App 你的進入點：
+AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
+```
 
 由於 React Native 有支援 `Hot Reloading`，若我們更改了檔案內容，我們可以使用 `Cmd+R` 刷新頁面，此時就可以在看到原本的 `Welcome to React Native!` 文字已經改成 `Welcome to React Native Rock!!!! `
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app-reload.png)
 
 嗯，有沒有感覺在開發網頁的感覺？
-
-## React Native 初體驗
-
-```javascript
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-
-class WhyReactNativeIsSoGreat extends Component {
-  render() {
-    return (
-      <View>
-        <Text>
-          If you like React on the web, youll like React Native.
-        </Text>
-        <Text>
-          You just use native components like View and Text,
-          instead of web components like div and span.
-        </Text>
-      </View>
-    );
-  }
-}
-```
 
 ## Firebase 簡介與設定
 
@@ -158,4 +198,4 @@ class WhyReactNativeIsSoGreat extends Component {
 22. [Firebase Permission Denied](http://stackoverflow.com/questions/37403747/firebase-permission-denied)
 23. [Best Practices: Arrays in Firebase](https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html)
 
-(image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png))
+(image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png)、[css-tricks](https://cdn.css-tricks.com/wp-content/uploads/2011/08/flexbox.png)、[teamtreehouse](http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-justify.png))
