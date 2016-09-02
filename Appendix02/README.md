@@ -79,7 +79,7 @@ $ react-native run-android
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app-reload.png)
 
-有沒有感覺在開發網頁的感覺？
+嗯，有沒有感覺在開發網頁的感覺？
 
 ## React Native 初體驗
 
@@ -125,14 +125,13 @@ class WhyReactNativeIsSoGreat extends Component {
 
 ## 動手實作
 
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-1.png)
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-2.png)
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-1.png)
 
 ## 總結
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-1.png)
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-2.png)
 
 ## 延伸閱讀
 1. [React Native 官方網站](https://facebook.github.io/react-native/)
