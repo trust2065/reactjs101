@@ -9,6 +9,7 @@
 
 ## React Native 特色
 在開始開發 React Native App 之前我們先來介紹一下 React Native 特色的主要特色：
+
 1. 使用 JavaScript（ES6+）和 [React](https://facebook.github.io/react/) 打造跨平台原生應用程式（Learn once, write anywhere）
 2. 使用 Native Components，更貼近原生使用者體驗
 3. 在 JavaScript 和 Native 之間的操作為非同步（Asynchronous）執行，並可用 Chrome 開發者工具除錯，支援 Hot Reloading
