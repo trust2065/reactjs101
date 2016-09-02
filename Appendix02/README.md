@@ -8,6 +8,7 @@
 不過，隨著 Facebook 工程團隊開發的 [React Native](https://facebook.github.io/react-native/) 橫空出世，想嘗試跨平台解決方案的開發者又有了新的選擇。
 
 ## React Native 特色
+在開始開發 React Native App 之前我們先來介紹一下 React Native 特色的主要特色：
 1. 使用 JavaScript（ES6+）和 [React](https://facebook.github.io/react/) 打造跨平台原生應用程式（Learn once, write anywhere）
 2. 使用 Native Components，更貼近原生使用者體驗
 3. 在 JavaScript 和 Native 之間的操作為非同步（Asynchronous）執行，並可用 Chrome 開發者工具除錯，支援 Hot Reloading
@@ -19,7 +20,7 @@
 9. 目前更新速度快，平均每兩週發佈新的版本。社群也還持續在尋找最佳實踐，關於版本進展可以[參考這個文件](https://facebook.github.io/react-native/versions.html)
 10. 支援的作業系統為 >= Android 4.1 (API 16) 和 >= iOS 7.0
 
-相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 開發一個記錄名言佳句的 Mobile App！
+相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 和 Firebase 開發一個記錄名言佳句（Mottos）的 Mobile App！
 
 ## 專案成果截圖
 
@@ -27,28 +28,45 @@
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-2.png)
 
-## React Native 環境設定
-You will need Android Studio, node.js, the React Native command line tools, and Watchman.
+## React Native 環境安裝與設定
+在了解了 React Native 特色後，我們準備開始開發我們的 React Native 應用程式！由於我們的範例可以讓程式跨平台共用，所以你可以使用 iOS 和 Android 平台運行。不過若是想在 iOS 平台開發需要先準備 Mac OS 和安裝 [Xcode](https://developer.apple.com/xcode/) 開發工具，若是你準備使用 Android 平台的話建議先行安裝 [Android Studio](https://developer.android.com/studio/index.html) 和 [Genymotion 模擬器](https://www.genymotion.com/)。在我們範例我們使用筆者使用的 MacO OS 作業系統並使用 Android 平台當作參考，若有其他作業系統需求的讀者可以參考 [官方安裝說明](https://facebook.github.io/react-native/docs/getting-started.html)。
+
+一開始請先安裝 [Node](https://nodejs.org/en/)、[Watchman](https://facebook.github.io/watchman/)。
 
 ```
 brew install node
+// 可以監看檔案是否有修改
 brew install watchman
 ```
 
 ```
+//  React Native command line 工具
 npm install -g react-native-cli
 ```
 
+相關套件安裝：
+
 ```
-// 注意不能使用 - 或 _
+$ npm install --save redux react-redux immutable redux-immutable redux-actions uuid firebase
+```
+
+```
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-react-native eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server redux-logger
+```
+
+安裝完相關工具後我們可以初始化我們專案：
+
+```
+// 注意專案不能使用 - 或 _ 命名
 $ react-native init ReactNativeFirebaseMotto
 $ cd ReactNativeFirebaseMotto
 ```
 
 若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若 `run-android`：
+
 ```
 $ react-native run-ios
-// Genymotion
+// 記得先開啟 Genymotion 模擬器
 $ react-native run-android
 ```
 
@@ -59,29 +77,6 @@ $ react-native run-android
 由於 React Native 有支援 `Hot Reloading`，若我們更改了檔案內容，我們可以使用 `Cmd+R` 刷新頁面，此時就可以在看到原本的 `Welcome to React Native!` 文字已經改成 `Welcome to React Native Rock!!!! `
 
 有沒有感覺在開發網頁的感覺？
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app-reload.png)
-
-```
-npm install firebase --save
-```
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
-
-## 環境安裝與設定
-1. 安裝 Node 和 NPM
-
-2. 安裝所需套件
-
-```
-$ npm install --save redux react-redux immutable redux-immutable redux-actions uuid react-native-vector-icons
-```
-
-```
-$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-react-native eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server redux-logger
-```
 
 ## React Native 初體驗
 
@@ -106,57 +101,11 @@ class WhyReactNativeIsSoGreat extends Component {
 }
 ```
 
-```javascript
-import React, { Component } from 'react';
-import { Image, ScrollView, Text } from 'react-native';
+## Firebase 簡介與設定
 
-class AwkwardScrollingImageWithText extends Component {
-  render() {
-    return (
-      <ScrollView>
-        <Image source={{uri: 'https://i.chzbgr.com/full/7345954048/h7E2C65F9/'}} />
-        <Text>
-          On iOS, a React Native ScrollView uses a native UIScrollView.
-          On Android, it uses a native ScrollView.
-          On iOS, a React Native Image uses a native UIImageView.
-          On Android, it uses a native ImageView.
-          React Native wraps the fundamental native components, giving you
-          the performance of a native app, plus the clean design of React.
-        </Text>
-      </ScrollView>
-    );
-  }
-}
-```
-
-```javascript
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { TheGreatestComponentInTheWorld } from './your-native-code';
-
-class SomethingFast extends Component {
-  render() {
-    return (
-      <View>
-        <TheGreatestComponentInTheWorld />
-        <Text>
-          TheGreatestComponentInTheWorld could use native Objective-C,
-          Java, or Swift - the product development process is the same.
-        </Text>
-      </View>
-    );
-  }
-}
-```
-
-## 使用 Flexbox 進行 UI 布局設計 
-
-在 React Native 中使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
-
-
-## 動手實作
-
-### 設定 Firebase
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
 
 ```javascript
 {
@@ -167,7 +116,14 @@ class SomethingFast extends Component {
 }
 ```
 
-## 在模擬器和實機上看成果
+## 使用 Flexbox 進行 UI 布局設計 
+
+在 React Native 中使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
+
+## 動手實作
+
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-1.png)
 
 ## 總結
 
