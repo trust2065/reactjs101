@@ -21,15 +21,7 @@
 9. 目前更新速度快，平均每兩週發佈新的版本。社群也還持續在尋找最佳實踐，關於版本進展可以[參考這個文件](https://facebook.github.io/react-native/versions.html)
 10. 支援的作業系統為 >= Android 4.1 (API 16) 和 >= iOS 7.0
 
-相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux 和 Firebase 開發一個記錄名言佳句（Mottos）的 Mobile App！
-
-## 專案成果截圖
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-1.png)
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-2.png)
-
-## React Native 環境安裝與設定
+## React Native 初體驗
 在了解了 React Native 特色後，我們準備開始開發我們的 React Native 應用程式！由於我們的範例可以讓程式跨平台共用，所以你可以使用 iOS 和 Android 平台運行。不過若是想在 iOS 平台開發需要先準備 Mac OS 和安裝 [Xcode](https://developer.apple.com/xcode/) 開發工具，若是你準備使用 Android 平台的話建議先行安裝 [Android Studio](https://developer.android.com/studio/index.html) 和 [Genymotion 模擬器](https://www.genymotion.com/)。在我們範例我們使用筆者使用的 MacO OS 作業系統並使用 Android 平台為主要範例，若有其他作業系統需求的讀者可以參考 [官方安裝說明](https://facebook.github.io/react-native/docs/getting-started.html)。
 
 一開始請先安裝 [Node](https://nodejs.org/en/)、[Watchman](https://facebook.github.io/watchman/)。
@@ -45,23 +37,18 @@ brew install watchman
 npm install -g react-native-cli
 ```
 
-相關套件安裝：
+現在，我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發：
+
+首先先 init 一個 React Native Project：
 
 ```
-$ npm install --save redux react-redux immutable redux-immutable redux-actions uuid firebase
+react-native init HelloWorldApp
 ```
 
-```
-$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-react-native eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server redux-logger
-```
+資料夾結構長相：
 
-安裝完相關工具後我們可以初始化我們專案：
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/folder-1.png)
 
-```
-// 注意專案不能使用 - 或 _ 命名
-$ react-native init ReactNativeFirebaseMotto
-$ cd ReactNativeFirebaseMotto
-```
 
 若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android`：
 
@@ -69,15 +56,6 @@ $ cd ReactNativeFirebaseMotto
 $ react-native run-ios
 // 記得先開啟 Genymotion 模擬器
 $ react-native run-android
-```
-
-現在我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發：
-
-首先先 init 一個 React Native Project：
-
-```
-react-native init HelloWorldApp
-
 ```
 
 如果一切順利的話就可以在模擬器中看到初始畫面：
@@ -144,11 +122,58 @@ AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
 
 嗯，有沒有感覺在開發網頁的感覺？
 
-## Firebase 簡介與設定
+## 動手實作
+相信看到這裡讀者們一定等不及想大展身手，使用 React Native 開發你第一個 App。俗話說學習一項新技術最好的方式就是做一個 TodoApp。所以，接下來的文章，筆者將帶大家使用 React Native 結合 Redux/ImmutableJS 和 Firebase 開發一個記錄和刪除名言佳句（Mottos）的 Mobile App！
 
+### 專案成果截圖
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-1.png)
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-2.png)
+
+### 環境安裝與設定
+
+相關套件安裝：
+
+```
+$ npm install --save redux react-redux immutable redux-immutable redux-actions uuid firebase
+```
+
+```
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-react-native eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server redux-logger
+```
+
+安裝完相關工具後我們可以初始化我們專案：
+
+```
+// 注意專案不能使用 - 或 _ 命名
+$ react-native init ReactNativeFirebaseMotto
+$ cd ReactNativeFirebaseMotto
+```
+
+我們先準備一下我們資料夾架構，將它設計成：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/folder-2.png)
+
+### Firebase 簡介與設定
+在這個專案中我們會使用到 [Firebase](https://firebase.google.com/) 這個 `Back-End as Service`的服務，也就是說我們不用自己建立後端程式資料庫，只要使用 Firebase 所提供的 API 就好像有了一個 NoSQL 資料庫一樣，當然 Firebase 不單只有提供資料儲存的功能，但限於篇幅我們這邊將只介紹資料儲存的功能。 
+
+1. 首先我們進到 Firebase 首頁
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
+
+2. 登入後點選建立專案，依照自己想取的專案名稱命名
+
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
+
+3. 選擇將 Firebase 加入你的網路應用程式可以取得 App ID 的 config 資料，待會將會使用到
+
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
+
+4. 點選左邊選單中的 Database 並點選 Realtime Database Tab 中的規則
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-0.png)
+
+設定改為，在範例中為求簡單，我們先不用驗證方式即可操作：
 
 ```javascript
 {
@@ -159,19 +184,629 @@ AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
 }
 ```
 
-## 使用 Flexbox 進行 UI 布局設計 
+Firebase 在使用上有許多優點，其中一個使用 Back-End As Service 的好處是你可以專注在應用程式的開發便免花過多時間處理後端基礎建設的部份，更可以讓 Back-End 共用在不同的 client side 中。此外 Firebase 在和 React 整合上也十分容易，你可以想成 Firebase 負責資料的儲存，透過 API 和 React 元件互動，Redux 負責接收管理 client state，若有 state 的更新或變動則重新 render 頁面。
 
-在 React Native 中使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
+
+### 使用 Flexbox 進行 UI 布局設計 
+在 React Native 中是使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-1.png)
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-2.png)
 
 ## 動手實作
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-1.png)
+```
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+import Main from './src/components/Main';
+
+class ReactNativeFirebaseMotto extends Component {
+  render() {
+    return (
+      <Main />
+    );
+  }
+}
+
+AppRegistry.registerComponent('ReactNativeFirebaseMotto', () => ReactNativeFirebaseMotto);
+```
+
+```
+import React from 'react';
+import ReactNative from 'react-native';
+import { Provider } from 'react-redux'; 
+import ToolBar from '../ToolBar';
+import MottoListContainer from '../../containers/MottoListContainer';
+import ActionButtonContainer from '../../containers/ActionButtonContainer';
+import InputModalContainer from '../../containers/InputModalContainer';
+import ListItem from '../ListItem';
+import * as firebase from 'firebase';
+import { firebaseConfig } from '../../constants/config';
+import store from '../../store';
+import styles from './mainStyles';
+const { View, Text } = ReactNative;
+
+// Initialize Firebase
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+// Create a reference with .ref() instead of new Firebase(url)
+const rootRef = firebaseApp.database().ref();
+const itemsRef = rootRef.child('items');
+
+const Main = () => (
+  <Provider store={store}>
+    <View style={{flex: 1}}>
+      <ToolBar style={styles.toolBar} />
+      <MottoListContainer itemsRef={itemsRef} />
+      <ActionButtonContainer />
+      <InputModalContainer itemsRef={itemsRef} />
+    </View>
+  </Provider>
+);
+
+export default Main; 
+```
+
+```
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  toolBar: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'red',
+  },
+  listView: {
+    flex: 5,
+    flexDirection: 'row',    
+    backgroundColor: 'red',
+  },
+  actionBar: {
+    flex: 1,
+    flexDirection: 'column',    
+  }
+});
+```
+
+```
+import React from 'react';
+import ReactNative from 'react-native';
+import styles from './toolBarStyles';
+const { View, Text } = ReactNative;
+
+const ToolBar = () => (
+  <View style={styles.toolBarContainer}>
+    <Text style={styles.toolBarText}>Startup Mottos</Text>
+  </View>
+);
+
+export default ToolBar; 
+```
+
+```
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  toolBarContainer: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#ffeb3b',
+  },
+  toolBarText: {
+    fontSize: 20,
+    color: '#212121'
+  }
+});
+```
+
+```
+import React, { Component } from 'react';
+import ReactNative from 'react-native';
+import Immutable from 'immutable';
+import ListItem from '../ListItem';
+import styles from './mottoStyles';
+const { View, Text, ListView } = ReactNative;
+
+class MottoList extends Component {
+  constructor(props) {
+    super(props);
+    this.renderListItem = this.renderListItem.bind(this);
+    this.listenForItems = this.listenForItems.bind(this);
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => !Immutable.is(r1.get('id'), r2.get('id')),
+    })
+  }
+  renderListItem(item) {
+    return (
+      <ListItem item={item} onDeleteMotto={this.props.onDeleteMotto} itemsRef={this.props.itemsRef} />
+    );
+  }  
+  listenForItems(itemsRef) {
+    itemsRef.on('value', (snap) => {
+      console.log(snap.val());
+      if(snap.val() === null) {
+        this.props.onGetMottos(Immutable.fromJS([]));
+      } else {
+        this.props.onGetMottos(Immutable.fromJS(snap.val()));  
+      }     
+    });
+  }
+  componentDidMount() {
+    this.listenForItems(this.props.itemsRef);
+  }
+  render() {
+    return (
+      <View>
+        <ListView
+          style={styles.listView}
+          dataSource={this.ds.cloneWithRows(this.props.mottos.toArray())}
+          renderRow={this.renderListItem}
+          enableEmptySections={true}
+        />
+      </View>
+    );
+  }
+}
+
+export default MottoList;
+
+```
+
+```
+import { StyleSheet, Dimensions } from 'react-native';
+const { height } = Dimensions.get('window');
+export default StyleSheet.create({
+  listView: {
+    flex: 1,
+    flexDirection: 'column',
+    height: height - 105,
+  },
+});
+```
+
+```
+import React from 'react';
+import ReactNative from 'react-native';
+import styles from './listItemStyles';
+const { View, Text, TouchableHighlight } = ReactNative;
+
+const ListItem = (props) => {
+  return (
+    <View style={styles.listItemContainer}>
+      <Text style={styles.listItemText}>{props.item.get('text')}</Text>
+      <TouchableHighlight onPress={props.onDeleteMotto(props.item.get('id'), props.itemsRef)}>
+        <Text>Delete</Text>
+      </TouchableHighlight>
+    </View>
+  )
+};
+
+export default ListItem;
+```
+
+```
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  listItemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    margin: 5,
+  },
+  listItemText: {
+    flex: 10,
+    fontSize: 18,
+    color: '#212121',
+  }
+});
+```
+
+```
+import React from 'react';
+import ReactNative from 'react-native';
+import styles from './inputModelStyles';
+const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;
+const InputModal = (props) => (
+  <View>
+    <Modal
+      animationType={"slide"}
+      transparent={false}
+      visible={props.isModalVisible}
+      onRequestClose={props.onToggleModal}
+      >
+     <View>
+      <View>
+        <Text style={styles.modalHeader}>Please Keyin your Motto!</Text>
+        <TextInput
+          onChangeText={props.onChangeMottoText}
+        />
+        <View style={styles.buttonContainer}>      
+          <TouchableHighlight 
+            onPress={props.onToggleModal}
+            style={[styles.cancelButton]}
+          >
+            <Text
+              style={styles.buttonText}
+            >
+              Cancel
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight 
+            onPress={props.onCreateMotto(props.itemsRef)}
+            style={[styles.submitButton]}
+          >
+            <Text
+              style={styles.buttonText}
+            >
+              Submit
+            </Text>
+          </TouchableHighlight>  
+        </View>
+      </View>
+     </View>
+    </Modal>
+  </View>
+);
+
+export default InputModal;
+```
+
+```
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  modalHeader: {
+    flex: 1,
+    height: 30,
+    padding: 10,
+    flexDirection: 'row',
+    backgroundColor: '#ffc107',
+    fontSize: 20,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  button: {
+    borderRadius: 5,
+
+  },
+  cancelButton: {
+    flex: 1,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#eceff1',
+    margin: 5,
+  },
+  submitButton: {
+    flex: 1,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#4fc3f7',
+    margin: 5,
+  },
+  buttonText: {
+    fontSize: 20,
+  }
+});
+```
+
+```
+import React from 'react';
+import ReactNative from 'react-native';
+import styles from './actionButtonStyles';
+const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;  
+
+const ActionButton = (props) => (
+  <TouchableHighlight onPress={props.onToggleModal}>
+    <View style={styles.buttonContainer}>
+        <Text style={styles.buttonText}>Add Motto</Text>
+    </View>
+  </TouchableHighlight>
+);
+
+export default ActionButton;
+
+```
+
+```
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  buttonContainer: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#66bb6a',
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#e8f5e9'
+  }
+});
+```
+
+```
+import { connect } from 'react-redux';
+import ActionButton from '../../components/ActionButton';
+import {
+  toggleModal,
+} from '../../actions';
+ 
+export default connect(
+  (state) => ({}),
+  (dispatch) => ({
+    onToggleModal: () => (
+      dispatch(toggleModal())
+    )
+  })
+)(ActionButton);
+
+```
+
+```
+import { connect } from 'react-redux';
+import InputModal from '../../components/InputModal';
+import Immutable from 'immutable';
+
+import {
+  toggleModal,
+  setInMotto,
+  createMotto,
+} from '../../actions';
+import uuid from 'uuid';
+ 
+export default connect(
+  (state) => ({
+    isModalVisible: state.getIn(['ui', 'isModalVisible']),
+    motto: state.getIn(['motto', 'motto']),
+  }),
+  (dispatch) => ({
+    onToggleModal: () => (
+      dispatch(toggleModal())
+    ),
+    onChangeMottoText: (text) => (
+      dispatch(setInMotto({ path: ['motto', 'text'], value: text }))
+    ),
+    onCreateMotto: (motto) => (itemsRef) => () => {
+      itemsRef.push({ id: uuid.v4(), text: motto.get('text'), updatedAt: Date.now() });
+      dispatch(setInMotto({ path: ['motto'], value: Immutable.fromJS({ id: '', text: '', updatedAt: '' })}));
+      dispatch(toggleModal());
+    }
+  }),
+  (stateToProps, dispatchToProps, ownProps) => {
+    const { motto } = stateToProps;
+    const { onCreateMotto } = dispatchToProps;
+    return Object.assign({}, stateToProps, dispatchToProps, ownProps, {
+      onCreateMotto: onCreateMotto(motto),
+    });
+  },
+)(InputModal);
+
+```
+
+```
+import { connect } from 'react-redux';
+import MottoList from '../../components/MottoList';
+import Immutable from 'immutable';
+import uuid from 'uuid';
+
+import {
+  createMotto,
+  getMottos,
+  changeMottoTitle,
+} from '../../actions';
+
+export default connect(
+  (state) => ({
+    mottos: state.getIn(['motto', 'mottos']),
+  }),
+  (dispatch) => ({
+    onCreateMotto: () => (
+      dispatch(createMotto())
+    ),
+    onGetMottos: (mottos) => (
+      dispatch(getMottos({ mottos }))
+    ),
+    onChangeMottoTitle: (title) => (
+      dispatch(changeMottoTitle({ value: title }))
+    ),
+    onDeleteMotto: (mottos) => (id, itemsRef) => () => {
+      mottos.forEach((value, key) => {
+        if(value.get('id') === id) {
+          itemsRef.child(key).remove();
+        }
+      });
+    }
+  }),
+  (stateToProps, dispatchToProps, ownProps) => {
+    const { mottos } = stateToProps;
+    const { onDeleteMotto } = dispatchToProps;
+    return Object.assign({}, stateToProps, dispatchToProps, ownProps, {
+      onDeleteMotto: onDeleteMotto(mottos),
+    });
+  }
+)(MottoList);
+```
+
+```
+import { handleActions } from 'redux-actions';
+import { 
+  MottoState
+} from '../../constants/models';
+
+import {
+  GET_MOTTOS,
+  CREATE_MOTTO,
+  SET_IN_MOTTO,
+} from '../../constants/actionTypes';
+
+const mottoReducers = handleActions({
+  GET_MOTTOS: (state, { payload }) => (
+    state.set(
+      'mottos',
+      payload.mottos
+    )
+  ),  
+  CREATE_MOTTO: (state) => (
+    state.set(
+      'mottos',
+      state.get('mottos').push(state.get('motto'))
+    )
+  ),
+  SET_IN_MOTTO: (state, { payload }) => (
+    state.setIn(
+      payload.path,
+      payload.value
+    )
+  )
+}, MottoState);
+
+export default mottoReducers;
+```
+
+```
+import { combineReducers } from 'redux-immutable';
+import ui from './ui/uiReducers';
+import motto from './data/mottoReducers';
+
+const rootReducer = combineReducers({
+  ui,
+  motto,
+});
+
+export default rootReducer;
+
+```
+
+```
+import { handleActions } from 'redux-actions';
+import { 
+  UiState,
+} from '../../constants/models';
+
+import {
+  TOGGLE_MODAL,
+} from '../../constants/actionTypes';
+
+const uiReducers = handleActions({
+  TOGGLE_MODAL: (state) => (
+    state.set(
+      'isModalVisible',
+      !state.get('isModalVisible')
+    )
+  ),  
+}, UiState);
+
+export default uiReducers;
+```
+
+```
+import { createAction } from 'redux-actions';
+import {
+  GET_MOTTOS,
+  CREATE_MOTTO,
+  SET_IN_MOTTO,
+} from '../constants/actionTypes';
+
+export const getMottos = createAction('GET_MOTTOS');
+export const createMotto = createAction('CREATE_MOTTO');
+export const setInMotto = createAction('SET_IN_MOTTO');
+```
+
+```
+import { createAction } from 'redux-actions';
+import {
+  TOGGLE_MODAL,
+} from '../constants/actionTypes';
+
+export const toggleModal = createAction('TOGGLE_MODAL');
+
+```
+
+```
+export * from './uiActions';
+export * from './mottoActions';
+```
+
+```
+import { createStore, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';
+import Immutable from 'immutable';
+import rootReducer from '../reducers';
+
+const initialState = Immutable.Map();
+
+export default createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }))
+);
+
+```
+
+```
+export const GET_MOTTOS = 'GET_MOTTOS';
+export const CREATE_MOTTO = 'CREATE_MOTTO';
+export const SET_IN_MOTTO = 'SET_IN_MOTTO';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+```
+
+```
+export const firebaseConfig = {
+  apiKey: "apiKey",
+  authDomain: "authDomain",
+  databaseURL: "databaseURL",
+  storageBucket: "storageBucket",
+};
+```
+
+```
+import Immutable from 'immutable';
+
+export const MottoState = Immutable.fromJS({
+  mottos: [],
+  motto: {
+    id : '',
+    text: '',
+    updatedAt: '',
+  }
+});
+
+export const UiState = Immutable.fromJS({
+  isModalVisible: false,
+});
+```
+
+當呼叫 Firebase API 進行資料更動時，Firebase Realtime Database 就會即時更新：
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-2.png)
+
+```
+$ react-native run-android
+```
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-1.png)
 
 ## 總結
+恭喜你！你已經完成了你的第一個 React Native App，若你希望將你開發的應用程式上架，請參考官方的說明文件。
 
 ## 延伸閱讀
 1. [React Native 官方網站](https://facebook.github.io/react-native/)
