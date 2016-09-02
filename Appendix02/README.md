@@ -63,7 +63,7 @@ $ react-native init ReactNativeFirebaseMotto
 $ cd ReactNativeFirebaseMotto
 ```
 
-若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若 `run-android`：
+若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android`：
 
 ```
 $ react-native run-ios
@@ -76,6 +76,8 @@ $ react-native run-android
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app.png)
 
 由於 React Native 有支援 `Hot Reloading`，若我們更改了檔案內容，我們可以使用 `Cmd+R` 刷新頁面，此時就可以在看到原本的 `Welcome to React Native!` 文字已經改成 `Welcome to React Native Rock!!!! `
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app-reload.png)
 
 有沒有感覺在開發網頁的感覺？
 
