@@ -27,6 +27,7 @@
 一開始請先安裝 [Node](https://nodejs.org/en/)、[Watchman](https://facebook.github.io/watchman/)。
 
 ```
+// 若你使用 Mac OS 你可以使用官網安裝方式或是使用 brew 安裝
 brew install node
 // 可以監看檔案是否有修改
 brew install watchman
