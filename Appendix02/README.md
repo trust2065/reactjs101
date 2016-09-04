@@ -193,13 +193,25 @@ $ cd ReactNativeFirebaseMotto
 Firebase 在使用上有許多優點，其中一個使用 Back-End As Service 的好處是你可以專注在應用程式的開發便免花過多時間處理後端基礎建設的部份，更可以讓 Back-End 共用在不同的 client side 中。此外 Firebase 在和 React 整合上也十分容易，你可以想成 Firebase 負責資料的儲存，透過 API 和 React 元件互動，Redux 負責接收管理 client state，若是監聽到 Firebase 後端資料更新後同步更新 state 並重新 render 頁面。
 
 ### 使用 Flexbox 進行 UI 布局設計 
-在 React Native 中是使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
+在 React Native 中是使用 `Flexbox` 進行排版，若讀者對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
 
-在 Flexbox 有許多屬性值，其中最重要的當數 `justifyContent` 和 `alignItems` 以及 `flexDirection`（注意 React Native Style 都是駝峰式寫法），所以
+事實上我們可以將 Flexbox 視為一個箱子，最外層是 `flex containers`、內層包的是 `flex items`。由左而右 `main axis`，而上到下是 `cross axis`。
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-1.png)
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-2.png)
+在 Flexbox 有許多屬性值，其中最重要的當數 `justifyContent` 和 `alignItems` 以及 `flexDirection`（注意 React Native Style 都是駝峰式寫法），所以我們這邊主要介紹這三個屬性。
+
+Justify Content：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/justify-content.png)
+
+Align Items：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/align-items.png)
+
+Flex Direction：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-flex-direction.png)
 
 ## 動手實作
 
@@ -489,7 +501,6 @@ export default StyleSheet.create({
   },
   button: {
     borderRadius: 5,
-
   },
   cancelButton: {
     flex: 1,
@@ -528,7 +539,6 @@ const ActionButton = (props) => (
 );
 
 export default ActionButton;
-
 ```
 
 ```
@@ -564,7 +574,6 @@ export default connect(
     )
   })
 )(ActionButton);
-
 ```
 
 ```
@@ -605,7 +614,6 @@ export default connect(
     });
   },
 )(InputModal);
-
 ```
 
 ```
@@ -699,7 +707,6 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
 ```
 
 ```
@@ -744,7 +751,6 @@ import {
 } from '../constants/actionTypes';
 
 export const toggleModal = createAction('TOGGLE_MODAL');
-
 ```
 
 ```
@@ -765,7 +771,6 @@ export default createStore(
   initialState,
   applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }))
 );
-
 ```
 
 ```
@@ -839,4 +844,4 @@ $ react-native run-android
 22. [Firebase Permission Denied](http://stackoverflow.com/questions/37403747/firebase-permission-denied)
 23. [Best Practices: Arrays in Firebase](https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html)
 
-(image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png)、[css-tricks](https://cdn.css-tricks.com/wp-content/uploads/2011/08/flexbox.png)、[teamtreehouse](http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-justify.png))
+(image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png)、[css-tricks](https://cdn.css-tricks.com/wp-content/uploads/2011/08/flexbox.png)、[teamtreehouse](http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-justify.png)、[teamtreehouse](http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-flex-direction.png)、)
