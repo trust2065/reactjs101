@@ -193,25 +193,26 @@ Firebase 在使用上有許多優點，其中一個使用 Back-End As Service �
 ### 使用 Flexbox 進行 UI 布局設計 
 在 React Native 中是使用 `Flexbox` 進行排版，若讀者對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
 
-事實上我們可以將 Flexbox 視為一個箱子，最外層是 `flex containers`、內層包的是 `flex items`。由左而右 `main axis`，而上到下是 `cross axis`。
+事實上我們可以將 Flexbox 視為一個箱子，最外層是 `flex containers`、內層包的是 `flex items`，在屬性上也有分是針對`flex containers` 還是真正是 `flex items` 設計的。由左而右 `main axis`，而上到下是 `cross axis`。
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-1.png)
 
 在 Flexbox 有許多屬性值，其中最重要的當數 `justifyContent` 和 `alignItems` 以及 `flexDirection`（注意 React Native Style 都是駝峰式寫法），所以我們這邊主要介紹這三個屬性。
 
-Justify Content：
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/justify-content.png)
-
-Align Items：
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/align-items.png)
-
-Flex Direction：
+Flex Direction 負責決定整個 `flex containers` 的方向，預設為 `row` 也可以改為 `column` 、 `row-reverse` 和 `column-reverse`：
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-flex-direction.png)
 
+Justify Content 負責決定整個 `flex containers` 內的 items 的水平擺設：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/justify-content.png)
+
+Align Items 負責決定整個 `flex containers` 內的 items 的垂直擺設：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/align-items.png)
+
 ## 動手實作
+有了前面的準備，現在我們終於要開始進入核心的應用程式開發了！
 
 ```
 /**
