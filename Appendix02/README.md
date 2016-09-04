@@ -880,5 +880,7 @@ $ react-native run-android
 21. [Building a Simple ToDo App With React Native and Firebase](https://devdactic.com/react-native-firebase-todo/)
 22. [Firebase Permission Denied](http://stackoverflow.com/questions/37403747/firebase-permission-denied)
 23. [Best Practices: Arrays in Firebase](https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html)
+24. [Avoiding plaintext passwords in gradle](https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/)
+25. [Generating Signed APK](https://facebook.github.io/react-native/docs/signed-apk-android.html)
 
 (image via [moduscreate](http://moduscreate.com/wp-content/uploads/2015/07/ReactNativelogo.png)、[css-tricks](https://cdn.css-tricks.com/wp-content/uploads/2011/08/flexbox.png)、[teamtreehouse](http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-justify.png)、[teamtreehouse](http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-flex-direction.png)、[css-tricks](https://css-tricks.com/wp-content/uploads/2014/05/align-items.svg)、[css-tricks](https://css-tricks.com/wp-content/uploads/2013/04/justify-content.svg))
