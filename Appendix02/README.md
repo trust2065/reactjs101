@@ -203,11 +203,11 @@ Flex Direction 負責決定整個 `flex containers` 的方向，預設為 `row` 
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-flex-direction.png)
 
-Justify Content 負責決定整個 `flex containers` 內的 items 的水平擺設：
+Justify Content 負責決定整個 `flex containers` 內的 items 的水平擺設，主要屬性值有：`flex-start`、`flex-end`、`center`、`space-between`、`space-around`。
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/justify-content.png)
 
-Align Items 負責決定整個 `flex containers` 內的 items 的垂直擺設：
+Align Items 負責決定整個 `flex containers` 內的 items 的垂直擺設，主要屬性值有：`flex-start`、`flex-end`、`center`、`stretch`、`baseline`
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/align-items.png)
 
