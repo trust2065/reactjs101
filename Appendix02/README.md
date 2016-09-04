@@ -28,14 +28,14 @@
 
 ```
 // 若你使用 Mac OS 你可以使用官網安裝方式或是使用 brew 安裝
-brew install node
+$ brew install node
 // 可以監看檔案是否有修改
-brew install watchman
+$ brew install watchman
 ```
 
 ```
 // React Native command line 工具
-npm install -g react-native-cli
+$ npm install -g react-native-cli
 ```
 
 現在，我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發。
@@ -43,7 +43,7 @@ npm install -g react-native-cli
 首先，我們先 init 一個 React Native Project：
 
 ```
-react-native init HelloWorldApp
+$ react-native init HelloWorldApp
 ```
 
 初始的資料夾結構長相：
