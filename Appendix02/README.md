@@ -8,7 +8,7 @@
 不過，隨著 Facebook 工程團隊開發的 [React Native](https://facebook.github.io/react-native/) 橫空出世，想嘗試跨平台解決方案的開發者又有了新的選擇。
 
 ## React Native 特色
-在開始開發 React Native App 之前我們先來介紹一下 React Native 特色的主要特色：
+在正式開始開發 React Native App 之前我們先來介紹一下 React Native 的主要特色：
 
 1. 使用 JavaScript（ES6+）和 [React](https://facebook.github.io/react/) 打造跨平台原生應用程式（Learn once, write anywhere）
 2. 使用 Native Components，更貼近原生使用者體驗
@@ -38,30 +38,33 @@ brew install watchman
 npm install -g react-native-cli
 ```
 
-現在，我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發：
+現在，我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發。
 
-首先先 init 一個 React Native Project：
+首先，我們先 init 一個 React Native Project：
 
 ```
 react-native init HelloWorldApp
 ```
 
-資料夾結構長相：
+初始的資料夾結構長相：
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/folder-1.png)
-
 
 若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android`：
 
 ```
 $ react-native run-ios
-// 記得先開啟 Genymotion 模擬器
+// 記得
 $ react-native run-android
 ```
 
+請先安裝註冊 [Genymotion](https://www.genymotion.com/)，Genymotion 是一個透過電腦模擬 Android 系統的好用開發模擬器環境。安裝完後可以打開並選擇欲使用的螢幕大小和 API 版本的 Android 系統。
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-1.png)
+
 如果一切順利的話就可以在模擬器中看到初始畫面：
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-2.png)
 
 接著打開 `index.android.js` 就可以看到以下程式碼：
 ```javascript
@@ -117,9 +120,11 @@ const styles = StyleSheet.create({
 AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
 ```
 
-由於 React Native 有支援 `Hot Reloading`，若我們更改了檔案內容，我們可以使用 `Cmd+R` 刷新頁面，此時就可以在看到原本的 `Welcome to React Native!` 文字已經改成 `Welcome to React Native Rock!!!! `
+由於 React Native 有支援 `Hot Reloading`，若我們更改了檔案內容，我們可以使用打開模擬器 Menu 重新刷新頁面，此時就可以在看到原本的 `Welcome to React Native!` 文字已經改成 `Welcome to React Native Rock!!!! `
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/react-native-init-app-reload.png)
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-3.png)
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-4.png)
 
 嗯，有沒有感覺在開發網頁的感覺？
 
@@ -141,7 +146,7 @@ $ npm install --save redux react-redux immutable redux-immutable redux-actions u
 ```
 
 ```
-$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-react-native eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server redux-logger
+$ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react babel-preset-react-native eslint-plugin-react-native  eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react redux-logger
 ```
 
 安裝完相關工具後我們可以初始化我們專案：
@@ -160,36 +165,37 @@ $ cd ReactNativeFirebaseMotto
 在這個專案中我們會使用到 [Firebase](https://firebase.google.com/) 這個 `Back-End as Service`的服務，也就是說我們不用自己建立後端程式資料庫，只要使用 Firebase 所提供的 API 就好像有了一個 NoSQL 資料庫一樣，當然 Firebase 不單只有提供資料儲存的功能，但限於篇幅我們這邊將只介紹資料儲存的功能。 
 
 1. 首先我們進到 Firebase 首頁
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
+  ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-landing.png)
 
 2. 登入後點選建立專案，依照自己想取的專案名稱命名
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
+  ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-init.png)
 
-3. 選擇將 Firebase 加入你的網路應用程式可以取得 App ID 的 config 資料，待會將會使用到
+3. 選擇將 Firebase 加入你的網路應用程式的按鈕可以取得 App ID 的 config 資料，待會我們將會使用到
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
+  ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-dashboard.png)
 
 4. 點選左邊選單中的 Database 並點選 Realtime Database Tab 中的規則
 
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-0.png)
+  ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-0.png)
 
-設定改為，在範例中為求簡單，我們先不用驗證方式即可操作：
+  設定改為，在範例中為求簡單，我們先不用驗證方式即可操作：
 
-```javascript
-{
-  "rules": {
-    ".read": true,
-    ".write": true
+  ```javascript
+  {
+    "rules": {
+      ".read": true,
+      ".write": true
+    }
   }
-}
-```
+  ```
 
-Firebase 在使用上有許多優點，其中一個使用 Back-End As Service 的好處是你可以專注在應用程式的開發便免花過多時間處理後端基礎建設的部份，更可以讓 Back-End 共用在不同的 client side 中。此外 Firebase 在和 React 整合上也十分容易，你可以想成 Firebase 負責資料的儲存，透過 API 和 React 元件互動，Redux 負責接收管理 client state，若有 state 的更新或變動則重新 render 頁面。
-
+Firebase 在使用上有許多優點，其中一個使用 Back-End As Service 的好處是你可以專注在應用程式的開發便免花過多時間處理後端基礎建設的部份，更可以讓 Back-End 共用在不同的 client side 中。此外 Firebase 在和 React 整合上也十分容易，你可以想成 Firebase 負責資料的儲存，透過 API 和 React 元件互動，Redux 負責接收管理 client state，若是監聽到 Firebase 後端資料更新後同步更新 state 並重新 render 頁面。
 
 ### 使用 Flexbox 進行 UI 布局設計 
 在 React Native 中是使用 `Flexbox` 進行排版，若你對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
+
+在 Flexbox 有許多屬性值，其中最重要的當數 `justifyContent` 和 `alignItems` 以及 `flexDirection`（注意 React Native Style 都是駝峰式寫法），所以
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-1.png)
 
@@ -363,7 +369,6 @@ class MottoList extends Component {
 }
 
 export default MottoList;
-
 ```
 
 ```
