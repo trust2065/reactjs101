@@ -214,7 +214,9 @@ Align Items 負責決定整個 `flex containers` 內的 items 的垂直擺設：
 ## 動手實作
 有了前面的準備，現在我們終於要開始進入核心的應用程式開發了！
 
-```
+首先我們先設定好整個 App 的進入檔 `index.android.js`，在這個檔案中我們設定了初始化的設定和主要元件 `<Main />`：
+
+```javascript
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -224,7 +226,6 @@ Align Items 負責決定整個 `flex containers` 內的 items 的垂直擺設：
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
   Text,
   View
 } from 'react-native';
@@ -241,7 +242,9 @@ class ReactNativeFirebaseMotto extends Component {
 AppRegistry.registerComponent('ReactNativeFirebaseMotto', () => ReactNativeFirebaseMotto);
 ```
 
-```
+在 `src/components/Main/Main.js` 中我們設定好整個 Component 的布局和並將 `Firebase` 引入並初始化，將操作 Firebase 資料庫的參考往下傳，根節點我們命名為 `items`，所以之後所有新增的 motto 都會在這個根節點之下並擁有特定的 key 值。在 Main 我們同樣規劃了整個布局，包括：<ToolBar />、<MottoListContainer />、<ActionButtonContainer />、<InputModalContainer />。
+
+```javascript
 import React from 'react';
 import ReactNative from 'react-native';
 import { Provider } from 'react-redux'; 
@@ -251,9 +254,10 @@ import ActionButtonContainer from '../../containers/ActionButtonContainer';
 import InputModalContainer from '../../containers/InputModalContainer';
 import ListItem from '../ListItem';
 import * as firebase from 'firebase';
+// 將 Firebase 的 config 值引入
 import { firebaseConfig } from '../../constants/config';
+// 引用 Redux store
 import store from '../../store';
-import styles from './mainStyles';
 const { View, Text } = ReactNative;
 
 // Initialize Firebase
@@ -262,9 +266,10 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const rootRef = firebaseApp.database().ref();
 const itemsRef = rootRef.child('items');
 
+// 將 Redux 的 store 透過 Provider 往下傳
 const Main = () => (
   <Provider store={store}>
-    <View style={{flex: 1}}>
+    <View>
       <ToolBar style={styles.toolBar} />
       <MottoListContainer itemsRef={itemsRef} />
       <ActionButtonContainer />
@@ -276,28 +281,178 @@ const Main = () => (
 export default Main; 
 ```
 
-```
-import { StyleSheet } from 'react-native';
+設定完了基本的布局方式後我們來設定 Actions 和其使用的常數，`src/actions/mottoActions.js`：
 
-export default StyleSheet.create({
-  toolBar: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'red',
-  },
-  listView: {
-    flex: 5,
-    flexDirection: 'row',    
-    backgroundColor: 'red',
-  },
-  actionBar: {
-    flex: 1,
-    flexDirection: 'column',    
+```javascript
+export const GET_MOTTOS = 'GET_MOTTOS';
+export const CREATE_MOTTO = 'CREATE_MOTTO';
+export const SET_IN_MOTTO = 'SET_IN_MOTTO';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+```
+
+我們在 constants 資料夾中也設定了我們整個 data 的資料結構，以下是 `src/constants/models.js`：
+
+```javascript
+import Immutable from 'immutable';
+
+export const MottoState = Immutable.fromJS({
+  mottos: [],
+  motto: {
+    id : '',
+    text: '',
+    updatedAt: '',
   }
+});
+
+export const UiState = Immutable.fromJS({
+  isModalVisible: false,
 });
 ```
 
+還記得我們提到的 Firebase config 嗎？這邊我們把相關的設定檔放在`src/configs/config.js`中： 
+
+```javascript
+export const firebaseConfig = {
+  apiKey: "apiKey",
+  authDomain: "authDomain",
+  databaseURL: "databaseURL",
+  storageBucket: "storageBucket",
+};
 ```
+
+在我們應用程式中同樣使用了 `redux` 和 `redux-actions`。在這個範例中我們設計了：GET_MOTTOS、CREATE_MOTTO、SET_IN_MOTTO 三個操作 motto 的 action，分別代表從 Firebase 取出資料、新增資料和 set 資料。以下是 `src/actions/mottoActions.js`：
+
+```javascript
+import { createAction } from 'redux-actions';
+import {
+  GET_MOTTOS,
+  CREATE_MOTTO,
+  SET_IN_MOTTO,
+} from '../constants/actionTypes';
+
+export const getMottos = createAction('GET_MOTTOS');
+export const createMotto = createAction('CREATE_MOTTO');
+export const setInMotto = createAction('SET_IN_MOTTO');
+```
+
+同樣地，由於我們設計了當使用者想新增 motto 時會跳出 modal，所以我們可以設定一個 `TOGGLE_MODAL` 負責開關 modal 的 state。以下是 `src/actions/uiActions.js`：
+
+```javascript
+import { createAction } from 'redux-actions';
+import {
+  TOGGLE_MODAL,
+} from '../constants/actionTypes';
+
+export const toggleModal = createAction('TOGGLE_MODAL');
+```
+
+以下是 `src/actions/index.js`，用來匯出我們的 actions：
+
+```javascript
+export * from './uiActions';
+export * from './mottoActions';
+```
+
+設定完我們的 actions 後我們來設定 reducers，在這邊我們同樣使用 `redux-actions` 整合 `ImmutableJS`，
+
+```javascript
+import { handleActions } from 'redux-actions';
+// 引入 initialState 
+import { 
+  MottoState
+} from '../../constants/models';
+
+import {
+  GET_MOTTOS,
+  CREATE_MOTTO,
+  SET_IN_MOTTO,
+} from '../../constants/actionTypes';
+
+// 透過 set 和 seIn 可以產生 newState
+const mottoReducers = handleActions({
+  GET_MOTTOS: (state, { payload }) => (
+    state.set(
+      'mottos',
+      payload.mottos
+    )
+  ),  
+  CREATE_MOTTO: (state) => (
+    state.set(
+      'mottos',
+      state.get('mottos').push(state.get('motto'))
+    )
+  ),
+  SET_IN_MOTTO: (state, { payload }) => (
+    state.setIn(
+      payload.path,
+      payload.value
+    )
+  )
+}, MottoState);
+
+export default mottoReducers;
+```
+
+以下是 `src/reducers/uiState.js`：
+
+```javascript
+import { handleActions } from 'redux-actions';
+import { 
+  UiState,
+} from '../../constants/models';
+
+import {
+  TOGGLE_MODAL,
+} from '../../constants/actionTypes';
+
+// modal 的顯示與否
+const uiReducers = handleActions({
+  TOGGLE_MODAL: (state) => (
+    state.set(
+      'isModalVisible',
+      !state.get('isModalVisible')
+    )
+  ),  
+}, UiState);
+
+export default uiReducers;
+```
+
+以下是 `src/reducers/index.js`，將所有 reducers combine 在一起：
+
+```javascript
+import { combineReducers } from 'redux-immutable';
+import ui from './ui/uiReducers';
+import motto from './data/mottoReducers';
+
+const rootReducer = combineReducers({
+  ui,
+  motto,
+});
+
+export default rootReducer;
+```
+
+透過 `src/store/configureStore.js`將 reducers 和 initialState 以及要使用的 middleware 整合成 store：
+
+```javascript
+import { createStore, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';
+import Immutable from 'immutable';
+import rootReducer from '../reducers';
+
+const initialState = Immutable.Map();
+
+export default createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }))
+);
+```
+
+設定完資料層的架構後，我們又重新回到 View 的部份，我們開始依序設定我們的 Component 和 Container。首先，我們先設計我們的標題列 ToolBar，以下是 `src/components/ToolBar/ToolBar.js`：
+
+```javascript
 import React from 'react';
 import ReactNative from 'react-native';
 import styles from './toolBarStyles';
@@ -312,7 +467,9 @@ const ToolBar = () => (
 export default ToolBar; 
 ```
 
-```
+以下是 `src/components/ToolBar/toolBarStyles.js`，將底色設定為黃色，文字置中：
+
+```javascript
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -330,7 +487,9 @@ export default StyleSheet.create({
 });
 ```
 
-```
+以下是 `src/components/MottoList/MottoList.js`，這個 Component 中稍微複雜一些，主要是使用到了 React Native 中的 ListView Component 將資料陣列傳進 dataSource，透過 renderRow 把一個個 row 給 render 出來，過程中我們透過 `!Immutable.is(r1.get('id'), r2.get('id'))` 去判斷整個 ListView 畫面是否需要 loading 新的 item 進來，這樣就可以提高整個 ListView 的效能。
+
+```javascript
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import Immutable from 'immutable';
@@ -382,7 +541,9 @@ class MottoList extends Component {
 export default MottoList;
 ```
 
-```
+以下是 `src/components/MottoList/mottoListStyles.js`，我們使用到了 Dimensions，可以根據螢幕的高度來設定整個 ListView 高度：
+
+```javascript
 import { StyleSheet, Dimensions } from 'react-native';
 const { height } = Dimensions.get('window');
 export default StyleSheet.create({
@@ -394,7 +555,9 @@ export default StyleSheet.create({
 });
 ```
 
-```
+以下是 `src/components/ListItem/ListItem.js`，我們從 props 收到了上層傳進來的 motto item，顯示出 motto 文字內容。當我們點擊 TouchableHighlight 時就會刪除該 motto。
+
+```javascript
 import React from 'react';
 import ReactNative from 'react-native';
 import styles from './listItemStyles';
@@ -414,7 +577,9 @@ const ListItem = (props) => {
 export default ListItem;
 ```
 
-```
+以下是 `src/components/ListItem/listItemStyles.js`：
+
+```javascript
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -432,7 +597,48 @@ export default StyleSheet.create({
 });
 ```
 
+以下是 `src/components/ActionButton/ActionButton.js`，當點擊了按鈕則會觸發 onToggleModal 方法，出現新增 motto 的 modal：
+
+```javascript
+import React from 'react';
+import ReactNative from 'react-native';
+import styles from './actionButtonStyles';
+const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;  
+
+const ActionButton = (props) => (
+  <TouchableHighlight onPress={props.onToggleModal}>
+    <View style={styles.buttonContainer}>
+        <Text style={styles.buttonText}>Add Motto</Text>
+    </View>
+  </TouchableHighlight>
+);
+
+export default ActionButton;
 ```
+
+以下是 `src/components/ActionButton/actionButtonStyles.js`：
+
+```javascript
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+  buttonContainer: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#66bb6a',
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#e8f5e9'
+  }
+});
+```
+
+以下是 `src/components/InputModal/InputModal.js`，其主要負責 Modal Component 的設計，當輸入內容會觸發 onChangeMottoText 發出 action，注意的是當按下送出鍵，同時會把 Firebase 的參考 itemsRef 送入 onCreateMotto 中，方便透過 API 去即時新增到 Firebase Database，並更新 client state 和重新渲染了 View：
+
+```javascript
 import React from 'react';
 import ReactNative from 'react-native';
 import styles from './inputModelStyles';
@@ -482,7 +688,9 @@ const InputModal = (props) => (
 export default InputModal;
 ```
 
-```
+以下是 `src/components/InputModal/inputModalStyles.js`：
+
+```javascript
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -523,42 +731,9 @@ export default StyleSheet.create({
 });
 ```
 
-```
-import React from 'react';
-import ReactNative from 'react-native';
-import styles from './actionButtonStyles';
-const { View, Text, Modal, TextInput, TouchableHighlight } = ReactNative;  
+設定完了 Component，我們來探討一下 Container 的部份。以下是 `src/containers/ActionButtonContainer/ActionButtonContainer.js`：
 
-const ActionButton = (props) => (
-  <TouchableHighlight onPress={props.onToggleModal}>
-    <View style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Add Motto</Text>
-    </View>
-  </TouchableHighlight>
-);
-
-export default ActionButton;
-```
-
-```
-import { StyleSheet } from 'react-native';
-
-export default StyleSheet.create({
-  buttonContainer: {
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    backgroundColor: '#66bb6a',
-  },
-  buttonText: {
-    fontSize: 20,
-    color: '#e8f5e9'
-  }
-});
-```
-
-```
+```javascript
 import { connect } from 'react-redux';
 import ActionButton from '../../components/ActionButton';
 import {
@@ -575,7 +750,9 @@ export default connect(
 )(ActionButton);
 ```
 
-```
+以下是 `src/containers/InputModalContainer/InputModalContainer.js`：
+
+```javascript
 import { connect } from 'react-redux';
 import InputModal from '../../components/InputModal';
 import Immutable from 'immutable';
@@ -599,6 +776,7 @@ export default connect(
     onChangeMottoText: (text) => (
       dispatch(setInMotto({ path: ['motto', 'text'], value: text }))
     ),
+    // 新增 motto 是透過 itemsRef 將新增的 motto push 進去，新增後要把本地端的 motto 清空，並關閉 modal：
     onCreateMotto: (motto) => (itemsRef) => () => {
       itemsRef.push({ id: uuid.v4(), text: motto.get('text'), updatedAt: Date.now() });
       dispatch(setInMotto({ path: ['motto'], value: Immutable.fromJS({ id: '', text: '', updatedAt: '' })}));
@@ -615,7 +793,9 @@ export default connect(
 )(InputModal);
 ```
 
-```
+以下是 `src/containers/MottoListContainer/MottoListContainer.js`：
+
+```javascript
 import { connect } from 'react-redux';
 import MottoList from '../../components/MottoList';
 import Immutable from 'immutable';
@@ -641,6 +821,7 @@ export default connect(
     onChangeMottoTitle: (title) => (
       dispatch(changeMottoTitle({ value: title }))
     ),
+    // 判斷點擊的是哪一個 item 取出其 key，透過 itemsRef 將其移除
     onDeleteMotto: (mottos) => (id, itemsRef) => () => {
       mottos.forEach((value, key) => {
         if(value.get('id') === id) {
@@ -659,164 +840,22 @@ export default connect(
 )(MottoList);
 ```
 
-```
-import { handleActions } from 'redux-actions';
-import { 
-  MottoState
-} from '../../constants/models';
-
-import {
-  GET_MOTTOS,
-  CREATE_MOTTO,
-  SET_IN_MOTTO,
-} from '../../constants/actionTypes';
-
-const mottoReducers = handleActions({
-  GET_MOTTOS: (state, { payload }) => (
-    state.set(
-      'mottos',
-      payload.mottos
-    )
-  ),  
-  CREATE_MOTTO: (state) => (
-    state.set(
-      'mottos',
-      state.get('mottos').push(state.get('motto'))
-    )
-  ),
-  SET_IN_MOTTO: (state, { payload }) => (
-    state.setIn(
-      payload.path,
-      payload.value
-    )
-  )
-}, MottoState);
-
-export default mottoReducers;
-```
-
-```
-import { combineReducers } from 'redux-immutable';
-import ui from './ui/uiReducers';
-import motto from './data/mottoReducers';
-
-const rootReducer = combineReducers({
-  ui,
-  motto,
-});
-
-export default rootReducer;
-```
-
-```
-import { handleActions } from 'redux-actions';
-import { 
-  UiState,
-} from '../../constants/models';
-
-import {
-  TOGGLE_MODAL,
-} from '../../constants/actionTypes';
-
-const uiReducers = handleActions({
-  TOGGLE_MODAL: (state) => (
-    state.set(
-      'isModalVisible',
-      !state.get('isModalVisible')
-    )
-  ),  
-}, UiState);
-
-export default uiReducers;
-```
-
-```
-import { createAction } from 'redux-actions';
-import {
-  GET_MOTTOS,
-  CREATE_MOTTO,
-  SET_IN_MOTTO,
-} from '../constants/actionTypes';
-
-export const getMottos = createAction('GET_MOTTOS');
-export const createMotto = createAction('CREATE_MOTTO');
-export const setInMotto = createAction('SET_IN_MOTTO');
-```
-
-```
-import { createAction } from 'redux-actions';
-import {
-  TOGGLE_MODAL,
-} from '../constants/actionTypes';
-
-export const toggleModal = createAction('TOGGLE_MODAL');
-```
-
-```
-export * from './uiActions';
-export * from './mottoActions';
-```
-
-```
-import { createStore, applyMiddleware } from 'redux';
-import createLogger from 'redux-logger';
-import Immutable from 'immutable';
-import rootReducer from '../reducers';
-
-const initialState = Immutable.Map();
-
-export default createStore(
-  rootReducer,
-  initialState,
-  applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }))
-);
-```
-
-```
-export const GET_MOTTOS = 'GET_MOTTOS';
-export const CREATE_MOTTO = 'CREATE_MOTTO';
-export const SET_IN_MOTTO = 'SET_IN_MOTTO';
-export const TOGGLE_MODAL = 'TOGGLE_MODAL';
-```
-
-```
-export const firebaseConfig = {
-  apiKey: "apiKey",
-  authDomain: "authDomain",
-  databaseURL: "databaseURL",
-  storageBucket: "storageBucket",
-};
-```
-
-```
-import Immutable from 'immutable';
-
-export const MottoState = Immutable.fromJS({
-  mottos: [],
-  motto: {
-    id : '',
-    text: '',
-    updatedAt: '',
-  }
-});
-
-export const UiState = Immutable.fromJS({
-  isModalVisible: false,
-});
-```
-
-當呼叫 Firebase API 進行資料更動時，Firebase Realtime Database 就會即時更新：
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-2.png)
+最後我們可以透過啟動模擬器後使用以下指令開啟我們 App！
 
 ```
 $ react-native run-android
 ```
 
+最後的成果：
+
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/demo-1.png)
 
+同時你可以在 Firebase 後台進行觀察，當呼叫 Firebase API 進行資料更動時，Firebase Realtime Database 就會即時更新：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-2.png)
+
 ## 總結
-恭喜你！你已經完成了你的第一個 React Native App，若你希望將你開發的應用程式上架，請參考官方的說明文件。
+恭喜你！你已經完成了你的第一個 React Native App，若你希望將你開發的應用程式簽章後上架，請參考[官方的說明文件](https://facebook.github.io/react-native/docs/signed-apk-android.html)。
 
 ## 延伸閱讀
 1. [React Native 官方網站](https://facebook.github.io/react-native/)

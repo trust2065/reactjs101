@@ -9,7 +9,6 @@ import ListItem from '../ListItem';
 import * as firebase from 'firebase';
 import { firebaseConfig } from '../../constants/config';
 import store from '../../store';
-import styles from './mainStyles';
 const { View, Text } = ReactNative;
 
 // Initialize Firebase
@@ -20,7 +19,7 @@ const itemsRef = rootRef.child('items');
 
 const Main = () => (
   <Provider store={store}>
-    <View style={{flex: 1}}>
+    <View>
       <ToolBar style={styles.toolBar} />
       <MottoListContainer itemsRef={itemsRef} />
       <ActionButtonContainer />
