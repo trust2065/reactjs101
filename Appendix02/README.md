@@ -513,7 +513,6 @@ class MottoList extends Component {
   }  
   listenForItems(itemsRef) {
     itemsRef.on('value', (snap) => {
-      console.log(snap.val());
       if(snap.val() === null) {
         this.props.onGetMottos(Immutable.fromJS([]));
       } else {
@@ -555,7 +554,7 @@ export default StyleSheet.create({
 });
 ```
 
-以下是 `src/components/ListItem/ListItem.js`，我們從 props 收到了上層傳進來的 motto item，顯示出 motto 文字內容。當我們點擊 TouchableHighlight 時就會刪除該 motto。
+以下是 `src/components/ListItem/ListItem.js`，我們從 props 收到了上層傳進來的 motto item，顯示出 motto 文字內容。當我們點擊 `<TouchableHighlight>` 時就會刪除該 motto。
 
 ```javascript
 import React from 'react';
