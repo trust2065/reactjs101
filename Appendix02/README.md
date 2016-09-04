@@ -54,11 +54,9 @@ react-native init HelloWorldApp
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-1.png)
 
-若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android`：
+若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android`，在這邊我們先使用 Android 平台進行開發：
 
 ```
-$ react-native run-ios
-// 記得
 $ react-native run-android
 ```
 
