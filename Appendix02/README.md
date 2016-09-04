@@ -242,7 +242,7 @@ class ReactNativeFirebaseMotto extends Component {
 AppRegistry.registerComponent('ReactNativeFirebaseMotto', () => ReactNativeFirebaseMotto);
 ```
 
-在 `src/components/Main/Main.js` 中我們設定好整個 Component 的布局和並將 `Firebase` 引入並初始化，將操作 Firebase 資料庫的參考往下傳，根節點我們命名為 `items`，所以之後所有新增的 motto 都會在這個根節點之下並擁有特定的 key 值。在 Main 我們同樣規劃了整個布局，包括：<ToolBar />、<MottoListContainer />、<ActionButtonContainer />、<InputModalContainer />。
+在 `src/components/Main/Main.js` 中我們設定好整個 Component 的布局和並將 `Firebase` 引入並初始化，將操作 Firebase 資料庫的參考往下傳，根節點我們命名為 `items`，所以之後所有新增的 motto 都會在這個根節點之下並擁有特定的 key 值。在 Main 我們同樣規劃了整個布局，包括：`<ToolBar />`、`<MottoListContainer />`、`<ActionButtonContainer />`、`<InputModalContainer />`。
 
 ```javascript
 import React from 'react';
