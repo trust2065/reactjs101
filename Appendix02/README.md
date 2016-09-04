@@ -193,7 +193,7 @@ Firebase 在使用上有許多優點，其中一個使用 Back-End As Service �
 ### 使用 Flexbox 進行 UI 布局設計 
 在 React Native 中是使用 `Flexbox` 進行排版，若讀者對於 Flexbox 尚不熟悉，建議可以[參考這篇文章](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)，若有需要遊戲化的學習工具，也非常推薦這兩個教學小遊戲：[FlexDefense](http://www.flexboxdefense.com/)、[FLEXBOX FROGGY](http://flexboxfroggy.com/)。
 
-事實上我們可以將 Flexbox 視為一個箱子，最外層是 `flex containers`、內層包的是 `flex items`，在屬性上也有分是針對`flex containers` 還是真正是 `flex items` 設計的。由左而右 `main axis`，而上到下是 `cross axis`。
+事實上我們可以將 Flexbox 視為一個箱子，最外層是 `flex containers`、內層包的是 `flex items`，在屬性上也有分是針對`flex containers` 還是針對是 `flex items` 設計的。由左而右 `main axis`，而上到下是 `cross axis`。
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-1.png)
 
