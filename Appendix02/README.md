@@ -197,7 +197,7 @@ Firebase 在使用上有許多優點，其中一個使用 Back-End As Service �
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/flexbox-1.png)
 
-在 Flexbox 有許多屬性值，其中最重要的當數 `justifyContent` 和 `alignItems` 以及 `flexDirection`（注意 React Native Style 都是駝峰式寫法），所以我們這邊主要介紹這三個屬性。
+在 Flexbox 有許多屬性值，其中最重要的當數 `justifyContent` 和 `alignItems` 以及 `flexDirection`（注意 React Native Style 都是駝峰式寫法），所以我們這邊主要介紹這三個屬性：
 
 Flex Direction 負責決定整個 `flex containers` 的方向，預設為 `row` 也可以改為 `column` 、 `row-reverse` 和 `column-reverse`。
 
