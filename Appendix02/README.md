@@ -50,6 +50,10 @@ react-native init HelloWorldApp
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/folder-1.png)
 
+接下來請先安裝註冊 [Genymotion](https://www.genymotion.com/)，Genymotion 是一個透過電腦模擬 Android 系統的好用開發模擬器環境。安裝完後可以打開並選擇欲使用的螢幕大小和 API 版本的 Android 系統。建立裝置後就可以啟動我們的裝置：
+
+![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-1.png)
+
 若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android`：
 
 ```
@@ -57,10 +61,6 @@ $ react-native run-ios
 // 記得
 $ react-native run-android
 ```
-
-請先安裝註冊 [Genymotion](https://www.genymotion.com/)，Genymotion 是一個透過電腦模擬 Android 系統的好用開發模擬器環境。安裝完後可以打開並選擇欲使用的螢幕大小和 API 版本的 Android 系統。
-
-![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-1.png)
 
 如果一切順利的話就可以在模擬器中看到初始畫面：
 
