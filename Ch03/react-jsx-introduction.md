@@ -280,7 +280,7 @@ React.createElement("h1", React._spread({}, props, {value: "yo"}), "Hello React!
 ```
 
 ### 10. 事件處理
-事件處理為前端開發的重頭戲，在 JSX 中透過 inline 事件的綁定來監聽並處理事件（注意也是駝峰式寫法）：
+事件處理為前端開發的重頭戲，在 JSX 中透過 inline 事件的綁定來監聽並處理事件（注意也是駝峰式寫法），更多事件處理方法請[參考官網](https://facebook.github.io/react/docs/events.html#supported-events)
 
 ```js
 <HelloMessage onClick={this.onBtn} />
