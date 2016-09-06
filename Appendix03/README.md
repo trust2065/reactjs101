@@ -11,22 +11,17 @@
 這邊我們主要介紹一些比較常用的 Mocha 使用方法：
 
 1. 安裝環境與套件
-```
-$ npm install --global mocha
-```
-
-```
-$ npm install --save-dev mocha
-```
 
 ```
 $ npm install  --svae react react-dom
 ```
 
-6. 整合
+```
+$ npm install --global mocha
+```
 
 ```
-babel-core babel-preset-es2015" chai mocha
+$ npm install --save-dev babel-core babel-preset-es2015 chai mocha
 ```
 
 2. 測試程式碼

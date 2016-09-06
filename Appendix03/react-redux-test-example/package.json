@@ -4,7 +4,8 @@
   "description": "react-redux-example",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --colors --inline --content-base ."
+    "start": "webpack-dev-server --colors --inline --content-base .",
+    "test": "mocha"
   },
   "author": "kdchang",
   "license": "MIT",
