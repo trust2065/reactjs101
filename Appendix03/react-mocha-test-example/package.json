@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --colors --inline --content-base .",
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "mocha -t 5000 --compilers js:babel-core/register"
   },
   "author": "kdchang",
   "license": "MIT",
@@ -31,6 +31,8 @@
     "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
+    "axios": "^0.14.0",
+    "node-fetch": "^1.6.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1"
   }
