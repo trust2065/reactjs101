@@ -3,17 +3,21 @@
 ![React 測試入門教學](./images/mocha.png)
 
 ## 前言
-測試是軟體開發中非常重要的一個環節，然而要在 React 中測試 Component 以及 JSX 語法時，使用傳統的測試工具並方便，所以在本章會介紹讀者整合  `Mocha` + `Chai`  官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html)和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)（由於官方的測試工具使用起來不太方便所以有第三方針對其進行封裝）。
+測試是軟體開發中非常重要的一個環節，然而要在 React 中測試 Component 以及 JSX 語法時，使用傳統的測試工具並方便，所以在本章會介紹讀者整合 `Mocha` + `Chai` 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html)和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)（由於官方的測試工具使用起來不太方便所以有第三方針對其進行封裝）。
 
 ## 測試初體驗
-[Mocha](https://mochajs.org/) 是目前頗為流行的 JavaScript 測試框架之一，其可以很方便使用於瀏覽器端和 Node 環境。除了 Mocha 外，尚有許多 JavaScript 單元測試工具可以選擇（例如：[Jasmine](http://jasmine.github.io/)）、[Karma](http://karma-runner.github.io/1.0/index.html) 等，但本章我們主要使用 `Mocha` + `Chai` 結合 React 測試工具和 Enzyme 進行講解。
+[Mocha](https://mochajs.org/) 是目前頗為流行的 JavaScript 測試框架之一，其可以很方便使用於瀏覽器端和 Node 環境。
+
+>Mocha is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
+
+除了 Mocha 外，尚有許多 JavaScript 單元測試工具可以選擇（例如：[Jasmine](http://jasmine.github.io/)）、[Karma](http://karma-runner.github.io/1.0/index.html) 等，但本章我們主要使用 `Mocha` + `Chai` 結合 React 測試工具和 Enzyme 進行講解。
 
 這邊我們主要介紹一些比較常用的 Mocha 使用方法：
 
 1. 安裝環境與套件
 
 ```
-$ npm install  --svae react react-dom
+$ npm install --save react react-dom
 ```
 
 ```
@@ -21,14 +25,14 @@ $ npm install --global mocha
 ```
 
 ```
-$ npm install --save-dev babel-core babel-preset-es2015 chai mocha
+$ npm install --save-dev babel-core babel-eslint babel-preset-react babel-preset-es2015 eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server html-webpack-plugin chai mocha
 ```
 
 2. 測試程式碼
 	1. description（case suite）
 	2. it（test case）
 
-3. 整合 assert 函式庫 `Chai`
+3. 整合 assertion 函式庫 `Chai`
 
 4. Mocha 基本用法
 

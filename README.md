@@ -35,9 +35,9 @@
 
 - [X] [附錄二、用 React Native + Firebase 開發跨平台行動應用程式（Native Mobile App）](https://github.com/kdchang/reactjs101/tree/master/Appendix02)
 
-- [ ] 附錄三、React 測試入門教學
+- [X] 附錄三、React 測試入門教學
 
-- [ ] 附錄四、Relay/GraphQL 初體驗
+- [X] 附錄四、Relay/GraphQL 初體驗
 
 ## 先備知識（Prior Knowledge）
 本書針對已具備基本 HTML、CSS 和 JavaScript 和 DOM 操作知識的讀者設計，但若讀者對上述的技術仍不熟悉的話，建議可以先行參考：[MDN](https://developer.mozilla.org/zh-TW/)、[Codecademy](https://www.codecademy.com/)、[W3C School](http://www.w3schools.com/) 或是參考筆者 [之前的教學講義](http://kdchang.cc/web-programming-course/) 進行學習。另外，本書全書範例都將以 ES6+ 撰寫，若需參考 ES5 用法，請參考附錄一的 [React ES5、ES6+ 常見用法對照表](https://github.com/kdchang/reactjs101/tree/master/Appendix01)。
