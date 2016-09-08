@@ -12,7 +12,7 @@
 
 除了 Mocha 外，尚有許多 JavaScript 單元測試工具可以選擇，例如：[Jasmine](http://jasmine.github.io/)、[Karma](http://karma-runner.github.io/1.0/index.html) 等。但本章我們主要使用 `Mocha` + `Chai` 結合 React 官方測試工具和 Enzyme 進行講解。
 
-在這邊我們先介紹一些比較常用的 Mocha 使用方法，讓大家熟悉測試的用法：
+在這邊我們先介紹一些比較常用的 Mocha 使用方法，讓大家熟悉測試的用法（若是已經熟悉撰寫測試程式碼的讀者這部份可以跳過）：
 
 1. 安裝環境與套件
 
