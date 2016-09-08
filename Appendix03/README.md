@@ -16,23 +16,29 @@
 
 1. 安裝環境與套件
 
+安裝 `react` 和 `react-dom`
+
 ```
 $ npm install --save react react-dom
 ```
 
+可以在全域安裝 mocha：  
+
 ```
 $ npm install --global mocha
 ```
+
+也可以在開發環境下本地端安裝（同時安裝了 babel、eslint、webpack 等相關套件，其中以 mocha、chai、babel 為主要必須）：
 
 ```
 $ npm install --save-dev babel-core babel-loader babel-eslint babel-preset-react babel-preset-es2015 eslint eslint-config-airbnb eslint-loader eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react webpack webpack-dev-server html-webpack-plugin chai mocha
 ```
 
 2. 測試程式碼
-	1. describe（test suite）：表示一組相關的測試。describe 為一個函數，第一個參數為 test suite 的名稱，第二個參數為實際執行的函數。
-	2. it（test case）：表示一個單獨測試，為測試裡最小單位。it 為一個函數，第一個參數為 test case 的描述名稱，第二個參數為實際執行的函數。
+	1. describe（test suite）：表示一組相關的測試。`describe` 為一個函數，第一個參數為 `test suite`的名稱，第二個參數為實際執行的函數。
+	2. it（test case）：表示一個單獨測試，為測試裡最小單位。`it` 為一個函數，第一個參數為 `test case` 的描述名稱，第二個參數為實際執行的函數。
 
-	在測試程式碼中會包含一個或多個 test suite，而每個 test suite 則會包含一個或多個 test case。
+	在測試程式碼中會包含一個或多個 `test suite`，而每個 `test suite` 則會包含一個或多個 `test case`。
 
 3. 整合 assertion 函式庫 `Chai`
 
@@ -42,28 +48,59 @@ $ npm install --save-dev babel-core babel-loader babel-eslint babel-preset-react
 
 4. Mocha 基本用法
 
-mocha 預設執行 `test` 資料夾下第一層的測試程式碼。若要讓 `test` 資料夾中的子資料夾測試碼也執行則要加上 `--recursive` 參數。 
+mocha 若沒指定要執行哪個檔案，預設會執行 `test` 資料夾下第一層的測試程式碼。若要讓 `test` 資料夾中的子資料夾測試碼也執行則要加上 `--recursive` 參數。 
+
+包含子資料夾：
 
 ```
-$ mocha 
+$ mocha --recursive
 ```
+
+指定一個檔案
 
 ```
 $ mocha file1.js 
 ```
 
+也可以指定多個檔案
+
 ```
 $ mocha file1.js file2.js
 ```
 
-但由於我們使用了，ES6 的語法所以必須使用 bable 進行轉譯，否則會出現類似以下的錯誤：
+現在，我們來撰寫一個簡單的測試程式，親身感受一下測試的感覺。以下是 `react-mocha-test-example/src/modules/add.js`，一個加法的函數：
+
+```javascript
+const add = (x, y) => (
+  x + y
+);
+
+export default add;
+```
+
+接著我們撰寫測試這個函數的程式碼，測試是否正確。以下是 `react-mocha-test-example/src/test/add.test.js`：
+
+```
+// test add.js
+import add from '../src/modules/add';
+import { expect } from 'chai';
+
+// describe is test suite, it is test case
+describe('test add function', () => (
+  it('1 + 1 = 2', () => (
+    expect(add(1, 1)).to.be.equal(2)
+  ))
+));
+```
+
+在開始執行 `mocha` 後由於我們使用了，ES6 的語法所以必須使用 bable 進行轉譯，否則會出現類似以下的錯誤：
 
 ```
 import add from '../src/modules/add';
 ^^^^^^
 ```
 
-設定 `.bablerc`
+我們先行設定 `.bablerc`，我們在之前已經有安裝 `babel` 相關套件和 `presets` 所以就會將 ES2015 語法轉譯。
 
 ```
 {
@@ -75,15 +112,21 @@ import add from '../src/modules/add';
 }
 ```
 
-更改 `package.json` 中的 `scripts`：
+此時，我們更改 `package.json` 中的 `scripts`，這樣方便每次測試執行：
+
+若是使用本地端：
 
 ```
 $ ./node_modules/mocha/bin/mocha --compilers js:babel-core/register
 ```
 
+若是使用全域：
+
 ```
 $ mocha --compilers js:babel-core/register
 ```
+
+若是一切順利，我們就可以看到執行測試成功的結果：
 
 ```
 $ mocha add.test.js
@@ -106,13 +149,15 @@ $ mocha add.test.js
 ```
 
 6. 非同步測試
-在上面我們討論的主要是同步的狀況，但實際上在開發應用時往往會遇到非同步的情形。而在 Mocha 中每個 test case 最多允許執行 2000 毫秒，當時間超過就會顯示錯誤，然而實際上，為了解決這個：
+在上面我們討論的主要是同步的狀況，但實際上在開發應用時往往會遇到非同步的情形。而在 Mocha 中每個 test case 最多允許執行 2000 毫秒，當時間超過就會顯示錯誤。為了解決這個問題我們可以在 `package.json` 中更改：`"test": "mocha -t 5000 --compilers js:babel-core/register"` 檔案。
 
-為了展現測試非同步的情境，所以我們必須先安裝 [axios](https://github.com/mzabriskie/axios)
+為了模擬測試非同步的情境，所以我們必須先安裝 [axios](https://github.com/mzabriskie/axios)。
 
 ```
 $ npm install --save axios
 ```
+
+以下是 `react-mocha-test-example/src/test/async.test.js`：
 
 ```javascript
 import axios from 'axios';
@@ -131,11 +176,13 @@ it('asynchronous return an object', function(done){
 });
 ```
 
-由於測試環境是在 Node 中，所以我們必須先安裝 [node-fetch](https://github.com/bitinn/node-fetch)
+由於測試環境是在 Node 中，所以我們必須先安裝 [node-fetch](https://github.com/bitinn/node-fetch) 來展現 promise 的情境。
 
 ```
 $ npm install --save node-fetch 
 ```
+
+以下是 `react-mocha-test-example/src/test/promise.test.js`：
 
 ```javascript
 import fetch from 'node-fetch';
