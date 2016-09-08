@@ -4,8 +4,8 @@ import { expect } from 'chai';
 import { findDOMNode } from 'react-dom';
 import TodoHeader from '../src/components/TodoHeader';
 
-describe('Simulate Event', function () {
-  it('When click the button, it will be toggle', function () {
+describe('Simulate Event', () => {
+  it('When click the button, it will be toggle', () => {
     const TodoHeaderApp = TestUtils.renderIntoDocument(<TodoHeader />);
     const TodoHeaderDOM = findDOMNode(TodoHeaderApp);
     const button = TodoHeaderDOM.querySelector('button');

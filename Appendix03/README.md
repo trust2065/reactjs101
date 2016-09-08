@@ -356,24 +356,117 @@
 > Enzyme is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.
 Enzyme is unopinionated regarding which test runner or assertion library you use, and should be compatible with all major test runners and assertion libraries out there.
 
-在 Enzyme 有三個主要的 API 方法：
+在 Enzyme 中選取元素使用 `find()`：
+
+```javascript
+component.find('.className'); // 使用 class 選取
+component.find('#idName'); // 使用 id 選取
+component.find('h1'); // 使用元素選取
+```
+
+接下來我們介紹 Enzyme 三個主要的 API 方法：
 
 1. Shallow Rendering
 
-	shallow 方法事實上就是官方測試工具的 shallow rendering 封装。
+	shallow 方法事實上就是官方測試工具的 shallow rendering 封装。同樣是只渲染第一層，不渲染所有子元件。
+
+	```
+	import React from 'react';
+	import TestUtils from 'react-addons-test-utils';
+	import { expect } from 'chai';
+	import { shallow } from 'enzyme';
+	import Main from '../../src/components/Main';
+
+	describe('Enzyme Shallow Rendering', () => {
+	  it('Main title should be Todos', () => {
+	    const main = shallow(<Main />);
+	    // 判斷 h1 文字是否如預期
+	    expect(main.find('h1').text()).to.equal('Todos');
+	  });
+	});
+	```
 
 2. Static Rendering
 
-	render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。雖然底層是不同的處理引擎但使用上 API 封裝起來和 Shallow 卻是一致的。
+	render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。雖然底層是不同的處理引擎但使用上 API 封裝起來和 Shallow 卻是一致的。需要注意的是 Static Rendering 非只渲染一層，需要注意是否需要 mock props 傳遞。
+
+	```javascript
+	import React from 'react';
+	import TestUtils from 'react-addons-test-utils';
+	import { expect } from 'chai';
+	import { render } from 'enzyme';
+	import Main from '../../src/components/Main';
+
+	describe('Enzyme Staic Rendering', () => {
+	  it('Main title should be Todos', () => {
+	    const todos = [{ id: 0, text: 'reading'}, { id: 1, text: 'coding'}];
+	    const main = render(<Main todos={todos} />);
+	    expect(main.find('h1').text()).to.equal('Todos');
+	  });
+	});
+	```
 
 3. Full Rendering
 
-	mount 方法 React 元件載入真實 DOM 節點。
+	mount 方法 React 元件載入真實 DOM 節點。同樣因為牽涉到 DOM 也要使用 JSDOM。
 
-事實上 Enzyme 還提供更多的 API 可以使用，若是讀者想了解更多 Enzyme API 可以[參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
+	```javascript
+	import React from 'react';
+	import TestUtils from 'react-addons-test-utils';
+	import { expect } from 'chai';
+	import { findDOMNode } from 'react-dom';
+	import { mount } from 'enzyme';
+	import TodoHeader from '../../src/components/TodoHeader';
+
+	describe('Enzyme Mount', () => {
+	  it('Click Button', () => {
+	    let todoHeaderDOM = mount(<TodoHeader />);
+	    // 取得 button 並模擬 click
+	    let button = todoHeaderDOM.find('button').at(0);
+	    button.simulate('click');
+	    // 檢查 prop(key) 是否正確
+	    expect(button.prop('disabled')).to.equal(true);
+	  });
+	});
+	```	
+
+最後我們可以在 `react-addons-test-utils-example` 資料夾下執行：
+
+```
+$ npm test
+```
+
+若一切順利就可以看到測試通過的訊息！
+
+```
+
+  Enzyme Mount
+    ✓ Click Button (44ms)
+
+  Enzyme Shallow Rendering
+    ✓ Main title should be Todos
+
+  Enzyme Staic Rendering
+    ✓ Main title should be Todos
+
+  Simulate Event
+    ✓ When click the button, it will be toggle
+
+  Shallow Rendering
+    ✓ Main title should be h1
+
+  Shallow Props Rendering
+    ✓ TodoList props check
+
+
+  6 passing (279ms)
+
+```
+
+事實上 Enzyme 還提供更多的 API 可以使用，若是讀者想了解更多 Enzyme API 可以 [參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
 
 ## 總結
-以上我們介紹了測試工具的寫法。
+以上我們從 `Mocha` + `Chai` 的使用方式介紹到 React 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html) 和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)，相信讀者對於測試程式碼已經有初步的了解，若尚未掌握的讀者不妨跟著上面的範例再重新走過一遍，接著我們要進到最後的 `Relay/GraphQL`　的介紹。
 
 ## 延伸閱讀
 1. [React 测试入门教程](http://www.ruanyifeng.com/blog/2016/02/react-testing-tutorial.html)
