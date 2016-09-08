@@ -466,7 +466,7 @@ $ npm test
 事實上 Enzyme 還提供更多的 API 可以使用，若是讀者想了解更多 Enzyme API 可以 [參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
 
 ## 總結
-以上我們從 `Mocha` + `Chai` 的使用方式介紹到 React 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html) 和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)，相信讀者對於測試程式碼已經有初步的了解，若尚未掌握的讀者不妨跟著上面的範例再重新走過一遍，接著我們要進到最後的 `Relay/GraphQL`的介紹。
+以上我們從 `Mocha` + `Chai` 的使用方式介紹到 React 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html) 和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)，相信讀者對於測試程式碼已經有初步的了解，若尚未掌握的讀者不妨跟著上面的範例再重新走過一遍，接著我們要進到最後的 `GraphQL/Relay`的介紹。
 
 ## 延伸閱讀
 1. [React 测试入门教程](http://www.ruanyifeng.com/blog/2016/02/react-testing-tutorial.html)
