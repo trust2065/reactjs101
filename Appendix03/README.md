@@ -38,7 +38,7 @@ $ npm install --save-dev babel-core babel-loader babel-eslint babel-preset-react
 
 所謂的 assertion（斷言），就是判斷程式碼的執行成果是否和預期一樣，若是不一致則會發生錯誤。通常一個 test case 會擁有一個或多個 assertion。由於 Mocha 本身是一個測試框架，但不包含 assertion，所以我們使用 [Chai](http://chaijs.com/) 這個適用於瀏覽器端和 Node 端的 BDD / TDD assertion library。在 Chai 中共提供三種操作 assertion 介面風格：Expect、Assert、Should，在這邊我們選擇使用比較接近自然語言的 Expect。
 
-基本上，expect assertion 的寫法都是一樣，開頭為 `expect` 方法 + `to` 或 `to.be` + 結尾 assertion 方法（例如：equal、a/an、ok、match）
+基本上，expect assertion 的寫法都是類似：開頭為 `expect` 方法 + `to` 或 `to.be` + 結尾 assertion 方法（例如：equal、a/an、ok、match）
 
 4. Mocha 基本用法
 
