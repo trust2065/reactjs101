@@ -10,7 +10,7 @@
 
 >Mocha is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
 
-除了 Mocha 外，尚有許多 JavaScript 單元測試工具可以選擇（例如：[Jasmine](http://jasmine.github.io/)）、[Karma](http://karma-runner.github.io/1.0/index.html) 等，但本章我們主要使用 `Mocha` + `Chai` 結合 React 測試工具和 Enzyme 進行講解。
+除了 Mocha 外，尚有許多 JavaScript 單元測試工具可以選擇，例如：[Jasmine](http://jasmine.github.io/)、[Karma](http://karma-runner.github.io/1.0/index.html) 等。但本章我們主要使用 `Mocha` + `Chai` 結合 React 官方測試工具和 Enzyme 進行講解。
 
 在這邊我們先介紹一些比較常用的 Mocha 使用方法，讓大家熟悉測試的用法：
 
@@ -266,6 +266,8 @@ class TodoHeader extends React.Component {
 
 export default TodoHeader;
 ```
+
+需要留意的是若是 stateless components 使用 TestUtils.renderIntoDocument，要將 renderIntoDocument 包在 `<div></div>` 內，使用 `findDOMNode(TodoHeaderApp).children[0]` 取得，不然會回傳 null。更進一步細節可以[參考這裡](https://github.com/facebook/react/issues/4839)。不過由於我們是使用 `class-based` Component 所以不會遇到這個問題。
 
 ```javascript
 import React from 'react';
