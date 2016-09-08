@@ -186,9 +186,11 @@ GET `/users/3500401`
 
 ## Relay 初體驗
 
+>Relay is a new framework from Facebook that provides data-fetching functionality for React applications.
+
 在體驗完 GraphQL 後，我們要來聊聊 Relay。Relay 是 Facebook 為了滿足大型應用程式開發所建構的框架，主要用於處理 React 應用層的資料互動框架。在 Relay 中可以讓每個 Component 透過 GraphQL 的整合處理可以精確地向 Component props 提供取得的數據，並在 client side 存放一份所有數據的 store 當作暫存。
 
->Relay is a new framework from Facebook that provides data-fetching functionality for React applications.
+整個 Relay 架構流程圖：
 
 ![Relay/GraphQL 初體驗](./images/relay-architecture.png)
 
