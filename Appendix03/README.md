@@ -229,115 +229,116 @@
 
 1. Shallow Rendering（createRenderer）
 
-Shallow Rendering 係指將一個 Virtual DOM 渲染成子 Component，但是只渲染第一層，不渲染所有子元件，因此處理速度快且不需要 DOM 環境。Shallow rendering 在單元測試非常有用，由於只測試一個特定的 component，而重要的不是它的 children。這也意味著改變一個 child component 不會影響 parent component 的測試。
+	Shallow Rendering 係指將一個 Virtual DOM 渲染成子 Component，但是只渲染第一層，不渲染所有子元件，因此處理速度快且不需要 DOM 環境。Shallow rendering 在單元測試非常有用，由於只測試一個特定的 component，而重要的不是它的 children。這也意味著改變一個 child component 不會影響 parent component 的測試。
 
-```javascript
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import { expect } from 'chai';
-import Main from '../src/components/Main';
+	```javascript
+	import React from 'react';
+	import TestUtils from 'react-addons-test-utils';
+	import { expect } from 'chai';
+	import Main from '../src/components/Main';
 
-function shallowRender(Component) {
-  const renderer = TestUtils.createRenderer();
-  renderer.render(<Component/>);
-  return renderer.getRenderOutput();
-}
+	function shallowRender(Component) {
+	  const renderer = TestUtils.createRenderer();
+	  renderer.render(<Component/>);
+	  return renderer.getRenderOutput();
+	}
 
-describe('Shallow Rendering', function () {
-  it('Main title should be h1', function () {
-    const todoItem = shallowRender(Main);
-    expect(todoItem.props.children[0].type).to.equal('h1');
-    expect(todoItem.props.children[0].props.children).to.equal('Todos');
-  });
-});
-```
+	describe('Shallow Rendering', function () {
+	  it('Main title should be h1', function () {
+	    const todoItem = shallowRender(Main);
+	    expect(todoItem.props.children[0].type).to.equal('h1');
+	    expect(todoItem.props.children[0].props.children).to.equal('Todos');
+	  });
+	});
+	```
 
-```javascript
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import { expect } from 'chai';
-import TodoList from '../src/components/TodoList';
+	```javascript
+	import React from 'react';
+	import TestUtils from 'react-addons-test-utils';
+	import { expect } from 'chai';
+	import TodoList from '../src/components/TodoList';
 
-const shallowRender = (Component, props) => {
-  const renderer = TestUtils.createRenderer();
-  renderer.render(<Component {...props}/>);
-  return renderer.getRenderOutput();
-}
+	const shallowRender = (Component, props) => {
+	  const renderer = TestUtils.createRenderer();
+	  renderer.render(<Component {...props}/>);
+	  return renderer.getRenderOutput();
+	}
 
-describe('Shallow Props Rendering', () => {
-  it('TodoList props check', () => {
-    const todos = [{ id: 0, text: 'reading'}, { id: 1, text: 'coding'}];
-    const todoList = shallowRender(TodoList, {todos: todos});
-    expect(todoList.props.children.type).to.equal('ul');
-    expect(todoList.props.children.props.children[0].props.children).to.equal('reading');
-    expect(todoList.props.children.props.children[1].props.children).to.equal('coding');
-  });
-});
-```
+	describe('Shallow Props Rendering', () => {
+	  it('TodoList props check', () => {
+	    const todos = [{ id: 0, text: 'reading'}, { id: 1, text: 'coding'}];
+	    const todoList = shallowRender(TodoList, {todos: todos});
+	    expect(todoList.props.children.type).to.equal('ul');
+	    expect(todoList.props.children.props.children[0].props.children).to.equal('reading');
+	    expect(todoList.props.children.props.children[1].props.children).to.equal('coding');
+	  });
+	});
+	```
 
 2. DOM Rendering（renderIntoDocument）
-注意，因為 Mocha 運行在 Node 環境中，所以你不會存取到 DOM。所以我們要使用 JSDOM 來模擬真實 DOM 環境。同時我在這邊引入 `react-dom`，這樣我們就可以使用 findDOMNode 來選取元素。事實上，findDOMNode 方法的最大優勢是提供比 TestUtils 更好的 CSS 選擇器，方便開發者選擇元素。
+	
+	注意，因為 Mocha 運行在 Node 環境中，所以你不會存取到 DOM。所以我們要使用 JSDOM 來模擬真實 DOM 環境。同時我在這邊引入 `react-dom`，這樣我們就可以使用 findDOMNode 來選取元素。事實上，findDOMNode 方法的最大優勢是提供比 TestUtils 更好的 CSS 選擇器，方便開發者選擇元素。
 
-```javascript
-import jsdom from 'jsdom';
+	```javascript
+	import jsdom from 'jsdom';
 
-if (typeof document === 'undefined') {
-  global.document = jsdom.jsdom('<!doctype html><html><head></head><body></body></html>');
-  global.window = document.defaultView;
-  global.navigator = global.window.navigator;
-}
-```
+	if (typeof document === 'undefined') {
+	  global.document = jsdom.jsdom('<!doctype html><html><head></head><body></body></html>');
+	  global.window = document.defaultView;
+	  global.navigator = global.window.navigator;
+	}
+	```
 
-```javascript
-import React from 'react';
+	```javascript
+	import React from 'react';
 
-class TodoHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggleButton = this.toggleButton.bind(this);
-    this.state = {
-      isActivated: false,
-    };
-  }
-  toggleButton() {
-    this.setState({
-      isActivated: !this.state.isActivated,      
-    })
-  }
-  render() {
-    return (
-      <div>
-        <button disabled={this.state.isActivated} onClick={this.toggleButton}>Add</button>
-      </div>
-    );
-  };
-}
+	class TodoHeader extends React.Component {
+	  constructor(props) {
+	    super(props);
+	    this.toggleButton = this.toggleButton.bind(this);
+	    this.state = {
+	      isActivated: false,
+	    };
+	  }
+	  toggleButton() {
+	    this.setState({
+	      isActivated: !this.state.isActivated,      
+	    })
+	  }
+	  render() {
+	    return (
+	      <div>
+	        <button disabled={this.state.isActivated} onClick={this.toggleButton}>Add</button>
+	      </div>
+	    );
+	  };
+	}
 
-export default TodoHeader;
-```
+	export default TodoHeader;
+	```
 
-需要留意的是若是 stateless components 使用 TestUtils.renderIntoDocument，要將 renderIntoDocument 包在 `<div></div>` 內，使用 `findDOMNode(TodoHeaderApp).children[0]` 取得，不然會回傳 null。更進一步細節可以[參考這裡](https://github.com/facebook/react/issues/4839)。不過由於我們是使用 `class-based` Component 所以不會遇到這個問題。
+	需要留意的是若是 stateless components 使用 TestUtils.renderIntoDocument，要將 renderIntoDocument 包在 `<div></div>` 內，使用 `findDOMNode(TodoHeaderApp).children[0]` 取得，不然會回傳 null。更進一步細節可以[參考這裡](https://github.com/facebook/react/issues/4839)。不過由於我們是使用 `class-based` Component 所以不會遇到這個問題。
 
-```javascript
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import { expect } from 'chai';
-import { findDOMNode } from 'react-dom';
-import TodoHeader from '../src/components/TodoHeader';
+	```javascript
+	import React from 'react';
+	import TestUtils from 'react-addons-test-utils';
+	import { expect } from 'chai';
+	import { findDOMNode } from 'react-dom';
+	import TodoHeader from '../src/components/TodoHeader';
 
-describe('Simulate Event', function () {
-  it('When click the button, it will be toggle', function () {
-    const TodoHeaderApp = TestUtils.renderIntoDocument(<TodoHeader />);
-    const TodoHeaderDOM = findDOMNode(TodoHeaderApp);
-    const button = TodoHeaderDOM.querySelector('button');
-    TestUtils.Simulate.click(button);
-    let todoHeaderButtonAfterClick = TodoHeaderDOM.querySelector('button').disabled;
-    expect(todoHeaderButtonAfterClick).to.equal(true);
-  });
-});
-```
+	describe('Simulate Event', function () {
+	  it('When click the button, it will be toggle', function () {
+	    const TodoHeaderApp = TestUtils.renderIntoDocument(<TodoHeader />);
+	    const TodoHeaderDOM = findDOMNode(TodoHeaderApp);
+	    const button = TodoHeaderDOM.querySelector('button');
+	    TestUtils.Simulate.click(button);
+	    let todoHeaderButtonAfterClick = TodoHeaderDOM.querySelector('button').disabled;
+	    expect(todoHeaderButtonAfterClick).to.equal(true);
+	  });
+	});
+	```
 
-這種渲染 DOM 的測試方式類似於 JavaScript 或 jQuery 的 DOM 操作。首先要先找到欲操作的目標節點，而後觸發想要執行的動作，在官方測試工具中擁有許多可以[協助選取節點的方法](https://facebook.github.io/react/docs/test-utils.html#scryrenderedcomponentswithtype)。然而由於其在使用上不夠簡潔，也因此我們接下來將介紹由 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)進行 React 測試。
+	這種渲染 DOM 的測試方式類似於 JavaScript 或 jQuery 的 DOM 操作。首先要先找到欲操作的目標節點，而後觸發想要執行的動作，在官方測試工具中擁有許多可以[協助選取節點的方法](https://facebook.github.io/react/docs/test-utils.html#scryrenderedcomponentswithtype)。然而由於其在使用上不夠簡潔，也因此我們接下來將介紹由 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)進行 React 測試。
 
 ### 使用 Enzyme 函式庫進行測試
 [Enzyme](https://github.com/airbnb/enzyme) 優勢是在於針對官方測試工具封裝成了類似 jQuery API 的選取元素的方式。根據官方網站介紹 Enzyme 將更容易地去操作選取 React Component：
@@ -348,13 +349,13 @@ Enzyme is unopinionated regarding which test runner or assertion library you use
 在 Enzyme 有三個主要的 API 方法：
 
 1. Shallow Rendering
-shallow 方法事實上就是官方測試工具的 shallow rendering 封装。
+	shallow 方法事實上就是官方測試工具的 shallow rendering 封装。
 
 2. Static Rendering
-render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。雖然底層是不同的處理引擎但使用上 API 封裝起來和 Shallow 卻是一致的。
+	render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。雖然底層是不同的處理引擎但使用上 API 封裝起來和 Shallow 卻是一致的。
 
 3. Full Rendering
-mount 方法 React 元件載入真實 DOM 節點。
+	mount 方法 React 元件載入真實 DOM 節點。
 
 事實上 Enzyme 還提供更多的 API 可以使用，若是讀者想了解更多 Enzyme API 可以[參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
 
