@@ -231,6 +231,8 @@
 
 	Shallow Rendering 係指將一個 Virtual DOM 渲染成子 Component，但是只渲染第一層，不渲染所有子元件，因此處理速度快且不需要 DOM 環境。Shallow rendering 在單元測試非常有用，由於只測試一個特定的 component，而重要的不是它的 children。這也意味著改變一個 child component 不會影響 parent component 的測試。
 
+	以下是 `react-addons-test-utils-example/src/test/shallowRender.test.js`：
+
 	```javascript
 	import React from 'react';
 	import TestUtils from 'react-addons-test-utils';
@@ -251,6 +253,8 @@
 	  });
 	});
 	```
+
+	以下是 `react-addons-test-utils-example/src/test/shallowRenderProps.test.js`：	
 
 	```javascript
 	import React from 'react';
@@ -279,6 +283,8 @@
 	
 	注意，因為 Mocha 運行在 Node 環境中，所以你不會存取到 DOM。所以我們要使用 JSDOM 來模擬真實 DOM 環境。同時我在這邊引入 `react-dom`，這樣我們就可以使用 findDOMNode 來選取元素。事實上，findDOMNode 方法的最大優勢是提供比 TestUtils 更好的 CSS 選擇器，方便開發者選擇元素。
 
+	以下是 `react-addons-test-utils-example/src/test/setup.test.js`：	
+
 	```javascript
 	import jsdom from 'jsdom';
 
@@ -288,6 +294,8 @@
 	  global.navigator = global.window.navigator;
 	}
 	```
+
+	以下是 `react-addons-test-utils-example/src/components/TodoHeader/TodoHeader.js`：	
 
 	```javascript
 	import React from 'react';
@@ -318,6 +326,8 @@
 	```
 
 	需要留意的是若是 stateless components 使用 TestUtils.renderIntoDocument，要將 renderIntoDocument 包在 `<div></div>` 內，使用 `findDOMNode(TodoHeaderApp).children[0]` 取得，不然會回傳 null。更進一步細節可以[參考這裡](https://github.com/facebook/react/issues/4839)。不過由於我們是使用 `class-based` Component 所以不會遇到這個問題。
+
+	以下是 `react-addons-test-utils-example/src/test/renderIntoDocument.test.js`：	
 
 	```javascript
 	import React from 'react';
