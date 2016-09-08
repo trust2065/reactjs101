@@ -177,18 +177,137 @@ describe('hooks', function() {
 在上面我們已經先講解了 `Mocha` + `Chai` 測試工具和基礎的測試寫法。現在接著我們要來探討 React 中的測試用法。然而，要在 React 中測試 Component 以及 JSX 語法時，使用傳統的測試工具並不方便，所以要整合 `Mocha` + `Chai` 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html)和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)（由於官方的測試工具使用起來不太方便所以有第三方針對其進行封裝）進行測試。
 
 ### 使用官方測試工具
-我們知道在 React 一個重要的特色為 Virtual DOM 所以在官方的測試工具中有提供測試 Virtual DOM 的方法：Shallow Rendering，以及測試真實 DOM 的方法：DOM Rendering。
+我們知道在 React 一個重要的特色為 Virtual DOM 所以在官方的測試工具中有提供測試 Virtual DOM 的方法：Shallow Rendering（createRenderer），以及測試真實 DOM 的方法：DOM Rendering（renderIntoDocument）。
 
-1. Shallow Rendering
+1. Shallow Rendering（createRenderer）
+
+Shallow Rendering 係指將一個 Virtual DOM 渲染成子 Component，但是只渲染第一層，不渲染所有子元件，因此處理速度快且不需要 DOM 環境。Shallow rendering 在單元測試非常有用，由於只測試一個特定的 component，而重要的不是它的 children。這也意味著改變一個 child component 不會影響 parent component 的測試。
 
 ```
+import React from 'react';
 import TestUtils from 'react-addons-test-utils';
+import { expect } from 'chai';
+import Main from '../src/components/Main';
+
+function shallowRender(Component) {
+  const renderer = TestUtils.createRenderer();
+  renderer.render(<Component/>);
+  return renderer.getRenderOutput();
+}
+
+describe('Shallow Rendering', function () {
+  it('Main title should be h1', function () {
+    const todoItem = shallowRender(Main);
+    expect(todoItem.props.children[0].type).to.equal('h1');
+    expect(todoItem.props.children[0].props.children).to.equal('Todos');
+  });
+});
 ```
 
-2. DOM Rendering
+```
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import { expect } from 'chai';
+import TodoList from '../src/components/TodoList';
+
+const shallowRender = (Component, props) => {
+  const renderer = TestUtils.createRenderer();
+  renderer.render(<Component {...props}/>);
+  return renderer.getRenderOutput();
+}
+
+describe('Shallow Props Rendering', () => {
+  it('TodoList props check', () => {
+    const todos = [{ id: 0, text: 'reading'}, { id: 1, text: 'coding'}];
+    const todoList = shallowRender(TodoList, {todos: todos});
+    expect(todoList.props.children.type).to.equal('ul');
+    expect(todoList.props.children.props.children[0].props.children).to.equal('reading');
+    expect(todoList.props.children.props.children[1].props.children).to.equal('coding');
+  });
+});
+```
+
+2. DOM Rendering（renderIntoDocument）
+注意，因為 Mocha 運行在 Node 環境中，所以你不會存取到 DOM。所以我們要使用 JSDOM 來模擬真實 DOM 環境。同時我在這邊引入 `react-dom`，這樣我們就可以使用 findDOMNode 來選取元素。事實上，findDOMNode 方法的最大優勢是提供比 TestUtils 更好的 CSS 選擇器，方便開發者選擇元素。
+
+```
+import jsdom from 'jsdom';
+
+if (typeof document === 'undefined') {
+  global.document = jsdom.jsdom('<!doctype html><html><head></head><body></body></html>');
+  global.window = document.defaultView;
+  global.navigator = global.window.navigator;
+}
+```
+
+```
+import React from 'react';
+
+class TodoHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleButton = this.toggleButton.bind(this);
+    this.state = {
+      isActivated: false,
+    };
+  }
+  toggleButton() {
+    this.setState({
+      isActivated: !this.state.isActivated,      
+    })
+  }
+  render() {
+    return (
+      <div>
+        <button disabled={this.state.isActivated} onClick={this.toggleButton}>Add</button>
+      </div>
+    );
+  };
+}
+
+export default TodoHeader;
+```
+
+```
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import { expect } from 'chai';
+import { findDOMNode } from 'react-dom';
+import TodoHeader from '../src/components/TodoHeader';
+
+describe('Simulate Event', function () {
+  it('When click the button, it will be toggle', function () {
+    const TodoHeaderApp = TestUtils.renderIntoDocument(<TodoHeader />);
+    const TodoHeaderDOM = findDOMNode(TodoHeaderApp);
+    const button = TodoHeaderDOM.querySelector('button');
+    TestUtils.Simulate.click(button);
+    let todoHeaderButtonAfterClick = TodoHeaderDOM.querySelector('button').disabled;
+    expect(todoHeaderButtonAfterClick).to.equal(true);
+  });
+});
+```
+
+這種渲染 DOM 的測試方式類似於 JavaScript 或 jQuery 的 DOM 操作。首先要先找到欲操作的目標節點，而後觸發想要執行的動作，在官方測試工具中擁有許多可以[協助選取節點的方法](https://facebook.github.io/react/docs/test-utils.html#scryrenderedcomponentswithtype)。然而由於其在使用上不夠簡潔，也因此我們接下來將介紹由 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)進行 React 測試。
 
 ### 使用 Enzyme 函式庫進行測試
-[Enzyme](https://github.com/airbnb/enzyme) 提供了類似 jQuery API 的選取元素的方式。
+[Enzyme](https://github.com/airbnb/enzyme) 優勢是在於針對官方測試工具封裝成了類似 jQuery API 的選取元素的方式。根據官方網站介紹 Enzyme 將更容易地去操作選取 React Component：
+
+> Enzyme is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.
+Enzyme is unopinionated regarding which test runner or assertion library you use, and should be compatible with all major test runners and assertion libraries out there.
+
+在 Enzyme 有三個主要的 API 方法：
+
+1. shallow
+shallow 方法事實上就是官方測試工具的 shallow rendering 的封装。
+
+2. render
+render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。
+
+3. mount
+mount 方法 React 元件載入真實 DOM 節點。
+
+
+更多 Enzyme API 可以[參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
 
 ## 總結
 以上我們介紹了測試工具的寫法。
@@ -200,5 +319,10 @@ import TestUtils from 'react-addons-test-utils';
 4. [JavaScript Testing utilities for React](https://github.com/airbnb/enzyme)
 5. [持续集成是什么？](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)
 6. [Let’s test React components with TDD, Mocha, Chai, and jsdom](https://medium.freecodecamp.com/simple-react-testing-d9e25ec87e2)
+7. [Unit Testing React-Native Components with Enzyme Part 1](https://kyrisu.com/2016/01/31/unit-testing-react-native-components-with-enzyme-part-1/)
+8. [What React Stateless Components Are Missing](http://jaketrent.com/post/react-stateless-components-missing/)
+9. [0.14-rc1: findDOMNode(statelessComponent) doesn’t work with TestUtils.renderIntoDocument #4839](https://github.com/facebook/react/issues/4839)
+10. [Writing Redux Tests](http://redux.js.org/docs/recipes/WritingTests.html)
+11. [【译】展望2016，React.js 最佳实践 (中英对照版)](http://blog.jimmylv.info/2016-01-22-React.js-Best-Practices-for-2016/)
 
 （image via [Anthony Ng](https://cdn-images-1.medium.com/max/800/1*CrB6isZN6YXeM1rWmnjxHw.png)）
