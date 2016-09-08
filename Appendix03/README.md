@@ -115,7 +115,7 @@ $ mocha add.test.js
 $ npm install --save axios
 ```
 
-```
+```javascript
 import axios from 'axios';
 import { expect } from 'chai';
 
@@ -138,7 +138,7 @@ it('asynchronous return an object', function(done){
 $ npm install --save node-fetch 
 ```
 
-```
+```javascript
 import fetch from 'node-fetch';
 import { expect } from 'chai';
 
@@ -155,7 +155,7 @@ it('asynchronous fetch promise', function() {
 
 在 Mocha 中的 test suite 中，有 before()、after()、beforeEach() 和 afterEach() 四種 hook，可以讓你設計在特定時間點執行測試。
 
-```
+```javascript
 describe('hooks', function() {
   before(function() {
     // 在 before 中的 test case 會在所有 test cases 前執行
@@ -183,7 +183,7 @@ describe('hooks', function() {
 
 Shallow Rendering 係指將一個 Virtual DOM 渲染成子 Component，但是只渲染第一層，不渲染所有子元件，因此處理速度快且不需要 DOM 環境。Shallow rendering 在單元測試非常有用，由於只測試一個特定的 component，而重要的不是它的 children。這也意味著改變一個 child component 不會影響 parent component 的測試。
 
-```
+```javascript
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
@@ -204,7 +204,7 @@ describe('Shallow Rendering', function () {
 });
 ```
 
-```
+```javascript
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
@@ -230,7 +230,7 @@ describe('Shallow Props Rendering', () => {
 2. DOM Rendering（renderIntoDocument）
 注意，因為 Mocha 運行在 Node 環境中，所以你不會存取到 DOM。所以我們要使用 JSDOM 來模擬真實 DOM 環境。同時我在這邊引入 `react-dom`，這樣我們就可以使用 findDOMNode 來選取元素。事實上，findDOMNode 方法的最大優勢是提供比 TestUtils 更好的 CSS 選擇器，方便開發者選擇元素。
 
-```
+```javascript
 import jsdom from 'jsdom';
 
 if (typeof document === 'undefined') {
@@ -240,7 +240,7 @@ if (typeof document === 'undefined') {
 }
 ```
 
-```
+```javascript
 import React from 'react';
 
 class TodoHeader extends React.Component {
@@ -268,7 +268,7 @@ class TodoHeader extends React.Component {
 export default TodoHeader;
 ```
 
-```
+```javascript
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
@@ -297,15 +297,14 @@ Enzyme is unopinionated regarding which test runner or assertion library you use
 
 在 Enzyme 有三個主要的 API 方法：
 
-1. shallow
-shallow 方法事實上就是官方測試工具的 shallow rendering 的封装。
+1. Shallow Rendering
+shallow 方法事實上就是官方測試工具的 shallow rendering 封装。
 
-2. render
+2. Static Rendering
 render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。
 
-3. mount
+3. Full Rendering
 mount 方法 React 元件載入真實 DOM 節點。
-
 
 更多 Enzyme API 可以[參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
 
