@@ -56,7 +56,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	}
 
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
-	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
+	ReactDOM.render(<MyComponent/>, document.getElementById('app'));
 	```
 
 2. 使用 Funtional Component 寫法（單純地 render UI 的 stateless components，沒有內部狀態、沒有實作物件和 ref，沒有生命週期函數。若非需要控制生命週期的話建議多使用 stateless components 獲得比較好的效能）
@@ -68,7 +68,7 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 	);
 	
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
-	ReactDOM.render(<MyComponent/>, document.getElmentById('app'));
+	ReactDOM.render(<MyComponent/>, document.getElementById('app'));
 	```
 
 ## 用 JSX 進行宣告式（Declarative）UI 設計
