@@ -9,7 +9,15 @@ GraphQL 的出現主要是為了要解決 Web/Mobile 端不斷增加的 API 請�
 
 >GraphQL is a data query language and runtime designed and used at Facebook to request and deliver data to mobile and web apps since 2012.
 
-根據 [GraphQL 官方網站](http://graphql.org/)的定義，GraphQL 是一個資料查詢語言和 runtime。Query responses 是由 client 所宣告決定，而非 server 端，且只會回傳 client 所宣告的內容。此外，GraphQL 是強型別（strong type）且可以容易使用階層（hierarchical）和處理複雜的資料關連性，並更容易讓前端工程師和產品工程師使用。
+根據 [GraphQL 官方網站](http://graphql.org/)的定義，GraphQL 是一個資料查詢語言和 runtime。Query responses 是由 client 所宣告決定，而非 server 端，且只會回傳 client 所宣告的內容。此外，GraphQL 是強型別（strong type）且可以容易使用階層（hierarchical）和處理複雜的資料關連性，並更容易讓前端工程師和產品工程師定義 Schema 來使用，賦予前端對於資料的制定能力。
+
+GraphQL 主要由以下元件構成：
+
+類別系統（Type System）
+查詢語言（Query Language）：在 Operations 中 query 只讀取資料而 mutation 寫入操作
+執行語意（Execution Semantics）
+靜態驗證（Static Validation）
+類別檢查（Type Introspection）
 
 一般 RESTful 在取用資源時會對應到 HTTP 中 `GET`、`POST`、`DELETE`、`PUT` 等方法，並以 URL 對應的方式去取得資源，例如：
 
@@ -51,64 +59,140 @@ GET `/users/3500401`
 }
 ```
 
-```javascript
-import {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString
-} from 'graphql';
+### 實戰演練
 
-var schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      hello: {
-        type: GraphQLString,
-        resolve() {
-          return 'world';
-        }
-      }
-    }
-  })
-});
-```
+1. 環境建置
+	接下來我們將動手建立 GraphQL 的簡單範例，讓大家感受一下 GraphQL 的特性，在這之前我們需要先安裝以下套件建立好環境：
 
-```javascript
-var query = '{ hello }';
+	1. [graphql](https://github.com/graphql/graphql-js)：GraphQL 的 JavaScript 實作.
+	2. [express](https://github.com/expressjs/express)：Node web framework.
+	3. [express-graphql](https://github.com/graphql/express-graphql), an express middleware that exposes a GraphQL server.
 
-graphql(schema, query).then(result => {
+	```
+	$ npm init
+	$ npm install graphql express express-graphql --save
+	```
 
-  // Prints
-  // {
-  //   data: { hello: "world" }
-  // }
-  console.log(result);
+2. Data 格式設計
 
-});
-```
+	以下是 `data.json`：
 
-```
-$ npm install --save express-graphql
-```
+	```
+	{
+	  "1": {
+	    "id": "1",
+	    "name": "Dan"
+	  },
+	  "2": {
+	    "id": "2",
+	    "name": "Marie"
+	  },
+	  "3": {
+	    "id": "3",
+	    "name": "Jessie"
+	  }
+	}
+	```
 
-```javascript
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
+3. Server 設計
 
-const app = express();
+	```javascript
+	// Import the required libraries
+	const graphql = require('graphql');
+	const graphqlHTTP = require('express-graphql');
+	const express = require('express');
 
-app.use('/graphql', graphqlHTTP({
-  schema: MyGraphQLSchema,
-  graphiql: true
-}));
+	// Import the data you created above
+	const data = require('./data.json');
 
-app.listen(4000);
-```
+	// Define the User type with two string fields: `id` and `name`.
+	// The type of User is GraphQLObjectType, which has child fields
+	// with their own types (in this case, GraphQLString).
+	const userType = new graphql.GraphQLObjectType({
+	  name: 'User',
+	  fields: {
+	    id: { type: graphql.GraphQLString },
+	    name: { type: graphql.GraphQLString },
+	  }
+	});
+
+	// Define the schema with one top-level field, `user`, that
+	// takes an `id` argument and returns the User with that ID.
+	// Note that the `query` is a GraphQLObjectType, just like User.
+	// The `user` field, however, is a userType, which we defined above.
+	const schema = new graphql.GraphQLSchema({
+	  query: new graphql.GraphQLObjectType({
+	    name: 'Query',
+	    fields: {
+	      user: {
+	        type: userType,
+	        // `args` describes the arguments that the `user` query accepts
+	        args: {
+	          id: { type: graphql.GraphQLString }
+	        },
+	        // The resolve function describes how to "resolve" or fulfill
+	        // the incoming query.
+	        // In this case we use the `id` argument from above as a key
+	        // to get the User from `data`
+	        resolve: function (_, args) {
+	          return data[args.id];
+	        }
+	      }
+	    }
+	  })
+	});
+
+	express()
+	  .use('/graphql', graphqlHTTP({ schema: schema, pretty: true }))
+	  .listen(3000);
+
+	console.log('GraphQL server running on http://localhost:3000/graphql');
+	```
+
+	```
+	node index.js
+	```
+
+	這個時候我們可以打開瀏覽器輸入 ` localhost:3000/graphql.`，由於沒有任何 Query，目前會出現以下畫面：
+
+	![Relay/GraphQL 初體驗](./images/graphql-demo-1.png)
+
+4. Query 設計
+
+	```javascript
+	{
+	  user(id: "1") {
+	    name
+	  }
+	}
+	```	
+
+	```javascript
+	{
+	  "data": {
+	    "user": {
+	      "name": "Dan"
+	    }
+	  }
+	}
+	```
+
+	在了解了資料和 Query 設計後，這個時候我們可以打開瀏覽器輸入：
+	`http://localhost:3000/graphql?query={user(id:"1"){name}}`，此時 server 會根據 GET 的資料回傳：
+
+	![Relay/GraphQL 初體驗](./images/graphql-demo-2.png)
+
+到這裡，你已經完成了最簡單的 GraphQL Server 設計了，若你遇到編碼問題，可以嘗試使用 JavaScript 中的 encodeURI 去進行轉碼。也可以自己嘗試不同的 Schema 和 Query，感受一下 GraphQL 的特性。
 
 ## Relay 初體驗
 
+在體驗完 GraphQL 後，我們要來聊聊 Relay。Relay 是 Facebook 為了滿足大型應用程式開發所建構的框架，主要用於處理 React 應用層的資料互動框架。在 Relay 中可以讓每個 Component 透過 GraphQL 的整合處理可以精確地向 Component props 提供取得的數據，並在 client side 存放一份所有數據的 store 當作暫存。
+
+>Relay is a new framework from Facebook that provides data-fetching functionality for React applications.
+
 ![Relay/GraphQL 初體驗](./images/relay-architecture.png)
+
+Component 和 GraphQL 的建立：
 
 ```javascript
 class Tea extends React.Component {
@@ -170,6 +254,8 @@ ReactDOM.render(
   mountNode
 );
 ```
+
+GraphQL Schema 和 store 建立：
 
 ```javascript
 import {
@@ -235,5 +321,7 @@ React 生態系中，除了前端 View 的部份有革新性的創新外，Graph
 5. [GraphQL 官網](http://graphql.org/)
 6. [Relay 官網](https://facebook.github.io/relay/)
 7. [A reference implementation of GraphQL for JavaScript](https://github.com/graphql/graphql-js)
+8. [深入理解 GraphQL](http://taobaofed.org/blog/2016/03/10/graphql-in-depth/)
+9. [Node.js 服务端实践之 GraphQL 初探](http://taobaofed.org/blog/2015/11/26/graphql-basics-server-implementation/)
 
 （image via [facebook](https://facebook.github.io/react/img/blog/relay-components/relay-architecture.png)、[kadira](https://cldup.com/uhBzqnK002.png)）
