@@ -298,15 +298,12 @@ Enzyme is unopinionated regarding which test runner or assertion library you use
 在 Enzyme 有三個主要的 API 方法：
 
 1. Shallow Rendering
-
 shallow 方法事實上就是官方測試工具的 shallow rendering 封装。
 
 2. Static Rendering
-
 render 方法是將 React 元件渲染成靜態的 HTML 字串，並利用 Cheerio 函式庫（這點和 shallow 不同）分析其結構返回物件。
 
 3. Full Rendering
-
 mount 方法 React 元件載入真實 DOM 節點。
 
 更多 Enzyme API 可以[參考官方文件](http://airbnb.io/enzyme/docs/api/index.html)。
