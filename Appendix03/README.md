@@ -3,7 +3,7 @@
 ![React 測試入門教學](./images/mocha.png)
 
 ## 前言
-測試是軟體開發中非常重要的一個環節，本章我們將帶領大家從撰寫最簡單的測試程式碼到整合 `Mocha` + `Chai` 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html)和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme)進行 React 測試。
+測試是軟體開發中非常重要的一個環節，本章我們將帶領大家從撰寫最簡單的測試程式碼到整合 `Mocha` + `Chai` 官方提供的[測試工具](https://facebook.github.io/react/docs/test-utils.html)和 Airbnb 所設計的 [Enzyme](https://github.com/airbnb/enzyme) 進行 React 測試。
 
 ## Mocha 測試初體驗
 [Mocha](https://mochajs.org/) 是目前頗為流行的 JavaScript 測試框架之一，其可以很方便使用於瀏覽器端和 Node 環境。
