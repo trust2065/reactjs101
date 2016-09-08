@@ -35,7 +35,7 @@
 
 - [X] [附錄二、用 React Native + Firebase 開發跨平台行動應用程式（Native Mobile App）](https://github.com/kdchang/reactjs101/tree/master/Appendix02)
 
-- [X] 附錄三、React 測試入門教學
+- [X] [附錄三、React 測試入門教學](https://github.com/kdchang/reactjs101/tree/master/Appendix03)
 
 - [X] 附錄四、Relay/GraphQL 初體驗
 
