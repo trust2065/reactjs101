@@ -51,7 +51,7 @@ GET `/users/3500401`
 }
 ```
 
-```
+```javascript
 import {
   graphql,
   GraphQLSchema,
@@ -74,7 +74,7 @@ var schema = new GraphQLSchema({
 });
 ```
 
-```
+```javascript
 var query = '{ hello }';
 
 graphql(schema, query).then(result => {
@@ -110,7 +110,7 @@ app.listen(4000);
 
 ![Relay/GraphQL 初體驗](./images/relay-architecture.png)
 
-```
+```javascript
 class Tea extends React.Component {
   render() {
     var {name, steepingTime} = this.props.tea;
@@ -171,7 +171,7 @@ ReactDOM.render(
 );
 ```
 
-```
+```javascript
 import {
   GraphQLInt,
   GraphQLList,
@@ -225,7 +225,7 @@ export default new GraphQLSchema({
 ```
 
 ## 總結
-React 生態系中，除了前端 View 的部份有革新性的創新外，GraphQL 更是對於資料取得的全新思路。雖然 GraphQL 和 Relay 已經成為開源專案，但技術上仍持續演進，若需要在團隊 production 上導入仍可以持續觀察。到這邊，若是一路從第一章看到這裡的讀者真的要給自己一個熱烈掌聲了，我知道對於初學者來說 React 龐大且有許多的新的觀念需要消化，但如同筆者在最初時所提到的，學習 React 重要的是透過這個生態系去學習現代化網頁開發的工具和方法以及思路，成為更好的開發者。根據前端摩爾定律，每半年就有一次大變革，但基本 Web 問題和觀念依然不變，大家一起加油啦！ 
+React 生態系中，除了前端 View 的部份有革新性的創新外，GraphQL 更是對於資料取得的全新思路。雖然 GraphQL 和 Relay 已經成為開源專案，但技術上仍持續演進，若需要在團隊 production 上導入仍可以持續觀察。到這邊，若是一路從第一章看到這裡的讀者真的要給自己一個熱烈掌聲了，我知道對於初學者來說 React 龐大且有許多的新的觀念需要消化，但如同筆者在最初時所提到的，學習 React 重要的是透過這個生態系去學習現代化網頁開發的工具和方法以及思路，成為更好的開發者。根據前端摩爾定律，每半年就有一次大變革，但基本 Web 問題和觀念依然不變，大家一起加油啦！若有任何問題都歡迎來信給筆者或是發 `issue`，當然 PR is welcome :) 
 
 ## 延伸閱讀
 1. [Your First GraphQL Server](https://medium.com/the-graphqlhub/your-first-graphql-server-3c766ab4f0a2#.7e02np1rs)
