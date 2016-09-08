@@ -138,7 +138,7 @@ const divStyle = {
   backgroundImage: 'url(' + imgUrl + ')',
 };
 
-ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElmentById('app'));
+ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementById('app'));
 ```
 
 ## 總結
