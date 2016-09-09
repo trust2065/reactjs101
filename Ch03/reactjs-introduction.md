@@ -151,6 +151,6 @@ ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementByI
 4. [ES6 Classes Component](https://facebook.github.io/react/docs/reusable-components.html#es6-classes)
 
 ## :door: 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：React 開發環境設置與 Webpack 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch02/webpack-dev-enviroment.md) | [下一章](https://github.com/kdchang/reactjs101/blob/master/Ch03/react-jsx-introduction.md) |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：React 開發環境設置與 Webpack 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch02/webpack-dev-enviroment.md) | [下一章：JSX 簡明入門教學指南](https://github.com/kdchang/reactjs101/blob/master/Ch03/react-jsx-introduction.md) |
 
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
