@@ -144,6 +144,8 @@ GET `/users/3500401`
 	console.log('GraphQL server running on http://localhost:3000/graphql');
 	```
 
+	在終端機執行：
+
 	```
 	node index.js
 	```
