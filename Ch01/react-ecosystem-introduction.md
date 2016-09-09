@@ -1,6 +1,6 @@
 # React 生態系（Ecosystem）入門簡介
 
-![React 生態系（Ecosystem）入門簡介](./images/react-eco-wp.png "React 生態系（Ecosystem）入門簡介")
+![React 生態系（Ecosystem）入門簡介](./images/react-eco-wp.gif "React 生態系（Ecosystem）入門簡介")
 
 根據 [React 官方網站](https://facebook.github.io/react/) 的說明：React 是一個專注於 UI（View）的 JavaScript 函式庫（Library）。自從 Facebook 於 2013 年開源 React 這個函式庫後，相關的生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：模組化、ES6+、Webpack、Babel、ESLint、函數式程式設計等），成為更好的開發者。 
 
