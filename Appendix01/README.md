@@ -480,6 +480,6 @@ var link = function(height = 50, color = 'red') {
 11. [ECMAScript 6入门](http://es6.ruanyifeng.com/)
 
 ## :door: 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：用 React + Redux + Node（Isomorphic JavaScript）開發食譜分享網站](https://github.com/kdchang/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md) | [下一章：JSX 簡明入門教學指南](https://github.com/kdchang/reactjs101/blob/master/Appendix02/README.md) |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：用 React + Redux + Node（Isomorphic JavaScript）開發食譜分享網站](https://github.com/kdchang/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md) | [下一章：用 React Native + Firebase 開發跨平台行動應用程式](https://github.com/kdchang/reactjs101/blob/master/Appendix02/README.md) |
 
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
