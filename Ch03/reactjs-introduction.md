@@ -149,3 +149,7 @@ ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementByI
 2. [React Demystified](http://blog.reverberate.org/2014/02/react-demystified.html)
 3. [Top-Level API](https://facebook.github.io/react/docs/top-level-api.html)
 4. [ES6 Classes Component](https://facebook.github.io/react/docs/reusable-components.html#es6-classes)
+
+## 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

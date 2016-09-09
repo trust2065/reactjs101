@@ -251,3 +251,7 @@ class FooComponent extends React.Component {
 9. [Immutable Data Structures and JavaScript](http://jlongster.com/Using-Immutable-Data-Structures-in-JavaScript)
 
 （image via [risingstack](https://risingstack-blog.s3.amazonaws.com/2016/Jan/immutable_logo_for_react_js_best_practices-1453211749818.png)）
+
+## 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

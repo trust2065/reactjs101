@@ -1501,3 +1501,7 @@ export default connect(
 
 ## License
 MIT, Special thanks [Loading.io](http://loading.io/)
+
+## 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

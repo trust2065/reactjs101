@@ -354,3 +354,7 @@ export default TodoList;
 1. [Redux 官方網站](http://redux.js.org/index.html)
 
 （image via [JonasOhlsson](http://www.slideshare.net/JonasOhlsson/using-redux)、[licdn](https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAUQAAAAJDAyMWU1MmZhLTYzMTQtNDJkNy1hYzM4LTE5MWQzNWM1ODcyNA.png)）
+
+## 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

@@ -552,3 +552,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 7. [Redux: trigger async data fetch on React view event](http://stackoverflow.com/questions/33304225/redux-trigger-async-data-fetch-on-react-view-event)
 8. [Github API](https://api.github.com/)
 9. [传统 Ajax 已死，Fetch 永生](https://github.com/camsong/blog/issues/2)
+
+## 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

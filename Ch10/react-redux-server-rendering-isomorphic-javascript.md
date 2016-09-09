@@ -458,3 +458,6 @@ export default connect(
 8. [React Router Server Rendering](https://github.com/reactjs/react-router-tutorial/tree/master/lessons/13-server-rendering)
 
 （image via [airbnb](http://nerds.airbnb.com/wp-content/uploads/2013/11/Screen-Shot-2013-11-06-at-5.21.00-PM.png)）
+
+| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
