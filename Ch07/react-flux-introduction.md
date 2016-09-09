@@ -347,6 +347,7 @@ Flux 劣勢：
 
 （image via [devjournal](http://devjournal.ru/wp-content/uploads/2016/03/React.js-Flux-Redux.png)、[facebook](https://facebook.github.io/flux/)、[scotch.io](https://cask.scotch.io/2014/10/V70cSEC.png)）
 
-## 任意門
+## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

@@ -296,6 +296,7 @@ React.createElement("h1", React._spread({}, props, {value: "yo"}), "Hello React!
 
 （image via [adweek](http://www.adweek.com/socialtimes/files/2014/05/LikeButtoniOSApps650.jpg), [codecondo](http://codecondo.com/wp-content/uploads/2015/12/Useful-Features-of-React_7851.png)）
 
-## 任意門
+## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

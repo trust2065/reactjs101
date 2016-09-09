@@ -228,6 +228,7 @@ ReactDOM.render(
 
 （image via [react-lifecycle](http://imgh.us/react-lifecycle.svg)）
 
-## 任意門
+## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

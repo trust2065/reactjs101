@@ -149,6 +149,7 @@ That's it！透過區分 Container 與 Presentational Components 可以讓程式
 3. [React Higher Order Components in depth](https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e#.r8srulpaj)
 4. [React higher order components](http://www.darul.io/post/2016-01-05_react-higher-order-components)
 
-## 任意門
+## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
