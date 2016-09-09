@@ -482,3 +482,8 @@ $ npm test
 11. [【译】展望2016，React.js 最佳实践 (中英对照版)](http://blog.jimmylv.info/2016-01-22-React.js-Best-Practices-for-2016/)
 
 （image via [Anthony Ng](https://cdn-images-1.medium.com/max/800/1*CrB6isZN6YXeM1rWmnjxHw.png)）
+
+## :door: 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：附錄二、用 React Native + Firebase 開發跨平台行動應用程式](https://github.com/kdchang/reactjs101/blob/master/Appendix02/README.md) | [下一章：附錄四、GraphQL/Relay 初體驗](https://github.com/kdchang/reactjs101/blob/master/Appendix04/README.md) |
+
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

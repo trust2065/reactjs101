@@ -478,3 +478,8 @@ var link = function(height = 50, color = 'red') {
 9. [react-native-coding-style](https://github.com/lzbSun/react-native-coding-style)
 10. [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
 11. [ECMAScript 6入门](http://es6.ruanyifeng.com/)
+
+## :door: 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：用 React + Redux + Node（Isomorphic JavaScript）開發食譜分享網站](https://github.com/kdchang/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md) | [下一章：JSX 簡明入門教學指南](https://github.com/kdchang/reactjs101/blob/master/Appendix02/README.md) |
+
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

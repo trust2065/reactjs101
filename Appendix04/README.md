@@ -351,3 +351,8 @@ React 生態系中，除了前端 View 的部份有革新性的創新外，Graph
 9. [Node.js 服务端实践之 GraphQL 初探](http://taobaofed.org/blog/2015/11/26/graphql-basics-server-implementation/)
 
 （image via [facebook](https://facebook.github.io/react/img/blog/relay-components/relay-architecture.png)、[kadira](https://cldup.com/uhBzqnK002.png)）
+
+## :door: 任意門
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：附錄三、React 測試入門教學](https://github.com/kdchang/reactjs101/blob/master/Appendix03/README.md) | 
+
+| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
