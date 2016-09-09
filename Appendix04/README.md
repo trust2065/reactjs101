@@ -154,6 +154,8 @@ GET `/users/3500401`
 
 4. Query 設計
 
+	當 GraphQL 指令為：
+
 	```javascript
 	{
 	  user(id: "1") {
@@ -162,6 +164,8 @@ GET `/users/3500401`
 	}
 	```	
 
+	將回傳資料：
+	
 	```javascript
 	{
 	  "data": {
