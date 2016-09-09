@@ -229,6 +229,6 @@ ReactDOM.render(
 （image via [react-lifecycle](http://imgh.us/react-lifecycle.svg)）
 
 ## :door: 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：Props、State、Refs 與表單處理](https://github.com/kdchang/reactjs101/blob/master/Ch04/props-state-introduction.md) | [下一章：React Router 入門實戰教學](https://github.com/kdchang/reactjs101/blob/master/Ch05/react-router-introduction.md) |
 
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

@@ -156,6 +156,6 @@ store.dispatch({ type: 'DECREMENT' });
 （image via [githubusercontent](https://raw.githubusercontent.com/reactjs/redux/master/logo/logo-title-dark.png)、[makeitopen](http://makeitopen.com/static/images/redux_flowchart.png)、[css-tricks](https://css-tricks.com/wp-content/uploads/2016/03/redux-article-3-03.svg)、[tighten](https://blog.tighten.co/assets/img/react-redux-diagram.png)、[tryolabs](http://blog.tryolabs.com/wp-content/uploads/2016/04/redux-simple-f8-diagram.png)、[facebook](https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png)、[JonasOhlsson](http://www.slideshare.net/JonasOhlsson/using-redux)）
 
 ## :door: 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：Flux 基礎概念與實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-flux-introduction.md) | [下一章：Redux 實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-redux-real-world-example.md) |
 
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

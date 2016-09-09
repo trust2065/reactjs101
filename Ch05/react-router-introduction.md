@@ -276,5 +276,6 @@ export default Repos;
 5. [React Router Tutorial](https://github.com/reactjs/react-router-tutorial)
 
 ## 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：React Component 規格與生命週期（Life Cycle）](https://github.com/kdchang/reactjs101/blob/master/Ch04/react-component-life-cycle.md) | [下一章：ImmutableJS 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch06/react-immutable-introduction.md) |
+
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

@@ -460,6 +460,6 @@ export default connect(
 （image via [airbnb](http://nerds.airbnb.com/wp-content/uploads/2013/11/Screen-Shot-2013-11-06-at-5.21.00-PM.png)）
 
 ## :door: 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用](https://github.com/kdchang/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md) | [下一章：用 React + Redux + Node（Isomorphic JavaScript）開發食譜分享網站](https://github.com/kdchang/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md) |
 
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |

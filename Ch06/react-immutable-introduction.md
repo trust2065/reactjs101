@@ -253,6 +253,6 @@ class FooComponent extends React.Component {
 （image via [risingstack](https://risingstack-blog.s3.amazonaws.com/2016/Jan/immutable_logo_for_react_js_best_practices-1453211749818.png)）
 
 ## :door: 任意門
-| [回首頁](https://github.com/kdchang/reactjs101) | 上一章 | 下一章 |
+| [回首頁](https://github.com/kdchang/reactjs101) | [上一章：React Router 入門實戰教學](https://github.com/kdchang/reactjs101/blob/master/Ch05/react-router-introduction.md) | [下一章：Flux 基礎概念與實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-flux-introduction.md) |
 
 | [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
