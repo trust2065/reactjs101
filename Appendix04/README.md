@@ -176,7 +176,7 @@ GET `/users/3500401`
 	}
 	```
 
-	在了解了資料和 Query 設計後，這個時候我們可以打開瀏覽器輸入：
+	在了解了資料和 Query 設計後，這個時候我們可以打開瀏覽器輸入（當然也可以透過終端機 curl 的方式執行）：
 	`http://localhost:3000/graphql?query={user(id:"1"){name}}`，此時 server 會根據 GET 的資料回傳：
 
 	![Relay/GraphQL 初體驗](./images/graphql-demo-2.png)
