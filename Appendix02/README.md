@@ -38,6 +38,13 @@ $ brew install watchman
 $ npm install -g react-native-cli
 ```
 
+由於我們是要開發 Android 平台，所以必須安裝：
+1. 安裝 JDK
+2. 安裝 Android SDK
+3. 設定一些環境變數
+
+以上可以透過 [Install Android Studio](https://developer.android.com/studio/install.html) 官網和 [官方安裝說明](https://facebook.github.io/react-native/docs/getting-started.html) 步驟完成。
+
 現在，我們先透過一個簡單的 `HelloWorldApp`，讓大家感受一下 React Native 專案如何開發。
 
 首先，我們先初始化一個 React Native Project：
@@ -54,7 +61,7 @@ $ react-native init HelloWorldApp
 
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/android-1.png)
 
-若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android` 啟動你的 App。在這邊我們先使用 Android 平台進行開發：
+若你是使用 Mac OS 作業系統的話可以執行 `run-ios`，若是使用 Android 平台則使用 `run-android` 啟動你的 App。在這邊我們先使用 Android 平台進行開發（若你希望實機測試，請將電腦接上你的 Android 手機，記得確保 menu 中的 ip 位置要和電腦網路 相同。若是遇到連不到程式 server 且手機為 Android 5.0+ 系統，可以執行 `adb reverse tcp:8081 tcp:8081`，詳細情形可以[參考官網說明](https://facebook.github.io/react-native/docs/running-on-device-android.html#using-adb-reverse)）：
 
 ```
 $ react-native run-android
@@ -854,7 +861,7 @@ $ react-native run-android
 ![用 React Native + Firebase 開發跨平台行動應用程式](./images/firebase-database-2.png)
 
 ## 總結
-恭喜你！你已經完成了你的第一個 React Native App，若你希望將你開發的應用程式簽章後上架，請參考[官方的說明文件](https://facebook.github.io/react-native/docs/signed-apk-android.html)。
+恭喜你！你已經完成了你的第一個 React Native App，若你希望將你開發的應用程式簽章後上架，請參考[官方的說明文件](https://facebook.github.io/react-native/docs/signed-apk-android.html)，當你完成簽章打包等流程後，我們可以獲得 .apk 檔，這時就可以上架到市集讓隔壁班心儀的女生，啊不是，是廣大的 Android 使用者使用你的 App 啦！當然，由於我們的程式碼可以 100% 共用於 iOS 和 Android 端，所以你也可以同步上架到 Apple Store！
 
 ## 延伸閱讀
 1. [React Native 官方網站](https://facebook.github.io/react-native/)
