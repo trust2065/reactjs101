@@ -115,6 +115,8 @@ Facebook 本身有提供 [Test Utilities](https://facebook.github.io/react/docs/
 9. [Facebook的Web开发三板斧：React.js、Relay和GraphQL](http://1ke.co/course/595)
 10. [airbnb/javascript](https://github.com/airbnb/javascript)
 
+（image via [jpsierens](http://jpsierens.com/wp-content/uploads/2016/06/react-eco-wp.gif)）
+
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：Web 前端工程入門簡介](https://github.com/kdchang/reactjs101/blob/master/Ch01/front-end-introduction.md) | [下一章：React 開發環境設置與 Webpack 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch02/webpack-dev-enviroment.md) |
 
