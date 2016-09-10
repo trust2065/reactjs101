@@ -464,7 +464,7 @@ var link = function(height = 50, color = 'red') {
 ```
 
 ## 總結
-以上就是 React ES5、ES6+常見用法對照表，能看到這邊的你應該已經對於 React ES5、ES6 使用上有些認識，先給自己一些掌聲吧！確實從 ES6 開始，JavaScript 和以前我們看到的 JavaScript 有些不同，增加了許多新的特性，有些讀者甚至會很懷疑說這真的是 JavaScript 嗎？ES6 的用法對於初學者來說可能會需要寫一點時間吸收，下面我幫大家準備了延伸閱讀，方便大家進一步參考學習。接下來我們也會有一系列從零開始學 React 的文章來帶大家由淺入深學習 ReactJS 生態系，運用 JavaScript 打造跨平台應用程式。筆者才書學淺，若有疏漏歡迎大家一起交流討論：）
+以上就是 React ES5、ES6+常見用法對照表，能看到這邊的你應該已經對於 React ES5、ES6 使用上有些認識，先給自己一些掌聲吧！確實從 ES6 開始，JavaScript 和以前我們看到的 JavaScript 有些不同，增加了許多新的特性，有些讀者甚至會很懷疑說這真的是 JavaScript 嗎？ES6 的用法對於初學者來說可能會需要寫一點時間吸收，下一章我們將進到同樣也是有革新性設計和有趣的 React Natvie，用 JavaScript 和 React 寫 Native App！
 
 ## 延伸閱讀
 1. [React/React Native 的ES5 ES6写法对照表](http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8)
