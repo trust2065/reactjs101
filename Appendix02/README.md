@@ -888,4 +888,4 @@ $ react-native run-android
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：附錄一、React ES5、ES6+ 常見用法對照表](https://github.com/kdchang/reactjs101/tree/master/Appendix01/README.md) | [下一章：附錄三、React 測試入門教學](https://github.com/kdchang/reactjs101/tree/master/Appendix03/README.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

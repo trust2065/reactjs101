@@ -152,4 +152,4 @@ That's it！透過區分 Container 與 Presentational Components 可以讓程式
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：Redux 實戰入門](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-redux-real-world-example.md) | [下一章：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用](https://github.com/kdchang/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

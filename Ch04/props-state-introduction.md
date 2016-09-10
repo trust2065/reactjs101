@@ -287,4 +287,4 @@ ReactDOM.render(<MarkdownEditor />, document.getElementById('app'));
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：JSX 簡明入門教學指南](https://github.com/kdchang/reactjs101/blob/master/Ch03/react-jsx-introduction.md) | [下一章：React Component 規格與生命週期（Life Cycle）](https://github.com/kdchang/reactjs101/blob/master/Ch04/react-component-life-cycle.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

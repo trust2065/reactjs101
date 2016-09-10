@@ -462,4 +462,4 @@ export default connect(
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用](https://github.com/kdchang/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md) | [下一章：用 React + Redux + Node（Isomorphic JavaScript）開發食譜分享網站](https://github.com/kdchang/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

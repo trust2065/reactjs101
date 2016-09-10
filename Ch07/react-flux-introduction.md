@@ -350,4 +350,4 @@ Flux 劣勢：
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：ImmutableJS 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch06/react-immutable-introduction.md) | [下一章：Redux 基礎概念](https://github.com/kdchang/reactjs101/blob/master/Ch07/react-redux-introduction.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

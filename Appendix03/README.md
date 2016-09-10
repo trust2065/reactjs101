@@ -486,4 +486,4 @@ $ npm test
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：附錄二、用 React Native + Firebase 開發跨平台行動應用程式](https://github.com/kdchang/reactjs101/blob/master/Appendix02/README.md) | [下一章：附錄四、GraphQL/Relay 初體驗](https://github.com/kdchang/reactjs101/blob/master/Appendix04/README.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

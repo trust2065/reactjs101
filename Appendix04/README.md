@@ -355,4 +355,4 @@ React 生態系中，除了前端 View 的部份有革新性的創新外，Graph
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：附錄三、React 測試入門教學](https://github.com/kdchang/reactjs101/blob/master/Appendix03/README.md) | 
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

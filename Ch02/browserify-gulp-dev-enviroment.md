@@ -197,4 +197,4 @@
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | 
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |

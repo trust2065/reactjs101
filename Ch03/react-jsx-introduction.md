@@ -299,4 +299,4 @@ React.createElement("h1", React._spread({}, props, {value: "yo"}), "Hello React!
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：ReactJS 與 Component 設計入門介紹](https://github.com/kdchang/reactjs101/blob/master/Ch03/reactjs-introduction.md) | [下一章：Props、State、Refs 與表單處理](https://github.com/kdchang/reactjs101/blob/master/Ch04/props-state-introduction.md) |
 
-| [提出問題或許願](https://github.com/kdchang/reactjs101/issues) |
+| [勘誤、提問或許願](https://github.com/kdchang/reactjs101/issues) |
