@@ -36,7 +36,7 @@
 2. 使用 Functional Component 寫法（單純地 render UI 的 stateless components，沒有內部狀態、沒有實作物件和 ref，沒有生命週期函數。若非需要控制生命週期的話建議多使用 stateless components 獲得比較好的效能）
 
 	```javascript
-	// 使用 arror function 來設計 Functional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
+	// 使用 arrow function 來設計 Functional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
 	const MyComponent = (props) => (
 		<div>Hello, {props.name}</div>
 	);
