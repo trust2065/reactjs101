@@ -15,6 +15,9 @@ React 原本是 Facebook 自己內部使用的開發工具，但卻是一個目�
 7. 在 JavaScript 裡寫 CSS：Inline Style 
 
 ## 基於元件（Component）化思考
+
+![ReactJS 與 Component 設計入門介紹](./images/component.png "ReactJS 與 Component 設計入門介紹")
+
 在 React 的世界中最基本的單元為元件（Component），每個元件也可以包含一個以上的子元件，並依照需求組裝成一個組合式的（Composable）元件，因此具有封裝（encapsulation）、關注點分離 (Separation of Concerns)、複用 (Reuse) 、組合 (Compose) 等特性。
 
 `<TodoApp>` 元件可以包含 `<TodoHeader />`、`<TodoList />` 子元件
@@ -149,6 +152,8 @@ ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementByI
 2. [React Demystified](http://blog.reverberate.org/2014/02/react-demystified.html)
 3. [Top-Level API](https://facebook.github.io/react/docs/top-level-api.html)
 4. [ES6 Classes Component](https://facebook.github.io/react/docs/reusable-components.html#es6-classes)
+
+（image via [maketea](http://maketea.co.uk/images/2014-03-05-robust-web-apps-with-react-part-1/wireframe_deconstructed.png)）
 
 ## :door: 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：React 開發環境設置與 Webpack 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch02/webpack-dev-enviroment.md) | [下一章：JSX 簡明入門教學指南](https://github.com/kdchang/reactjs101/blob/master/Ch03/react-jsx-introduction.md) |
