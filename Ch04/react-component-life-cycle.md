@@ -77,7 +77,7 @@ React Component，就像人會有生老病死一樣有生命週期。一般而�
 3. Unmounting
 	- componentWillUnmount()
 
-很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentShouldUpdatte`、`componentDidUpdate`：  
+很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentWillUpdate`、`componentDidUpdate`：  
 
 HTML Markup：
 ```html
@@ -110,28 +110,25 @@ class MyComponent extends React.Component {
   }
   handleClick() {
     this.setState({'name': 'Zuck'});
-  } 
+  }
   componentWillMount() {
     console.log('componentWillMount');
   }
   componentDidMount() {
-    console.log('componentDidMount');    
+    console.log('componentDidMount');
   }
   componentWillReceiveProps() {
-    console.log('componentWillReceiveProps');        
-  }  
-  componentShouldUpdatte() {
-    console.log('componentShouldUpdatte');        
+    console.log('componentWillReceiveProps');
   }
   componentWillUpdate() {
-    console.log('componentWillUpdate');        
+    console.log('componentWillUpdate');
   }
   componentDidUpdate() {
-    console.log('componentDidUpdate');        
-  }  
+    console.log('componentDidUpdate');
+  }
   componentWillUnmount() {
-    console.log('componentWillUnmount');        
-  }    
+    console.log('componentWillUnmount');
+  }
   render() {
     return (
       <div onClick={this.handleClick}>Hi, {this.state.name}</div>
@@ -139,7 +136,7 @@ class MyComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<MyComponent />, document.getElementById('app'));               
+ReactDOM.render(<MyComponent />, document.getElementById('app'));
 ```
 
 <a class="jsbin-embed" href="http://jsbin.com/yokebo/embed?html,js,console,output">點擊看詳細範例</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.12"></script>
