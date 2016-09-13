@@ -12,31 +12,18 @@
 ## 目錄（Table of Contents）
 
 - [X] [一、前端工程和 React 生態系（Ecosystem）簡介](https://github.com/kdchang/reactjs101/tree/master/Ch01)
-
 - [X] [二、開發環境設置與 Webpack 入門](https://github.com/kdchang/reactjs101/tree/master/Ch02)
-
 - [X] [三、React/JSX/Component 簡介](https://github.com/kdchang/reactjs101/tree/master/Ch03)
-
 - [X] [四、Props/State 基礎與 Component 生命週期](https://github.com/kdchang/reactjs101/tree/master/Ch04) 
-
 - [X] [五、React Router](https://github.com/kdchang/reactjs101/tree/master/Ch05)
-
 - [X] [六、ImmutableJS](https://github.com/kdchang/reactjs101/tree/master/Ch06)
-
 - [X] [七、Flux/Redux](https://github.com/kdchang/reactjs101/tree/master/Ch07) 
-
 - [X] [八、Container 與 Presentational Components](https://github.com/kdchang/reactjs101/tree/master/Ch08)
-
 - [X] [九、實戰教學：用 React + Router + Redux + ImmutableJS 寫一個 Github 查詢應用](https://github.com/kdchang/reactjs101/tree/master/Ch09)
-
 - [X] [十、實戰教學：用 React + Redux + Node（Isomorphic JavaScript）開發食譜分享網站](https://github.com/kdchang/reactjs101/tree/master/Ch10)
-
 - [X] [附錄一、React ES5、ES6+ 常見用法對照表](https://github.com/kdchang/reactjs101/tree/master/Appendix01)
-
 - [X] [附錄二、用 React Native + Firebase 開發跨平台行動應用程式（Native Mobile App）](https://github.com/kdchang/reactjs101/tree/master/Appendix02)
-
 - [X] [附錄三、React 測試入門教學](https://github.com/kdchang/reactjs101/tree/master/Appendix03)
-
 - [X] [附錄四、GraphQL/Relay 初體驗](https://github.com/kdchang/reactjs101/tree/master/Appendix04)
 
 ## 先備知識（Prior Knowledge）
