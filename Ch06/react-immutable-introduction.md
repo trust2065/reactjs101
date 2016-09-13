@@ -32,162 +32,162 @@ ImmutableJS 提供了 7 種不可修改的資料類型：`List`、`Map`、`Stack
 
 1. Map：類似於 key/value 的 object，在 ES6 也有原生 `Map` 對應
 
-```javascript
-// 1. Map 大小
-const map1 = Map({ a: 1 });
-map1.size
-// => 1
+  ```javascript
+  // 1. Map 大小
+  const map1 = Map({ a: 1 });
+  map1.size
+  // => 1
 
-// 2. 新增或取代 Map 元素
-// set(key: K, value: V)
-const map2 = map1.set('a', 7);
-// => Map { "a": 7 }
+  // 2. 新增或取代 Map 元素
+  // set(key: K, value: V)
+  const map2 = map1.set('a', 7);
+  // => Map { "a": 7 }
 
-// 3. 刪除元素
-// delete(key: K)
-const map3 = map1.delete('a');
-// => Map {}
+  // 3. 刪除元素
+  // delete(key: K)
+  const map3 = map1.delete('a');
+  // => Map {}
 
-// 4. 清除 Map 內容
-const map4 = map1.clear();
-// => Map {}
+  // 4. 清除 Map 內容
+  const map4 = map1.clear();
+  // => Map {}
 
-// 5. 更新 Map 元素
-// update(updater: (value: Map<K, V>) => Map<K, V>)
-// update(key: K, updater: (value: V) => V)
-// update(key: K, notSetValue: V, updater: (value: V) => V)
-const map5 = map1.update('a', () => (7))
-// => Map { "a": 7 }
+  // 5. 更新 Map 元素
+  // update(updater: (value: Map<K, V>) => Map<K, V>)
+  // update(key: K, updater: (value: V) => V)
+  // update(key: K, notSetValue: V, updater: (value: V) => V)
+  const map5 = map1.update('a', () => (7))
+  // => Map { "a": 7 }
 
-// 6. 合併 Map 
-const map6 = Map({ b: 3 });
-map1.merge(map6);
-// => Map { "a": 1, "b": 3 }
-```
+  // 6. 合併 Map 
+  const map6 = Map({ b: 3 });
+  map1.merge(map6);
+  // => Map { "a": 1, "b": 3 }
+  ```
 
 2. List：有序且可以重複值，對應於一般的 Array
 
-```javascript
-// 1. 取得 List 長度
-const arr1 = List([1, 2, 3]);
-arr1.size
-// => 3
+  ```javascript
+  // 1. 取得 List 長度
+  const arr1 = List([1, 2, 3]);
+  arr1.size
+  // => 3
 
-// 2. 新增或取代 List 元素內容
-// set(index: number, value: T)
-// 將 index 位置的元素替換
-const arr2 = arr1.set(-1, 7);
-// => [1, 2, 7]
-const arr3 = arr1.set(4, 0);
-// => [1, 2, 3, undefined, 0]
+  // 2. 新增或取代 List 元素內容
+  // set(index: number, value: T)
+  // 將 index 位置的元素替換
+  const arr2 = arr1.set(-1, 7);
+  // => [1, 2, 7]
+  const arr3 = arr1.set(4, 0);
+  // => [1, 2, 3, undefined, 0]
 
-// 3. 刪除 List 元素
-// delete(index: number)
-// 刪除 index 位置的元素
-const arr4 = arr1.delete(1);
-// => [1, 3]
+  // 3. 刪除 List 元素
+  // delete(index: number)
+  // 刪除 index 位置的元素
+  const arr4 = arr1.delete(1);
+  // => [1, 3]
 
-// 4. 插入元素到 List
-// insert(index: number, value: T)
-// 在 index 位置插入 value
-const arr5 = arr1.insert(1, 2);
-// => [1, 2, 2, 3]
+  // 4. 插入元素到 List
+  // insert(index: number, value: T)
+  // 在 index 位置插入 value
+  const arr5 = arr1.insert(1, 2);
+  // => [1, 2, 2, 3]
 
-// 5. 清空 List
-// clear()
-const arr6 = arr1.clear();
-// => []
-```
+  // 5. 清空 List
+  // clear()
+  const arr6 = arr1.clear();
+  // => []
+  ```
 
 3. Set：沒有順序且不能重複的列表
 
-```javascript
-// 1. 建立 Set
-const set1 = Set([1, 2, 3]);
-// => Set { 1, 2, 3 }
+  ```javascript
+  // 1. 建立 Set
+  const set1 = Set([1, 2, 3]);
+  // => Set { 1, 2, 3 }
 
-// 2. 新增元素
-const set2 = set1.add(1).add(5);
-// => Set { 1, 2, 3, 5 } 
-// 由於 Set 為不能重複集合，故 1 只能出現一次
+  // 2. 新增元素
+  const set2 = set1.add(1).add(5);
+  // => Set { 1, 2, 3, 5 } 
+  // 由於 Set 為不能重複集合，故 1 只能出現一次
 
-// 3. 刪除元素
-const set3 = set1.delete(3);
-// => Set { 1, 2 }
+  // 3. 刪除元素
+  const set3 = set1.delete(3);
+  // => Set { 1, 2 }
 
-// 4. 取聯集
-const set4 = Set([2, 3, 4, 5, 6]);
-$set1.union(set1);
-// => Set { 1, 2, 3, 4, 5, 6 }
+  // 4. 取聯集
+  const set4 = Set([2, 3, 4, 5, 6]);
+  $set1.union(set1);
+  // => Set { 1, 2, 3, 4, 5, 6 }
 
-// 5. 取交集
-set1.intersect(set4);
-// => Set { 2, 3 }
+  // 5. 取交集
+  set1.intersect(set4);
+  // => Set { 2, 3 }
 
-// 6. 取差集
-set1.subtract(set4);
-// => Set { 1 }
-```
+  // 6. 取差集
+  set1.subtract(set4);
+  // => Set { 1 }
+  ```
 
 ## ImmutableJS 的特性整理
 1. Persistent Data Structure
-在 `ImmutableJS` 的世界裡，只要資料一被創建，就不能修改，維持 `Immutable`。就不會發生下列的狀況：
+  在 `ImmutableJS` 的世界裡，只要資料一被創建，就不能修改，維持 `Immutable`。就不會發生下列的狀況：
 
-```javascript
-var obj = {
- a: 1
-};
+  ```javascript
+  var obj = {
+   a: 1
+  };
 
-funcationA(obj);
-console.log(obj.a) // 不確定结果為多少？
-```
+  funcationA(obj);
+  console.log(obj.a) // 不確定结果為多少？
+  ```
 
-使用 `ImmutableJS` 就沒有這個問題：
+  使用 `ImmutableJS` 就沒有這個問題：
 
-```javascript
-// 有些開發者在使用時會在 ``Immutable` 變數前加 `$` 以示區隔。
+  ```javascript
+  // 有些開發者在使用時會在 ``Immutable` 變數前加 `$` 以示區隔。
 
-const $obj = fromJS({
- a: 1
-});
+  const $obj = fromJS({
+   a: 1
+  });
 
-funcationA($obj);
-console.log($obj.get('a')) // 1
-```
+  funcationA($obj);
+  console.log($obj.get('a')) // 1
+  ```
 
 2. Structural Sharing
-為了維持資料的不可變，又要避免像 `deepCopy` 一樣複製所有的節點資料而造成的資源損耗，在 `ImmutableJS` 使用的是 Structural Sharing 特性，亦即如果物件樹中一個節點發生變化的話，只會修改這個節點和和受它影響的父節點，其他節點則共享。
+  為了維持資料的不可變，又要避免像 `deepCopy` 一樣複製所有的節點資料而造成的資源損耗，在 `ImmutableJS` 使用的是 Structural Sharing 特性，亦即如果物件樹中一個節點發生變化的話，只會修改這個節點和和受它影響的父節點，其他節點則共享。
 
-```javascript
-const obj = {
-  count: 1,
-  list: [1, 2, 3, 4, 5]
-}
-var map1 = Immutable.fromJS(obj);
-var map2 = map1.set('count', 4);
+  ```javascript
+  const obj = {
+    count: 1,
+    list: [1, 2, 3, 4, 5]
+  }
+  var map1 = Immutable.fromJS(obj);
+  var map2 = map1.set('count', 4);
 
-console.log(map1.list === map2.list); // true
-```
+  console.log(map1.list === map2.list); // true
+  ```
 
 3. Support Lazy Operation
 
-```javascript
-Immutable.Range(1, Infinity)
-.map(n => -n)
-// Error: Cannot perform this action with an infinite size.
+  ```javascript
+  Immutable.Range(1, Infinity)
+  .map(n => -n)
+  // Error: Cannot perform this action with an infinite size.
 
-Immutable.Range(1, Infinity)
-.map(n => -n)
-.take(2)
-.reduce((r, n) => r + n, 0); 
-// -3
-```
+  Immutable.Range(1, Infinity)
+  .map(n => -n)
+  .take(2)
+  .reduce((r, n) => r + n, 0); 
+  // -3
+  ```
 
 4. 豐富的 API 並提供快速轉換原生 JavaScript 的方式
-在 ImmutableJS 中可以使用 `fromJS()`、`toJS()` 進行 JavaScript 和 ImmutableJS 之間的轉換。但由於在轉換之間會非常耗費資源，所以若是你決定引入 `ImmutableJS` 的話請盡量維持資料處在 `Immutable` 的狀態。
+  在 ImmutableJS 中可以使用 `fromJS()`、`toJS()` 進行 JavaScript 和 ImmutableJS 之間的轉換。但由於在轉換之間會非常耗費資源，所以若是你決定引入 `ImmutableJS` 的話請盡量維持資料處在 `Immutable` 的狀態。
 
 5. 支持 Functional Programming
-`Immutable` 本身就是 Functional Programming（函數式程式設計）的概念，所以在 `ImmutableJS` 中可以使用許多 Functional Programming 的方法，例如：`map`、`filter`、`groupBy`、`reduce`、`find`、`findIndex` 等。
+  `Immutable` 本身就是 Functional Programming（函數式程式設計）的概念，所以在 `ImmutableJS` 中可以使用許多 Functional Programming 的方法，例如：`map`、`filter`、`groupBy`、`reduce`、`find`、`findIndex` 等。
 
 6. 容易實現 Redo/Undo 歷史回顧
 
