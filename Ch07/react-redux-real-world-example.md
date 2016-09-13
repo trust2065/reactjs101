@@ -78,7 +78,7 @@ ReactDOM.render(
 
 其中 `src/components/Main/Main.js` 是 Stateless Component，負責所有 View 的進入點。
 
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOM from 'react-dom';
