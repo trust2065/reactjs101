@@ -277,6 +277,8 @@ export default Repos;
 4. [React Router 中文文档](https://react-guide.github.io/react-router-cn/index.html)
 5. [React Router Tutorial](https://github.com/reactjs/react-router-tutorial)
 
+（iamge via [seanamarasinghe](http://seanamarasinghe.com/wp-content/uploads/2016/01/react-router-1050x360.jpg)）
+
 ## 任意門
 | [回首頁](https://github.com/kdchang/reactjs101) | [上一章：React Component 規格與生命週期（Life Cycle）](https://github.com/kdchang/reactjs101/blob/master/Ch04/react-component-life-cycle.md) | [下一章：ImmutableJS 入門教學](https://github.com/kdchang/reactjs101/blob/master/Ch06/react-immutable-introduction.md) |
 
