@@ -89,7 +89,7 @@ NPM（Node Package Manager）是 Node.js 下的主流套件管理工具。在 NP
 [ImmutableJS](https://facebook.github.io/immutable-js/)，是一個能讓開發者建立不可變資料結構的函式庫。建立不可變（immutable）資料結構不僅可以讓狀態可預測性更高，也可以提昇程式的效能。
 
 ## Isomorphic JavaScript
-Isomorphic JavaScript 是指前後端（Client/Server）共用相同部分的程式碼，讓 JavaScript 應用可以同時執行在瀏覽器端和伺服器端，在 React 中可以透過伺服器端渲染（server side rendering）靜態 HTML 的方式達到 Isomorphic JavaScript 效果，讓 SEO 和執行效能更加提昇並讓前後端共用程式碼。而另一個常一起出現的 Universal JavaScript 一般定義更為廣泛，係指可以運行在不同環境下的 JavaScript Code，並不局限於瀏覽器和伺服器端。
+Isomorphic JavaScript 是指前後端（Client/Server）共用相同部分的程式碼，讓 JavaScript 應用可以同時執行在瀏覽器端和伺服器端，在 React 中可以透過伺服器端渲染（server side rendering）靜態 HTML 的方式達到 Isomorphic JavaScript 效果，讓 SEO 和執行效能更加提昇並讓前後端共用程式碼。而另一個常一起出現的 Universal JavaScript 一般定義更為廣泛，係指可以運行在不同環境下的 JavaScript Code，並不局限於瀏覽器和伺服器端。但要留意的是在 Github 和許多技術文章的分享上會把兩者定義為同一件事情。
  
 ## React 測試
 Facebook 本身有提供 [Test Utilities](https://facebook.github.io/react/docs/test-utils.html)，但由於不夠好用，所以目前主流開發社群比較傾向使用 Airbnb 團隊開發的 [enzyme](https://github.com/airbnb/enzyme)，其可以與市面上常見的測試工具（[Mocha](https://mochajs.org/)、[Karma](https://karma-runner.github.io/)、Jest 等）搭配使用。其中 [Jest](https://facebook.github.io/jest/) 是 Facebook 所開發的單元測試工具，其主要基於 [Jasmine](http://jasmine.github.io/) 所建立的測試框架。Jest 除了支援 JSDOM 外，也可以自動模擬 (mock) 透過 `require()` 進來的模組，讓開發者可以更專注在目前被測試的模組中。
@@ -98,7 +98,7 @@ Facebook 本身有提供 [Test Utilities](https://facebook.github.io/react/docs/
 [React Native](https://facebook.github.io/react-native/)和過去的 [Apache Cordova](https://cordova.apache.org/) 等基於 WebView 的解決方案比較不同，它讓開發者可以使用 React 和 JavaScript 開發原生應用程式（Native App），讓 `Learn once, write anywhere` 理想變得可能。
 
 ## GraphQL/Relay
-[GraphQL](http://graphql.org/docs/getting-started/) 是 Facebook 所開發的資料查詢語言（Data Query Language），主要是想解決傳統 RESTful API 所遇到的一些問題，並提供前端更有彈性的 API 設計方式。[Relay](https://facebook.github.io/relay/) 則是 Facebook 提出搭配 GraphQL 用於 React 的一個宣告式數據框架，可以降低 Ajax 的請求數量（類似的框架還有 Netflix 推出的 [Falcor](https://netflix.github.io/falcor/)）。但由於目前主流的後端 API 仍以 傳統 RESTful API 設計為主，所以在使用 GraphQL 上通常會需要比較大架構設計的變動。因此本書則是把 GraphQL/Relay 介紹放到附錄的部份，讓有興趣的讀者可以自行參考。
+[GraphQL](http://graphql.org/docs/getting-started/) 是 Facebook 所開發的資料查詢語言（Data Query Language），主要是想解決傳統 RESTful API 所遇到的一些問題，並提供前端更有彈性的 API 設計方式。[Relay](https://facebook.github.io/relay/) 則是 Facebook 提出搭配 GraphQL 用於 React 的一個宣告式數據框架，可以降低 Ajax 的請求數量（類似的框架還有 Netflix 推出的 [Falcor](https://netflix.github.io/falcor/)）。但由於目前主流的後端 API 仍以傳統 RESTful API 設計為主，所以在使用 GraphQL 上通常會需要比較大架構設計的變動。因此本書則是把 GraphQL/Relay 介紹放到附錄的部份，讓有興趣的讀者可以自行參考體驗一下。
 
 ## 總結
 以上就是讀者 React 在生態系遊走時會出現各種關主，也許有些初學者會對於這樣龐大的體系所嚇到，放棄學習 React 這項革新性技術的機會。不過別擔心，接下來筆者將帶領讀者按圖索驥，依序介紹整個 React 生態系的各種技術，一步步帶領大家用 React 實作出生活中會用到的應用程式。
