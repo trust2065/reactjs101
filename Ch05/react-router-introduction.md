@@ -1,5 +1,7 @@
 # React Router 入門實戰教學
 
+![React Router 資料夾結構](./images/react-router.jpg "React Router 入門實戰教學")
+
 ## 前言
 若你是從一開始一路走到這裡讀者請先給自己一個愛的鼓勵吧！在經歷了 React 基礎的訓練後，相信各位讀者應該都等不及想大展拳腳了！接下來我們將進行比較複雜的應用程式開發並和讀者介紹目前市場上常見的不刷頁單頁式應用程式（single page application）的設計方式。
 
