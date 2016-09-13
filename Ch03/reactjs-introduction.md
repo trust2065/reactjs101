@@ -145,7 +145,17 @@ ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementByI
 ```
 
 ## 總結
-以上介紹了 ReactJS 的幾個重要特性，接下來我們將進一步探討 React 裡 JSX 的使用方式。
+以上介紹了 ReactJS 的幾個重要特性：
+
+1. 基於元件（Component）化思考
+2. 用 JSX 進行宣告式（Declarative）UI 設計
+3. 使用 Virtual DOM
+4. Component PropType 防呆機制
+5. Component 就像個狀態機（State Machine），而且也有生命週期（Life Cycle）
+6. 一律重繪（Always Redraw）和單向資料流（Unidirectional Data Flow）
+7. 在 JavaScript 裡寫 CSS：Inline Style
+
+接下來我們將進一步探討 React 裡 JSX 的使用方式。
 
 ## 延伸閱讀
 1. [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
