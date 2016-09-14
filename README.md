@@ -7,7 +7,7 @@
 
 [從零開始學 ReactJS（ReactJS 101）粉絲頁](https://www.facebook.com/reactjs101/)
 
-[範例程式碼和書籍內容連載位置](https://github.com/kdchang/reactjs101)
+[繁體中文範例程式碼和書籍內容連載位置](https://github.com/kdchang/reactjs101)
 
 ## 目錄（Table of Contents）
 
