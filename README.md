@@ -5,11 +5,11 @@
 
 ## 相關連結（Links）
 
-[從零開始學 ReactJS（ReactJS 101）粉絲頁](https://www.facebook.com/reactjs101/)
+1. [從零開始學 ReactJS（ReactJS 101）粉絲頁](https://www.facebook.com/reactjs101/)
 
-[繁體中文範例程式碼和書籍內容連載位置](https://github.com/kdchang/reactjs101)
+2. [繁體中文範例程式碼和書籍內容連載位置](https://github.com/kdchang/reactjs101)
 
-[勘誤、許願或提問](https://github.com/kdchang/reactjs101/issues)
+3. [勘誤、許願或提問](https://github.com/kdchang/reactjs101/issues)
 
 ## 目錄（Table of Contents）
 
