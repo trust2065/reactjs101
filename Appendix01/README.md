@@ -3,7 +3,7 @@
 ![一看就懂的 React ES5、ES6+ 常見用法對照表](./images/react-es6.jpg)
 
 ## 前言
-[React](https://facebook.github.io/react/) 是 Facebook 推出的開源 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) Library。自從 React 正式開源後，React 生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：ES6、[Webpack](https://github.com/webpack/webpack)、[Babel](https://babeljs.io/)、模組化等），成為更好的開發者。雖然 ES6（ECMAScript2015）、ES7 是未來趨勢（本文將 ES6、ES7 稱為 ES6+），然而目前在網路上有許多的學習資源仍是以 ES5 為主，導致讀者在學習上遇到一些坑洞和迷惑（本文假設讀者對於 React 已經有些基本認識，若你對於 React 尚不熟悉，建議先行[閱讀官方文件](https://facebook.github.io/react/)和[本篇入門教學](https://scotch.io/tutorials/learning-react-getting-started-and-concepts)）。因此本文希望透過整理在 React 中 ES5、ES6+ 常見用法對照表，讓讀者們可以在實現功能時（尤其在 [React Native](https://facebook.github.io/react-native/)）可以更清楚兩者的差異，無痛轉移到 ES6+。 
+[React](https://facebook.github.io/react/) 是 Facebook 推出的開源 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) Library。自從 React 正式開源後，React 生態系開始蓬勃發展。事實上，透過學習 React 生態系（ecosystem）的過程中，可以讓我們順便學習現代化 Web 開發的重要觀念（例如：ES6、[Webpack](https://github.com/webpack/webpack)、[Babel](https://babeljs.io/)、模組化等），成為更好的開發者。雖然 ES6（ECMAScript2015）、ES7 是未來趨勢（本文將 ES6、ES7 稱為 ES6+），然而目前在網路上有許多的學習資源仍是以 ES5 為主，導致讀者在學習上遇到一些坑洞和迷惑（本文假設讀者對於 React 已經有些基本認識，若你對於 React 尚不熟悉，建議先行[閱讀官方文件](https://facebook.github.io/react/)和[本篇入門教學](https://scotch.io/tutorials/learning-react-getting-started-and-concepts)）。因此本文希望透過整理在 React 中 ES5、ES6+ 常見用法對照表，讓讀者們可以在實現功能時（尤其在 [React Native](https://facebook.github.io/react-native/)）可以更清楚兩者的差異，無痛轉移到 ES6+。
 
 ## 大綱
 1. Modules
@@ -44,8 +44,8 @@ import MyComponent from './MyComponent';
 輸出則是使用 `export default`：
 
 ```js
-export default class MyComponent extends React.Compoent {
-  
+export default class MyComponent extends React.Component {
+
 }
 ```
 
@@ -55,7 +55,7 @@ export default class MyComponent extends React.Compoent {
 
 ES5 `React.createClass()` 用法：
 
-```js 
+```js
 var Photo = React.createClass({
   render: function() {
     return (
@@ -70,7 +70,7 @@ ReactDOM.render(<Photo />, document.getElementById('main'));
 
 ES6+ `class` 用法：
 
-```js 
+```js
 class Photo extends React.Component {
   render() {
     return <images alt={this.props.description} src={this.props.src} />;
@@ -80,7 +80,7 @@ ReactDOM.render(<Photo />, document.getElementById('main'));
 ```
 
 在 ES5 我們會在 `componentWillMount ` 生命週期定義希望在 `render` 前執行，且只會執行一次的任務：
- 
+
 ```js
 var Photo = React.createClass({
   componentWillMount: function() {}
@@ -133,7 +133,7 @@ var Todo = React.createClass({
     checked: React.PropTypes.bool.isRequired,
     maxLength: React.PropTypes.number.isRequired
   },
-  render: fucntion() {
+  render: function() {
     return();
   }
 });
@@ -179,8 +179,8 @@ Todo.propTypes = {
 
 
 ## 5. State
-在 React 中 `Props` 和 `State` 是資料流傳遞的重要元素，不同的是 `state` 可更動，可以去執行一些運算。在 ES5 中我們使用 `getInitialState ` 去初始化 `state`： 
- 
+在 React 中 `Props` 和 `State` 是資料流傳遞的重要元素，不同的是 `state` 可更動，可以去執行一些運算。在 ES5 中我們使用 `getInitialState ` 去初始化 `state`：
+
 ```js
 var Todo = React.createClass({
     getInitialState: function() {
@@ -301,7 +301,7 @@ class TodoBtn extends React.Component{
     componentWillMount(){
         Btn.addEventListener('click', this.handleButtonClick);
     }
-    componentDidmount(){
+    componentDidMount(){
         Btn.removeEventListener('click', this.handleButtonClick);
     }
 }
@@ -378,7 +378,7 @@ class Todo extends React.Component {
 ```js
 var React = require('react-native');
 var Component = React.component;
- 
+
 class HelloWorld extends Component {
   render() {
     return (
@@ -388,7 +388,7 @@ class HelloWorld extends Component {
     );
   }
 }
- 
+
 export default HelloWorld;
 ```
 
@@ -424,7 +424,7 @@ class HelloWorld extends Component {
     );
   }
 }
- 
+
 export default HelloWorld;
 ```
 
@@ -460,16 +460,16 @@ var link = function (height, color) {
 ```js
 var link = function(height = 50, color = 'red') {  
   ...  
-} 
+}
 ```
 
 ## 總結
-以上就是 React ES5、ES6+常見用法對照表，能看到這邊的你應該已經對於 React ES5、ES6 使用上有些認識，先給自己一些掌聲吧！確實從 ES6 開始，JavaScript 和以前我們看到的 JavaScript 有些不同，增加了許多新的特性，有些讀者甚至會很懷疑說這真的是 JavaScript 嗎？ES6 的用法對於初學者來說可能會需要寫一點時間吸收，下一章我們將進到同樣也是有革新性設計和有趣的 React Natvie，用 JavaScript 和 React 寫 Native App！
+以上就是 React ES5、ES6+常見用法對照表，能看到這邊的你應該已經對於 React ES5、ES6 使用上有些認識，先給自己一些掌聲吧！確實從 ES6 開始，JavaScript 和以前我們看到的 JavaScript 有些不同，增加了許多新的特性，有些讀者甚至會很懷疑說這真的是 JavaScript 嗎？ES6 的用法對於初學者來說可能會需要寫一點時間吸收，下一章我們將進到同樣也是有革新性設計和有趣的 React Native，用 JavaScript 和 React 寫 Native App！
 
 ## 延伸閱讀
 1. [React/React Native 的ES5 ES6写法对照表](http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8)
 2. [React on ES6+](https://babeljs.io/blog/2015/06/07/react-on-es6-plus)
-3. [react native 中es6语法解析](http://www.ghugo.com/react-native-es6/) 
+3. [react native 中es6语法解析](http://www.ghugo.com/react-native-es6/)
 4. [Learn ES2015](https://babeljs.io/docs/learn-es2015/)
 5. [ECMAScript 6入门](http://es6.ruanyifeng.com/)
 6. [React官方網站](https://facebook.github.io/react/index.html)
