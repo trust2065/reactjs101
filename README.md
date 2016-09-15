@@ -9,6 +9,8 @@
 
 [繁體中文範例程式碼和書籍內容連載位置](https://github.com/kdchang/reactjs101)
 
+[勘誤、許願或提問](https://github.com/kdchang/reactjs101/issues)
+
 ## 目錄（Table of Contents）
 
 - [X] [一、前端工程和 React 生態系（Ecosystem）簡介](https://github.com/kdchang/reactjs101/tree/master/Ch01)
@@ -40,6 +42,8 @@
 本授權條款允許使用者重製、散布、傳輸以及修改著作，但不得為商業目的之使用。若使用者修改該著作時，僅得依本授權條款或與本授權條款類似者來散布該衍生作品。使用時必須按照著作人指定的方式表彰其姓名。
 
 詳細資訊請參考 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。
+
+若需翻譯成其他語言版本，請先 `fork` 一份 `repo` 到自己的 Guthub 並另外開新的 `branch`，將翻譯版本連結更新在 `README.md` 的 `相關連結（Links）` 後發送 `Pull Request`，謝謝。
 
 ## 關鍵字（Keywords）
 React, React Native, React Router, Flux, Redux, Node, Express, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX, Jest, Unit Test, Component, Relay, GraphQL, Universal/Isomorphic, React Tutorial React教程, React教學, 學React, React Tutorial, Tutorial, Ecosystem, Front-End
