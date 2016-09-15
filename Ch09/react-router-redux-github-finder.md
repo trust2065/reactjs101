@@ -253,7 +253,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 	接下來我們要來設定一下 Reducers 和 models（initialState 格式）的設計，注意我們這個範例都是使用 `ImmutableJS`。以下是 `src/constants/models.js`：
 
-	```
+	```javascript
 	import Immutable from 'immutable';
 
 	export const UiState = Immutable.fromJS({
