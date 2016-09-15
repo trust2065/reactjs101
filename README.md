@@ -43,7 +43,7 @@
 
 詳細資訊請參考 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。
 
-若需翻譯成其他語言版本，請先 `fork` 一份 `repo` 到自己的 Guthub 並另外開新的 `branch`，將翻譯版本連結更新在 `README.md` 的 `相關連結（Links）` 後發送 `Pull Request`，謝謝。
+若需翻譯成其他語言版本，請先 `fork` 一份 `repo` 到自己的 Guthub 並另外開新的 `branch`。最後將翻譯版本連結更新在 `master` 分支中 `README.md` 的 `相關連結（Links）` 後發送 `Pull Request`，謝謝。
 
 ## 關鍵字（Keywords）
 React, React Native, React Router, Flux, Redux, Node, Express, ImmutableJS, NPM, Babel, Browserify, Webpack, Gulp, Grunt, Pure Functions, PropTypes, Stateless Functional Components, Presentational Components, ES6, ES5, JSX, Jest, Unit Test, Component, Relay, GraphQL, Universal/Isomorphic, React Tutorial React教程, React教學, 學React, React Tutorial, Tutorial, Ecosystem, Front-End
