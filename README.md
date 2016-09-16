@@ -9,7 +9,7 @@
 
 2. [繁體中文範例程式碼和書籍內容連載位置](https://github.com/kdchang/reactjs101)
 
-3. [勘誤、許願或提問](https://github.com/kdchang/reactjs101/issues)
+3. [勘誤、許願、建議或提問](https://github.com/kdchang/reactjs101/issues)
 
 ## 目錄（Table of Contents）
 
