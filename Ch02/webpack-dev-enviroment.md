@@ -147,7 +147,7 @@
 	$ npm install --save react react-dom
 	```
 
-6. 撰寫 Component(index.html 以及index.js要放到./app底下喔)
+6. 撰寫 Component（記得把 `index.html` 以及 `index.js` 放到 `app` 資料夾底下喔！）
 	`index.html`
 
 	```html 
