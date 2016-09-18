@@ -33,6 +33,8 @@ ImmutableJS 提供了 7 種不可修改的資料類型：`List`、`Map`、`Stack
 1. Map：類似於 key/value 的 object，在 ES6 也有原生 `Map` 對應
 
   ```javascript
+  const Map= Immutable.Map;
+  
   // 1. Map 大小
   const map1 = Map({ a: 1 });
   map1.size
@@ -68,6 +70,8 @@ ImmutableJS 提供了 7 種不可修改的資料類型：`List`、`Map`、`Stack
 2. List：有序且可以重複值，對應於一般的 Array
 
   ```javascript
+  const List= Immutable.List;
+  
   // 1. 取得 List 長度
   const arr1 = List([1, 2, 3]);
   arr1.size
@@ -102,6 +106,8 @@ ImmutableJS 提供了 7 種不可修改的資料類型：`List`、`Map`、`Stack
 3. Set：沒有順序且不能重複的列表
 
   ```javascript
+  const Set= Immutable.Set;
+  
   // 1. 建立 Set
   const set1 = Set([1, 2, 3]);
   // => Set { 1, 2, 3 }
@@ -117,7 +123,7 @@ ImmutableJS 提供了 7 種不可修改的資料類型：`List`、`Map`、`Stack
 
   // 4. 取聯集
   const set4 = Set([2, 3, 4, 5, 6]);
-  $set1.union(set1);
+  set1.union(set4);
   // => Set { 1, 2, 3, 4, 5, 6 }
 
   // 5. 取交集
