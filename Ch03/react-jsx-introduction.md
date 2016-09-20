@@ -14,7 +14,7 @@
 
 ```html
 <form class="messageBox">
-  <textarea></teextarea>
+  <textarea></textarea>
   <button type="submit"></button>
 </from>
 ```
