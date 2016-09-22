@@ -1,9 +1,9 @@
 import React from 'react';
-import GithubBoxContainer from '../../containers/GithubBoxContainer';
+import GithubBox from '../../components/GithubBox';
 
 const ResultPage = (props) => (
   <div> 
-    <GithubBoxContainer data={props.data} userId={props.location.query.userId} />  
+    <GithubBox data={props.data} userId={props.location.query.userId} />  
   </div>
 );
 

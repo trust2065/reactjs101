@@ -16,7 +16,9 @@
 6. Fetch
 7. [Material UI](http://www.material-ui.com/#/)
 8. Roboto Font from Google Font
-9. Github API（https://api.github.com/users/torvalds）
+9. Github API（https://api.github.com/users/torvalds） 
+
+不過要注意的是 Github API 若沒有使用 App key 的話可以呼叫 API 的次數會受限
 
 ## 專案成果截圖
 

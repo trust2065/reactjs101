@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
@@ -30,5 +30,9 @@ const GithubBox = (props) => (
     </Card> 
   </div>
 );
+
+GithubBox.propTypes = {
+  props: React.PropTypes.Object
+};
 
 export default GithubBox;
