@@ -16,7 +16,7 @@
 <form class="messageBox">
   <textarea></textarea>
   <button type="submit"></button>
-</from>
+</form>
 ```
 
 使用 JSX，就像 XML 語法結構一樣可以自行定義標籤且有開始和關閉，容易理解：
