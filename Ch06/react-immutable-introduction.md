@@ -213,7 +213,7 @@ shouldComponentUpdate (nextProps) {
 
 ```javascript
 // 假設 this.props.value 為 { foo: 'app' }
-// 架設 nextProps.value 為 { foo: 'app' },
+// 假設 nextProps.value 為 { foo: 'app' },
 // 雖然兩者值是一樣，但由於 reference 位置不同，所以視為不同。但由於值一樣應該要避免重複渲染
 this.props.value !== nextProps.value; // true
 ```
