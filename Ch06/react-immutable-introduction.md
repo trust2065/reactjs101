@@ -203,7 +203,7 @@ ImmutableJS 提供了 7 種不可修改的資料類型：`List`、`Map`、`Stack
 傳統 JavaScript 比較方式，若資料型態為 Primitive 就不會有問題：
 
 ```javascript
-// 在 shouldComponentUpdate 比較接下來的 props 一否一致，若相同則不重新渲染，提昇效能
+// 在 shouldComponentUpdate 比較接下來的 props 是否一致，若相同則不重新渲染，提昇效能
 shouldComponentUpdate (nextProps) {
     return this.props.value !== nextProps.value;
 }
