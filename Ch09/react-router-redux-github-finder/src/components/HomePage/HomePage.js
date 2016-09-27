@@ -25,8 +25,8 @@ const HomePage = ({
 );
 
 HomePage.propTypes = {
-  onSubmitUserId: React.PropTypes.Object,
-  onChangeUserId: React.PropTypes.Object,
+  onSubmitUserId: React.PropTypes.func,
+  onChangeUserId: React.PropTypes.func,
   userId: React.PropTypes.string,
 };
 
