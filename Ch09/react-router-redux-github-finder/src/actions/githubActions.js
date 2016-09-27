@@ -12,17 +12,18 @@ import {
 } from './uiActions';
 
 export const getGithub = (userId = 'torvalds') => {
+  console.log('github action');
   return (dispatch) => {
     dispatch({ type: GET_GITHUB_INITIATE });
     dispatch(showSpinner());
-    fetch('https://api.github.com/users/' + userId)
-      .then(function(response) { return response.json() })
-      .then(function(json) { 
+    fetch(`https://api.github.com/users/${userId}`)
+      .then(response => response.json())
+      .then((json) => {
         dispatch({ type: GET_GITHUB_SUCCESS, payload: { data: json } });
         dispatch(hideSpinner());
       })
-      .catch(function(response) { dispatch({ type: GET_GITHUB_FAIL }) });
-  } 
-}
+      .catch(() => dispatch({ type: GET_GITHUB_FAIL }));
+  };
+};
 
-export const changeUserId = (text) => ({ type: CHAGE_USER_ID, payload: { userId: text } });
+export const changeUserId = text => ({ type: CHAGE_USER_ID, payload: { userId: text } });
