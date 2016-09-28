@@ -4,7 +4,7 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
-const GithubBox = (props) => (
+const GithubBox = props => (
   <div>
     <Card>
       <CardHeader
@@ -14,25 +14,26 @@ const GithubBox = (props) => (
       />
       <CardText>
         Followers : {props.data.get('followers')}
-      </CardText>      
+      </CardText>
       <CardText>
         Following : {props.data.get('following')}
       </CardText>
       <CardActions>
         <Link to="/">
-          <RaisedButton 
-            label="Back" 
+          <RaisedButton
+            label="Back"
             icon={<ActionHome />}
-            secondary={true} 
+            secondary
           />
         </Link>
       </CardActions>
-    </Card> 
+    </Card>
   </div>
 );
 
 GithubBox.propTypes = {
-  props: React.PropTypes.Object
+  data: React.PropTypes.Object,
+  userId: React.PropTypes.string,
 };
 
 export default GithubBox;

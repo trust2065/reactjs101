@@ -1,7 +1,7 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 
-const Main = (props) => (
+const Main = props => (
   <div>
     <AppBar
       title="Github Finder"
@@ -14,7 +14,7 @@ const Main = (props) => (
 );
 
 Main.propTypes = {
-  children: React.PropTypes.object,
+  children: React.PropTypes.Object,
 };
 
 export default Main;

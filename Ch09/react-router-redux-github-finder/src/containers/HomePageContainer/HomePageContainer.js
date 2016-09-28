@@ -7,14 +7,14 @@ import {
 } from '../../actions';
 
 export default connect(
-  (state) => ({
+  state => ({
     userId: state.getIn(['github', 'userId']),
   }),
-  (dispatch) => ({
-    onChangeUserId: (event) => (
+  dispatch => ({
+    onChangeUserId: event => (
       dispatch(changeUserId(event.target.value))
     ),
-    onSubmitUserId: (userId) => () => (
+    onSubmitUserId: userId => () => (
       dispatch(getGithub(userId))
     ),
   }),
