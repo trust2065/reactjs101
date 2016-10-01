@@ -11,7 +11,7 @@
 
 3. [勘誤、許願、建議或提問](https://github.com/kdchang/reactjs101/issues)
 
-### 翻譯版本（Translate）
+## 翻譯版本（Translate）
 
 1. [简体中文版本 by @carlleton](https://github.com/carlleton/reactjs101/tree/zh-CN)
 
