@@ -8,7 +8,7 @@ const Repos = (props) => (
 );
 
 Repos.propTypes = {
-  params: React.PropTypes.object,
+  params: React.PropTypes.Object,
 };
 
 export default Repos;

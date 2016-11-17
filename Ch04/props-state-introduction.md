@@ -201,16 +201,16 @@ class TodoApp extends React.Component {
     	this.setState({items: nextItems, text: nextText});
 	}
 	render() {
-    return (
-      <div>
-        <h3>TODO</h3>
-        <TodoList items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.onChange} value={this.state.text} />
-          <button>{'Add #' + (this.state.items.length + 1)}</button>
-        </form>
-      </div>
-    );
+	    return (
+	      <div>
+	        <h3>TODO</h3>
+	        <TodoList items={this.state.items} />
+	        <form onSubmit={this.handleSubmit}>
+	          <input onChange={this.onChange} value={this.state.text} />
+	          <button>{'Add #' + (this.state.items.length + 1)}</button>
+	        </form>
+	      </div>
+	    );
 	}
 }
 
@@ -222,7 +222,7 @@ ReactDOM.render(<TodoApp />, document.getElementById('app'));
 ## Refs 與表單處理
 上面介紹了 props（傳入後就不能修改）、state（隨著使用者互動而改變）和事件處理機制後，我們將接續介紹如何在 React 中進行表單處理。同樣我們使用 React 官網範例 A Component Using External Plugins 進行介紹。由於 React 可以容易整合外部的 libraries（例如：jQuery），本範例將使用 `remarkable` 結合 `ref` 屬性取出 DOM Value 值（另外比較常用的作法是使用 `onChange` 事件處理方式處理表單內容），讓使用者可以使用 Markdown 語法的所見即所得編輯器（editor）。
 
-HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方式引入 `remarkable` 這個 `Markdown` 語法 parser 套件）：
+HTML Markup（除了引入 `react` 、 `react-dom` 還要用 `CDN` 方式引入 `remarkable` 這個 `Markdown` 語法 parser 套件，記得如果沒有使用 Webpack 或是 browserify + babelify 等工具需要引入 `babel-standalone` 瀏覽器解析 ES6 語法並於引入 script 加上 type="text/babel"）：
 
 ```html
 <!DOCTYPE html>
@@ -235,9 +235,10 @@ HTML Markup（記得除了引入 `react` 和 `react-dom` 外還要用 `CDN` 方�
 <body>
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
   <div id="app"></div>
-	<script src="./app.js"></script>
+	<script type="text/babel" src="./app.js"></script>
 </body>
 </html>
 ```
