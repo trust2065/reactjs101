@@ -62,7 +62,7 @@ ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
 使用 Functional Component 寫法：
 
 ```javascript
-// Functional Component 可以視為 f(d) => UI，根據傳進去的 props 繪出對應的 UI。注意這邊 props 是傳入函式的參數。因此取用 props 不用加 this
+// Functional Component 可以視為 f(d) => UI，根據傳進去的 props 繪出對應的 UI。注意這邊 props 是傳入函式的參數，因此取用 props 不用加 this
 const HelloMessage = (props) => (
 	<div>Hello {props.name}</div>
 );
