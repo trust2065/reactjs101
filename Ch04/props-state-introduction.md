@@ -51,7 +51,7 @@ HelloMessage.propTypes = {
 
 // Prop 預設值，若對應 props 沒傳入值將會使用 default 值 Zuck
 HelloMessage.defaultProps = {
- name: 'Zuck', 
+ name: 'Zuck',
 }
 
 ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
@@ -74,7 +74,7 @@ HelloMessage.propTypes = {
 
 // Prop 預設值，若對應 props 沒傳入值將會使用 default 值 Zuck。用法等於 ES5 的 getDefaultProps
 HelloMessage.defaultProps = {
- name: 'Zuck', 
+ name: 'Zuck',
 }
 
 ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
@@ -112,7 +112,7 @@ app.js：
 class Timer extends React.Component {
 	constructor(props) {
 		super(props);
-		// 與 ES5 React.createClass({}) 不同的是 component 內自定義的方法需要自行綁定 this context，或是使用 arrow function 
+		// 與 ES5 React.createClass({}) 不同的是 component 內自定義的方法需要自行綁定 this context，或是使用 arrow function
         this.tick = this.tick.bind(this);
 		// 初始 state，等於 ES5 中的 getInitialState
 		this.state = {
@@ -127,7 +127,7 @@ class Timer extends React.Component {
 	componentDidMount() {
 	    this.interval = setInterval(this.tick, 1000);
 	}
-	// componentWillUnmount 為 component 生命週期中 component 即將移出插入的節點的階段。這邊移除了 setInterval 效力 
+	// componentWillUnmount 為 component 生命週期中 component 即將移出插入的節點的階段。這邊移除了 setInterval 效力
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
@@ -135,7 +135,7 @@ class Timer extends React.Component {
 	render() {
 	    return (
 	      <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
-	    );		
+	    );
 	}
 }
 
@@ -192,7 +192,7 @@ class TodoApp extends React.Component {
 		}
 	}
 	onChange(e) {
-    	this.setState({text: e.target.value});		
+    	this.setState({text: e.target.value});
 	}
 	handleSubmit(e) {
     	e.preventDefault();
@@ -261,7 +261,7 @@ class MarkdownEditor extends React.Component {
 		// 將使用者輸入的 Markdown 語法 parse 成 HTML 放入 DOM 中，React 通常使用 virtual DOM 作為和 DOM 溝通的中介，不建議直接操作 DOM。故使用時的屬性為 dangerouslySetInnerHTML
 		rawMarkup() {
 	    const md = new Remarkable();
-	    return { __html: md.render(this.state.value) };		
+	    return { __html: md.render(this.state.value) };
 	}
 	render() {
 	    return (
@@ -277,7 +277,7 @@ class MarkdownEditor extends React.Component {
 	          dangerouslySetInnerHTML={this.rawMarkup()}
 	        />
 	      </div>
-	    );	
+	    );
 	}
 }
 
