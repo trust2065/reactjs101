@@ -26,7 +26,7 @@
 
 	// Prop 預設值，若對應 props 沒傳入值將會使用 default 值，為每個實例化 Component 共用的值
 	MyComponent.defaultProps = {
-	 	name: '', 
+	 	name: '',
 	}
 
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
@@ -48,9 +48,9 @@
 
 	// Prop 預設值，若對應 props 沒傳入值將會使用 default 值
 	MyComponent.defaultProps = {
-		name: '', 
+		name: '',
 	}
-	
+
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
 	ReactDOM.render(<MyComponent name="Mark"/>, document.getElmentById('app'));
 	```
@@ -77,7 +77,7 @@ React Component，就像人會有生老病死一樣有生命週期。一般而�
 3. Unmounting
 	- componentWillUnmount()
 
-很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentWillUpdate`、`componentDidUpdate`：  
+很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentWillUpdate`、`componentDidUpdate`：
 
 HTML Markup：
 ```html
