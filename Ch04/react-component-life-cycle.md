@@ -26,7 +26,7 @@
 
 	// Prop 預設值，若對應 props 沒傳入值將會使用 default 值，為每個實例化 Component 共用的值
 	MyComponent.defaultProps = {
-	 	name: '', 
+	 	name: '',
 	}
 
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
@@ -48,14 +48,14 @@
 
 	// Prop 預設值，若對應 props 沒傳入值將會使用 default 值
 	MyComponent.defaultProps = {
-		name: '', 
+		name: '',
 	}
-	
+
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
 	ReactDOM.render(<MyComponent name="Mark"/>, document.getElmentById('app'));
 	```
 
-值得留意的是在 ES6 Class 中 `render()` 是唯一必要的方法（但要注意的是請保持 `redner()` 的純粹，不要在裡面進行 `state` 修改或是使用非同步方法和瀏覽器互動，若需非同步互動請於 `componentDidMount()` 操作），而 Functional Component 目前允許 `return null` 值。 喔對了，在 ES6 中也不支援 `mixins` 複用其他元件的方法了。
+值得留意的是在 ES6 Class 中 `render()` 是唯一必要的方法（但要注意的是請保持 `render()` 的純粹，不要在裡面進行 `state` 修改或是使用非同步方法和瀏覽器互動，若需非同步互動請於 `componentDidMount()` 操作），而 Functional Component 目前允許 `return null` 值。 喔對了，在 ES6 中也不支援 `mixins` 複用其他元件的方法了。
 
 ## React Component 生命週期
 React Component，就像人會有生老病死一樣有生命週期。一般而言 Component 有以下三種生命週期的狀態：
@@ -77,7 +77,7 @@ React Component，就像人會有生老病死一樣有生命週期。一般而�
 3. Unmounting
 	- componentWillUnmount()
 
-很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentWillUpdate`、`componentDidUpdate`：  
+很多讀者一開始學習 Component 生命週期時會覺得很抽象，所以接下來用一個簡單範例讓大家感受一下 Component 的生命週期。讀者可以發現當一開始載入元件時第一個會觸發 `console.log('constructor');`，依序執行 `componentWillMount`、`componentDidMount` ，而當點擊文字觸發 `handleClick()` 更新 `state` 時則會依序執行 `componentWillUpdate`、`componentDidUpdate`：
 
 HTML Markup：
 ```html

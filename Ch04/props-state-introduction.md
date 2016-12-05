@@ -32,7 +32,7 @@ app.js，使用 ES6 Class Component 寫法：
 class HelloMessage extends React.Component {
 	// 若是需要綁定 this.方法或是需要在 constructor 使用 props，定義 state，就需要 constructor。若是在其他方法（如 render）使用 this.props 則不用一定要定義 constructor
 	constructor(props) {
-		// 對於 OOP 物件導向程式設計熟悉的讀者應該對於 constructor 建構子的使用不陌生，事實上它是 ES6 的語法糖，骨子裡還是 portotype based 物件導向程式語言。透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
+		// 對於 OOP 物件導向程式設計熟悉的讀者應該對於 constructor 建構子的使用不陌生，事實上它是 ES6 的語法糖，骨子裡還是 prototype based 物件導向程式語言。透過 extends 可以繼承 React.Component 父類別。super 方法可以呼叫繼承父類別的建構子
 		super(props);
 		this.state = {}
 	}
@@ -51,7 +51,7 @@ HelloMessage.propTypes = {
 
 // Prop 預設值，若對應 props 沒傳入值將會使用 default 值 Zuck
 HelloMessage.defaultProps = {
- name: 'Zuck', 
+ name: 'Zuck',
 }
 
 ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
@@ -62,7 +62,7 @@ ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
 使用 Functional Component 寫法：
 
 ```javascript
-// Functional Component 可以視為 f(d) => UI，根據傳進去的 props 繪出對應的 UI。注意這邊 props 是傳入函式的參數。因此取用 props 不用加 this
+// Functional Component 可以視為 f(d) => UI，根據傳進去的 props 繪出對應的 UI。注意這邊 props 是傳入函式的參數，因此取用 props 不用加 this
 const HelloMessage = (props) => (
 	<div>Hello {props.name}</div>
 );
@@ -74,7 +74,7 @@ HelloMessage.propTypes = {
 
 // Prop 預設值，若對應 props 沒傳入值將會使用 default 值 Zuck。用法等於 ES5 的 getDefaultProps
 HelloMessage.defaultProps = {
- name: 'Zuck', 
+ name: 'Zuck',
 }
 
 ReactDOM.render(<HelloMessage name="Mark" />, document.getElementById('app'));
@@ -112,7 +112,7 @@ app.js：
 class Timer extends React.Component {
 	constructor(props) {
 		super(props);
-		// 與 ES5 React.createClass({}) 不同的是 component 內自定義的方法需要自行綁定 this context，或是使用 arrow function 
+		// 與 ES5 React.createClass({}) 不同的是 component 內自定義的方法需要自行綁定 this context，或是使用 arrow function
         this.tick = this.tick.bind(this);
 		// 初始 state，等於 ES5 中的 getInitialState
 		this.state = {
@@ -127,7 +127,7 @@ class Timer extends React.Component {
 	componentDidMount() {
 	    this.interval = setInterval(this.tick, 1000);
 	}
-	// componentWillUnmount 為 component 生命週期中 component 即將移出插入的節點的階段。這邊移除了 setInterval 效力 
+	// componentWillUnmount 為 component 生命週期中 component 即將移出插入的節點的階段。這邊移除了 setInterval 效力
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
@@ -135,7 +135,7 @@ class Timer extends React.Component {
 	render() {
 	    return (
 	      <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
-	    );		
+	    );
 	}
 }
 
@@ -192,7 +192,7 @@ class TodoApp extends React.Component {
 		}
 	}
 	onChange(e) {
-    	this.setState({text: e.target.value});		
+    	this.setState({text: e.target.value});
 	}
 	handleSubmit(e) {
     	e.preventDefault();
@@ -257,11 +257,11 @@ class MarkdownEditor extends React.Component {
 	}
 	handleChange() {
 	    this.setState({value: this.refs.textarea.value});
-		}
-		// 將使用者輸入的 Markdown 語法 parse 成 HTML 放入 DOM 中，React 通常使用 virtual DOM 作為和 DOM 溝通的中介，不建議直接由操作 DOM。故使用時的屬性為 dangerouslySetInnerHTML
+	}
+	// 將使用者輸入的 Markdown 語法 parse 成 HTML 放入 DOM 中，React 通常使用 virtual DOM 作為和 DOM 溝通的中介，不建議直接由操作 DOM。故使用時的屬性為 dangerouslySetInnerHTML
 	rawMarkup() {
 	    const md = new Remarkable();
-	    return { __html: md.render(this.state.value) };		
+	    return { __html: md.render(this.state.value) };
 	}
 	render() {
 	    return (
@@ -277,7 +277,7 @@ class MarkdownEditor extends React.Component {
 	          dangerouslySetInnerHTML={this.rawMarkup()}
 	        />
 	      </div>
-	    );	
+	    );
 	}
 }
 
