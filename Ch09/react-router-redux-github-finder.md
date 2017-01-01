@@ -394,7 +394,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	export default Main;
 	```
 
-	以下是 `src/components/ResultPage/ResultPage.js`： 
+	以下是 `src/components/ResultPage/HomePage.js`： 
 
 	```javascript
 	import React from 'react';
