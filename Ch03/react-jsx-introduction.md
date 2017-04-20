@@ -171,7 +171,7 @@ React.createElement(
 )
 ```
 
-解析前（特別注意在 JSX 中使用 JavaScript 表達式時使用 `{}` 括起，如下方範例的 `text`，裡面對應的是變數。若需希望放置一般文字，請加上 `''`）：
+解析前（特別注意在 JSX 中使用 JavaScript 表達式時使用 `{}` 括起，如下方範例的 `text`，裡面對應的是變數。若需放置一般文字，請加上 `''`）：
 
 ```js
 var text = 'Hello React';

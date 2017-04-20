@@ -17,7 +17,7 @@ NPM（Node Package Manager）是 Node.js 下的主流套件管理工具。在 NP
 [ES6+](https://babeljs.io/blog/2015/06/07/react-on-es6-plus) 係指 ES6（ES2015）和 ES7 的聯集，在 ES6+ 新的標準當中引入許多新的特性和功能，彌補了過去 JavaScript 被詬病的一些特性。由於未來 React 將以支援 ES6+ 為主，因此直接學習 ES6+ 用法是相對好的選擇，本書的所有範例也將會以 ES6+ 撰寫。
 
 ## Babel
-由於並非所有瀏覽器都支援 ES6+ 語法，所以透過 [Babel](https://babeljs.io/) 這個 JavaScript 編譯器（可以想成是翻譯機或是翻譯蒟篛）可以讓你的 ES6+ 、JSX 等程式碼轉換成瀏覽器可以看的懂得語法。通常會在資料夾的 root 位置加入 `.babelrc` 進行轉譯規則 `preset` 和引用外掛（plugin）的設定。
+由於並非所有瀏覽器都支援 ES6+ 語法，所以透過 [Babel](https://babeljs.io/) 這個 JavaScript 編譯器（可以想成是翻譯機或是翻譯蒟篛）可以讓你的 ES6+ 、JSX 等程式碼轉換成瀏覽器可以看得懂的語法。通常會在資料夾的 root 位置加入 `.babelrc` 進行轉譯規則 `preset` 和引用外掛（plugin）的設定。
 
 ## JavaScript 模組化開發
 隨著 Web 應用程式的複雜性提高，JavaScript 模組化開發已經成為必然的趨勢，以下簡單介紹 JavaScript 模組化的相關規範。事實上，在一開始沒有官方定義的標準時出現了各種社群自行定義的規範和實踐。
