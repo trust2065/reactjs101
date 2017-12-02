@@ -30,7 +30,7 @@
 	}
 
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
-	ReactDOM.render(<MyComponent name="Mark"/>, document.getElmentById('app'));
+	ReactDOM.render(<MyComponent name="Mark"/>, document.getElementById('app'));
 	```
 
 2. 使用 Functional Component 寫法（單純地 render UI 的 stateless components，沒有內部狀態、沒有實作物件和 ref，沒有生命週期函數。若非需要控制生命週期的話建議多使用 stateless components 獲得比較好的效能）
@@ -52,7 +52,7 @@
 	}
 
 	// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
-	ReactDOM.render(<MyComponent name="Mark"/>, document.getElmentById('app'));
+	ReactDOM.render(<MyComponent name="Mark"/>, document.getElementById('app'));
 	```
 
 值得留意的是在 ES6 Class 中 `render()` 是唯一必要的方法（但要注意的是請保持 `render()` 的純粹，不要在裡面進行 `state` 修改或是使用非同步方法和瀏覽器互動，若需非同步互動請於 `componentDidMount()` 操作），而 Functional Component 目前允許 `return null` 值。 喔對了，在 ES6 中也不支援 `mixins` 複用其他元件的方法了。
