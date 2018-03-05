@@ -240,7 +240,7 @@ export { default } from './configureStore';
 
 在我們的範例 App 中我們只會先用到前兩個參數，第三個參數會在之後的例子裡用到。第一個參數 mapStateToProps 是一個讓開發者可以從 store 取出想要 state 並當做 props 往下傳的功能，第二個參數則是將 dispatch 行為封裝成函數順著 props 可以方便往下傳和呼叫。
 
-以下是 `src/components/TodoHeader/TodoHeader.js` 的部份：
+以下是 `src/containers/TodoHeaderContainer/TodoHeader.js` 的部份：
 
 ```javascript
 import React from 'react';
@@ -271,10 +271,18 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 });
 
+// connect 至 TodoHeader
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
 )(TodoHeader);
+
+```
+以下是 `src/components/TodoHeader/TodoHeader.js` 的部份：
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // 開始建設 Component 並使用 connect 進來的 props 並綁定事件（onChange、onClick）。注意我們的 state 因為是使用 `ImmutableJS` 所以要用 `get()` 取值
 const TodoHeader = ({
@@ -292,7 +300,7 @@ const TodoHeader = ({
 export default TodoHeader;
 ```
 
-以下是 `src/components/TodoList/TodoList.js` 的部份：
+以下是 `src/containers/TodoListContainer/TodoList.js` 的部份：
 
 ```javascript
 import React from 'react';
@@ -319,6 +327,12 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
 )(TodoList);
+```
+以下是 `src/components/TodoList/TodoList.js` 的部份：
+```javascript
+
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // Component 部分值的注意的是 todos state 是透過 map function 去迭代出元素，由於要讓 React JSX 可以渲染並保持傳入觸發 event state 的 immutable，所以需使用 toJS() 轉換 component of array。
 const TodoList = ({
