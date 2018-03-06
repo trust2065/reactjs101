@@ -487,7 +487,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 
 5. Connect State to Component
 
-	最後，我們要將 Container 和 Component 連接在一起（若忘記了，請先回去複習 Container 與 Presentational Components 入門！）。以下是 `src/containers/HomePage/HomePage.js`，負責將 userId 和使用到的事件處理方法用 props 傳進 component ：
+	最後，我們要將 Container 和 Component 連接在一起（若忘記了，請先回去複習 Container 與 Presentational Components 入門！）。以下是 `src/containers/HomePageContainer/HomePageContainer.js`，負責將 userId 和使用到的事件處理方法用 props 傳進 component ：
 
 	```javascript
 	import { connect } from 'react-redux';
@@ -520,7 +520,7 @@ $ npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es201
 	)(HomePage);
 	```
 
-	以下是 `src/containers/ResultPage/ResultPage.js`：
+	以下是 `src/containers/ResultPageContainer/ResultPageContainer.js`：
 
 	```javascript
 	import { connect } from 'react-redux';
